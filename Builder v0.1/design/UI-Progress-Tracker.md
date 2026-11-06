@@ -36,3 +36,4 @@ First open item: **P03**, unless Grant says otherwise.
 
 - [stated] 2026-11-06: P01 (main chat starting page) and P02 (mobile chat starting page) are done.
 - Draft (not yet approved by Grant): page order P03 to P17 above.
+- [stated] 2026-11-06: Shortcut phrase "design the next page" added; see shortcuts.md.
