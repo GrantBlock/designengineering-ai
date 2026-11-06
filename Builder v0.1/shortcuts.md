@@ -14,9 +14,11 @@ Paths below are relative to `Builder v0.1/`. Memory logs are in `designengineeri
 
 ## "what's waiting on me"
 
-**Description:** Lists everything that needs Grant's review or decision, ranked. Reads only.
-1. Collect items marked awaiting review, open, or ◐ in both trackers, plus open decisions in the D1-D12 log and any `Draft (not yet approved by Grant)` lines in the memory logs and `ideas.md`.
-2. Rank by what blocks the most other work. Show at most 10, each with a one-line reason and where it lives.
+**Description:** Lists what needs Grant's review or decision, filtered by where he is working. Reads only.
+1. Read `review-queue.md`, the Waiting table.
+2. Pick the surface: "what's waiting on me on mobile / in code / in vscode" uses that tag. With no surface named, infer it (Claude mobile app = `mobile`, Claude Code session = `code`, Claude in VS Code = `vscode`), and say which one was used.
+3. Show that surface's items first, ranked by what blocks the most other work, at most 10, each with a one-line reason and where it lives. Then one line with the counts waiting on the other surfaces.
+4. Also flag any `Draft (not yet approved by Grant)` line in the memory logs or `ideas.md` that isn't in the queue, and offer to add it.
 
 ## "park this idea"
 
@@ -59,4 +61,5 @@ Steps:
 
 - [stated] 2026-11-06: "design the next page" is the shortcut for the workflow above.
 - [stated] 2026-11-06: Shortcuts added: where were we, what's waiting on me, park this idea, poke holes in this, decision brief, design the next page, review page.
+- [stated] 2026-11-06: "what's waiting on me" reads `review-queue.md` and filters by surface (mobile, code, vscode).
 - Draft (not yet approved by Grant): "log it" and "end of day" shortcuts were suggested but not added.
