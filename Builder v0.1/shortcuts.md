@@ -23,8 +23,8 @@ Paths below are relative to `Builder v0.1/`. Memory logs are in `designengineeri
 ## "park this idea"
 
 **Description:** Saves an idea without touching any plan or decision. Writes only to `ideas.md`.
-1. Append to `ideas.md` (create it if missing): `- Draft (not yet approved by Grant): YYYY-MM-DD: <idea in Grant's words>`.
-2. Reply with one line confirming. Don't expand, evaluate or act on it. Never delete earlier lines.
+1. Append to `ideas.md` (create it if missing) with the next ID: `- I07 Draft (not yet approved by Grant): YYYY-MM-DD: <idea in Grant's words>`.
+2. Reply with one line confirming and the ID. Don't expand, evaluate or act on it. Never delete earlier lines.
 
 ## "poke holes in this"
 
@@ -34,10 +34,13 @@ Paths below are relative to `Builder v0.1/`. Memory logs are in `designengineeri
 
 ## "decision brief"
 
-**Description:** One-screen brief on a decision, for a yes, no or later answer. Reads only. Name it like "decision brief D11"; with no name, use the most blocking open decision.
-1. Read the decision in `App-Plan.md` Section 4 and `memory/app-plan-memory.md`.
-2. Reply with: the question, two or three options with trade-offs, a recommendation, what it affects, and what "later" costs.
-3. Do not log anything until Grant answers. After a yes, Grant says "log it" and the answer is recorded as `- [stated] YYYY-MM-DD: <decision>` in the matching memory log.
+**Description:** One-screen brief on a decision, for a yes, no or later answer. Name a decision ("decision brief D11") or a parked idea ("decision brief I07"); with no name, use the most blocking open decision. Writes only to `review-queue.md`, and only to add the item.
+1. For a D number, read the decision in `App-Plan.md` Section 4 and `memory/app-plan-memory.md`. For an I number, read its line in `ideas.md` and check it against the plan.
+2. Reply with: the question, two or three options with trade-offs, a recommendation, what it affects, and what "later" costs. If the idea isn't a decision yet, say so and offer "poke holes in this" instead.
+3. Add the brief to `review-queue.md` (next RQ number, surface tag, usually `mobile`). If an idea needs a new decision, draft it as the next D number, marked `Draft (not yet approved by Grant)`.
+4. Do not log anything until Grant answers. After a yes, Grant says "log it": record `- [stated] YYYY-MM-DD: <decision>` in the matching memory log, mark the idea line `Decided YYYY-MM-DD` in `ideas.md` (never delete it), and move the queue item to Closed with the date and answer.
+
+Flow: park this idea, decision brief, answer, log it.
 
 ## "design the next page"
 
@@ -62,4 +65,5 @@ Steps:
 - [stated] 2026-11-06: "design the next page" is the shortcut for the workflow above.
 - [stated] 2026-11-06: Shortcuts added: where were we, what's waiting on me, park this idea, poke holes in this, decision brief, design the next page, review page.
 - [stated] 2026-11-06: "what's waiting on me" reads `review-queue.md` and filters by surface (mobile, code, vscode).
+- [stated] 2026-11-06: Ideas get IDs (I01...). "decision brief" accepts an idea ID, adds the brief to the review queue, and "log it" marks the idea Decided.
 - Draft (not yet approved by Grant): "log it" and "end of day" shortcuts were suggested but not added.
