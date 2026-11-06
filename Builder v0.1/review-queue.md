@@ -22,7 +22,7 @@ Everything waiting on Grant, tagged by where it is best handled. The shortcut "w
 | RQ10 | Choose the on-device model and minimum PC spec; Windows only or also macOS; can Lite users add notes | vscode | ☐ | App Plan 3.2, D11 to D12 |
 | RQ11 | Make the final picks for decisions D1 to D12 | vscode | ☐ | App Plan Section 4 |
 | RQ12 | Share your sales/project process knowledge (the checklist stages for paid projects). Needed before any checklist work on I01 | mobile | ☐ | `ideas.md` I01 |
-| RQ13 | Decision brief I01: e-sign, approvals, PO and invoice tracking. Draft D13: signing approach for vendor/customer documents. Options: (A) link-based tracked approval only; (B) link-based first, then a trusted platform adapter for contracts after the March 2027 gate (recommended); (C) trusted platform from the start. "Later" costs little; it stays out of the MVP. Affects Sections 4, 5.1 (finance visibility) and 5.2 (vendor terms), plus risks #4 and #9. Draft (not yet approved by Grant) | mobile | ☐ | `ideas.md` I01 |
+| RQ13 | Decision brief I01: e-sign, approvals, PO and invoice tracking. Draft D13: signing approach for vendor/customer documents. Options: (A) link-based tracked approval only; (B) link-based first, then a trusted platform adapter for contracts after the March 2027 gate (recommended); (C) trusted platform from the start. "Later" costs little; it stays out of the MVP. Affects Sections 4, 5.1 (finance visibility) and 5.2 (vendor terms), plus risks #4 and #9. Draft (not yet approved by Grant). Grant answered 2026-11-06: option C (trusted platform from the start, chosen for compatibility with his own system requirements); waiting for "log it" | mobile | ◐ | `ideas.md` I01 |
 
 ## Closed
 
