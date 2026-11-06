@@ -18,13 +18,14 @@ Everything waiting on Grant, tagged by where it is best handled. The shortcut "w
 | RQ06 | Read the Lite package format draft v0.1 and give comments (decisions go to RQ10) | mobile | ☐ | App Plan 3.2 |
 | RQ07 | Add the P01 and P02 exports to the repo | code | ☐ | `design/exports/` |
 | RQ08 | Approve the design system extracted from P01/P02 | code | ☐ | `design/DESIGN-SYSTEM.md` |
-| RQ09 | Run "design the next page" once in a fresh session to confirm the shortcut loads | code | ☐ | `shortcuts.md` |
 | RQ10 | Choose the on-device model and minimum PC spec; Windows only or also macOS; can Lite users add notes | vscode | ☐ | App Plan 3.2, D11 to D12 |
 | RQ11 | Make the final picks for decisions D1 to D12 | vscode | ☐ | App Plan Section 4 |
 
 ## Closed
 
-(none yet)
+| ID | Item | Closed | Answer |
+| --- | --- | --- | --- |
+| RQ09 | Run "design the next page" once in a fresh session to confirm the shortcut loads | 2026-11-06 | [stated] Grant ran "design the next page" and "where were we" in one message on mobile and got both |
 
 ## Rules
 
@@ -35,3 +36,4 @@ Everything waiting on Grant, tagged by where it is best handled. The shortcut "w
 ## Log
 
 - [stated] 2026-11-06: Review queue created with surface tags mobile, code, vscode.
+- [stated] 2026-11-06: RQ09 closed; shortcuts confirmed working on mobile.
