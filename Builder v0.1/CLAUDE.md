@@ -22,7 +22,7 @@ Grant does not manage branches. Sessions start on an auto-named branch that may 
 2. List remote branches with work not in yours: `git branch -r --no-merged HEAD`. Ignore ones with no commits from Grant's sessions.
 3. Merge every such branch into your session branch (`git merge origin/<branch>`). Never reset, force-push or delete branches. Resolve conflicts yourself, keeping both sides; renumber your new IDs (I, D, RQ) rather than touching existing ones.
 4. IDs (I, D, RQ) are the highest found across all `origin/*` branches plus one.
-5. Commit and push to your session branch only. Tell Grant in one line what you merged and from where. Don't ask him which branch.
+5. Commit and push to your session branch only. When a session's work is finished, open a pull request into `development` (check for an open one first, and update it instead of opening a duplicate). Never merge it; Grant merges. `main` is for live releases only: never open pull requests into it unless Grant asks. Tell Grant in one line what you merged and from where. Don't ask him which branch.
 
 ## Out of scope for now
 Application code and agent implementation. Capture designs as docs first.
