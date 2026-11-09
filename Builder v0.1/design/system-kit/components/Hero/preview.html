@@ -1,0 +1,13 @@
+<!-- @dsCard group="Content" height=200 -->
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><title>Hero — preview</title></head>
+<body>
+<div id="root"></div>
+<script>
+  var E = window.DE, h = React.createElement;
+  
+  ReactDOM.createRoot(document.getElementById('root')).render(h("div",{className:"de-stage-col"},h(E.Hero,{eyebrow:"Design engineering",title:"What are we building today?",actions:[h(E.Button,{key:1,variant:"chip",tag:"New",trailing:true},"Configure supplier preferences")]})));
+</script>
+</body>
+</html>

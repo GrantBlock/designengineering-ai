@@ -10,8 +10,8 @@ Page order is a **Draft (not yet approved by Grant)**, built from the App Plan M
 
 | ID | Page | Surface | Status | Export | Notes |
 | --- | --- | --- | --- | --- | --- |
-| P01 | Main chat, starting page | Web (desktop) | ☑ | [add file to `exports/P01-chat-start-desktop/`] | Done before this tracker; source of the design system |
-| P02 | Mobile chat, starting page | Web (mobile) | ☑ | [add file to `exports/P02-chat-start-mobile/`] | Done before this tracker |
+| P01 | Main chat, starting page | Web (desktop) | ☑ | `exports/P01-chat-start-desktop/Design_Engineering_App.html` | Done before this tracker; source of the design system |
+| P02 | Mobile chat, starting page | Web (mobile) | ☑ | `exports/P02-chat-start-mobile/Design_Engineering_Mobile.html` | Done before this tracker |
 | P03 | Chat conversation view (messages, attachments, answers with sources) | Desktop + mobile | ☐ | | Extends P01/P02 |
 | P04 | Sign in / sign up (Clerk) | Desktop + mobile | ☐ | | |
 | P05 | Projects list | Desktop + mobile | ☐ | | |
@@ -34,6 +34,7 @@ First open item: **P03**, unless Grant says otherwise.
 
 ## Log
 
+- [stated] 2026-11-09: P01 and P02 exports, favicon (`assets/favicon.svg`) and the design system kit (`system-kit/`) added from Grant's uploads.
 - [stated] 2026-11-06: P01 (main chat starting page) and P02 (mobile chat starting page) are done.
 - Draft (not yet approved by Grant): page order P03 to P17 above.
 - [stated] 2026-11-06: Shortcut phrase "design the next page" added; see ../shortcuts.md.

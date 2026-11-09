@@ -1,0 +1,240 @@
+{
+  "v": 3,
+  "layout": "files",
+  "createdOnFiles": {
+    "v": 1,
+    "at": "2026-11-04T16:23:08Z"
+  },
+  "title": "Design Engineering",
+  "namespace": "DE",
+  "libraries": [
+    {
+      "name": "react",
+      "version": "18.3.1",
+      "global": "React",
+      "file": "components/lib/react.production.min.js"
+    },
+    {
+      "name": "react-dom",
+      "version": "18.3.1",
+      "global": "ReactDOM",
+      "file": "components/lib/react-dom.production.min.js"
+    }
+  ],
+  "sections": {},
+  "groups": [
+    "Logos",
+    "Icons"
+  ],
+  "assetGroups": {
+    "Logos": {
+      "name": "Logos",
+      "tile": "l",
+      "order": [
+        "de-mark.svg"
+      ],
+      "files": {
+        "de-mark.svg": {
+          "name": "de-mark.svg",
+          "blob": "aa03c16b0467287f65c46044ec7093cb",
+          "size": 8295,
+          "type": "image/svg+xml"
+        }
+      }
+    },
+    "Icons": {
+      "name": "Icons",
+      "tile": "xs",
+      "order": [
+        "account.svg",
+        "arrow-up-right.svg",
+        "bolt.svg",
+        "book.svg",
+        "check.svg",
+        "chevron-down.svg",
+        "chevron-right.svg",
+        "chevron-updown.svg",
+        "chip.svg",
+        "clipboard.svg",
+        "clock.svg",
+        "cube.svg",
+        "doc.svg",
+        "folder.svg",
+        "help.svg",
+        "home.svg",
+        "more.svg",
+        "plus.svg",
+        "project.svg",
+        "search.svg",
+        "send.svg",
+        "sparkle.svg",
+        "star.svg",
+        "tag.svg",
+        "wave.svg"
+      ],
+      "files": {
+        "account.svg": {
+          "name": "account.svg",
+          "blob": "6597fdc785e3b99faf23c7cb46ba531f",
+          "size": 242,
+          "type": "image/svg+xml"
+        },
+        "arrow-up-right.svg": {
+          "name": "arrow-up-right.svg",
+          "blob": "703a261bd344a2bade6638ba671cc916",
+          "size": 220,
+          "type": "image/svg+xml"
+        },
+        "bolt.svg": {
+          "name": "bolt.svg",
+          "blob": "f5841cbcc12c466475d6ccb11e47c523",
+          "size": 228,
+          "type": "image/svg+xml"
+        },
+        "book.svg": {
+          "name": "book.svg",
+          "blob": "2c5b7114d9da4af106605400ec4db065",
+          "size": 265,
+          "type": "image/svg+xml"
+        },
+        "check.svg": {
+          "name": "check.svg",
+          "blob": "1399236a10e1db78299945ba76ef7b0d",
+          "size": 216,
+          "type": "image/svg+xml"
+        },
+        "chevron-down.svg": {
+          "name": "chevron-down.svg",
+          "blob": "20cbd2211cf0dfe7366fea4c0083dadf",
+          "size": 214,
+          "type": "image/svg+xml"
+        },
+        "chevron-right.svg": {
+          "name": "chevron-right.svg",
+          "blob": "0af675159ea26c85a9b1d0a01d017cfa",
+          "size": 214,
+          "type": "image/svg+xml"
+        },
+        "chevron-updown.svg": {
+          "name": "chevron-updown.svg",
+          "blob": "d3652bee1a2ce35502ce1ab97692e56f",
+          "size": 227,
+          "type": "image/svg+xml"
+        },
+        "chip.svg": {
+          "name": "chip.svg",
+          "blob": "55e2e720d092e458063c0178e261bd42",
+          "size": 275,
+          "type": "image/svg+xml"
+        },
+        "clipboard.svg": {
+          "name": "clipboard.svg",
+          "blob": "aed1d570bdbca5b3cd27ca6b832ba84c",
+          "size": 240,
+          "type": "image/svg+xml"
+        },
+        "clock.svg": {
+          "name": "clock.svg",
+          "blob": "e36aafa02f8c8a426e6d5cf35530ad6e",
+          "size": 249,
+          "type": "image/svg+xml"
+        },
+        "cube.svg": {
+          "name": "cube.svg",
+          "blob": "9232ed75958e33712b3b58c794245b6e",
+          "size": 264,
+          "type": "image/svg+xml"
+        },
+        "doc.svg": {
+          "name": "doc.svg",
+          "blob": "2a21bf4415b5c25376a355ec28d8eff4",
+          "size": 241,
+          "type": "image/svg+xml"
+        },
+        "folder.svg": {
+          "name": "folder.svg",
+          "blob": "a75b7d031387c83e6956b3a240eedd9c",
+          "size": 221,
+          "type": "image/svg+xml"
+        },
+        "help.svg": {
+          "name": "help.svg",
+          "blob": "ad9a2bdc01fb3869de6f0c36712c2591",
+          "size": 303,
+          "type": "image/svg+xml"
+        },
+        "home.svg": {
+          "name": "home.svg",
+          "blob": "d5b88f3e24ebcef3fdf563a294c18f20",
+          "size": 230,
+          "type": "image/svg+xml"
+        },
+        "more.svg": {
+          "name": "more.svg",
+          "blob": "81234ae81bd65f150f863621d1e643bd",
+          "size": 226,
+          "type": "image/svg+xml"
+        },
+        "plus.svg": {
+          "name": "plus.svg",
+          "blob": "f5b62fa8255bc20252bb2aec39fb5dca",
+          "size": 218,
+          "type": "image/svg+xml"
+        },
+        "project.svg": {
+          "name": "project.svg",
+          "blob": "c97547a45342f87ac21f569fadcafd64",
+          "size": 221,
+          "type": "image/svg+xml"
+        },
+        "search.svg": {
+          "name": "search.svg",
+          "blob": "19da8382d0bc46cf33f7c945ea51ebb2",
+          "size": 256,
+          "type": "image/svg+xml"
+        },
+        "send.svg": {
+          "name": "send.svg",
+          "blob": "bce8f4af071cbd6e8f9f6fb7f5358ec5",
+          "size": 223,
+          "type": "image/svg+xml"
+        },
+        "sparkle.svg": {
+          "name": "sparkle.svg",
+          "blob": "0253b6738eeb8a3682d52457e6b62863",
+          "size": 259,
+          "type": "image/svg+xml"
+        },
+        "star.svg": {
+          "name": "star.svg",
+          "blob": "31b96baacd4d06a55ee5e6d17a3c2ef4",
+          "size": 275,
+          "type": "image/svg+xml"
+        },
+        "tag.svg": {
+          "name": "tag.svg",
+          "blob": "80418f46f0bd2e85964074b1c2409a6a",
+          "size": 222,
+          "type": "image/svg+xml"
+        },
+        "wave.svg": {
+          "name": "wave.svg",
+          "blob": "f8dde636e83a7ad69547f6c3bf916cb5",
+          "size": 224,
+          "type": "image/svg+xml"
+        }
+      }
+    }
+  },
+  "blobs": {},
+  "docs": {
+    "readme": "project/README.md",
+    "sections": []
+  },
+  "lastChange": {
+    "by": "Grant",
+    "at": "2026-11-04T16:23:08Z",
+    "via": "Cowork",
+    "note": "Built from the Design Engineering desktop and mobile home pages"
+  }
+}

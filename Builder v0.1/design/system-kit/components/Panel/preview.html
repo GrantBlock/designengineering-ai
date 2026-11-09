@@ -1,0 +1,13 @@
+<!-- @dsCard group="Content" height=150 -->
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><title>Panel — preview</title></head>
+<body>
+<div id="root"></div>
+<script>
+  var E = window.DE, h = React.createElement;
+  
+  ReactDOM.createRoot(document.getElementById('root')).render(h("div",{className:"de-stage-col"},h(E.Panel,null,h(E.SectionHeader,{title:"Favorites",count:"3 saved"}),h(E.EmptyNote,null,"Star a model below to keep it here."))));
+</script>
+</body>
+</html>
