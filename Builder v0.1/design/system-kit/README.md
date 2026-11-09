@@ -2,10 +2,10 @@ Design Engineering is Block Concepts' workspace for automation design: mechanica
 
 ## Content fundamentals
 
-- **Voice.** Plain, technical, written for a named assistant whose name is still undecided (placeholder "[Assistant name]", current thinking "Lev"); the sample reply is still in first-person plural. Address the person as "you". No exclamation marks, no emoji, no hype.
+- **Voice.** Plain, technical, written for a named assistant whose name is still undecided (placeholder "[Assistant name]", current thinking "Lev"); the assistant speaks in first person singular ("I will start by establishing what problem the system is addressing."). Address the person as "you". No exclamation marks, no emoji, no hype.
 - **Headlines** are short questions or statements, uppercase in Overpass ExtraBold: "What are we building today?", "Active projects", "Ask the engineering assistant".
 - **Tasks** are imperative and specific: verb, object, condition. "Size a VFD and motor for a conveyor drive". "Run a tolerance stack-up on a bracket assembly". "Score a project on the RAD Index 1 to 5".
-- **Labels and metadata** are mono and uppercase: section labels (FAVORITES, MODELS), categories (MECHANICAL, ELECTRICAL, CONTROLS, SIMULATION, DELIVER), counts ("3 saved", "3 open") and stage ("Stage 2 — Design").
+- **Labels and metadata** are mono and uppercase: section labels (FAVORITES, MODELS), categories (MECHANICAL, ELECTRICAL, CONTROLS, SIMULATION, LIBRARY), counts ("3 saved", "3 open") and stage ("Stage 2 — Design").
 - **Sentence case** for nav items, card text, chips and placeholders: "Configure supplier preferences", "Describe the problem, the part or the process".
 - **Project references** always use the BC-Q-YYNNN number first, in mono: "BC-Q-26041 Palletizer retrofit".
 - **Empty states** give one instruction: "Star a model below to keep it here."

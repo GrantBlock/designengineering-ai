@@ -32,6 +32,8 @@ Names and props are in `system-kit/components/*/README.md`: AppShell, Sidebar, N
 
 ## Content
 - Voice: plain, technical, no emoji, no exclamation marks. Address the person as "you".
+- Assistant voice: first person singular ("I will start by...", "Tell me..."), since the assistant has its own name. Draft (not yet approved by Grant).
+- Prompt card categories: Mechanical, Electrical, Controls, Simulation, Library (Library replaces Deliver).
 - Assistant name: undecided. Use the placeholder `[Assistant name]` everywhere; current thinking "Lev" (Draft, not yet approved by Grant).
 - Project numbers: BC-Q-YYNNN for Block Concepts. The prefix is configurable per organization (for Builder customers), so build it as a setting, not a constant.
 - Sentence case for nav, cards, chips and placeholders. Mono uppercase for labels, counts and stages.
@@ -40,9 +42,7 @@ Names and props are in `system-kit/components/*/README.md`: AppShell, Sidebar, N
 The Block Concepts Word-document tokens (light theme, 2px and 4px corners, Aptos, document colors). They live with the Word files, not the app.
 
 ## Open items
-- Chat sample reply is still first-person plural ("We will start by..."). Decide the assistant's voice when the name is set.
-- Prompt card categories still include "Deliver" although the nav no longer has a Deliver group.
-- Mobile tab labels are tight at five tabs on 360px phones. Check on a small device.
+- Open issues are tracked in `ISSUES.md`.
 - Assistant name: [Assistant name], Draft "Lev".
 
 ## Decision log
@@ -54,5 +54,8 @@ The Block Concepts Word-document tokens (light theme, 2px and 4px corners, Aptos
 - [stated] 2026-11-09: Navigation is Home, Recents, Projects, Design, Library. Library replaces Deliver and Resources. Mobile tabs mirror the desktop navigation.
 - [stated] 2026-11-09: Disarmed send button uses `bc-field-send-off` with a `bc-field-muted` arrow, on desktop and mobile.
 - [stated] 2026-11-09: Mobile text size setting (Large, Extra large 1.12) is part of the design system.
-- Draft (not yet approved by Grant): Library holds Standards, Assessments, Quotes, Documentation and Testing as children. Mobile "Design" tab uses the `cube` icon.
+- [stated] 2026-11-09: Library is confirmed as one nav item with children Standards, Assessments, Quotes, Documentation, Testing. The mobile Design tab keeps the cube icon so desktop and mobile match.
+- [stated] 2026-11-09: Prompt card category "Deliver" is renamed "Library".
+- Draft (not yet approved by Grant): assistant speaks in first person singular.
+- (Superseded by the line above) Library holds Standards, Assessments, Quotes, Documentation and Testing as children. Mobile "Design" tab uses the `cube` icon.
 - Draft (not yet approved by Grant): the design system is whatever P01 and P02 already use. (Earlier line, kept.)
