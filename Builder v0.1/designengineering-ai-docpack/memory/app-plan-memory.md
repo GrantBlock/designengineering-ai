@@ -114,3 +114,7 @@ Log for [[designengineering-ai]]; companion to [[designengineering-ai-sba-memory
 - [stated] 2026-11-05: Basic Viewer gets a small daily AI cap plus a limit of 3 projects of their own; shared projects don't count
 - [stated] 2026-11-05: Turbo kept for power users who can't justify Enterprise and don't need Team admin; after infrastructure upgrades
 - Draft (not yet approved by Grant): Lite package format v0.1 in App 3.2; proposed Electron desktop shell (D11) and llama.cpp + small open-weight model for Lite (D12); Team storage 20 GB per user assumed
+
+## Signing & approvals (I01, 2026-11-09)
+- [stated] 2026-11-09: D13 (draft until the App Plan log is updated): vendor and customer documents (approval drawings, contracts, proposals) use a widely trusted e-sign platform from the start, behind a thin adapter, chosen for compatibility with Grant's own system requirements; not for internal or cGMP use; signed paper scans can be uploaded; the task owner closes a step by uploading the document; PO and invoice tracking is track-only. Platform not yet chosen (DocuSign, PandaDoc and others under review).
+- [stated] 2026-11-09: the app is intended as a company organization app that collects what Grant does across his current apps (monday.com, Onshape, Drive and others) into one place; missing features are added to ideas.md as they come up.

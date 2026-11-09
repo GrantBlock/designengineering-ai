@@ -14,6 +14,7 @@ Owner: Grant Block (Block Concepts LLC). This workspace is for **system architec
 - No "~" on numbers. Mark assumptions with (A), placeholders with [brackets].
 - Preferred stack (not final): Cloudflare Workers, Next.js + TypeScript, PostgreSQL + Prisma, Clerk, Three.js, Cloudflare R2, Stripe, Claude behind a thin adapter. Electron and llama.cpp are proposed for Lite/Builder (D11, D12).
 - Record each approved decision as a dated line in the matching memory log: `- [stated] YYYY-MM-DD: <decision>`. Unapproved ideas start with `Draft (not yet approved by Grant):`. Never delete earlier lines.
+- Feature discussions: don't ask about MVP placement unless Grant raises it. Ideas go to `ideas.md` as they come up; most are not MVP.
 - The docpack has its own `CLAUDE.md` with rules for editing the Word files and keeping documents in sync; follow it when touching those files.
 
 ## Out of scope for now
