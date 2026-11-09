@@ -2,7 +2,7 @@ Design Engineering is Block Concepts' workspace for automation design: mechanica
 
 ## Content fundamentals
 
-- **Voice.** Plain, technical, first-person plural for Block Concepts ("We will start by establishing what problem the system is addressing."). Address the person as "you". No exclamation marks, no emoji, no hype.
+- **Voice.** Plain, technical, written for a named assistant whose name is still undecided (placeholder "[Assistant name]", current thinking "Lev"); the sample reply is still in first-person plural. Address the person as "you". No exclamation marks, no emoji, no hype.
 - **Headlines** are short questions or statements, uppercase in Overpass ExtraBold: "What are we building today?", "Active projects", "Ask the engineering assistant".
 - **Tasks** are imperative and specific: verb, object, condition. "Size a VFD and motor for a conveyor drive". "Run a tolerance stack-up on a bracket assembly". "Score a project on the RAD Index 1 to 5".
 - **Labels and metadata** are mono and uppercase: section labels (FAVORITES, MODELS), categories (MECHANICAL, ELECTRICAL, CONTROLS, SIMULATION, DELIVER), counts ("3 saved", "3 open") and stage ("Stage 2 — Design").
@@ -50,14 +50,23 @@ Design Engineering is Block Concepts' workspace for automation design: mechanica
 ## Iconography
 
 - Icons are thin line icons drawn for this app: a 24-unit grid with a 1.6 stroke (1.8–2 for small chevrons, plus and send), round caps and joins. In the UI, use `DE.Icon` (`currentColor`). The Icons asset group holds the same icons as SVG files for docs and exports.
-- Each discipline has a fixed icon: Mechanical `cube`, Electrical `bolt`, Controls `chip`, Simulation `wave`, Assessments `clipboard`, Quotes `tag`, Documentation `doc`, Testing `check`, Standards library `book`. Ask AI is always `sparkle`.
+- Each discipline has a fixed icon: Mechanical `cube`, Electrical `bolt`, Controls `chip`, Simulation `wave`, Library `book`, with its items Standards, Assessments, Quotes, Documentation and Testing (`clipboard`, `tag`, `doc`, `check`) as children. Ask AI is always `sparkle`.
 - Icons take their row's colour (`bc-muted` at rest, `bc-ink` on hover). The only filled icon is a set star.
 - No emoji and no illustration. The app mark (Logos → `de-mark.svg`) is the only picture.
 
 ## Building a new page
 
-1. **Desktop:** `AppShell` with `Sidebar` (the app's groups: top, Design, Deliver, Resources) and `TopBar` (crumb as "Section  /  Item").
+1. **Desktop:** `AppShell` with `Sidebar` (the app's groups: top, Design, Library) and `TopBar` (crumb as "Section  /  Item").
 2. **Empty page:** `Hero` → `Composer` → `Panel`s of `PromptCard`s. **Working page:** `Message`s, with the `Composer` sticky at the bottom.
 3. **Collections:** a `Panel` opened by a `SectionHeader`, holding cards three across. Use `EmptyNote` when the collection is empty.
 4. **Mobile:** `MobileHeader` → `Hero mobile` → an `ActionCard` rail (one `primary` first) → `SectionHeader mobile` + `ProjectRow`s, with the dock (`MobileComposer` + `TabBar`) fixed at the bottom.
 5. **Components** load from `components/bundle.js` as `window.DE`, with `components/bundle.css` on top of the tokens. They need React 18.
+
+## Decisions (2026-11-09)
+
+- Graphite is the only app theme. The older Block Concepts token set (light theme, 2px and 4px corners, Word-document colors, Aptos) is for Block Concepts Word documents only and is not part of this system.
+- Wordmark: "Design Engineering" (formal, in the UI) and "designengineering.ai" (slug, URLs and domains).
+- Mobile navigation mirrors the desktop sidebar: Home, Recents, Projects, Design, Library.
+- The disarmed send button is `bc-field-send-off` with a `bc-field-muted` arrow on desktop and mobile.
+- Text size: mobile offers Large (1) and Extra large (1.12 scale) as a user setting.
+- Project numbers (BC-Q-YYNNN) are configurable per organization.

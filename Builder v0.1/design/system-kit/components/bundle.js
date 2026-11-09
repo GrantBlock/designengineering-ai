@@ -93,7 +93,7 @@
 
   function Message(p) {
     var user = p.from === 'user';
-    return h('div', { className: cx('de-msg', user && 'is-user') }, h('div', { className: 'de-label' }, p.author || (user ? 'You' : 'Block Concepts')), h('div', { className: 'de-msg-body' }, p.children));
+    return h('div', { className: cx('de-msg', user && 'is-user') }, h('div', { className: 'de-label' }, p.author || (user ? 'You' : '[Assistant name]')), h('div', { className: 'de-msg-body' }, p.children));
   }
 
   function SearchField(p) {

@@ -40,11 +40,11 @@ button:focus-visible, textarea:focus-visible, input:focus-visible, [role="button
 .de-iconbtn-xs { width: 28px; height: 28px; }
 .de-iconbtn-outline { border: 1px solid var(--bc-field-hairline); color: var(--bc-field-muted); }
 .de-iconbtn-outline:hover { background: none; color: var(--bc-field-ink); border-color: var(--bc-field-muted); }
-.de-iconbtn-send { background: var(--bc-field-hairline); color: var(--bc-on-steel-blue); transition: background 200ms; }
-.de-iconbtn-send.is-armed { background: var(--bc-steel-blue); }
+.de-iconbtn-send { background: var(--bc-field-send-off); color: var(--bc-field-muted); transition: background 200ms; }
+.de-iconbtn-send.is-armed { background: var(--bc-steel-blue); color: var(--bc-on-steel-blue); }
 .de-iconbtn-send.is-armed:hover { background: var(--bc-steel-blue-hover); color: var(--bc-on-steel-blue); }
 .de-iconbtn-send:disabled { cursor: default; }
-.de-iconbtn-send:not(.is-armed):hover { background: var(--bc-field-hairline); color: var(--bc-on-steel-blue); }
+.de-iconbtn-send:not(.is-armed):hover { background: var(--bc-field-send-off); color: var(--bc-field-muted); }
 .de-iconbtn-star.is-on { color: var(--bc-steel-blue-text); }
 .de-iconbtn-star:hover { background: var(--bc-surface); }
 
@@ -116,7 +116,7 @@ button:focus-visible, textarea:focus-visible, input:focus-visible, [role="button
 .de-composer-mobile { display: flex; align-items: center; gap: var(--bc-space-2); height: 64px; padding: 0 8px 0 20px; }
 .de-composer-mobile input { flex: 1; min-width: 0; height: 100%; background: none; border: none; outline: none; color: var(--bc-field-ink); font: inherit; font-size: 18px; padding-top: 3px; }
 .de-composer-mobile .de-iconbtn-send { width: 48px; height: 48px; border-radius: var(--bc-radius-bubble); background: var(--bc-field-send-off); }
-.de-composer-mobile .de-iconbtn-send.is-armed { background: var(--bc-steel-blue); }
+.de-composer-mobile .de-iconbtn-send.is-armed { background: var(--bc-steel-blue); color: var(--bc-on-steel-blue); }
 
 /* ── NavItem ── */
 .de-nav-group { display: flex; flex-direction: column; gap: 2px; }
@@ -191,7 +191,7 @@ button:focus-visible, textarea:focus-visible, input:focus-visible, [role="button
 .de-prow-name { font-size: 21px; font-weight: 600; line-height: 1.25; }
 
 /* ── Mobile: TabBar ── */
-.de-tabbar { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); height: 68px; padding: 4px; border-radius: var(--bc-radius-composer); background: var(--bc-surface); border: 1px solid var(--bc-edge); }
+.de-tabbar { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); height: 68px; padding: 4px; border-radius: var(--bc-radius-composer); background: var(--bc-surface); border: 1px solid var(--bc-edge); }
 .de-tab { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; border: none; border-radius: var(--bc-radius-panel); background: transparent; color: var(--bc-muted); font: inherit; cursor: pointer; }
 .de-tab.is-active { background: var(--bc-steel-blue-tint); color: var(--bc-steel-blue-text); }
 .de-tab span { font-size: 12px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; }
