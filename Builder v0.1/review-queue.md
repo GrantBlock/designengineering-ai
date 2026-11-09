@@ -22,8 +22,8 @@ Everything waiting on Grant, tagged by where it is best handled. The shortcut "w
 | RQ10 | Choose the on-device model and minimum PC spec; Windows only or also macOS; can Lite users add notes | vscode | ☐ | App Plan 3.2, D11 to D12 |
 | RQ11 | Make the final picks for decisions D1 to D12 | vscode | ☐ | App Plan Section 4 |
 | RQ12 | Decide how to reach dev and preview builds from all computers (Cloudflare preview URLs, tunnel, Access login) and how Next.js runs on Cloudflare Workers | vscode | ☐ | `design/ISSUES.md` DI02, App Plan D1 |
-
 | RQ13 | Decide where the app lives, styling approach (O2) and package manager (O3) | vscode | ☐ | `development-path.md` |
+
 ## Closed
 
 (none yet)
