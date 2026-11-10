@@ -205,74 +205,83 @@ button:focus-visible, textarea:focus-visible, input:focus-visible, [role="button
 .de-tab span { font-size: 12px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; }
 .de-mdock { display: flex; flex-direction: column; gap: 10px; padding: 16px 12px 34px; background: linear-gradient(to bottom, rgba(30,30,32,0) 0, var(--bc-canvas) 24px); }
 
+
 [hidden]{display:none!important}
-/* P06 Project workspace: layout glue only; every value is a token. */
-.p6-column{max-width:1120px} /* Draft (not yet approved by Grant): wider column for two-pane detail pages */
-.p6-head{display:flex;align-items:flex-end;justify-content:space-between;gap:var(--bc-space-4);flex-wrap:wrap;padding:var(--bc-space-8) 0 var(--bc-space-4)}
-.p6-head h1{margin:6px 0 0;font-size:clamp(28px,4.4vh,40px);font-weight:800;letter-spacing:-.01em;line-height:.98;text-transform:uppercase}
-.p6-meta{display:flex;flex-direction:column;gap:8px;min-width:220px}
-.p6-meta .de-stage-text{font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--bc-steel-blue-text)}
+.pg-column{max-width:1120px}
+.pg-head{display:flex;align-items:flex-end;justify-content:space-between;gap:var(--bc-space-4);flex-wrap:wrap;padding:var(--bc-space-8) 0 var(--bc-space-4)}
+.pg-head h1{margin:6px 0 0;font-size:clamp(28px,4.4vh,40px);font-weight:800;letter-spacing:-.01em;line-height:.98;text-transform:uppercase}
+.pg-grid{display:grid;grid-template-columns:minmax(0,1fr) 380px;gap:var(--bc-space-4);align-items:start;padding-bottom:var(--bc-space-6)}
+.pg-stack{display:flex;flex-direction:column;gap:var(--bc-space-3);min-width:0}
+.pg-rail{position:sticky;top:var(--bc-space-4);display:flex;flex-direction:column;gap:var(--bc-space-3)}
+.pg-note{margin:var(--bc-space-2) 0 0;font-size:13px;line-height:1.5;color:var(--bc-muted)}
+.pg-nav{display:flex;gap:var(--bc-space-2);justify-content:flex-end}
+.pg-nav .is-next{border-color:var(--bc-steel-blue);color:var(--bc-steel-blue-text)}
+.pg-f{display:flex;flex-direction:column;gap:6px;grid-column:span 4;min-width:0}
+.pg-f.w6{grid-column:span 6}.pg-f.w3{grid-column:span 3}.pg-f.w12{grid-column:span 12}
+.pg-f label{font-family:var(--font-mono);font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--bc-muted)}
+.pg-fields{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:var(--bc-space-3)}
+.pg-in{height:var(--bc-control-height);width:100%;padding:2px 10px 0;border:1px solid var(--bc-field-edge-soft);border-radius:var(--bc-radius-control);background:var(--bc-field);color:var(--bc-field-ink);font:inherit;font-size:14px;box-shadow:var(--bc-shadow-search)}
+textarea.pg-in{height:auto;min-height:88px;padding:10px;resize:vertical;line-height:1.5}
+.pg-in::placeholder{color:var(--bc-field-placeholder)}
+.pg-in:focus{outline:none;border-color:var(--bc-field-focus)}
+select.pg-in{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%235c5c63' stroke-width='2.4' stroke-linecap='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 10px center;padding-right:30px}
+.pg-badge{display:flex;align-items:center;justify-content:center;width:28px;height:28px;flex-shrink:0;border-radius:var(--bc-radius-pill);background:var(--bc-steel-blue-tint);color:var(--bc-steel-blue-text);font-size:13px;font-weight:700;padding-top:2px}
+.pg-map{width:100%;height:auto;display:block;border-radius:var(--bc-radius-card);background:var(--bc-canvas);border:1px solid var(--bc-edge-soft)}
+.pg-map rect.st{fill:var(--bc-surface-raised);stroke:var(--bc-hairline)}
+.pg-map rect.st.is-cur{stroke:var(--bc-steel-blue-text)}
+.pg-map .bd circle{fill:var(--bc-steel-blue)}.pg-map .bd text{fill:var(--bc-on-steel-blue);font-family:var(--font-sans);font-weight:700}
+.pg-map path.ar{stroke:var(--bc-steel-blue-text);fill:none;stroke-width:1.5}
+.pg-mobile{display:none}
+@media (max-width:1100px){.pg-grid{grid-template-columns:1fr}.pg-rail{position:static}}
+@media (max-width:760px){
+ .de-shell{padding:0;gap:0;height:auto;min-height:100vh;display:block}
+ .de-sidebar,.de-topbar{display:none}
+ .de-shell-scroll{padding:0 var(--bc-gutter-mobile) 180px;overflow:visible}
+ .pg-mobile{display:block}
+ .pg-head h1{font-size:42px}
+ .pg-f.w6,.pg-f.w12{grid-column:span 12}.pg-f,.pg-f.w3{grid-column:span 6}
+ .pg-in{height:var(--bc-touch-target);font-size:16px}
+ .pg-dock{position:fixed;left:0;right:0;bottom:0}
+ .de-panel{background:none;border:none;box-shadow:none;padding:0}
+}
+@media (min-width:761px){.pg-dock,.pg-mheader{display:none}}
+
+
 .p6-steps{display:flex;gap:var(--bc-space-2);border-bottom:1px solid var(--bc-hairline);margin-bottom:var(--bc-space-4)}
-.p6-step{all:unset;cursor:pointer;display:flex;align-items:center;gap:10px;height:var(--bc-touch-target);padding:2px 14px 0;border-radius:var(--bc-radius-control) var(--bc-radius-control) 0 0;color:var(--bc-muted);font-size:14px;font-weight:600;margin-bottom:-1px;border-bottom:2px solid transparent}
+.p6-step{all:unset;cursor:pointer;display:flex;align-items:center;gap:10px;height:var(--bc-touch-target);padding:2px 14px 0;color:var(--bc-muted);font-size:14px;font-weight:600;margin-bottom:-1px;border-bottom:2px solid transparent}
 .p6-step:hover{color:var(--bc-ink)}
 .p6-step:focus-visible{outline:2px solid var(--bc-steel-blue-text);outline-offset:2px}
 .p6-step i{font-style:normal;display:flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:var(--bc-radius-pill);border:1px solid var(--bc-hairline);font-family:var(--font-mono);font-size:11px;padding-top:1px}
 .p6-step[aria-selected=true]{color:var(--bc-steel-blue-text);border-bottom-color:var(--bc-steel-blue-text)}
 .p6-step[aria-selected=true] i{background:var(--bc-steel-blue-tint);border-color:transparent}
-.p6-grid{display:grid;grid-template-columns:minmax(0,1fr) 380px;gap:var(--bc-space-4);align-items:start;padding-bottom:var(--bc-space-6)}
-.p6-stack{display:flex;flex-direction:column;gap:var(--bc-space-3);min-width:0}
-.p6-rail{position:sticky;top:var(--bc-space-4);display:flex;flex-direction:column;gap:var(--bc-space-3)}
-.p6-intro{margin:0 0 var(--bc-space-2);font-size:14px;line-height:1.6;color:var(--bc-muted)}
+.p6-meta{display:flex;flex-direction:column;gap:8px;min-width:220px}
+.p6-meta span{font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--bc-steel-blue-text)}
+.p6-intro{margin:0;font-size:14px;line-height:1.6;color:var(--bc-muted)}
 .p6-ref{display:flex;gap:var(--bc-space-2);align-items:center;flex-wrap:wrap}
 .p6-ref .de-search{width:220px}
-.p6-st{background:var(--bc-surface-raised);border:1px solid var(--bc-edge-soft);border-radius:var(--bc-radius-card);padding:14px 16px 16px}
-.p6-st-head{display:flex;align-items:center;gap:var(--bc-space-3);margin-bottom:var(--bc-space-3)}
-.p6-badge{display:flex;align-items:center;justify-content:center;width:28px;height:28px;flex-shrink:0;border-radius:var(--bc-radius-pill);background:var(--bc-steel-blue-tint);color:var(--bc-steel-blue-text);font-size:13px;font-weight:700;padding-top:2px}
-.p6-st-title{flex:1;font-size:16px;font-weight:600;padding-top:2px}
-.p6-fields{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:var(--bc-space-3)}
-.p6-f{display:flex;flex-direction:column;gap:6px;grid-column:span 4;min-width:0}
-.p6-f.w6{grid-column:span 6}.p6-f.w3{grid-column:span 3}.p6-f.w12{grid-column:span 12}
-.p6-f label{font-family:var(--font-mono);font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--bc-muted)}
-.p6-in{height:var(--bc-control-height);width:100%;padding:2px 10px 0;border:1px solid var(--bc-field-edge-soft);border-radius:var(--bc-radius-control);background:var(--bc-field);color:var(--bc-field-ink);font:inherit;font-size:14px;box-shadow:var(--bc-shadow-search)}
-.p6-in::placeholder{color:var(--bc-field-placeholder)}
-.p6-in:focus{outline:none;border-color:var(--bc-field-focus)}
-select.p6-in{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%235c5c63' stroke-width='2.4' stroke-linecap='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 10px center;padding-right:30px}
+.p6-card{background:var(--bc-surface-raised);border:1px solid var(--bc-edge-soft);border-radius:var(--bc-radius-card);padding:14px 16px 16px}
+.p6-card-head{display:flex;align-items:center;gap:var(--bc-space-3);margin-bottom:var(--bc-space-3)}
+.p6-card-title{flex:1;min-width:0;font-size:16px;font-weight:600;padding-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.p6-card-title.is-empty{color:var(--bc-muted);font-weight:400}
+.p6-dl{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--bc-space-3) var(--bc-space-4);margin:0}
+.p6-dl div{display:flex;flex-direction:column;gap:4px;min-width:0}
+.p6-dl dt{font-family:var(--font-mono);font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--bc-muted)}
+.p6-dl dd{margin:0;font-size:14px;line-height:1.4}
+.p6-dl dd.is-unset{color:var(--bc-placeholder-text)}
+.p6-card-foot{display:flex;align-items:center;gap:var(--bc-space-2);margin-top:var(--bc-space-3);padding-top:var(--bc-space-3);border-top:1px solid var(--bc-hairline);font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--bc-muted)}
+.p6-order{display:flex;flex-wrap:wrap;gap:6px 8px;align-items:center;font-family:var(--font-mono);font-size:15px;color:var(--bc-steel-blue-text)}
+.p6-order .sep{color:var(--bc-muted)}
 .p6-add{display:flex;align-items:center;justify-content:center;gap:var(--bc-space-2);width:100%;height:48px;border:1px dashed var(--bc-hairline);border-radius:var(--bc-radius-card);background:none;color:var(--bc-muted);font:inherit;font-size:13px;cursor:pointer;transition:border-color 200ms,color 200ms}
 .p6-add:hover{border-color:var(--bc-steel-blue-edge);color:var(--bc-ink)}
 .p6-add:focus-visible{outline:2px solid var(--bc-steel-blue-text);outline-offset:2px}
-.p6-map{width:100%;height:auto;display:block;border-radius:var(--bc-radius-card);background:var(--bc-canvas);border:1px solid var(--bc-edge-soft)}
-.p6-map rect.st{fill:var(--bc-surface-raised);stroke:var(--bc-hairline)}
-.p6-map text{font-family:var(--font-mono);fill:var(--bc-muted);letter-spacing:.06em;text-transform:uppercase}
-.p6-map .bd circle{fill:var(--bc-steel-blue)}.p6-map .bd text{fill:var(--bc-on-steel-blue);font-family:var(--font-sans);font-weight:700;letter-spacing:0}
-.p6-map path.ar{stroke:var(--bc-steel-blue-text);fill:none;stroke-width:1.5}
-.p6-order{display:flex;flex-wrap:wrap;gap:6px 8px;align-items:center;font-family:var(--font-mono);font-size:15px;color:var(--bc-steel-blue-text)}
-.p6-order span.sep{color:var(--bc-muted)}
-.p6-note{margin:var(--bc-space-2) 0 0;font-size:13px;line-height:1.5;color:var(--bc-muted)}
-.p6-nav{display:flex;gap:var(--bc-space-2);justify-content:flex-end}
-.p6-nav .de-btn-chip.is-next{border-color:var(--bc-steel-blue);color:var(--bc-steel-blue-text)}
 .p6-sum{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--bc-space-2)}
 .p6-sum div{display:flex;flex-direction:column;gap:4px;padding:10px 12px;border-radius:var(--bc-radius-card);background:var(--bc-surface-raised);border:1px solid var(--bc-edge-soft)}
 .p6-sum b{font-size:21px;font-weight:600;line-height:1.1}
-.p6-doc-t{width:100%;border-collapse:collapse;font-size:13px}
-.p6-doc-t th{text-align:left;font-family:var(--font-mono);font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--bc-muted);padding:8px 8px 8px 0;border-bottom:1px solid var(--bc-hairline)}
-.p6-doc-t td{padding:10px 8px 10px 0;border-bottom:1px solid var(--bc-hairline);vertical-align:top}
-.p6-mobile{display:none}
-@media (max-width:1100px){.p6-grid{grid-template-columns:1fr}.p6-rail{position:static}}
-@media (max-width:760px){
- .de-shell{padding:0;gap:0;height:auto;min-height:100vh;display:block}
- .de-sidebar,.de-topbar{display:none}
- .de-shell-scroll{padding:0 var(--bc-gutter-mobile) 180px;overflow:visible}
- .p6-mobile{display:block}
- .p6-head h1{font-size:42px}
- .p6-f.w6{grid-column:span 12}.p6-f,.p6-f.w3{grid-column:span 6}.p6-f.w12{grid-column:span 12}
- .p6-in{height:var(--bc-touch-target);font-size:16px}
- .p6-ref .de-search{width:100%}
- .p6-step{flex:1;justify-content:center;padding:2px 6px 0;font-size:13px}
- .p6-dock{position:fixed;left:0;right:0;bottom:0}
- .de-panel{background:none;border:none;box-shadow:none;padding:0}
- .p6-sum b{font-size:18px}
-}
-@media (min-width:761px){.p6-dock,.p6-mheader{display:none}}
+.p6-t{width:100%;border-collapse:collapse;font-size:13px}
+.p6-t th{text-align:left;font-family:var(--font-mono);font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--bc-muted);padding:8px 8px 8px 0;border-bottom:1px solid var(--bc-hairline)}
+.p6-t td{padding:10px 8px 10px 0;border-bottom:1px solid var(--bc-hairline);vertical-align:top}
+@media (max-width:760px){.p6-dl{grid-template-columns:repeat(2,minmax(0,1fr))}.p6-step{flex:1;justify-content:center;padding:2px 6px 0;font-size:13px}.p6-ref .de-search{width:100%}.p6-card{padding:14px}.p6-card-head .de-btn{height:var(--bc-touch-target)}}
+
 </style></head>
 <body>
 <div class="de-shell">
@@ -285,94 +294,97 @@ select.p6-in{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xml
   <div class="de-sidebar-foot"><button class="de-btn-row"><svg class="de-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .8-1 1.5V14M12 17.5v.01"/></svg><span>Support</span></button></div>
  </aside>
  <main class="de-shell-main">
-  <header class="de-topbar"><div class="de-label"><a href="../P05-projects/index.html" style="color:inherit">Projects</a>&nbsp;&nbsp;/&nbsp;&nbsp;<span id="crumb">BC-Q-26041</span></div>
-   <div class="de-topbar-actions"><button class="de-btn"><svg class="de-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h8l4 4v14H6zM14 3v4h4M9 13h6M9 17h6"/></svg>Download</button><button class="de-btn"><svg class="de-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>Share</button><button class="de-btn">Ask AI</button><div class="de-avatar" style="margin-left:8px">G</div></div></header>
-  <div class="p6-mheader p6-mobile"><div class="de-mheader"><img src="../../assets/favicon.svg" alt=""><span class="de-brand">Design Engineering</span><div class="de-avatar de-avatar-lg">G</div></div></div>
-  <div class="de-shell-scroll de-scroll"><div class="de-shell-column p6-column">
-   <div class="p6-head">
+  <header class="de-topbar"><div class="de-label" id="crumb">Projects</div><div class="de-topbar-actions"><button class="de-btn"><svg class="de-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h8l4 4v14H6zM14 3v4h4M9 13h6M9 17h6"/></svg>Download</button><button class="de-btn"><svg class="de-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>Share</button><button class="de-btn">Ask AI</button><div class="de-avatar" style="margin-left:8px">G</div></div></header>
+  <div class="pg-mheader pg-mobile"><div class="de-mheader"><img src="../../assets/favicon.svg" alt=""><span class="de-brand">Design Engineering</span><div class="de-avatar de-avatar-lg">G</div></div></div>
+  <div class="de-shell-scroll de-scroll"><div class="de-shell-column pg-column">
+   <div class="pg-head">
     <div><div class="de-eyebrow" id="no">BC-Q-26041</div><h1 id="name">Palletizer retrofit</h1></div>
-    <div class="p6-meta"><span class="de-stage-text">Stage 3 — Build</span><div class="de-stages"><i class="is-done"></i><i class="is-done"></i><i class="is-done"></i><i></i><i></i></div></div>
+    <div class="p6-meta"><span>Stage 3 — Build</span><div class="de-stages"><i class="is-done"></i><i class="is-done"></i><i class="is-done"></i><i></i><i></i></div></div>
    </div>
-   <div class="p6-steps" role="tablist" aria-label="Process builder steps">
-    <button class="p6-step" role="tab" id="t1" aria-selected="true" aria-controls="s1"><i>1</i>Stations</button>
+   <div class="p6-steps" role="tablist" aria-label="Project sections">
+    <button class="p6-step" role="tab" id="t1" aria-selected="true" aria-controls="s1"><i>1</i>Process layout</button>
     <button class="p6-step" role="tab" id="t2" aria-selected="false" aria-controls="s2"><i>2</i>Process document</button>
    </div>
-
-   <div id="s1" role="tabpanel" aria-labelledby="t1" class="p6-grid">
-    <div class="p6-stack">
-     <p class="p6-intro">Add each machine in your line, one station at a time, in the order the product flows. Capture the mechanical and utility details for every station. They populate the process sheet and the drawing. Set the flow direction so the layout connects correctly.</p>
+   <div id="s1" role="tabpanel" aria-labelledby="t1" class="pg-grid">
+    <div class="pg-stack">
+     <p class="p6-intro">Lay out the line one process at a time, in the order the product flows. Open a process to configure it in detail. The summary here updates when you save.</p>
      <div class="p6-ref"><label class="de-search"><input id="ref" value="7332-A" aria-label="Reference number"></label><button class="de-btn de-btn-chip">Reload past configuration</button></div>
-     <div id="stations" class="p6-stack"></div>
-     <button class="p6-add" id="add"><svg class="de-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>Add station</button>
+     <div id="cards" class="pg-stack"></div>
+     <button class="p6-add" id="add"><svg class="de-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>Add process</button>
     </div>
-    <aside class="p6-rail" aria-label="Summary">
-     <section class="de-panel"><div class="de-section-head"><span class="de-label">Live layout preview</span><span class="de-tag de-tag-plain" id="cnt"></span></div><svg id="map" class="p6-map" viewBox="0 0 360 260" role="img" aria-label="Station layout"></svg></section>
-     <section class="de-panel"><div class="de-section-head"><span class="de-label">Proposed operation order</span></div><div class="p6-order" id="order"></div><p class="p6-note" id="loopnote"></p></section>
-     <div class="p6-nav"><button class="de-btn de-btn-chip">Back</button><button class="de-btn de-btn-chip is-next" id="next">Next<svg class="de-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button></div>
+    <aside class="pg-rail" aria-label="Summary">
+     <section class="de-panel"><div class="de-section-head"><span class="de-label">Live layout preview</span><span class="de-tag de-tag-plain" id="cnt"></span></div><svg id="map" class="pg-map" viewBox="0 0 360 260" role="img" aria-label="Process layout"></svg></section>
+     <section class="de-panel"><div class="de-section-head"><span class="de-label">Proposed operation order</span></div><div class="p6-order" id="order"></div><p class="pg-note" id="ready"></p></section>
+     <div class="pg-nav"><button class="de-btn de-btn-chip is-next" id="next">Process document<svg class="de-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button></div>
     </aside>
    </div>
-
-   <div id="s2" role="tabpanel" aria-labelledby="t2" class="p6-grid" hidden>
-    <div class="p6-stack">
-     <section class="de-panel"><div class="de-section-head"><span class="de-label">Process document</span><span class="de-tag de-tag-plain">Draft</span></div>
-      <table class="p6-doc-t"><thead><tr><th>#</th><th>Station</th><th>Size (L × W)</th><th>Air</th><th>Electrical</th></tr></thead><tbody id="doc"></tbody></table>
-      <p class="p6-note">[Document layout to be designed. It builds from the stations in step 1.]</p></section>
-    </div>
-    <aside class="p6-rail"><section class="de-panel"><div class="de-section-head"><span class="de-label">Totals</span></div><div class="p6-sum" id="sum"></div></section>
-     <div class="p6-nav"><button class="de-btn de-btn-chip" id="back2">Back</button><button class="de-btn de-btn-chip">Download<svg class="de-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg></button></div></aside>
+   <div id="s2" role="tabpanel" aria-labelledby="t2" class="pg-grid" hidden>
+    <div class="pg-stack"><section class="de-panel"><div class="de-section-head"><span class="de-label">Process document</span><span class="de-tag de-tag-plain">Draft</span></div>
+     <table class="p6-t"><thead><tr><th>#</th><th>Process</th><th>Size (L × W)</th><th>Air</th><th>Electrical</th></tr></thead><tbody id="doc"></tbody></table>
+     <p class="pg-note">[Document layout to be designed. It builds from the processes in step 1.]</p></section></div>
+    <aside class="pg-rail"><section class="de-panel"><div class="de-section-head"><span class="de-label">Totals</span></div><div class="p6-sum" id="sum"></div></section>
+     <div class="pg-nav"><button class="de-btn de-btn-chip" id="back2">Back</button><button class="de-btn de-btn-chip">Download<svg class="de-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg></button></div></aside>
    </div>
   </div></div>
  </main>
 </div>
-<div class="p6-dock de-mdock p6-mobile"><div class="de-tabbar"><button class="de-tab"><svg class="de-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l9-7 9 7v9h-6v-6H9v6H3z"/></svg><span>Home</span></button><button class="de-tab"><svg class="de-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18zM12 7v5l3 2"/></svg><span>Recents</span></button><button class="de-tab is-active"><svg class="de-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h6l2 2h10v11H3z"/></svg><span>Projects</span></button><button class="de-tab"><svg class="de-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9zM12 12l8-4.5M12 12v9M12 12L4 7.5"/></svg><span>Design</span></button><button class="de-tab"><svg class="de-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3zM5 17a3 3 0 0 1 3-3h11"/></svg><span>Library</span></button></div></div>
+<div class="pg-dock de-mdock pg-mobile"><div class="de-tabbar"><button class="de-tab"><svg class="de-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l9-7 9 7v9h-6v-6H9v6H3z"/></svg><span>Home</span></button><button class="de-tab"><svg class="de-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18zM12 7v5l3 2"/></svg><span>Recents</span></button><button class="de-tab is-active"><svg class="de-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h6l2 2h10v11H3z"/></svg><span>Projects</span></button><button class="de-tab"><svg class="de-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9zM12 12l8-4.5M12 12v9M12 12L4 7.5"/></svg><span>Design</span></button><button class="de-tab"><svg class="de-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3zM5 17a3 3 0 0 1 3-3h11"/></svg><span>Library</span></button></div></div>
 <script>
 (function(){
- var PROJ={'BC-Q-26041':'Palletizer retrofit','BC-Q-26038':'Capping station','BC-Q-26035':'Dispensing cell guarding','BC-Q-26031':'Conveyor transfer bracket','BC-Q-26027':'Washdown motor VFD sizing','BC-Q-26019':'Case erector controls upgrade'};
- var pn=new URLSearchParams(location.search).get('project');
- if(pn&&PROJ[pn]){document.getElementById('no').textContent=pn;document.getElementById('crumb').textContent=pn;document.getElementById('name').textContent=PROJ[pn];document.title=pn+' — Design Engineering'}
- var FLOW=['Vertical','Horizontal','Right to left','Left to right'];
- var S=[
-  {type:'Sand Mixer + Hopper',speed:'',ppc:'',len:'144 in',wid:'120 in',air:'80 psi · 4 cfm',el:'480V · 3φ · 30A',flow:'Vertical'},
-  {type:'Incline Sand Conveyor',speed:'',ppc:'',len:'216 in',wid:'18 in',air:'—',el:'480V · 3φ · 10A',flow:'Vertical'},
-  {type:'Horizontal Sand Conveyor',speed:'',ppc:'',len:'',wid:'',air:'',el:'',flow:'Right to left'}];
- var box=document.getElementById('stations');
- function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
- function field(i,k,label,cls,ph){return '<div class="p6-f '+cls+'"><label for="f'+i+k+'">'+label+'</label><input class="p6-in" id="f'+i+k+'" data-i="'+i+'" data-k="'+k+'" value="'+esc(S[i][k])+'"'+(ph?' placeholder="'+ph+'"':'')+'></div>'}
- function build(){
-  box.innerHTML=S.map(function(s,i){
-   return '<section class="p6-st" aria-label="Station '+(i+1)+'"><div class="p6-st-head"><span class="p6-badge">'+(i+1)+'</span><span class="p6-st-title">Station '+(i+1)+'</span><span class="de-tag">'+s.flow+'</span><button class="de-iconbtn de-iconbtn-sm" data-rm="'+i+'" aria-label="Remove station '+(i+1)+'"><svg class="de-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div><div class="p6-fields">'
-   +field(i,'type','Station type','w6')+field(i,'speed','Speed','w3')+field(i,'ppc','Parts / cycle','w3')
-   +field(i,'len','Length','w3')+field(i,'wid','Width','w3')+field(i,'air','Air','w3')+field(i,'el','Electrical','w3')
-   +'<div class="p6-f w12"><label for="f'+i+'flow">Flow direction</label><select class="p6-in" id="f'+i+'flow" data-i="'+i+'" data-k="flow">'+FLOW.map(function(f){return '<option'+(f===s.flow?' selected':'')+'>'+f+'</option>'}).join('')+'</select></div></div></section>'}).join('');
-  update()}
- function num(v){var m=/[\d.]+/.exec(v);return m?parseFloat(m[0]):0}
- function update(){
-  document.getElementById('cnt').textContent=S.length+(S.length===1?' station':' stations');
+
+var PROJ={'BC-Q-26041':'Palletizer retrofit','BC-Q-26038':'Capping station','BC-Q-26035':'Dispensing cell guarding','BC-Q-26031':'Conveyor transfer bracket','BC-Q-26027':'Washdown motor VFD sizing','BC-Q-26019':'Case erector controls upgrade'};
+var FLOW=['Vertical','Horizontal','Right to left','Left to right'];
+var BLANK={type:'',speed:'',ppc:'',len:'',wid:'',hgt:'',wt:'',psi:'',cfm:'',volt:'',phase:'',amp:'',flow:'Vertical',notes:''};
+var DEFAULTS=[
+ {type:'Sand Mixer + Hopper',speed:'',ppc:'',len:'144',wid:'120',hgt:'',wt:'',psi:'80',cfm:'4',volt:'480',phase:'3',amp:'30',flow:'Vertical',notes:''},
+ {type:'Incline Sand Conveyor',speed:'',ppc:'',len:'216',wid:'18',hgt:'',wt:'',psi:'',cfm:'',volt:'480',phase:'3',amp:'10',flow:'Vertical',notes:''},
+ {type:'Horizontal Sand Conveyor',speed:'',ppc:'',len:'',wid:'',hgt:'',wt:'',psi:'',cfm:'',volt:'',phase:'',amp:'',flow:'Right to left',notes:''}];
+var Q=new URLSearchParams(location.search),PN=PROJ[Q.get('project')]?Q.get('project'):'BC-Q-26041';
+function load(){try{var v=localStorage.getItem('de-proc-'+PN);if(v)return JSON.parse(v)}catch(e){}return JSON.parse(JSON.stringify(DEFAULTS))}
+function save(S){try{localStorage.setItem('de-proc-'+PN,JSON.stringify(S))}catch(e){}}
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function missing(s){var m=[];if(!s.type)m.push('type');if(!s.len||!s.wid)m.push('size');if(!(s.volt&&s.amp)&&!(s.psi))m.push('utilities');return m}
+function drawMap(el,S,cur){
+ var x=0,y=0,pos=[],minx=0,miny=0,maxx=0,maxy=0;
+ S.forEach(function(s,i){var w=parseFloat(s.wid)||60,l=parseFloat(s.len)||80,hz=(s.flow!=='Vertical'),bw=hz?l:w,bh=hz?w:l;
+  if(i>0){var p=pos[i-1];if(s.flow==='Vertical'){x=p.x+p.w/2-bw/2;y=p.y+p.h+16}else if(s.flow==='Right to left'){x=p.x-bw-16;y=p.y+p.h/2-bh/2}else{x=p.x+p.w+16;y=p.y+p.h/2-bh/2}}
+  pos.push({x:x,y:y,w:bw,h:bh});minx=Math.min(minx,x);miny=Math.min(miny,y);maxx=Math.max(maxx,x+bw);maxy=Math.max(maxy,y+bh)});
+ var W=Math.max(maxx-minx,1),H=Math.max(maxy-miny,1),k=Math.min(320/W,220/H),ox=(360-W*k)/2-minx*k,oy=(260-H*k)/2-miny*k,out='';
+ pos.forEach(function(p,i){var rx=p.x*k+ox,ry=p.y*k+oy,rw=p.w*k,rh=p.h*k;
+  out+='<rect class="st'+(i===cur?' is-cur':'')+'" x="'+rx+'" y="'+ry+'" width="'+rw+'" height="'+rh+'" rx="3"/>';
+  out+='<g class="bd"><circle cx="'+(rx+8)+'" cy="'+(ry+8)+'" r="8"/><text x="'+(rx+8)+'" y="'+(ry+11.5)+'" font-size="10" text-anchor="middle">'+(i+1)+'</text></g>';
+  if(i>0){var q=pos[i-1],f=S[i].flow,ax,ay,bx,by;
+   if(f==='Vertical'){ax=q.x+q.w/2;ay=q.y+q.h;bx=p.x+p.w/2;by=p.y}else if(f==='Right to left'){ax=q.x;ay=q.y+q.h/2;bx=p.x+p.w;by=p.y+p.h/2}else{ax=q.x+q.w;ay=q.y+q.h/2;bx=p.x;by=p.y+p.h/2}
+   ax=ax*k+ox;ay=ay*k+oy;bx=bx*k+ox;by=by*k+oy;var dx=bx-ax,dy=by-ay,L=Math.hypot(dx,dy)||1,ux=dx/L,uy=dy/L;
+   out+='<path class="ar" d="M'+ax+' '+ay+'L'+bx+' '+by+'M'+(bx-ux*6-uy*3.5)+' '+(by-uy*6+ux*3.5)+'L'+bx+' '+by+'L'+(bx-ux*6+uy*3.5)+' '+(by-uy*6-ux*3.5)+'"/>'}});
+ el.innerHTML=out}
+
+
+ var S=load();
+ document.getElementById('no').textContent=PN;document.getElementById('name').textContent=PROJ[PN];document.title=PN+' — Design Engineering';
+ document.getElementById('crumb').innerHTML='<a href="../P05-projects/index.html" style="color:inherit">Projects</a>&nbsp;&nbsp;/&nbsp;&nbsp;'+PN;
+ function v(x,u){return x?esc(x)+(u?' '+u:''):'<span>[Not set]</span>'}
+ function dd(x,u){return x?'<dd>'+esc(x)+(u?' '+u:'')+'</dd>':'<dd class="is-unset">[Not set]</dd>'}
+ function edit(i){return 'href="../P18-process-config/index.html?project='+PN+'&station='+i+'"'}
+ function cards(){
+  document.getElementById('cards').innerHTML=S.map(function(s,i){
+   var m=missing(s),size=(s.len&&s.wid)?s.len+' × '+s.wid+' in':'',air=s.psi?s.psi+' psi'+(s.cfm?' · '+s.cfm+' cfm':''):'',el=(s.volt&&s.amp)?s.volt+'V · '+(s.phase||'?')+'φ · '+s.amp+'A':'';
+   return '<article class="p6-card" aria-label="Process '+(i+1)+'"><div class="p6-card-head"><span class="pg-badge">'+(i+1)+'</span><span class="p6-card-title'+(s.type?'':' is-empty')+'">'+(s.type?esc(s.type):'[Untitled process]')+'</span><span class="de-tag">'+s.flow+'</span><a class="de-btn de-btn-chip" '+edit(i)+'><svg class="de-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20l4-1 11-11a2.1 2.1 0 00-3-3L5 16l-1 4z"/></svg>Edit configuration</a></div>'
+   +'<dl class="p6-dl"><div><dt>Size (L × W)</dt>'+dd(size)+'</div><div><dt>Height</dt>'+dd(s.hgt,'in')+'</div><div><dt>Air</dt>'+dd(air)+'</div><div><dt>Electrical</dt>'+dd(el)+'</div><div><dt>Speed</dt>'+dd(s.speed)+'</div><div><dt>Parts / cycle</dt>'+dd(s.ppc)+'</div><div><dt>Weight</dt>'+dd(s.wt,'lb')+'</div><div><dt>Notes</dt>'+dd(s.notes?(s.notes.length>28?s.notes.slice(0,28)+'…':s.notes):'')+'</div></dl>'
+   +'<div class="p6-card-foot">'+(m.length?'Needs '+m.join(', '):'Configured')+'</div></article>'}).join('');
+  var done=S.filter(function(s){return !missing(s).length}).length;
+  document.getElementById('cnt').textContent=S.length+(S.length===1?' process':' processes');
   document.getElementById('order').innerHTML=S.map(function(s,i){return '<span>'+(i+1)+'</span>'}).join('<span class="sep">→</span>');
-  document.getElementById('loopnote').textContent=S.length?'Order follows the station list. Reorder by editing the station numbers [reorder control to be designed].':'Add a station to start.';
-  var x=0,y=0,pos=[],minx=0,miny=0,maxx=0,maxy=0;
-  S.forEach(function(s,i){var w=num(s.wid)||60,l=num(s.len)||80,hz=(s.flow!=='Vertical'),bw=hz?l:w,bh=hz?w:l;
-   if(i>0){var p=pos[i-1];if(s.flow==='Vertical'){x=p.x+p.w/2-bw/2;y=p.y+p.h+16}else if(s.flow==='Right to left'){x=p.x-bw-16;y=p.y+p.h/2-bh/2}else{x=p.x+p.w+16;y=p.y+p.h/2-bh/2}}
-   pos.push({x:x,y:y,w:bw,h:bh});minx=Math.min(minx,x);miny=Math.min(miny,y);maxx=Math.max(maxx,x+bw);maxy=Math.max(maxy,y+bh)});
-  var W=Math.max(maxx-minx,1),H=Math.max(maxy-miny,1),k=Math.min(320/W,220/H),ox=(360-W*k)/2-minx*k,oy=(260-H*k)/2-miny*k,out='';
-  pos.forEach(function(p,i){var rx=p.x*k+ox,ry=p.y*k+oy,rw=p.w*k,rh=p.h*k;
-   out+='<rect class="st" x="'+rx+'" y="'+ry+'" width="'+rw+'" height="'+rh+'" rx="3"/>';
-   out+='<g class="bd"><circle cx="'+(rx+8)+'" cy="'+(ry+8)+'" r="8"/><text x="'+(rx+8)+'" y="'+(ry+11.5)+'" font-size="10" text-anchor="middle">'+(i+1)+'</text></g>';
-   if(i>0){var q=pos[i-1],f=S[i].flow,ax,ay,bx,by;
-    if(f==='Vertical'){ax=q.x+q.w/2;ay=q.y+q.h;bx=p.x+p.w/2;by=p.y}else if(f==='Right to left'){ax=q.x;ay=q.y+q.h/2;bx=p.x+p.w;by=p.y+p.h/2}else{ax=q.x+q.w;ay=q.y+q.h/2;bx=p.x;by=p.y+p.h/2}
-    ax=ax*k+ox;ay=ay*k+oy;bx=bx*k+ox;by=by*k+oy;var dx=bx-ax,dy=by-ay,L=Math.hypot(dx,dy)||1,ux=dx/L,uy=dy/L;
-    out+='<path class="ar" d="M'+ax+' '+ay+'L'+bx+' '+by+'M'+(bx-ux*6-uy*3.5)+' '+(by-uy*6+ux*3.5)+'L'+bx+' '+by+'L'+(bx-ux*6+uy*3.5)+' '+(by-uy*6-ux*3.5)+'"/>'}});
-  document.getElementById('map').innerHTML=out;
-  document.getElementById('doc').innerHTML=S.map(function(s,i){return '<tr><td>'+(i+1)+'</td><td>'+esc(s.type||'[Station type]')+'</td><td>'+esc((s.len||'—')+' × '+(s.wid||'—'))+'</td><td>'+esc(s.air||'—')+'</td><td>'+esc(s.el||'—')+'</td></tr>'}).join('');
-  document.getElementById('sum').innerHTML='<div><span class="de-label">Stations</span><b>'+S.length+'</b></div><div><span class="de-label">With air</span><b>'+S.filter(function(s){return s.air&&s.air!=='—'}).length+'</b></div><div><span class="de-label">With power</span><b>'+S.filter(function(s){return s.el&&s.el!=='—'}).length+'</b></div>'}
- box.addEventListener('input',function(e){var t=e.target;if(t.dataset.k){S[+t.dataset.i][t.dataset.k]=t.value;update()}});
- box.addEventListener('change',function(e){var t=e.target;if(t.dataset.k==='flow'){S[+t.dataset.i].flow=t.value;box.querySelectorAll('.de-tag')[+t.dataset.i].textContent=t.value}});
- box.addEventListener('click',function(e){var b=e.target.closest('[data-rm]');if(b){S.splice(+b.dataset.rm,1);build()}});
- document.getElementById('add').addEventListener('click',function(){S.push({type:'',speed:'',ppc:'',len:'',wid:'',air:'',el:'',flow:'Vertical'});build();var l=box.querySelector('section:last-child input');l&&l.focus()});
+  document.getElementById('ready').textContent=done+' of '+S.length+' processes configured.';
+  drawMap(document.getElementById('map'),S,-1);
+  document.getElementById('doc').innerHTML=S.map(function(s,i){var air=s.psi?s.psi+' psi'+(s.cfm?' · '+s.cfm+' cfm':''):'—',el=(s.volt&&s.amp)?s.volt+'V · '+(s.phase||'?')+'φ · '+s.amp+'A':'—';return '<tr><td>'+(i+1)+'</td><td>'+esc(s.type||'[Untitled process]')+'</td><td>'+((s.len&&s.wid)?esc(s.len+' × '+s.wid+' in'):'—')+'</td><td>'+esc(air)+'</td><td>'+esc(el)+'</td></tr>'}).join('');
+  document.getElementById('sum').innerHTML='<div><span class="de-label">Processes</span><b>'+S.length+'</b></div><div><span class="de-label">Configured</span><b>'+done+'</b></div><div><span class="de-label">With air</span><b>'+S.filter(function(s){return s.psi}).length+'</b></div>'}
+ document.getElementById('add').addEventListener('click',function(){S.push(JSON.parse(JSON.stringify(BLANK)));save(S);location.href='../P18-process-config/index.html?project='+PN+'&station='+(S.length-1)});
  function step(n){[1,2].forEach(function(i){document.getElementById('s'+i).hidden=i!==n;document.getElementById('t'+i).setAttribute('aria-selected',String(i===n))})}
  document.getElementById('t1').onclick=function(){step(1)};document.getElementById('t2').onclick=function(){step(2)};
  document.getElementById('next').onclick=function(){step(2)};document.getElementById('back2').onclick=function(){step(1)};
- build();
+ cards();
+
 })();
 </script>
 </body></html>

@@ -15,7 +15,7 @@ Page order is a **Draft (not yet approved by Grant)**, built from the App Plan M
 | P03 | Chat conversation view (messages, attachments, answers with sources) | Desktop + mobile | ☐ | | Extends P01/P02 |
 | P04 | Sign in / sign up (Clerk) | Desktop + mobile | ☐ | | |
 | P05 | Projects list | Desktop + mobile | ◐ | `exports/P05-projects/index.html` | Landing page for projects; each row opens its P06 project page. Awaiting Grant's review |
-| P06 | Project workspace (files, chat, notes in one place) | Desktop + mobile | ◐ | `exports/P06-project-workspace/index.html` | First tab is the Process Builder (stations, live layout, operation order, process document). Files, chat and notes tabs not designed yet. Awaiting Grant's review |
+| P06 | Project workspace (process layout, process document; files, chat, notes later) | Desktop + mobile | ◐ | `exports/P06-project-workspace/index.html` | Process layout with a summary card per process; each opens P18. Awaiting Grant's review |
 | P07 | Upload flow (STEP, OBJ, photos, PDFs) | Desktop + mobile | ☐ | | |
 | P08 | 3D viewer | Desktop + mobile | ☐ | | |
 | P09 | Document search and data sheets | Desktop + mobile | ☐ | | |
@@ -27,6 +27,7 @@ Page order is a **Draft (not yet approved by Grant)**, built from the App Plan M
 | P15 | Account and settings | Desktop + mobile | ☐ | | |
 | P16 | Lite app window (offline 3D viewer, search, on-device chat) | Desktop app | ☐ | | |
 | P17 | Builder (package a client or site into a Lite zip) | Desktop app | ☐ | | |
+| P18 | Process configuration (one process in detail, like a Xometry part configuration) | Desktop + mobile | ◐ | `exports/P18-process-config/index.html` | Opened from a P06 process card; saves back to the P06 summary. Added 2026-11-10. Awaiting Grant's review |
 
 ## Next up
 
@@ -39,5 +40,6 @@ First open item: **P03**, unless Grant says otherwise.
 - [stated] 2026-11-09: Design system extracted and reconciled; see DESIGN-SYSTEM.md. P01 and P02 exports updated to match (Graphite tokens only, Library nav, five mobile tabs, assistant name placeholder, send button).
 - [stated] 2026-11-10: P05 (Projects list) drafted at `exports/P05-projects/index.html`, built from `system-kit/` tokens and components; rows link to `../P06-project-workspace/index.html?project=<BC-Q number>` (not built yet). Awaiting review.
 - [stated] 2026-11-10: P06 (Project workspace) drafted at `exports/P06-project-workspace/index.html`, with the Process Builder built inside the project. Draft (not yet approved by Grant): wider 1120px content column for two-pane detail pages (the system caps at 760px).
+- [stated] 2026-11-10: P06 changed to a process layout with a summary card per process. Each card opens P18 (Process configuration), which edits the detail and saves back. ID P18 added so existing IDs stay fixed. Prototype stores data in browser localStorage under `de-proc-<project>` (design only, not the real data model).
 - Draft (not yet approved by Grant): page order P03 to P17 above.
 - [stated] 2026-11-06: Shortcut phrase "design the next page" added; see ../shortcuts.md.
