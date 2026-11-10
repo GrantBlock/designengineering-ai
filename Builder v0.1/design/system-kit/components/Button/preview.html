@@ -1,0 +1,13 @@
+<!-- @dsCard group="Actions" height=96 -->
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><title>Button — preview</title></head>
+<body>
+<div id="root"></div>
+<script>
+  var E = window.DE, h = React.createElement;
+  
+  ReactDOM.createRoot(document.getElementById('root')).render(h("div",{className:"de-stage"},h(React.Fragment,null,h(E.Button,{icon:"plus"},"New session"),h(E.Button,{icon:"sparkle"},"Ask AI"),h(E.Button,{icon:"help"},"Support"),h(E.Button,{variant:"chip",tag:"New",trailing:true},"Configure CAD and PLC preferences"))));
+</script>
+</body>
+</html>

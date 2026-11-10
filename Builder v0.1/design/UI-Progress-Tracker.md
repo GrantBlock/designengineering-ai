@@ -27,6 +27,7 @@ Page order is a **Draft (not yet approved by Grant)**, built from the App Plan M
 | P15 | Account and settings | Desktop + mobile | ☐ | | |
 | P16 | Lite app window (offline 3D viewer, search, on-device chat) | Desktop app | ☐ | | |
 | P17 | Builder (package a client or site into a Lite zip) | Desktop app | ☐ | | |
+| P19 | Dashboard (weekly view: this week, this month, last week) | Desktop + mobile | ◐ | `exports/P19-dashboard/index.html` | Layout only; sample data. Added 2026-11-10 from Grant's weekly tracker zip. Awaiting Grant's review |
 
 ## Next up
 
@@ -37,3 +38,4 @@ First open item: **P03**, unless Grant says otherwise.
 - [stated] 2026-11-06: P01 (main chat starting page) and P02 (mobile chat starting page) are done.
 - Draft (not yet approved by Grant): page order P03 to P17 above.
 - [stated] 2026-11-06: Shortcut phrase "design the next page" added; see ../shortcuts.md.
+- [stated] 2026-11-10: P19 (Dashboard) added, layout first, integration into the app later. ID P19 because P18 is used by Process configuration on another branch. Built on the design system kit from `claude/tender-thompson-nd9kmn` (Graphite, Overpass), not the zip's light Manrope styling. Draft (not yet approved by Grant): 1120px two-column content width; status tags (Sold steel-blue, Quoting and Waiting plain), done/to-do icons and mono priority text with no red or green.

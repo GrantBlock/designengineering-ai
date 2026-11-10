@@ -1,0 +1,13 @@
+<!-- @dsCard group="Actions" height=96 -->
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><title>IconButton — preview</title></head>
+<body>
+<div id="root"></div>
+<script>
+  var E = window.DE, h = React.createElement;
+  
+  ReactDOM.createRoot(document.getElementById('root')).render(h("div",{className:"de-stage"},h(React.Fragment,null,h(E.IconButton,{icon:"chevron-updown",size:"xs","aria-label":"Switch workspace"}),h(E.IconButton,{icon:"more",size:"sm","aria-label":"More"}),h(E.IconButton,{variant:"star",size:"sm",icon:"star","aria-label":"Favorite"}),h(E.IconButton,{variant:"star",size:"sm",icon:"star",on:true,"aria-label":"Favorite"}),h("div",{style:{display:"flex",gap:8,padding:10,borderRadius:20,background:"var(--bc-field)"}},h(E.IconButton,{variant:"outline",icon:"plus","aria-label":"Attach"}),h(E.IconButton,{variant:"send",icon:"send","aria-label":"Send",disabled:true}),h(E.IconButton,{variant:"send",icon:"send",armed:true,"aria-label":"Send"})))));
+</script>
+</body>
+</html>

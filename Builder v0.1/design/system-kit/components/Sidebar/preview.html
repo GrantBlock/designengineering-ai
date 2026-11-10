@@ -1,0 +1,13 @@
+<!-- @dsCard group="Navigation" height=620 -->
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><title>Sidebar — preview</title></head>
+<body>
+<div id="root"></div>
+<script>
+  var E = window.DE, h = React.createElement;
+  var NAV=[{items:[{id:"home",label:"Home",icon:"home"},{id:"recents",label:"Recents",icon:"clock",open:true,children:["Dispensing cell guarding","Conveyor transfer bracket","Washdown motor VFD sizing"]},{id:"projects",label:"Projects",icon:"folder",children:["BC-Q-26041 Palletizer retrofit","BC-Q-26038 Capping station"]}]},{label:"Design",items:[{id:"mech",label:"Mechanical",icon:"cube",children:["Assemblies","Parts","Drawings","Tolerance stack-ups"]},{id:"elec",label:"Electrical",icon:"bolt",children:["Schematics","Panel layouts"]},{id:"ctrl",label:"Controls",icon:"chip",children:["PLC programs","HMI screens"]},{id:"sim",label:"Simulation",icon:"wave",tag:"New",children:["Cycle time"]}]},{items:[{id:"lib",label:"Library",icon:"book",children:["Standards","Assessments","Quotes","Documentation","Testing"]}]}];
+  ReactDOM.createRoot(document.getElementById('root')).render(h("div",{className:"de-stage"},h("div",{style:{height:600,display:"flex"}},h(E.Sidebar,{groups:NAV,defaultActive:{id:"recents",child:"Conveyor transfer bracket"}}))));
+</script>
+</body>
+</html>
