@@ -7,6 +7,7 @@ Workspace for designing the system architecture of **designengineering.ai** (Blo
 | Path | Purpose |
 | --- | --- |
 | `designengineering-ai-docpack/` | Plan doc pack (SBA business plan, App Plan, tracker, decision logs). Read-only reference for now. |
+| `development-path.md` | Plan for building and deploying the app (stack, phases, environments, Cloudflare setup) |
 | `shortcuts.md` | Phrases that start workflows (where were we, decision brief, design the next page, ...) |
 | `review-queue.md` | Items waiting on Grant, tagged mobile, code or vscode |
 | `ideas.md` | Parked ideas, all unapproved |

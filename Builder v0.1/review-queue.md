@@ -21,6 +21,8 @@ Everything waiting on Grant, tagged by where it is best handled. The shortcut "w
 | RQ09 | Run "design the next page" once in a fresh session to confirm the shortcut loads | code | ☐ | `shortcuts.md` |
 | RQ10 | Choose the on-device model and minimum PC spec; Windows only or also macOS; can Lite users add notes | vscode | ☐ | App Plan 3.2, D11 to D12 |
 | RQ11 | Make the final picks for decisions D1 to D12 | vscode | ☐ | App Plan Section 4 |
+| RQ12 | Decide how to reach dev and preview builds from all computers (Cloudflare preview URLs, tunnel, Access login) and how Next.js runs on Cloudflare Workers | vscode | ☐ | `design/ISSUES.md` DI02, App Plan D1 |
+| RQ13 | Decide where the app lives, styling approach (O2) and package manager (O3) | vscode | ☐ | `development-path.md` |
 
 ## Closed
 
@@ -35,3 +37,5 @@ Everything waiting on Grant, tagged by where it is best handled. The shortcut "w
 ## Log
 
 - [stated] 2026-11-06: Review queue created with surface tags mobile, code, vscode.
+- [stated] 2026-11-09: RQ12 added for dev and preview access (see design/ISSUES.md DI02).
+- [stated] 2026-11-09: RQ13 added for the open development-path decisions.
