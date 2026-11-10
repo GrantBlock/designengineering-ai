@@ -39,3 +39,4 @@ First open item: **P03**, unless Grant says otherwise.
 - Draft (not yet approved by Grant): page order P03 to P17 above.
 - [stated] 2026-11-06: Shortcut phrase "design the next page" added; see ../shortcuts.md.
 - [stated] 2026-11-10: P19 (Dashboard) added, layout first, integration into the app later. ID P19 because P18 is used by Process configuration on another branch. Built on the design system kit from `claude/tender-thompson-nd9kmn` (Graphite, Overpass), not the zip's light Manrope styling. Draft (not yet approved by Grant): 1120px two-column content width; status tags (Sold steel-blue, Quoting and Waiting plain), done/to-do icons and mono priority text with no red or green.
+- Draft (not yet approved by Grant): P19 priority colors (High red, Medium amber, done green) are local to the page, not in the design system. Today row highlighted with a steel-blue tint; this week and last week grouped by Sold, Quoting, Waiting with progress bars.
