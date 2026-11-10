@@ -304,6 +304,10 @@ select.pg-in{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xml
      <section class="p18-sec"><h2>Process</h2><p class="h">What this machine does and where the product goes next.</p><div class="pg-fields">
       <div class="pg-f w6"><label for="f-flow">Flow direction</label><select class="pg-in" id="f-flow" data-k="flow"></select></div>
       <div class="pg-f w3"><label for="f-speed">Speed</label><input class="pg-in" id="f-speed" data-k="speed" placeholder="[Rate]" ></div><div class="pg-f w3"><label for="f-ppc">Parts / cycle</label><input class="pg-in" id="f-ppc" data-k="ppc" placeholder="[Count]" inputmode=decimal></div></div></section>
+     <section class="p18-sec"><h2>Placement</h2><p class="h">Where this process sits in the overhead layout. Place it against another process.</p><div class="pg-fields">
+      <div class="pg-f w6"><label for="f-anchor">Placed against</label><select class="pg-in" id="f-anchor" data-k="anchor"></select></div>
+      <div class="pg-f w3"><label for="f-side">Side</label><select class="pg-in" id="f-side" data-k="side"></select></div>
+      <div class="pg-f w3"><label for="f-align">Align</label><select class="pg-in" id="f-align" data-k="align"></select></div></div></section>
      <section class="p18-sec"><h2>Dimensions</h2><p class="h">Footprint and weight, used for the layout and the process sheet.</p><div class="pg-fields">
       <div class="pg-f w3"><label for="f-len">Length (in)</label><input class="pg-in" id="f-len" data-k="len" placeholder="" inputmode=decimal></div><div class="pg-f w3"><label for="f-wid">Width (in)</label><input class="pg-in" id="f-wid" data-k="wid" placeholder="" inputmode=decimal></div><div class="pg-f w3"><label for="f-hgt">Height (in)</label><input class="pg-in" id="f-hgt" data-k="hgt" placeholder="" inputmode=decimal></div><div class="pg-f w3"><label for="f-wt">Weight (lb)</label><input class="pg-in" id="f-wt" data-k="wt" placeholder="" inputmode=decimal></div></div></section>
      <section class="p18-sec"><h2>Compressed air</h2><p class="h">Leave blank if the process uses no air.</p><div class="pg-fields">
@@ -328,29 +332,40 @@ select.pg-in{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xml
 
 var PROJ={'BC-Q-26041':'Palletizer retrofit','BC-Q-26038':'Capping station','BC-Q-26035':'Dispensing cell guarding','BC-Q-26031':'Conveyor transfer bracket','BC-Q-26027':'Washdown motor VFD sizing','BC-Q-26019':'Case erector controls upgrade'};
 var FLOW=['Vertical','Horizontal','Right to left','Left to right'];
-var BLANK={type:'',speed:'',ppc:'',len:'',wid:'',hgt:'',wt:'',psi:'',cfm:'',volt:'',phase:'',amp:'',flow:'Vertical',notes:''};
-var DEFAULTS=[
- {type:'Sand Mixer + Hopper',speed:'',ppc:'',len:'144',wid:'120',hgt:'',wt:'',psi:'80',cfm:'4',volt:'480',phase:'3',amp:'30',flow:'Vertical',notes:''},
- {type:'Incline Sand Conveyor',speed:'',ppc:'',len:'216',wid:'18',hgt:'',wt:'',psi:'',cfm:'',volt:'480',phase:'3',amp:'10',flow:'Vertical',notes:''},
- {type:'Horizontal Sand Conveyor',speed:'',ppc:'',len:'',wid:'',hgt:'',wt:'',psi:'',cfm:'',volt:'',phase:'',amp:'',flow:'Right to left',notes:''}];
+var BLANK={anchor:'',side:'',align:'',type:'',speed:'',ppc:'',len:'',wid:'',hgt:'',wt:'',psi:'',cfm:'',volt:'',phase:'',amp:'',flow:'Vertical',notes:''};
+var DEFAULTS=[{"type": "Sand Mixer + Hopper", "speed": "", "ppc": "", "len": "144", "wid": "120", "hgt": "", "wt": "", "psi": "80", "cfm": "4", "volt": "480", "phase": "3", "amp": "30", "flow": "Vertical", "notes": "", "anchor": "", "side": "", "align": ""}, {"type": "Incline Sand Conveyor", "speed": "", "ppc": "", "len": "216", "wid": "18", "hgt": "", "wt": "", "psi": "", "cfm": "", "volt": "480", "phase": "3", "amp": "10", "flow": "Vertical", "notes": "", "anchor": "1", "side": "above", "align": "center"}, {"type": "Horizontal Sand Conveyor", "speed": "", "ppc": "", "len": "240", "wid": "24", "hgt": "", "wt": "", "psi": "", "cfm": "", "volt": "480", "phase": "3", "amp": "10", "flow": "Right to left", "notes": "", "anchor": "2", "side": "left", "align": "start"}, {"type": "Molding Hopper", "speed": "", "ppc": "", "len": "114", "wid": "112", "hgt": "", "wt": "", "psi": "80", "cfm": "3", "volt": "480", "phase": "3", "amp": "15", "flow": "Vertical", "notes": "", "anchor": "5", "side": "left", "align": "start"}, {"type": "Molding Press", "speed": "", "ppc": "", "len": "240", "wid": "112", "hgt": "", "wt": "", "psi": "80", "cfm": "8", "volt": "480", "phase": "3", "amp": "60", "flow": "Left to right", "notes": "", "anchor": "3", "side": "above", "align": "start"}, {"type": "Transfer Conveyor", "speed": "", "ppc": "", "len": "414", "wid": "24", "hgt": "", "wt": "", "psi": "", "cfm": "", "volt": "480", "phase": "3", "amp": "12", "flow": "Left to right", "notes": "", "anchor": "5", "side": "right", "align": "start"}, {"type": "Transfer Conveyor", "speed": "", "ppc": "", "len": "624", "wid": "24", "hgt": "", "wt": "", "psi": "", "cfm": "", "volt": "480", "phase": "3", "amp": "15", "flow": "Vertical", "notes": "", "anchor": "6", "side": "below", "align": "end"}, {"type": "Transfer Conveyor", "speed": "", "ppc": "", "len": "408", "wid": "24", "hgt": "", "wt": "", "psi": "", "cfm": "", "volt": "480", "phase": "3", "amp": "12", "flow": "Right to left", "notes": "", "anchor": "7", "side": "below", "align": "end"}, {"type": "Sand Reclamation", "speed": "", "ppc": "", "len": "108", "wid": "96", "hgt": "", "wt": "", "psi": "80", "cfm": "6", "volt": "480", "phase": "3", "amp": "25", "flow": "Vertical", "notes": "", "anchor": "1", "side": "below", "align": "center"}];
 var Q=new URLSearchParams(location.search),PN=PROJ[Q.get('project')]?Q.get('project'):'BC-Q-26041';
 function load(){try{var v=localStorage.getItem('de-proc-'+PN);if(v)return JSON.parse(v)}catch(e){}return JSON.parse(JSON.stringify(DEFAULTS))}
 function save(S){try{localStorage.setItem('de-proc-'+PN,JSON.stringify(S))}catch(e){}}
 function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
 function missing(s){var m=[];if(!s.type)m.push('type');if(!s.len||!s.wid)m.push('size');if(!(s.volt&&s.amp)&&!(s.psi))m.push('utilities');return m}
+function layoutPos(S){
+ var pos=[],busy={},G=16;
+ function size(s){var w=parseFloat(s.wid)||60,l=parseFloat(s.len)||80,hz=(s.flow!=='Vertical');return {w:hz?l:w,h:hz?w:l}}
+ function get(i){
+  if(pos[i])return pos[i];
+  var s=S[i],z=size(s),x=0,y=0,ai=(s.anchor!==undefined&&s.anchor!=='')?parseInt(s.anchor,10)-1:(i>0?i-1:-1);
+  if(ai===i||ai<0||ai>=S.length||busy[i])ai=-1;
+  if(ai>=0){busy[i]=1;var a=get(ai);delete busy[i];
+   var side=s.side||(s.flow==='Vertical'?'below':s.flow==='Right to left'?'left':'right'),al=s.align||'center';
+   if(side==='right'||side==='left'){x=side==='right'?a.x+a.w+G:a.x-z.w-G;y=al==='start'?a.y:al==='end'?a.y+a.h-z.h:a.y+a.h/2-z.h/2}
+   else{y=side==='below'?a.y+a.h+G:a.y-z.h-G;x=al==='start'?a.x:al==='end'?a.x+a.w-z.w:a.x+a.w/2-z.w/2}}
+  return pos[i]={x:x,y:y,w:z.w,h:z.h}}
+ S.forEach(function(s,i){get(i)});
+ var minx=0,miny=0,maxx=0,maxy=0;
+ pos.forEach(function(p){minx=Math.min(minx,p.x);miny=Math.min(miny,p.y);maxx=Math.max(maxx,p.x+p.w);maxy=Math.max(maxy,p.y+p.h)});
+ return {pos:pos,minx:minx,miny:miny,W:Math.max(maxx-minx,1),H:Math.max(maxy-miny,1)}}
+function flowPath(x,y,w,h,flow){
+ var cx=x+w/2,cy=y+h/2,e=Math.min(10,Math.max(4,Math.min(w,h)/3));
+ if(flow==='Vertical')return 'M'+cx+' '+(cy-e*1.4)+'V'+(cy+e*1.4)+'M'+(cx-e*.7)+' '+(cy-e*.6)+'L'+cx+' '+(cy-e*1.4)+'L'+(cx+e*.7)+' '+(cy-e*.6)+'M'+(cx-e*.7)+' '+(cy+e*.6)+'L'+cx+' '+(cy+e*1.4)+'L'+(cx+e*.7)+' '+(cy+e*.6);
+ var d=flow==='Right to left'?-1:1;
+ return 'M'+(cx-d*e*1.4)+' '+cy+'H'+(cx+d*e*1.4)+'M'+(cx+d*e*.6)+' '+(cy-e*.7)+'L'+(cx+d*e*1.4)+' '+cy+'L'+(cx+d*e*.6)+' '+(cy+e*.7)}
 function drawMap(el,S,cur){
- var x=0,y=0,pos=[],minx=0,miny=0,maxx=0,maxy=0;
- S.forEach(function(s,i){var w=parseFloat(s.wid)||60,l=parseFloat(s.len)||80,hz=(s.flow!=='Vertical'),bw=hz?l:w,bh=hz?w:l;
-  if(i>0){var p=pos[i-1];if(s.flow==='Vertical'){x=p.x+p.w/2-bw/2;y=p.y+p.h+16}else if(s.flow==='Right to left'){x=p.x-bw-16;y=p.y+p.h/2-bh/2}else{x=p.x+p.w+16;y=p.y+p.h/2-bh/2}}
-  pos.push({x:x,y:y,w:bw,h:bh});minx=Math.min(minx,x);miny=Math.min(miny,y);maxx=Math.max(maxx,x+bw);maxy=Math.max(maxy,y+bh)});
- var W=Math.max(maxx-minx,1),H=Math.max(maxy-miny,1),k=Math.min(320/W,220/H),ox=(360-W*k)/2-minx*k,oy=(260-H*k)/2-miny*k,out='';
- pos.forEach(function(p,i){var rx=p.x*k+ox,ry=p.y*k+oy,rw=p.w*k,rh=p.h*k;
+ var c=layoutPos(S),k=Math.min(320/c.W,220/c.H),ox=(360-c.W*k)/2-c.minx*k,oy=(260-c.H*k)/2-c.miny*k,out='';
+ c.pos.forEach(function(p,i){var rx=p.x*k+ox,ry=p.y*k+oy,rw=Math.max(5,p.w*k),rh=Math.max(5,p.h*k);
   out+='<rect class="st'+(i===cur?' is-cur':'')+'" x="'+rx+'" y="'+ry+'" width="'+rw+'" height="'+rh+'" rx="3"/>';
-  out+='<g class="bd"><circle cx="'+(rx+8)+'" cy="'+(ry+8)+'" r="8"/><text x="'+(rx+8)+'" y="'+(ry+11.5)+'" font-size="10" text-anchor="middle">'+(i+1)+'</text></g>';
-  if(i>0){var q=pos[i-1],f=S[i].flow,ax,ay,bx,by;
-   if(f==='Vertical'){ax=q.x+q.w/2;ay=q.y+q.h;bx=p.x+p.w/2;by=p.y}else if(f==='Right to left'){ax=q.x;ay=q.y+q.h/2;bx=p.x+p.w;by=p.y+p.h/2}else{ax=q.x+q.w;ay=q.y+q.h/2;bx=p.x;by=p.y+p.h/2}
-   ax=ax*k+ox;ay=ay*k+oy;bx=bx*k+ox;by=by*k+oy;var dx=bx-ax,dy=by-ay,L=Math.hypot(dx,dy)||1,ux=dx/L,uy=dy/L;
-   out+='<path class="ar" d="M'+ax+' '+ay+'L'+bx+' '+by+'M'+(bx-ux*6-uy*3.5)+' '+(by-uy*6+ux*3.5)+'L'+bx+' '+by+'L'+(bx-ux*6+uy*3.5)+' '+(by-uy*6-ux*3.5)+'"/>'}});
+  if(Math.min(rw,rh)>=14)out+='<path class="ar" d="'+flowPath(rx,ry,rw,rh,S[i].flow)+'"/>';
+  out+='<g class="bd"><circle cx="'+(rx+6)+'" cy="'+(ry+6)+'" r="8"/><text x="'+(rx+6)+'" y="'+(ry+9.5)+'" font-size="10" text-anchor="middle">'+(i+1)+'</text></g>'});
  el.innerHTML=out}
 
 
@@ -363,6 +378,9 @@ function drawMap(el,S,cur){
  pick.onchange=function(){location.href='index.html?project='+PN+'&station='+pick.value};
  document.getElementById('f-flow').innerHTML=FLOW.map(function(x){return '<option>'+x+'</option>'}).join('');
  document.getElementById('badge').textContent=idx+1;document.title='Process '+(idx+1)+' — '+PN+' — Design Engineering';
+ var an=document.getElementById('f-anchor');an.innerHTML='<option value="">First process (origin)</option>'+S.map(function(s,j){return j===idx?'':'<option value="'+(j+1)+'">Process '+(j+1)+' · '+esc(s.type||'[Untitled]')+'</option>'}).join('');
+ document.getElementById('f-side').innerHTML=[['','Default'],['right','Right of'],['left','Left of'],['above','Above'],['below','Below']].map(function(o){return '<option value="'+o[0]+'">'+o[1]+'</option>'}).join('');
+ document.getElementById('f-align').innerHTML=[['','Center'],['start','Start'],['end','End']].map(function(o){return '<option value="'+o[0]+'">'+o[1]+'</option>'}).join('');
  var inputs=[].slice.call(document.querySelectorAll('[data-k]'));
  inputs.forEach(function(el){el.value=S[idx][el.dataset.k]||'';el.addEventListener('input',function(){S[idx][el.dataset.k]=el.value;refresh()});el.addEventListener('change',function(){S[idx][el.dataset.k]=el.value;refresh()})});
  function show(x,u){return x?esc(x)+(u?' '+u:''):'—'}
