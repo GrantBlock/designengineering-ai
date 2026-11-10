@@ -15,7 +15,7 @@ Page order is a **Draft (not yet approved by Grant)**, built from the App Plan M
 | P03 | Chat conversation view (messages, attachments, answers with sources) | Desktop + mobile | ☐ | | Extends P01/P02 |
 | P04 | Sign in / sign up (Clerk) | Desktop + mobile | ☐ | | |
 | P05 | Projects list | Desktop + mobile | ◐ | `exports/P05-projects/index.html` | Landing page for projects; each row opens its P06 project page. Awaiting Grant's review |
-| P06 | Project workspace (process layout, process document; files, chat, notes later) | Desktop + mobile | ◐ | `exports/P06-project-workspace/index.html` | Process layout with a summary card per process; each opens P18. Awaiting Grant's review |
+| P06 | Project workspace (process layout, process document, schedule; files, chat, notes later) | Desktop + mobile | ◐ | `exports/P06-project-workspace/index.html` | Process layout with a summary card per process; each opens P18. Awaiting Grant's review |
 | P07 | Upload flow (STEP, OBJ, photos, PDFs) | Desktop + mobile | ☐ | | |
 | P08 | 3D viewer | Desktop + mobile | ☐ | | |
 | P09 | Document search and data sheets | Desktop + mobile | ☐ | | |
@@ -41,5 +41,6 @@ First open item: **P03**, unless Grant says otherwise.
 - [stated] 2026-11-10: P05 (Projects list) drafted at `exports/P05-projects/index.html`, built from `system-kit/` tokens and components; rows link to `../P06-project-workspace/index.html?project=<BC-Q number>` (not built yet). Awaiting review.
 - [stated] 2026-11-10: P06 (Project workspace) drafted at `exports/P06-project-workspace/index.html`, with the Process Builder built inside the project. Draft (not yet approved by Grant): wider 1120px content column for two-pane detail pages (the system caps at 760px).
 - [stated] 2026-11-10: P06 changed to a process layout with a summary card per process. Each card opens P18 (Process configuration), which edits the detail and saves back. ID P18 added so existing IDs stay fixed. Prototype stores data in browser localStorage under `de-proc-<project>` (design only, not the real data model).
+- [stated] 2026-11-10: P06 gets a third tab, Schedule: a Gantt chart (task list, month timeline, dependencies, baseline, today line, zoom, auto fit) that holds project status and dates, edited in a task details panel. Draft (not yet approved by Grant): bars use a steel-blue fill for progress; per-task status is Not started, In progress, Done. Sample tasks come from Grant's monday.com screenshot, shifted to start Aug 3, 2026.
 - Draft (not yet approved by Grant): page order P03 to P17 above.
 - [stated] 2026-11-06: Shortcut phrase "design the next page" added; see ../shortcuts.md.
