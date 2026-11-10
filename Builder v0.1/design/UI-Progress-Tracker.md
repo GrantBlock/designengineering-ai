@@ -14,7 +14,7 @@ Page order is a **Draft (not yet approved by Grant)**, built from the App Plan M
 | P02 | Mobile chat, starting page | Web (mobile) | ☑ | `exports/P02-chat-start-mobile/Design_Engineering_Mobile.html` | Done before this tracker |
 | P03 | Chat conversation view (messages, attachments, answers with sources) | Desktop + mobile | ☐ | | Extends P01/P02 |
 | P04 | Sign in / sign up (Clerk) | Desktop + mobile | ☐ | | |
-| P05 | Projects list | Desktop + mobile | ☐ | | |
+| P05 | Projects list | Desktop + mobile | ◐ | `exports/P05-projects/index.html` | Landing page for projects; each row opens its P06 project page. Awaiting Grant's review |
 | P06 | Project workspace (files, chat, notes in one place) | Desktop + mobile | ☐ | | |
 | P07 | Upload flow (STEP, OBJ, photos, PDFs) | Desktop + mobile | ☐ | | |
 | P08 | 3D viewer | Desktop + mobile | ☐ | | |
@@ -37,5 +37,6 @@ First open item: **P03**, unless Grant says otherwise.
 - [stated] 2026-11-09: P01 and P02 exports, favicon (`assets/favicon.svg`) and the design system kit (`system-kit/`) added from Grant's uploads.
 - [stated] 2026-11-06: P01 (main chat starting page) and P02 (mobile chat starting page) are done.
 - [stated] 2026-11-09: Design system extracted and reconciled; see DESIGN-SYSTEM.md. P01 and P02 exports updated to match (Graphite tokens only, Library nav, five mobile tabs, assistant name placeholder, send button).
+- [stated] 2026-11-10: P05 (Projects list) drafted at `exports/P05-projects/index.html`, built from `system-kit/` tokens and components; rows link to `../P06-project-workspace/index.html?project=<BC-Q number>` (not built yet). Awaiting review.
 - Draft (not yet approved by Grant): page order P03 to P17 above.
 - [stated] 2026-11-06: Shortcut phrase "design the next page" added; see ../shortcuts.md.
