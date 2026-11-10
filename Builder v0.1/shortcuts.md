@@ -23,8 +23,9 @@ Paths below are relative to `Builder v0.1/`. Memory logs are in `designengineeri
 ## "park this idea"
 
 **Description:** Saves an idea without touching any plan or decision. Writes only to `ideas.md`.
-1. Append to `ideas.md` (create it if missing) with the next ID: `- I07 Draft (not yet approved by Grant): YYYY-MM-DD: <idea in Grant's words>`.
-2. Reply with one line confirming and the ID. Don't expand, evaluate or act on it. Never delete earlier lines.
+1. Sync first: follow "Branch sync" in `CLAUDE.md`. The next ID is the highest I-number in `ideas.md` on any `origin/*` branch, plus one.
+2. Append to `ideas.md` (create it if missing) with the next ID: `- I07 Draft (not yet approved by Grant): YYYY-MM-DD: <idea in Grant's words>`.
+3. Reply with one line confirming and the ID. Don't expand, evaluate or act on it. Never delete earlier lines.
 
 ## "poke holes in this"
 
@@ -66,4 +67,5 @@ Steps:
 - [stated] 2026-11-06: Shortcuts added: where were we, what's waiting on me, park this idea, poke holes in this, decision brief, design the next page, review page.
 - [stated] 2026-11-06: "what's waiting on me" reads `review-queue.md` and filters by surface (mobile, code, vscode).
 - [stated] 2026-11-06: Ideas get IDs (I01...). "decision brief" accepts an idea ID, adds the brief to the review queue, and "log it" marks the idea Decided.
+- [stated] 2026-11-07: "park this idea" syncs with all remote branches before choosing an ID (an I01 collision happened on 2026-11-07). See "Branch sync" in CLAUDE.md.
 - Draft (not yet approved by Grant): "log it" and "end of day" shortcuts were suggested but not added.

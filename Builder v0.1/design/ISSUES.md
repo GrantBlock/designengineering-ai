@@ -7,7 +7,7 @@ Open design and setup issues. IDs stay fixed. Close an issue by moving it to Clo
 | ID | Issue | Surface | Where |
 | --- | --- | --- | --- |
 | DI01 | Mobile tab labels (Recents, Projects) are tight with five tabs on 360px phones. Check on a small device; if needed, reduce label tracking or size. | code | `exports/P02-chat-start-mobile/` |
-| DI02 | No way to see the app and design exports from other computers while development stays on the main AI computer. Need a dev and preview deployment setup. Cloudflare Workers is the D1 proposal; how it works with Next.js is not yet decided. | vscode | App Plan D1, `../review-queue.md` RQ12 |
+| DI02 | No way to see the app and design exports from other computers while development stays on the main AI computer. Need a dev and preview deployment setup. Cloudflare Workers is the D1 proposal; how it works with Next.js is not yet decided. | vscode | App Plan D1, `../review-queue.md` RQ14 |
 
 ## Closed
 
