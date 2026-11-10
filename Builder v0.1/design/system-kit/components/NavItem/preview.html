@@ -1,0 +1,13 @@
+<!-- @dsCard group="Navigation" height=230 -->
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><title>NavItem — preview</title></head>
+<body>
+<div id="root"></div>
+<script>
+  var E = window.DE, h = React.createElement;
+  
+  ReactDOM.createRoot(document.getElementById('root')).render(h("div",{className:"de-stage"},h("div",{style:{width:250,padding:12,background:"var(--bc-surface)",borderRadius:18}},h(E.NavItem,{icon:"home",label:"Home",active:true}),h(E.NavItem,{icon:"cube",label:"Mechanical",defaultOpen:true,activeChild:"Parts",children:["Assemblies","Parts","Drawings"]}),h(E.NavItem,{icon:"wave",label:"Simulation",tag:"New",children:["Cycle time"]}))));
+</script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+<!-- @dsCard group="Mobile" height=300 -->
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><title>ActionCard — preview</title></head>
+<body>
+<div id="root"></div>
+<script>
+  var E = window.DE, h = React.createElement;
+  
+  ReactDOM.createRoot(document.getElementById('root')).render(h("div",{className:"de-stage-col"},h("div",{className:"de-acard-rail",style:{padding:0}},h(E.ActionCard,{tone:"primary",icon:"sparkle",title:"Ask the engineering assistant"}),h(E.ActionCard,{tone:"secondary",icon:"folder",category:"3 open",title:"Active projects"}),h(E.ActionCard,{category:"Electrical",title:"Size a VFD and motor for a conveyor drive"}))));
+</script>
+</body>
+</html>

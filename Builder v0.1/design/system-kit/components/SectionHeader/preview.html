@@ -1,0 +1,13 @@
+<!-- @dsCard group="Content" height=120 -->
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><title>SectionHeader — preview</title></head>
+<body>
+<div id="root"></div>
+<script>
+  var E = window.DE, h = React.createElement;
+  
+  ReactDOM.createRoot(document.getElementById('root')).render(h("div",{className:"de-stage-col"},h(React.Fragment,null,h(E.SectionHeader,{title:"Favorites",count:"3 saved"}),h(E.SectionHeader,{title:"Models",onMore:function(){}}),h(E.SectionHeader,{title:"Active projects",action:"See all",mobile:true}))));
+</script>
+</body>
+</html>
