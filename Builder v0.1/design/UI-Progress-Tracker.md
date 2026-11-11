@@ -17,7 +17,7 @@ Page order is a **Draft (not yet approved by Grant)**, built from the App Plan M
 | P05 | Projects list | Desktop + mobile | ☑ | `exports/P05-projects/index.html` | Done 2026-11-11. Landing page for projects; each row opens its P06 project page |
 | P06 | Project workspace (Import, Specifications, Layout, Schedule, Exports; files, chat, notes later) | Desktop + mobile | ☑ | `exports/P06-project-workspace/index.html` | Done 2026-11-11 (for now). Tabs: Import, Specifications, Layout, Schedule, Exports. Files, chat and notes tabs still to design |
 | P07 | Upload flow (STEP, OBJ, photos, PDFs) | Desktop + mobile | ☑ | `exports/P07-upload-flow/index.html` | Done 2026-11-11, one responsive page. Accepts STEP, OBJ, pictures, PDF and ZIP; Take a pic on mobile (Grant approved) |
-| P08 | 3D viewer | Desktop + mobile | ◐ | `exports/P08-3d-viewer/index.html` | Draft 2026-11-11, one responsive page. View only; building and editing parts stays in P20. Awaiting Grant's review |
+| P08 | 3D designer (merged with P20; viewer is its first draft) | Desktop + mobile | ◐ | `exports/P08-3d-viewer/index.html` | Grant 2026-11-11: P08 and P20 are the same page, the builder for 3D design. Existing draft covers viewing only; build, edit and Vault tools still to design. Awaiting Grant's answers |
 | P09 | Document search and data sheets | Desktop + mobile | ☐ | | |
 | P10 | Notes and tracking | Desktop + mobile | ☐ | | |
 | P11 | Calculators (chat-enabled) | Desktop + mobile | ☐ | | |
@@ -29,11 +29,11 @@ Page order is a **Draft (not yet approved by Grant)**, built from the App Plan M
 | P17 | Builder (package a client or site into a Lite zip) | Desktop app | ☐ | | |
 | P18 | Process configuration (one process in detail, like a Xometry part configuration) | Desktop + mobile | ☑ | `exports/P18-process-config/index.html` | Done 2026-11-11. Opened from a P06 process card; saves back to the P06 summary. Added 2026-11-10 |
 | P19 | Dashboard (weekly view: this week, this month, last week) | Desktop + mobile | ☑ | `exports/P19-dashboard/index.html` | Layout only; sample data. Added 2026-11-10 from Grant's weekly tracker zip. Approved 2026-11-11 |
-| P20 | 3D designer (opened from Design in the sidebar): build parts, open STEP files to view and modify | Desktop + mobile | ☐ | | Added 2026-11-11. Scope from Grant: build parts; accept STEP files to view and modify. Draft (not yet approved by Grant): includes viewing, so it may absorb P08 (3D viewer) |
+| P20 | 3D designer (opened from Design in the sidebar): build parts, open STEP files to view and modify | Desktop + mobile | ☐ | | Merged into P08 on 2026-11-11 (Grant). Do not design separately |
 
 ## Next up
 
-First open item: **P08** (draft built, awaiting Grant's review), unless Grant says otherwise. P20 (3D designer) is also open.
+First open item: **P08**, now the combined 3D designer (P08 + P20); the viewer draft exists, the builder tools are not designed yet.
 
 ## Log
 
@@ -82,4 +82,5 @@ First open item: **P08** (draft built, awaiting Grant's review), unless Grant sa
 - [stated] 2026-11-11: P08 (3D viewer) drafted at `exports/P08-3d-viewer/index.html`: one responsive page. Viewport with orbit (drag), zoom (scroll or pinch), pan (shift-drag), arrow-key orbit, standard views (Iso, Front, Top, Right), Shaded and Wire display, and Fit. Right panel: file card, Parts list (select, hide and show), Details (bodies, size L x W x H, material). An Ask about this part field sends a question to chat. Prototype only: the model is a placeholder palletizer conveyor drawn by a small built-in renderer, not a real STEP file and not Three.js (D8 is not yet approved); mobile stacks the viewport above the panels with the ask field in the dock.
 - Draft (not yet approved by Grant): P08 patterns: viewport on `bc-surface` with a floating toolbar (segmented view and display controls on `bc-canvas`, Fit icon button); model faces drawn in graphite tones with Steel Blue for the selected part; parts list row (name, body count, eye toggle) with a steel-blue tint when selected; details list with mono labels; ask field with a mono part context label inside the light composer field.
 - Draft (not yet approved by Grant): P08 placeholder values: the sample model, its part names and sizes, and materials marked (A). P08 as view only, with P20 absorbing editing, is open for Grant to confirm.
+- [stated] 2026-11-11: Grant: P08 and P20 are the same page. It is the builder for 3D design, opened from Design in the primary navigation, and it also appears inside a project chat when that skill is loaded. 3D models are stored in Vault and can be referenced in new chats to make variations and alternatives. P20 is merged into P08; the P08 viewer draft is its first version (viewing only).
 
