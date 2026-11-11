@@ -8,6 +8,14 @@
     home: 'M3 11l9-7 9 7v9h-6v-6H9v6H3z',
     clock: 'M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18zM12 7v5l3 2',
     folder: 'M3 6h6l2 2h10v11H3z',
+    menu: 'M4 7h16M4 12h16M4 17h16',
+    'panel-left': 'M4 5h16v14H4zM9 5v14',
+    'chevron-left': 'M15 6l-6 6 6 6',
+    'chat-plus': 'M5 5h14a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1h-8l-4 4v-4H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zM12 8v5M9.5 10.5h5',
+    chat: 'M5 5h14a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1h-8l-4 4v-4H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1z',
+    dashboard: 'M4 5h16v14H4zM4 10h16M10 10v9',
+    briefcase: 'M3 8h18v12H3zM9 8V5h6v3M3 13h18',
+    gear: 'M12 9a3 3 0 1 0 0 6 3 3 0 0 0 0-6zM19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z',
     project: 'M3 7h6l2 2h10v10H3z',
     cube: 'M12 3l8 4.5v9L12 21l-8-4.5v-9zM12 12l8-4.5M12 12v9M12 12L4 7.5',
     bolt: 'M13 3L5 13h6l-1 8 8-10h-6z',
@@ -156,21 +164,31 @@
   }
 
   function Sidebar(p) {
-    var sel = React.useState(p.defaultActive || { id: 'home', child: null }), cur = sel[0];
-    return h('aside', { className: 'de-sidebar' },
-      h('div', { className: 'de-sidebar-head' }, h('img', { src: p.logoSrc || LOGO, alt: '' }), h('div', { className: 'de-brand' }, p.title || 'Design Engineering'),
-        h(IconButton, { size: 'xs', icon: 'chevron-updown', 'aria-label': 'Switch workspace' })),
-      h('div', { className: 'de-sidebar-search' }, h(SearchField, null)),
-      h('nav', { className: 'de-sidebar-nav de-scroll' }, (p.groups || []).map(function (g, gi) {
-        return h(NavGroup, { key: gi, label: g.label, collapsed: g.collapsed },
-          g.items.map(function (it) {
-            return h(NavItem, { key: it.id, icon: it.icon, label: it.label, tag: it.tag, children: it.children, defaultOpen: it.open,
-              active: cur.id === it.id && !it.children, activeChild: cur.id === it.id ? cur.child : null,
-              onSelect: function () { sel[1]({ id: it.id, child: null }); p.onNavigate && p.onNavigate(it.id); },
-              onSelectChild: function (c) { sel[1]({ id: it.id, child: c }); p.onNavigate && p.onNavigate(it.id, c); } });
-          }));
-      })),
-      h('div', { className: 'de-sidebar-foot' }, h(Button, { variant: 'row', icon: 'account', trailing: true }, p.footer || 'Manage account')));
+    var ms = React.useState(p.defaultMode || 'chat'), mode = ms[0];
+    var cs = React.useState(p.closedGroups || {}), closed = cs[0];
+    var projects = p.projects || [], chats = p.chats || [];
+    function tbtn(icon, label, extra) { return h('button', { type: 'button', className: cx('sbicon', extra), 'aria-label': label }, h(Icon, { name: icon, size: 18 })); }
+    function seg(m, icon, label) { return h('button', { type: 'button', role: 'tab', 'aria-label': label, className: cx('sbsegb', mode === m && 'is-on'), onClick: function () { ms[1](m); } }, h(Icon, { name: icon, size: 16 })); }
+    function row(icon, label, cls, id) { return h('button', { type: 'button', className: cls || 'sbrow', onClick: function () { p.onNavigate && p.onNavigate(id); } }, h(Icon, { name: icon, size: 16 }), h('span', { className: 'sblab' }, label)); }
+    function chat(c) { return h('button', { key: c, type: 'button', className: 'sbrec', title: c, onClick: function () { p.onNavigate && p.onNavigate('chat', c); } }, h('span', { className: 'sbfade' }, c)); }
+    return h('aside', { className: 'de-sidebar sb' },
+      h('div', { className: 'sbtool' }, tbtn('menu', 'Menu'), tbtn('panel-left', 'Collapse sidebar'), tbtn('chevron-left', 'Back'), tbtn('chevron-right', 'Forward', 'sbdim'),
+        h('span', { style: { flex: 1 } }),
+        h('div', { className: 'sbseg', role: 'tablist', 'aria-label': 'Sidebar mode' }, seg('chat', 'chat', 'Chat'), seg('projects', 'folder', 'Projects'))),
+      h('nav', { className: 'sbnav', 'aria-label': 'Main' }, row('plus', 'New', 'sbnew', 'new'), row('search', 'Search', 0, 'search'), row('dashboard', 'Dashboard', 0, 'dashboard'), row('cube', 'Design', 0, 'design'), row('briefcase', 'Customize', 0, 'customize'), row('more', 'More', 0, 'more')),
+      mode === 'chat'
+        ? h('div', { className: 'sbpane' }, h('div', { className: 'sbhead' }, 'Recents'), h('div', { className: 'sbrecs de-scroll' }, chats.map(chat)))
+        : h('div', { className: 'sbpane' }, h('div', { className: 'sbhead' }, 'Projects'), h('div', { className: 'sbrecs de-scroll' }, row('plus', 'New project', 'sbrow sbnewproj', 'new-project'), projects.map(function (g) {
+            var shut = !!closed[g.name];
+            return h('div', { key: g.name, className: cx('sbgroup', shut && 'is-closed') },
+              h('div', { className: 'sbgrow' }, h('button', { type: 'button', className: 'sbgrp', 'aria-expanded': !shut, onClick: function () { var n = Object.assign({}, closed); n[g.name] = !shut; cs[1](n); } },
+                h(Icon, { name: 'chevron-right', size: 12, strokeWidth: 2 }), h('span', { className: 'sblab' }, g.name), h('span', { className: 'sbcount' }, g.chats.length)),
+                h('button', { type: 'button', className: 'sbgstart', title: 'Start chat in ' + g.name, 'aria-label': 'Start chat in ' + g.name, onClick: function () { p.onNavigate && p.onNavigate('start-chat', g.name); } }, h(Icon, { name: 'chat-plus', size: 16 }))),
+              !shut && h('div', { className: 'sbkids' }, g.chats.map(chat)));
+          }))),
+      h('div', { className: 'sbfoot' },
+        h('button', { type: 'button', className: 'sbacct', 'aria-label': 'Account switcher' }, h('span', { className: 'sbavatar' }, p.initial || 'G'), h('span', { className: 'sblab' }, p.account || 'Grant \u00b7 Pro'), h(Icon, { name: 'chevron-right', size: 12, strokeWidth: 2, style: { transform: 'rotate(90deg)' } })),
+        tbtn('gear', 'Settings')));
   }
 
   function TopBar(p) {

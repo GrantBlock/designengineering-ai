@@ -13,10 +13,10 @@ Page order is a **Draft (not yet approved by Grant)**, built from the App Plan M
 | P01 | Main chat, starting page | Web (desktop) | ☑ | `exports/P01-chat-start-desktop/Design_Engineering_App.html` | Done before this tracker; source of the design system |
 | P02 | Mobile chat, starting page | Web (mobile) | ☑ | `exports/P02-chat-start-mobile/Design_Engineering_Mobile.html` | Done before this tracker |
 | P03 | Chat conversation view (messages, attachments, answers with sources) | Desktop + mobile | ☑ | `exports/P03-chat-conversation/index.html` | Done 2026-11-11, one responsive page (Grant approved). Extends P01/P02 |
-| P04 | Sign in / sign up (Clerk) | Desktop + mobile | ◐ | `exports/P04-sign-in/index.html` | Draft 2026-11-11, one responsive page with a Sign in / Create account toggle. Awaiting Grant's review |
+| P04 | Sign in / sign up (Clerk) | Desktop + mobile | ☑ | `exports/P04-sign-in/index.html` | Done 2026-11-11, one responsive page with nine states: Sign in, Create account, verification code, verified, forgot password, reset code, new password, password updated. Grant approved |
 | P05 | Projects list | Desktop + mobile | ☑ | `exports/P05-projects/index.html` | Done 2026-11-11. Landing page for projects; each row opens its P06 project page |
 | P06 | Project workspace (Import, Specifications, Layout, Schedule, Exports; files, chat, notes later) | Desktop + mobile | ☑ | `exports/P06-project-workspace/index.html` | Done 2026-11-11 (for now). Tabs: Import, Specifications, Layout, Schedule, Exports. Files, chat and notes tabs still to design |
-| P07 | Upload flow (STEP, OBJ, photos, PDFs) | Desktop + mobile | ☐ | | |
+| P07 | Upload flow (STEP, OBJ, photos, PDFs) | Desktop + mobile | ◐ | `exports/P07-upload-flow/index.html` | Draft 2026-11-11, one responsive page. Awaiting Grant's review |
 | P08 | 3D viewer | Desktop + mobile | ☐ | | |
 | P09 | Document search and data sheets | Desktop + mobile | ☐ | | |
 | P10 | Notes and tracking | Desktop + mobile | ☐ | | |
@@ -29,13 +29,15 @@ Page order is a **Draft (not yet approved by Grant)**, built from the App Plan M
 | P17 | Builder (package a client or site into a Lite zip) | Desktop app | ☐ | | |
 | P18 | Process configuration (one process in detail, like a Xometry part configuration) | Desktop + mobile | ☑ | `exports/P18-process-config/index.html` | Done 2026-11-11. Opened from a P06 process card; saves back to the P06 summary. Added 2026-11-10 |
 | P19 | Dashboard (weekly view: this week, this month, last week) | Desktop + mobile | ☑ | `exports/P19-dashboard/index.html` | Layout only; sample data. Added 2026-11-10 from Grant's weekly tracker zip. Approved 2026-11-11 |
+| P20 | 3D designer (opened from Design in the sidebar): build parts, open STEP files to view and modify | Desktop + mobile | ☐ | | Added 2026-11-11. Scope from Grant: build parts; accept STEP files to view and modify. Draft (not yet approved by Grant): includes viewing, so it may absorb P08 (3D viewer) |
 
 ## Next up
 
-First open item: **P04** (draft built, awaiting Grant's review), unless Grant says otherwise. P05, P06 and P18 (the projects section) are complete for now; open questions are in `../review-queue.md` RQ16 and RQ17.
+First open item: **P07** (draft built, awaiting Grant's review), unless Grant says otherwise. P05, P06 and P18 (the projects section) are complete for now; open questions are in `../review-queue.md` RQ16 and RQ17.
 
 ## Log
 
+- [stated] 2026-11-11: P20 (3D designer) scope: build parts, and accept STEP files to view and modify.
 - [stated] 2026-11-09: P01 and P02 exports, favicon (`assets/favicon.svg`) and the design system kit (`system-kit/`) added from Grant's uploads.
 - [stated] 2026-11-06: P01 (main chat starting page) and P02 (mobile chat starting page) are done.
 - [stated] 2026-11-09: Design system extracted and reconciled; see DESIGN-SYSTEM.md. P01 and P02 exports updated to match (Graphite tokens only, Library nav, five mobile tabs, assistant name placeholder, send button).
@@ -66,3 +68,11 @@ First open item: **P04** (draft built, awaiting Grant's review), unless Grant sa
 - [stated] 2026-11-11: Grant approved P03 (Chat conversation view). The P03 patterns logged above as drafts (citation chips, Sources side panel, attachment chips, mobile source sheet, widened column) are approved with the page.
 - [stated] 2026-11-11: P04 (Sign in / sign up) drafted at `exports/P04-sign-in/index.html`: one responsive page, no sidebar, centered card on desktop and full-width on mobile. Sign in and Create account share one form. Prototype only; no real authentication (Clerk is the planned provider).
 - Draft (not yet approved by Grant): P04 patterns: auth card on `bc-surface` (440px max) with brand mark above; segmented two-option toggle (`bc-canvas` track, `bc-surface-raised` active); light `bc-field` text inputs 44px high (52px on mobile) with mono 11px labels above; show/hide password icon button; inline error notice with `bc-steel-blue-tint` background; submit as the steel-blue outline chip (not a filled button); Continue with Google as a `bc-surface-raised` chip. The Google icon is a placeholder, not the real mark.
+- [stated] 2026-11-11: P04 gains a verification code screen (third state of the same page): opens after a valid sign up or sign in, six single-digit boxes (paste and auto-advance), Verify, resend countdown (30 seconds), Use a different email, wrong-code notice, and a verified confirmation with Continue. Prototype only: any code except 000000 passes.
+- Draft (not yet approved by Grant): P04 code boxes are light `bc-field` squares (56px high, 64px on mobile) with Overpass Mono digits and a steel-blue edge on error; Verify stays a disabled outline chip until six digits are entered; verified notice uses `bc-steel-blue-tint` with a check icon. Copy: "We sent a 6-digit code to [email]. It expires in 10 minutes." (10 minutes is an assumption (A)).
+- [stated] 2026-11-11: P04 gains the forgot password flow: Forgot password (email, Send code, Back to sign in), Enter code (same code screen with reset copy), New password (new and confirm fields with show/hide, mismatch and 8-character errors), and Password updated (Sign in). P04 now has nine states, all in one page. Prototype only: any code except 000000 passes.
+- Draft (not yet approved by Grant): the reset flow reuses the P04 patterns without new components. Reset reuses the 6-digit code screen; passwords must be at least 8 characters (matches the Clerk default (A)).
+- [stated] 2026-11-11: Grant approved P04 (Sign in / sign up) with all nine states, including the verification code and forgot password screens and the patterns logged above as drafts.
+- [stated] 2026-11-11: P07 (Upload flow) drafted at `exports/P07-upload-flow/index.html`: one responsive page under Vault / Uploads. Project picker, drop zone with accepted types (STEP, OBJ, photos, PDF), a This session queue, and a storage meter. Each file moves Uploading, then Preparing (convert for viewer, read photo, index for search), then Ready; unsupported files show Could not upload with Retry and Remove. Prototype only: real file picking and drag and drop, but simulated progress and no storage.
+- Draft (not yet approved by Grant): P07 patterns: dashed drop zone on `bc-surface` (steel-blue tint while dragging); file row with type tile, mono meta line, status text and 4px progress bar (steel-blue fill, pulsing while preparing); Ready tag; inline failure notice with Retry; storage meter card (Pro, 20 GB included); mobile adds a Take photo button and stacks the actions at 52px.
+- Draft (not yet approved by Grant): placeholder values marked (A) or in brackets: 500 MB per-file limit, accepted extensions (.step, .stp, .obj, .jpg, .jpeg, .png, .heic, .pdf), storage shown as 12.4 of 20 GB.

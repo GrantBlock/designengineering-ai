@@ -267,6 +267,18 @@ body{min-height:100vh}
  .p4-foot{font-size:14px}
  .p4-meta{text-align:center}
 }
+
+/* verification code state */
+.p4-code{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:var(--bc-space-2)}
+.p4-d{width:100%;min-width:0;height:56px;padding:2px 0 0;text-align:center;border:1px solid var(--bc-field-edge-soft);border-radius:var(--bc-radius-control);background:var(--bc-field);color:var(--bc-field-ink);box-shadow:var(--bc-shadow-search);font-family:var(--font-mono);font-size:24px;font-weight:500;outline:none;transition:border-color 200ms}
+.p4-d:focus{border-color:var(--bc-field-focus)}
+.p4-code.is-bad .p4-d{border-color:var(--bc-steel-blue-edge)}
+.p4-go:disabled{cursor:default;color:var(--bc-muted);border-color:var(--bc-hairline);background:transparent}
+.p4-go:disabled:hover{background:transparent}
+.p4-vlinks{display:flex;justify-content:space-between;align-items:center;gap:var(--bc-space-3);font-size:13px}
+.p4-timer{font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--bc-muted)}
+.p4-ok{display:flex;align-items:center;gap:var(--bc-space-3);padding:14px 16px 12px;border:1px solid var(--bc-steel-blue-edge);border-radius:var(--bc-radius-card);background:var(--bc-steel-blue-tint);color:var(--bc-steel-blue-text);font-size:14px}
+@media (max-width:760px){.p4-d{height:64px;font-size:28px}.p4-vlinks{font-size:15px}.p4-vlinks a{padding:12px 0}.p4-timer{font-size:13px}}
 </style></head>
 <body>
 <main class="p4">
@@ -285,6 +297,38 @@ body{min-height:100vh}
  </form>
  <div class="p4-or"><span class="de-label">or</span></div>
  <button class="de-btn de-btn-chip p4-alt" type="button"><svg class="de-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.3-5.6M12 12h8"/></svg>Continue with Google</button>
+ <div id="rw" hidden>
+  <form class="p4-form" id="rf" novalidate>
+   <div class="p4-err" id="rerr" role="alert">Enter a valid email address.</div>
+   <div class="p4-field"><label class="de-label" for="rem">Work email</label><div class="p4-in"><input id="rem" type="email" autocomplete="email" placeholder="you@company.com"></div></div>
+   <button class="de-btn p4-go" type="submit">Send code</button>
+   <div class="p4-vlinks"><a href="#" id="rback">Back to sign in</a></div>
+  </form>
+ </div>
+ <div id="nw" hidden>
+  <form class="p4-form" id="nf" novalidate>
+   <div class="p4-err" id="nerr" role="alert"></div>
+   <div class="p4-field"><label class="de-label" for="np">New password</label><div class="p4-in"><input id="np" type="password" autocomplete="new-password" placeholder="At least 8 characters"><button type="button" class="de-iconbtn p4-tg" data-for="np" aria-label="Show password" aria-pressed="false"><svg class="de-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></button></div></div>
+   <div class="p4-field"><label class="de-label" for="cp">Confirm password</label><div class="p4-in"><input id="cp" type="password" autocomplete="new-password" placeholder="Repeat the password"><button type="button" class="de-iconbtn p4-tg" data-for="cp" aria-label="Show password" aria-pressed="false"><svg class="de-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></button></div></div>
+   <button class="de-btn p4-go" type="submit">Save password</button>
+  </form>
+ </div>
+ <div id="fd" hidden>
+  <div class="p4-form"><div class="p4-ok" role="status"><svg class="de-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span style="padding-top:2px">Your password has been changed.</span></div>
+   <button class="de-btn p4-go" type="button" id="fdgo">Sign in</button></div>
+ </div>
+ <div id="vw" hidden>
+  <div class="p4-form">
+   <div class="p4-err" id="verr" role="alert">That code is not right. Check the email and try again.</div>
+   <div class="p4-field"><label class="de-label" for="d0">Verification code</label><div class="p4-code" id="code" role="group" aria-label="6-digit code"><input class="p4-d" id="d0" inputmode="numeric" autocomplete="one-time-code" maxlength="1" aria-label="Digit 1"><input class="p4-d" inputmode="numeric" maxlength="1" aria-label="Digit 2"><input class="p4-d" inputmode="numeric" maxlength="1" aria-label="Digit 3"><input class="p4-d" inputmode="numeric" maxlength="1" aria-label="Digit 4"><input class="p4-d" inputmode="numeric" maxlength="1" aria-label="Digit 5"><input class="p4-d" inputmode="numeric" maxlength="1" aria-label="Digit 6"></div></div>
+   <button class="de-btn p4-go" type="button" id="vgo" disabled>Verify</button>
+   <div class="p4-vlinks"><span class="p4-timer" id="tm"></span><a href="#" id="chg">Use a different email</a></div>
+  </div>
+ </div>
+ <div id="dw" hidden>
+  <div class="p4-form"><div class="p4-ok" role="status"><svg class="de-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span style="padding-top:2px">Email verified. Your account is ready.</span></div>
+   <a class="de-btn p4-go" href="../P03-chat-conversation/index.html" style="text-decoration:none">Continue</a></div>
+ </div>
  <div class="p4-foot" id="ft">New here? <a href="#" data-mode="up">Create an account</a></div>
 </div>
  <div class="p4-meta">Secured by Clerk · designengineering.ai</div>
@@ -299,7 +343,36 @@ body{min-height:100vh}
   [].forEach.call(document.querySelectorAll('.p4-seg button'),function(b){b.setAttribute('aria-selected',String(b.dataset.mode===m))});bind()}
  function bind(){[].forEach.call(document.querySelectorAll('[data-mode]'),function(e){e.onclick=function(k){k.preventDefault();set(e.dataset.mode)}})}
  $('tg').addEventListener('click',function(){var on=$('pw').type==='password';$('pw').type=on?'text':'password';this.setAttribute('aria-pressed',String(on));this.setAttribute('aria-label',on?'Hide password':'Show password');this.innerHTML='<svg class="de-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3l18 18M10.6 6.2A9.6 9.6 0 0 1 12 6c6 0 10 6 10 6a17 17 0 0 1-3.2 3.9M6.1 7.7C3.6 9.4 2 12 2 12s4 6 10 6c1.4 0 2.7-.3 3.9-.8"/></svg>'.replace('EYE','');if(!on)this.innerHTML='<svg class="de-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>'});
- $('f').addEventListener('submit',function(e){e.preventDefault();var ok=/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test($('em').value.trim())&&$('pw').value.length>=8;$('err').classList.toggle('is-on',!ok)});
+ $('f').addEventListener('submit',function(e){e.preventDefault();var ok=/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test($('em').value.trim())&&$('pw').value.length>=8;$('err').classList.toggle('is-on',!ok);if(ok)showVerify()});
+ var tmr,left=0,em='';
+ var ds=[].slice.call(document.querySelectorAll('.p4-d'));
+ function show(ids,on){ids.forEach(function(q){[].forEach.call(document.querySelectorAll(q),function(e){e.hidden=!on})})}
+ function tick(){var t=$('tm');if(left>0){t.innerHTML='Resend in 0:'+(left<10?'0':'')+left}else{t.innerHTML='<a href="#" id="rs">Resend code</a>';$('rs').onclick=function(k){k.preventDefault();start();ds.forEach(function(d){d.value=''});ds[0].focus();upd()}}}
+ function start(){clearInterval(tmr);left=30;tick();tmr=setInterval(function(){left--;tick();if(left<=0)clearInterval(tmr)},1000)}
+ function upd(){var c=ds.map(function(d){return d.value}).join('');$('vgo').disabled=c.length<6;$('code').classList.remove('is-bad');$('verr').classList.remove('is-on')}
+ var ALL=['.p4-seg','#f','.p4-or','.p4-alt','#ft','#vw','#dw','#rw','#nw','#fd'],ctx='verify';
+ function view(on,eb,h,sub){clearInterval(tmr);show(ALL,false);show(on,true);$('eb').textContent=eb;$('h1').textContent=h;$('sub').textContent=sub}
+ function showVerify(c){ctx=c||'verify';em=(ctx==='reset'?$('rem'):$('em')).value.trim();
+  view(['#vw'],ctx==='reset'?'Reset password':'Check your email','Enter code','We sent a 6-digit code to '+em+(ctx==='reset'?'. Enter it to reset your password.':'. It expires in 10 minutes.'));
+  ds.forEach(function(d){d.value=''});upd();start();ds[0].focus()}
+ function back(){clearInterval(tmr);show(ALL,false);show(['.p4-seg','#f','.p4-or','.p4-alt','#ft'],true);set(mode)}
+ function showReset(){view(['#rw'],'Reset password','Forgot password','Enter your work email and we will send a 6-digit code to reset your password.');$('err').classList.remove('is-on');$('rem').value=$('em').value;$('rerr').classList.remove('is-on');$('rem').focus()}
+ ds.forEach(function(d,i){
+  d.addEventListener('focus',function(){d.select()});
+  d.addEventListener('input',function(){d.value=d.value.replace(/\D/g,'').slice(-1);if(d.value&&ds[i+1])ds[i+1].focus();upd()});
+  d.addEventListener('keydown',function(k){if(k.key==='Backspace'&&!d.value&&ds[i-1]){ds[i-1].focus()}if(k.key==='ArrowLeft'&&ds[i-1])ds[i-1].focus();if(k.key==='ArrowRight'&&ds[i+1])ds[i+1].focus();if(k.key==='Enter'&&!$('vgo').disabled)$('vgo').click()});
+  d.addEventListener('paste',function(k){var t=(k.clipboardData||window.clipboardData).getData('text').replace(/\D/g,'').slice(0,6);if(!t)return;k.preventDefault();ds.forEach(function(x,j){x.value=t[j]||''});ds[Math.min(t.length,5)].focus();upd()})});
+ $('vgo').addEventListener('click',function(){var c=ds.map(function(d){return d.value}).join('');
+  if(c==='000000'){$('code').classList.add('is-bad');$('verr').classList.add('is-on');return}
+  if(ctx==='reset'){view(['#nw'],'Reset password','New password','Choose a new password for '+em+'.');$('nerr').classList.remove('is-on');$('np').focus();return}
+  view(['#dw'],'Verified','You are in','Your email is confirmed.')});
+ $('chg').addEventListener('click',function(k){k.preventDefault();if(ctx==='reset')showReset();else back()});
+ $('fg').addEventListener('click',function(k){k.preventDefault();showReset()});
+ $('rback').addEventListener('click',function(k){k.preventDefault();back()});
+ $('rf').addEventListener('submit',function(e){e.preventDefault();var ok=/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test($('rem').value.trim());$('rerr').classList.toggle('is-on',!ok);if(ok)showVerify('reset')});
+ $('nf').addEventListener('submit',function(e){e.preventDefault();var n=$('np').value,m=$('nerr');var msg=n.length<8?'Use at least 8 characters.':(n!==$('cp').value?'The two passwords do not match.':'');m.textContent=msg;m.classList.toggle('is-on',!!msg);if(!msg)view(['#fd'],'Done','Password updated','You can sign in with your new password now.')});
+ $('fdgo').addEventListener('click',function(){$('pw').value='';set('in');back()});
+ [].forEach.call(document.querySelectorAll('.p4-tg'),function(b){b.addEventListener('click',function(){var i=$(b.dataset.for),on=i.type==='password';i.type=on?'text':'password';b.setAttribute('aria-pressed',String(on));b.setAttribute('aria-label',on?'Hide password':'Show password')})});
  bind();
 })();
 </script>

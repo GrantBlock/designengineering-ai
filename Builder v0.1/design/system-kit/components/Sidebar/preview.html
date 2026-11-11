@@ -6,8 +6,12 @@
 <div id="root"></div>
 <script>
   var E = window.DE, h = React.createElement;
-  var NAV=[{items:[{id:"new",label:"New",icon:"plus"},{id:"recents",label:"Recents",icon:"clock"},{id:"projects",label:"Projects",icon:"folder"}]},{label:"Design",items:[{id:"mech",label:"Mechanical",icon:"cube"},{id:"elec",label:"Electrical",icon:"bolt"},{id:"ctrl",label:"Controls",icon:"chip"},{id:"sw",label:"Software",icon:"code"}]},{label:"Operations",items:[{id:"mfg",label:"Manufacturing",icon:"factory"},{id:"proc",label:"Process",icon:"process"},{id:"maint",label:"Maintenance",icon:"wrench"}]},{label:"Vault",items:[{id:"docs",label:"Documents",icon:"doc"},{id:"uploads",label:"Uploads",icon:"upload"}]},{label:"Tools",items:[{id:"sim",label:"Simulation",icon:"wave"},{id:"trouble",label:"Troubleshoot",icon:"search"},{id:"data",label:"Data Analysis",icon:"chart"}]}];
-  ReactDOM.createRoot(document.getElementById('root')).render(h("div",{className:"de-stage"},h("div",{style:{height:600,display:"flex"}},h(E.Sidebar,{groups:NAV,defaultActive:{id:"recents",child:null}}))));
+  var GENERAL = ["GitHub branch organization workflow", "Downtime by cause from stoppage CSV", "Gear ratio for a hoist drive", "Cable tray fill calculation"];
+  var PROJECTS = [
+    { name: "Palletizer retrofit", chats: ["Pneumatic cylinder sizing for palletizer", "Layout review for pallet stack", "Safety circuit for guarded cell"] },
+    { name: "Capping station", chats: ["Capping station I/O list draft", "FAT checklist for capping station"] }
+  ];
+  ReactDOM.createRoot(document.getElementById('root')).render(h("div", { className: "de-stage" }, h("div", { style: { height: 600, display: "flex" } }, h(E.Sidebar, { chats: GENERAL, projects: PROJECTS, defaultMode: "projects" }))));
 </script>
 </body>
 </html>

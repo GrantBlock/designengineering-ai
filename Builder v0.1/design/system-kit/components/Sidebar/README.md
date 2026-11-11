@@ -1,7 +1,12 @@
 # Sidebar
 
-The desktop navigation panel: brand header, quick search, grouped NavItems, account footer.
+The desktop navigation panel, in four regions: top toolbar, primary nav, a scrolling list, account footer.
 
-- Props: `groups` (`[{label?, items:[{id, label, icon, tag?, children?, open?}]}]`), `title`, `logoSrc`, `defaultActive` (`{id, child}`), `onNavigate(id, child?)`, `footer`.
-- Groups in the app: an unlabelled top group (New, Recents, Projects; plain buttons with no drop-downs), then collapsible **Design** (Mechanical, Electrical, Controls, Software), **Operations** (Manufacturing, Process, Maintenance), **Vault** (Documents, Uploads) and **Tools** (Simulation, Troubleshoot, Data Analysis). A group with a `label` collapses; pass `collapsed: true` on a group to start it closed. Group labels are mono 11px uppercase.
-- 264px wide, `bc-radius-shell`, `bc-shadow-shell`. Its 56px header lines up with the TopBar.
+- Props: `chats` (strings, newest first), `projects` (`[{name, chats:[string]}]`, most recently active first), `defaultMode` (`"chat"` or `"projects"`), `account` (default "Grant · Pro"), `initial` (default "G"), `onNavigate(id, chat?)` with ids `new`, `search`, `dashboard`, `design`, `customize`, `more`, `chat`.
+- **Top toolbar** (48px): menu, sidebar toggle, back and a dimmed forward on the left; the Chat | Projects switcher (two icons in a bordered pill, selected one on `bc-surface-raised`) on the right.
+- **Primary nav** (34px rows, 16px icons): New (full-width pill on `bc-surface-raised`), Search, Dashboard (opens P19), Design (the 3D designer, not designed yet), Customize, More.
+- **List:** Chat mode shows one `Recents` list. Projects mode starts with a New project row, then a collapsible group per project (name, mono chat count), each listing its chats indented under a hairline. Titles are one line and fade out on the right when long.
+- **Footer:** gray initial avatar, "Grant · Pro" with a chevron (account switcher), settings gear.
+- 264px wide, `bc-radius-shell`, `bc-shadow-shell`. The old Design, Operations, Vault and Tools groups and Quick search are retired; see DESIGN-SYSTEM.md.
+- General is not a group in the sidebar. It is the default project for chat sessions; it appears only in the mobile "Chat in" selector. `onNavigate` also sends `new-project`.
+- Each project group header has a Start chat icon button (chat bubble with a plus) at the right, dimmed until the row is hovered; it starts a new chat in that project (`onNavigate("start-chat", projectName)`).
