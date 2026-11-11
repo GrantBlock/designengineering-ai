@@ -143,6 +143,15 @@
 
   var LOGO = '/_blob/aa03c16b0467287f65c46044ec7093cb';
 
+  function NavGroup(p) {
+    var st = React.useState(!!p.collapsed), closed = st[0];
+    if (!p.label) return h('div', { className: 'de-nav-group' }, p.children);
+    return h('div', { className: cx('de-nav-group', 'de-collapsible', closed && 'is-collapsed') },
+      h('button', { type: 'button', className: 'de-group-head', 'aria-expanded': !closed, onClick: function () { st[1](!closed); } },
+        h('span', { className: 'de-label' }, p.label), h(Icon, { name: 'chevron-right', size: 12, strokeWidth: 2, className: 'de-nav-chev' })),
+      !closed && h('div', { className: 'de-group-body' }, p.children));
+  }
+
   function Sidebar(p) {
     var sel = React.useState(p.defaultActive || { id: 'home', child: null }), cur = sel[0];
     return h('aside', { className: 'de-sidebar' },
@@ -150,7 +159,7 @@
         h(IconButton, { size: 'xs', icon: 'chevron-updown', 'aria-label': 'Switch workspace' })),
       h('div', { className: 'de-sidebar-search' }, h(SearchField, null)),
       h('nav', { className: 'de-sidebar-nav de-scroll' }, (p.groups || []).map(function (g, gi) {
-        return h('div', { key: gi, className: 'de-nav-group' }, g.label && h('div', { className: 'de-label' }, g.label),
+        return h(NavGroup, { key: gi, label: g.label, collapsed: g.collapsed },
           g.items.map(function (it) {
             return h(NavItem, { key: it.id, icon: it.icon, label: it.label, tag: it.tag, children: it.children, defaultOpen: it.open,
               active: cur.id === it.id && !it.children, activeChild: cur.id === it.id ? cur.child : null,
