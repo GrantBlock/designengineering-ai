@@ -12,8 +12,8 @@ Page order is a **Draft (not yet approved by Grant)**, built from the App Plan M
 | --- | --- | --- | --- | --- | --- |
 | P01 | Main chat, starting page | Web (desktop) | ☑ | `exports/P01-chat-start-desktop/Design_Engineering_App.html` | Done before this tracker; source of the design system |
 | P02 | Mobile chat, starting page | Web (mobile) | ☑ | `exports/P02-chat-start-mobile/Design_Engineering_Mobile.html` | Done before this tracker |
-| P03 | Chat conversation view (messages, attachments, answers with sources) | Desktop + mobile | ◐ | `exports/P03-chat-conversation/index.html` | Draft 2026-11-11, one responsive page. Awaiting Grant's review. Extends P01/P02 |
-| P04 | Sign in / sign up (Clerk) | Desktop + mobile | ☐ | | |
+| P03 | Chat conversation view (messages, attachments, answers with sources) | Desktop + mobile | ☑ | `exports/P03-chat-conversation/index.html` | Done 2026-11-11, one responsive page (Grant approved). Extends P01/P02 |
+| P04 | Sign in / sign up (Clerk) | Desktop + mobile | ◐ | `exports/P04-sign-in/index.html` | Draft 2026-11-11, one responsive page with a Sign in / Create account toggle. Awaiting Grant's review |
 | P05 | Projects list | Desktop + mobile | ☑ | `exports/P05-projects/index.html` | Done 2026-11-11. Landing page for projects; each row opens its P06 project page |
 | P06 | Project workspace (Import, Specifications, Layout, Schedule, Exports; files, chat, notes later) | Desktop + mobile | ☑ | `exports/P06-project-workspace/index.html` | Done 2026-11-11 (for now). Tabs: Import, Specifications, Layout, Schedule, Exports. Files, chat and notes tabs still to design |
 | P07 | Upload flow (STEP, OBJ, photos, PDFs) | Desktop + mobile | ☐ | | |
@@ -32,7 +32,7 @@ Page order is a **Draft (not yet approved by Grant)**, built from the App Plan M
 
 ## Next up
 
-First open item: **P03** (draft built, awaiting Grant's review), unless Grant says otherwise. P05, P06 and P18 (the projects section) are complete for now; open questions are in `../review-queue.md` RQ16 and RQ17.
+First open item: **P04** (draft built, awaiting Grant's review), unless Grant says otherwise. P05, P06 and P18 (the projects section) are complete for now; open questions are in `../review-queue.md` RQ16 and RQ17.
 
 ## Log
 
@@ -63,3 +63,6 @@ First open item: **P03** (draft built, awaiting Grant's review), unless Grant sa
 - [stated] 2026-11-11: P03 (Chat conversation view) drafted at `exports/P03-chat-conversation/index.html`: one responsive page (desktop with sources side panel, mobile under 760px with source bottom sheet). Built from `system-kit/` tokens and the P05 shell. Sample conversation is a placeholder. Awaiting review.
 - Draft (not yet approved by Grant): P03 patterns: numbered citation chips inline in answers (`bc-steel-blue-tint`, steel-blue fill when selected); source cards under each answer and a Sources side panel (300px, desktop above 1100px); attachment file chips under the user bubble; answer headings in 11px mono uppercase; copy, good, bad and regenerate icon buttons under each answer; attached-file chips inside the Composer; disclaimer line under the Composer; mobile source bottom sheet; content column widened to 1084px to fit the side panel.
 - Draft (not yet approved by Grant): the P03 sample answer uses assumed values marked (A) and placeholder document names; none are real data.
+- [stated] 2026-11-11: Grant approved P03 (Chat conversation view). The P03 patterns logged above as drafts (citation chips, Sources side panel, attachment chips, mobile source sheet, widened column) are approved with the page.
+- [stated] 2026-11-11: P04 (Sign in / sign up) drafted at `exports/P04-sign-in/index.html`: one responsive page, no sidebar, centered card on desktop and full-width on mobile. Sign in and Create account share one form. Prototype only; no real authentication (Clerk is the planned provider).
+- Draft (not yet approved by Grant): P04 patterns: auth card on `bc-surface` (440px max) with brand mark above; segmented two-option toggle (`bc-canvas` track, `bc-surface-raised` active); light `bc-field` text inputs 44px high (52px on mobile) with mono 11px labels above; show/hide password icon button; inline error notice with `bc-steel-blue-tint` background; submit as the steel-blue outline chip (not a filled button); Continue with Google as a `bc-surface-raised` chip. The Google icon is a placeholder, not the real mark.
