@@ -164,7 +164,7 @@
 
   function Sidebar(p) {
     var ms = React.useState(p.defaultMode || 'chat'), mode = ms[0];
-    var cs = React.useState(p.closedGroups || { General: true }), closed = cs[0];
+    var cs = React.useState(p.closedGroups || {}), closed = cs[0];
     var projects = p.projects || [], chats = p.chats || [];
     function tbtn(icon, label, extra) { return h('button', { type: 'button', className: cx('sbicon', extra), 'aria-label': label }, h(Icon, { name: icon, size: 18 })); }
     function seg(m, icon, label) { return h('button', { type: 'button', role: 'tab', 'aria-label': label, className: cx('sbsegb', mode === m && 'is-on'), onClick: function () { ms[1](m); } }, h(Icon, { name: icon, size: 16 })); }
@@ -177,7 +177,7 @@
       h('nav', { className: 'sbnav', 'aria-label': 'Main' }, row('plus', 'New', 'sbnew', 'new'), row('search', 'Search', 0, 'search'), row('dashboard', 'Dashboard', 0, 'dashboard'), row('cube', 'Design', 0, 'design'), row('briefcase', 'Customize', 0, 'customize'), row('more', 'More', 0, 'more')),
       mode === 'chat'
         ? h('div', { className: 'sbpane' }, h('div', { className: 'sbhead' }, 'Recents'), h('div', { className: 'sbrecs de-scroll' }, chats.map(chat)))
-        : h('div', { className: 'sbpane' }, h('div', { className: 'sbhead' }, 'Projects'), h('div', { className: 'sbrecs de-scroll' }, projects.map(function (g) {
+        : h('div', { className: 'sbpane' }, h('div', { className: 'sbhead' }, 'Projects'), h('div', { className: 'sbrecs de-scroll' }, row('plus', 'New project', 'sbrow sbnewproj', 'new-project'), projects.map(function (g) {
             var shut = !!closed[g.name];
             return h('div', { key: g.name, className: cx('sbgroup', shut && 'is-closed') },
               h('button', { type: 'button', className: 'sbgrp', 'aria-expanded': !shut, onClick: function () { var n = Object.assign({}, closed); n[g.name] = !shut; cs[1](n); } },
