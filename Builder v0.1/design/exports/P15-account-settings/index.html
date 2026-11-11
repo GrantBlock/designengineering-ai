@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Account and settings — Design Engineering</title>
+<title>Settings — Design Engineering</title>
 <link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
 <style>
 
@@ -262,82 +262,91 @@ button:focus-visible, textarea:focus-visible, input:focus-visible, [role="button
 @media (max-width:760px){.sbexpand{display:none!important}}
 
 /* P07 Upload flow: layout glue only; every value is a token. */
-/* P15 Account and settings: layout glue only; every value is a token. */
+/* P15 Account and settings as an overlay: layout glue only; every value is a token. */
 [hidden]{display:none!important}
-.de-shell-column{max-width:1120px}
-.a-head{padding:var(--bc-space-8) 0 var(--bc-space-4)}
-.a-head h1{margin:6px 0 0;font-size:clamp(28px,4.4vh,40px);font-weight:800;letter-spacing:-0.01em;line-height:.98;text-transform:uppercase}
-.a-head p{margin:var(--bc-space-3) 0 0;font-size:14px;line-height:1.5;color:var(--bc-muted);max-width:560px}
-.a-wrap{display:grid;grid-template-columns:220px minmax(0,1fr);gap:var(--bc-space-6);align-items:start}
-.a-nav{position:sticky;top:var(--bc-space-6);display:flex;flex-direction:column;gap:2px}
-.a-nb{all:unset;box-sizing:border-box;cursor:pointer;display:flex;align-items:center;gap:10px;height:40px;padding:2px 12px 0;border-radius:var(--bc-radius-control);color:var(--bc-muted);font-size:14px}
-.a-nb:hover{background:var(--bc-surface-raised);color:var(--bc-ink)}
-.a-nb:focus-visible{outline:2px solid var(--bc-steel-blue-text);outline-offset:2px}
-.a-nb[aria-selected=true]{background:var(--bc-surface-raised);color:var(--bc-ink);box-shadow:inset 3px 0 0 var(--bc-steel-blue)}
-.a-main{display:flex;flex-direction:column;gap:var(--bc-space-4);min-width:0}
-.a-grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:var(--bc-space-3);padding-top:var(--bc-space-2)}
-.a-grid .w6{grid-column:span 6}.a-grid .w12{grid-column:1/-1}
-.a-f{display:flex;flex-direction:column;gap:6px;min-width:0}
-.a-in{display:flex;align-items:center;height:44px;border:1px solid var(--bc-field-edge-soft);border-radius:var(--bc-radius-control);background:var(--bc-field);box-shadow:var(--bc-shadow-search);color:var(--bc-field-ink)}
-.a-in:focus-within{border-color:var(--bc-field-focus)}
-.a-in input,.a-in select{flex:1;min-width:0;height:100%;padding:2px 12px 0;background:none;border:none;outline:none;color:var(--bc-field-ink);font:inherit;font-size:16px}
-.a-in input:disabled{color:var(--bc-field-muted)}
-.a-go{border:1px solid var(--bc-steel-blue);color:var(--bc-steel-blue-text);border-radius:var(--bc-radius-control);height:44px;padding:2px 18px 0;font-size:13px;font-weight:600;letter-spacing:.08em}
-.a-go:hover{background:var(--bc-steel-blue-tint)}
-.a-ghost{height:44px;border:1px solid var(--bc-hairline);background:var(--bc-surface-raised);font-size:13px;letter-spacing:.04em}
-.a-ghost:hover{border-color:var(--bc-steel-blue)}
-.a-ok{font-size:13px;color:#86c9a2;min-height:18px}
-.a-row{display:flex;align-items:center;gap:var(--bc-space-3);flex-wrap:wrap}
-.a-id{display:flex;align-items:center;gap:var(--bc-space-4);padding:var(--bc-space-2) 0}
-.a-av{display:flex;align-items:center;justify-content:center;width:64px;height:64px;border-radius:999px;background:var(--bc-surface-raised);font-size:26px;font-weight:700}
-.a-cur{display:flex;flex-direction:column;gap:6px;padding:var(--bc-card-pad);border:1px solid var(--bc-steel-blue-edge);border-radius:var(--bc-radius-card);background:var(--bc-steel-blue-tint);margin-top:var(--bc-space-2)}
-.a-cur b{font-size:20px}
-.a-lv{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px var(--bc-space-4);align-items:center;padding:14px 4px;border-bottom:1px solid var(--bc-hairline)}
-.a-lv:last-child{border-bottom:none}
-.a-lvn{font-size:15px;font-weight:600}
-.a-lvd{grid-column:1;font-size:13px;color:var(--bc-muted);line-height:1.45}
-.a-lv .de-btn{grid-row:1/3;grid-column:2}
-.a-bar{height:6px;border-radius:var(--bc-radius-bar);background:var(--bc-surface-raised);overflow:hidden;margin:6px 0}
-.a-bar i{display:block;height:100%;background:var(--bc-steel-blue)}
-.a-sub{font-size:13px;color:var(--bc-muted);line-height:1.5}
-.a-mem{display:grid;grid-template-columns:36px minmax(0,1fr) 150px auto;gap:var(--bc-space-3);align-items:center;padding:12px 4px;border-bottom:1px solid var(--bc-hairline)}
-.a-mem:last-child{border-bottom:none}
-.a-mem .de-avatar{width:32px;height:32px;font-size:13px}
-.a-mn{font-size:15px;font-weight:600}.a-me{font-family:var(--font-mono);font-size:11px;letter-spacing:.06em;color:var(--bc-muted);overflow:hidden;text-overflow:ellipsis}
-.a-mem select{height:36px;padding:2px 10px 0;border:1px solid var(--bc-field-edge-soft);border-radius:var(--bc-radius-control);background:var(--bc-field);color:var(--bc-field-ink);font:inherit;font-size:14px}
-.a-inv{display:flex;gap:var(--bc-space-2);padding-top:var(--bc-space-2)}
-.a-inv .a-in{flex:1}
-.a-pref{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px var(--bc-space-4);align-items:center;padding:14px 4px;border-bottom:1px solid var(--bc-hairline)}
-.a-pref:last-child{border-bottom:none}
-.a-pt{font-size:15px;font-weight:600}.a-pd{grid-column:1;font-size:13px;color:var(--bc-muted);line-height:1.45}
-.a-pref>:last-child{grid-row:1/3;grid-column:2}
-.a-sw{position:relative;width:44px;height:26px;flex-shrink:0;border:1px solid var(--bc-hairline);border-radius:999px;background:var(--bc-surface-raised);cursor:pointer;padding:0;transition:background 200ms,border-color 200ms}
-.a-sw::after{content:"";position:absolute;top:3px;left:3px;width:18px;height:18px;border-radius:999px;background:var(--bc-muted);transition:transform 200ms,background 200ms}
-.a-sw[aria-checked=true]{background:var(--bc-steel-blue-tint);border-color:var(--bc-steel-blue)}
-.a-sw[aria-checked=true]::after{transform:translateX(18px);background:var(--bc-steel-blue-text)}
-.a-sw:focus-visible{outline:2px solid var(--bc-steel-blue-text);outline-offset:2px}
-.a-seg{display:grid;grid-auto-flow:column;grid-auto-columns:1fr;gap:4px;padding:4px;border:1px solid var(--bc-hairline);border-radius:var(--bc-radius-card);background:var(--bc-canvas)}
-.a-seg button{height:34px;padding:2px 14px 0;border:none;border-radius:var(--bc-radius-control);background:transparent;color:var(--bc-muted);font:inherit;font-size:12px;font-weight:500;letter-spacing:.05em;text-transform:uppercase;cursor:pointer;white-space:nowrap}
-.a-seg button:hover{color:var(--bc-ink)}
-.a-seg button[aria-pressed=true]{background:var(--bc-surface-raised);color:var(--bc-ink)}
-.a-danger{margin-top:var(--bc-space-2);padding:var(--bc-card-pad);border:1px solid var(--bc-hairline);border-radius:var(--bc-radius-card)}
-.a-note{margin-top:var(--bc-space-2);padding-bottom:var(--bc-space-8);font-size:13px;color:var(--bc-muted);line-height:1.5}
-.a-mobile{display:none}
-@media (max-width:1000px){.a-wrap{grid-template-columns:1fr}.a-nav{position:static;flex-direction:row;overflow-x:auto;gap:4px;padding-bottom:var(--bc-space-2);border-bottom:1px solid var(--bc-hairline)}.a-nb{flex-shrink:0;white-space:nowrap}.a-nb[aria-selected=true]{box-shadow:inset 0 -2px 0 var(--bc-steel-blue)}}
+.o-back{position:fixed;inset:0;z-index:20;display:flex;align-items:center;justify-content:center;padding:20px;background:rgba(10,10,12,.62)}
+.o-modal{display:flex;flex-direction:column;width:min(1000px,100%);height:min(760px,100%);border:1px solid var(--bc-edge);border-radius:var(--bc-radius-panel);background:var(--bc-surface);box-shadow:var(--bc-shadow-panel);overflow:hidden}
+.o-top{display:flex;align-items:center;justify-content:space-between;height:52px;padding:0 12px 0 20px;border-bottom:1px solid var(--bc-hairline);flex-shrink:0}
+.o-top h2{margin:0;font-size:16px;font-weight:600;padding-top:2px}
+.o-body{display:grid;grid-template-columns:220px minmax(0,1fr);flex:1;min-height:0}
+.o-nav{display:flex;flex-direction:column;gap:2px;padding:12px;border-right:1px solid var(--bc-hairline);background:var(--bc-canvas);overflow-y:auto}
+.o-find{display:flex;align-items:center;gap:8px;height:36px;margin-bottom:10px;padding:0 10px;border:1px solid var(--bc-hairline);border-radius:var(--bc-radius-control);background:var(--bc-surface);color:var(--bc-muted)}
+.o-find:focus-within{border-color:var(--bc-steel-blue)}
+.o-find input{flex:1;min-width:0;height:100%;padding-top:2px;background:none;border:none;outline:none;color:var(--bc-ink);font:inherit;font-size:14px}
+.o-find input::placeholder{color:var(--bc-muted)}
+.o-nb{all:unset;box-sizing:border-box;cursor:pointer;display:flex;align-items:center;gap:12px;height:36px;padding:2px 10px 0;border-radius:var(--bc-radius-control);color:var(--bc-muted);font-size:14px}
+.o-nb:hover{background:var(--bc-surface);color:var(--bc-ink)}
+.o-nb:focus-visible{outline:2px solid var(--bc-steel-blue-text);outline-offset:2px}
+.o-nb[aria-selected=true]{background:var(--bc-surface-raised);color:var(--bc-ink)}
+.o-sep{height:1px;margin:8px 4px;background:var(--bc-hairline)}
+.o-pane{overflow-y:auto;padding:20px 24px 28px;min-width:0}
+.o-pane h3{margin:0 0 4px;font-size:16px;font-weight:600}
+.o-sec{margin-top:var(--bc-space-6)}
+.o-sec:first-child{margin-top:0}
+.o-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px var(--bc-space-6);align-items:center;padding:14px 0;border-bottom:1px solid var(--bc-hairline)}
+.o-row:last-child{border-bottom:none}
+.o-t{font-size:15px;line-height:1.35}
+.o-d{grid-column:1;font-size:13px;color:var(--bc-muted);line-height:1.45}
+.o-row>:last-child:not(.o-d):not(.o-t){grid-row:1/3;grid-column:2}
+.o-row.is-one>:last-child{grid-row:auto}
+.o-in{width:240px;max-width:100%;height:36px;padding:2px 12px 0;border:1px solid var(--bc-field-edge-soft);border-radius:var(--bc-radius-control);background:var(--bc-field);color:var(--bc-field-ink);font:inherit;font-size:14px;box-shadow:var(--bc-shadow-search)}
+.o-in:focus{outline:none;border-color:var(--bc-field-focus)}
+.o-in:disabled{color:var(--bc-field-muted)}
+.o-mono{font-family:var(--font-mono);font-size:12px;letter-spacing:.04em;color:var(--bc-muted)}
+.o-av{display:flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:999px;background:var(--bc-surface-raised);font-size:16px;font-weight:700}
+.o-btn{height:36px;padding:2px 14px 0;border:1px solid var(--bc-hairline);border-radius:var(--bc-radius-control);background:var(--bc-surface-raised);color:var(--bc-ink);font:inherit;font-size:13px;cursor:pointer;white-space:nowrap}
+.o-btn:hover{border-color:var(--bc-steel-blue)}
+.o-btn.is-main{border-color:var(--bc-steel-blue);color:var(--bc-steel-blue-text);background:none;font-weight:600}
+.o-btn.is-main:hover{background:var(--bc-steel-blue-tint)}
+.o-ok{font-size:13px;color:#86c9a2;min-height:18px}
+.o-tbl{width:100%;border-collapse:collapse;margin-top:var(--bc-space-2)}
+.o-tbl th{padding:8px 8px 8px 0;text-align:left;font-size:13px;font-weight:600;color:var(--bc-muted);border-bottom:1px solid var(--bc-hairline)}
+.o-tbl td{padding:12px 8px 12px 0;font-size:14px;border-bottom:1px solid var(--bc-hairline)}
+.o-tbl tr:last-child td{border-bottom:none}
+.o-cur{margin-left:8px}
+.o-seg{display:grid;grid-auto-flow:column;grid-auto-columns:1fr;gap:3px;padding:3px;border:1px solid var(--bc-hairline);border-radius:var(--bc-radius-control);background:var(--bc-canvas)}
+.o-seg button{height:30px;padding:2px 12px 0;border:none;border-radius:6px;background:transparent;color:var(--bc-muted);font:inherit;font-size:13px;cursor:pointer;white-space:nowrap}
+.o-seg button:hover{color:var(--bc-ink)}
+.o-seg button[aria-pressed=true]{background:var(--bc-surface-raised);color:var(--bc-ink)}
+.o-sw{position:relative;width:44px;height:26px;border:1px solid var(--bc-hairline);border-radius:999px;background:var(--bc-surface-raised);cursor:pointer;padding:0;transition:background 200ms,border-color 200ms}
+.o-sw::after{content:"";position:absolute;top:3px;left:3px;width:18px;height:18px;border-radius:999px;background:var(--bc-muted);transition:transform 200ms,background 200ms}
+.o-sw[aria-checked=true]{background:var(--bc-steel-blue-tint);border-color:var(--bc-steel-blue)}
+.o-sw[aria-checked=true]::after{transform:translateX(18px);background:var(--bc-steel-blue-text)}
+.o-sw:focus-visible{outline:2px solid var(--bc-steel-blue-text);outline-offset:2px}
+.o-big{font-size:32px;font-weight:800;line-height:1;letter-spacing:-0.01em}
+.o-bar{width:200px;max-width:100%;height:6px;border-radius:var(--bc-radius-bar);background:var(--bc-surface-raised);overflow:hidden}
+.o-bar i{display:block;height:100%;background:var(--bc-steel-blue)}
+.o-amts{display:flex;gap:6px;flex-wrap:wrap}
+.o-amts button{height:36px;padding:2px 14px 0;border:1px solid var(--bc-hairline);border-radius:var(--bc-radius-control);background:var(--bc-surface-raised);color:var(--bc-ink);font:inherit;font-size:14px;font-weight:600;cursor:pointer}
+.o-amts button.is-on{border-color:var(--bc-steel-blue);background:var(--bc-steel-blue-tint);color:var(--bc-steel-blue-text)}
+.o-tiles{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--bc-space-3);margin:var(--bc-space-3) 0}
+.o-tile{padding:12px 14px;border:1px solid var(--bc-edge-soft);border-radius:var(--bc-radius-card);background:var(--bc-surface-raised)}
+.o-tile b{display:block;font-size:20px;font-weight:700;margin-top:4px}
+.o-br{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px var(--bc-space-4);padding:8px 0}
+.o-brb{grid-column:1/-1;height:4px;border-radius:var(--bc-radius-bar);background:var(--bc-surface-raised);overflow:hidden}
+.o-brb i{display:block;height:100%;background:var(--bc-steel-blue)}
+.o-mem{display:grid;grid-template-columns:32px minmax(0,1fr) 130px auto;gap:var(--bc-space-3);align-items:center;padding:12px 0;border-bottom:1px solid var(--bc-hairline)}
+.o-mem .de-avatar{width:32px;height:32px;font-size:13px}
+.o-mem select{height:34px;padding:2px 8px 0;border:1px solid var(--bc-field-edge-soft);border-radius:var(--bc-radius-control);background:var(--bc-field);color:var(--bc-field-ink);font:inherit;font-size:13px}
+.o-inv{display:flex;gap:var(--bc-space-2);margin-top:var(--bc-space-3)}
+.o-inv .o-in{flex:1;width:auto}
+.o-pv{display:none}
+.o-nores{padding:12px;font-size:13px;color:var(--bc-muted)}
+.o-ghost{padding:var(--bc-space-8);color:var(--bc-muted);font-size:14px}
 @media (max-width:760px){
- .de-shell{padding:0;gap:0;height:auto;min-height:100vh;display:block}
- .de-sidebar,.de-topbar{display:none}
- .de-shell-scroll{padding:0 var(--bc-gutter-mobile);overflow:visible;padding-bottom:140px}
- .a-mobile{display:block}
- .a-head h1{font-size:42px}.a-head .de-eyebrow{font-size:13px}.a-head p{font-size:16px}
- .a-nb{height:44px}.a-grid .w6{grid-column:1/-1}.a-in{height:52px}.a-in input,.a-in select{font-size:17px}
- .a-go,.a-ghost{height:52px}.a-row .de-btn{flex:1;justify-content:center}
- .de-panel{background:none;border:none;box-shadow:none;padding:0}
- .a-mem{grid-template-columns:36px minmax(0,1fr) auto}.a-mem select{grid-column:2;grid-row:2}.a-mem .de-btn{grid-column:3;grid-row:1/3}
- .a-inv{flex-direction:column}.a-inv .a-in{flex:none}.a-pref{padding:16px 0}.a-seg{max-width:100%}
- .a-dock{position:fixed;left:0;right:0;bottom:0;padding:16px 12px 34px;background:linear-gradient(to bottom,rgba(30,30,32,0) 0,var(--bc-canvas) 24px)}
+ .o-back{padding:0}.o-modal{height:100%;border-radius:0;border:none}
+ .o-body{grid-template-columns:1fr;grid-template-rows:auto minmax(0,1fr)}
+ .o-nav{flex-direction:row;overflow-x:auto;border-right:none;border-bottom:1px solid var(--bc-hairline);padding:8px 12px;gap:4px}
+ .o-find,.o-sep{display:none}.o-nb{flex-shrink:0;height:44px;white-space:nowrap}.o-nb svg{display:none}
+ .o-pane{padding:16px 16px 40px}
+ .o-row{grid-template-columns:1fr;gap:8px}.o-row>:last-child:not(.o-d):not(.o-t){grid-row:auto;grid-column:1}
+ .o-in{width:100%;height:48px;font-size:16px}.o-btn{height:44px}.o-amts button{height:44px}
+ .o-tiles{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .o-mem{grid-template-columns:32px minmax(0,1fr) auto}.o-mem select{grid-column:2;grid-row:2}.o-mem .o-btn{grid-column:3;grid-row:1/3}
+ .o-tbl th:nth-child(3),.o-tbl td:nth-child(3){display:none}.o-tbl{font-size:13px}
+ .o-inv{flex-direction:column}
+ .de-sidebar,.de-topbar{display:none}.de-shell{padding:0;display:block;height:auto}
 }
-@media (min-width:761px){.a-dock,.a-mheader{display:none}}
 </style></head>
 <body>
 <div class="de-shell">
@@ -368,61 +377,100 @@ button:focus-visible, textarea:focus-visible, input:focus-visible, [role="button
 </aside>
  <button class="sbicon sbexpand" type="button" data-sb="expand" aria-label="Expand sidebar" hidden><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0"><path d="M4 5h16v14H4zM9 5v14"/></svg></button>
  <main class="de-shell-main">
-  <header class="de-topbar"><div class="de-label">Account and settings</div>
-   <div class="de-topbar-actions"><button class="de-btn">Ask AI</button><button class="de-btn">Support</button><div class="de-avatar" style="margin-left:8px">G</div></div></header>
-  <div class="a-mobile a-mheader"><div class="de-mheader"><img src="../../assets/favicon.svg" alt=""><span class="de-brand">Design Engineering</span><div class="de-avatar de-avatar-lg">G</div></div></div>
-  <div class="de-shell-scroll de-scroll"><div class="de-shell-column">
-   <div class="a-head"><div class="de-eyebrow">Block Concepts</div><h1>Account and settings</h1><p>Your profile, membership, team and preferences. Billing and usage are on the wallet page.</p></div>
-   <div class="a-wrap">
-    <nav class="a-nav" id="nav" role="tablist" aria-label="Settings sections"><button class="a-nb" role="tab" data-s="profile" aria-selected="true">Profile</button><button class="a-nb" role="tab" data-s="plan" aria-selected="false">Membership</button><button class="a-nb" role="tab" data-s="team" aria-selected="false">Team</button><button class="a-nb" role="tab" data-s="prefs" aria-selected="false">Preferences</button><button class="a-nb" role="tab" data-s="data" aria-selected="false">Data and privacy</button></nav>
-    <div class="a-main">
-     <section class="de-panel" id="s-profile" aria-label="Profile"><div class="de-section-head"><span class="de-label">Profile</span><span class="de-tag de-tag-plain">Signed in with Clerk</span></div>
-      <div class="a-id"><div class="a-av" aria-hidden="true">G</div><div><div style="font-size:18px;font-weight:600" id="pn">Grant Block</div><div class="a-sub">Block Concepts LLC · Admin</div></div></div>
-      <div class="a-grid"><div class="a-f w6"><label class="de-label" for="f-n">Name</label><div class="a-in"><input id="f-n" value="Grant Block"></div></div><div class="a-f w6"><label class="de-label" for="f-t">Job title</label><div class="a-in"><input id="f-t" placeholder="[Title]"></div></div>
-       <div class="a-f w6"><label class="de-label" for="f-e">Email</label><div class="a-in"><input id="f-e" value="[email on file]" disabled></div></div><div class="a-f w6"><label class="de-label" for="f-o">Organization</label><div class="a-in"><input id="f-o" value="Block Concepts" disabled></div></div>
-       <div class="a-row w12" style="grid-column:1/-1"><button class="de-btn a-go" id="sv" type="button">Save profile</button><button class="de-btn a-ghost" type="button">Change password</button><span class="a-ok" id="svm" aria-live="polite"></span></div></div></section>
-     <section class="de-panel" id="s-plan" aria-label="Membership" hidden><div class="de-section-head"><span class="de-label">Membership</span></div>
-      <div class="a-cur"><span class="de-tag" style="align-self:flex-start">Current plan</span><b>Pro</b><span class="a-sub">$30 per user per month. Faster responses, priority access, premium models, desktop app with extensions.</span><div><div class="a-bar" role="progressbar" aria-valuenow="62" aria-valuemin="0" aria-valuemax="100" aria-label="Storage used"><i style="width:62%"></i></div><span class="a-sub">12.4 GB of 20 GB used. Each extra 20 GB is $10 a month.</span></div></div>
-      <div id="lv"></div><div class="a-note" style="margin:var(--bc-space-3) 0 0;padding:0">Prices follow the App Plan. Starter bundle price and Turbo are not set yet.</div></section>
-     <section class="de-panel" id="s-team" aria-label="Team" hidden><div class="de-section-head"><span class="de-label">Team</span><span class="de-tag de-tag-plain" id="tn"></span></div>
-      <div class="a-sub" style="padding:var(--bc-space-2) 4px 0">People in Block Concepts see the projects shared with the whole organization. Roles control who can view, comment or edit.</div>
-      <div id="mem"></div>
-      <form class="a-inv" id="inv"><label class="a-in"><span style="position:absolute;left:-9999px">Invite by email</span><input id="ie" type="email" placeholder="Invite by email" autocomplete="off"></label><button class="de-btn a-go" type="submit">Send invite</button></form><div class="a-ok" id="im" aria-live="polite"></div></section>
-     <section class="de-panel" id="s-prefs" aria-label="Preferences" hidden><div class="de-section-head"><span class="de-label">Preferences</span></div>
-      <div class="a-pref"><div class="a-pt">Units</div><div class="a-pd">How I show sizes and pressures. You can still type either.</div><div class="a-seg" data-g="u"><button type="button" aria-pressed="true">Inches, psi</button><button type="button" aria-pressed="false">Millimeters, bar</button></div></div>
-      <div class="a-pref"><div class="a-pt">Text size</div><div class="a-pd">Applies on mobile.</div><div class="a-seg" data-g="t"><button type="button" aria-pressed="true">Large</button><button type="button" aria-pressed="false">Extra large</button></div></div>
-      <div class="a-pref"><div class="a-pt">Email me when a quote is approved</div><div class="a-pd">Sent when someone approves a quote or an ask for a quote in your projects.</div><button class="a-sw" type="button" role="switch" aria-checked="true" aria-label="Email when a quote is approved"></button></div>
-      <div class="a-pref"><div class="a-pt">Weekly summary</div><div class="a-pd">A Monday email with your dashboard week.</div><button class="a-sw" type="button" role="switch" aria-checked="false" aria-label="Weekly summary"></button></div></section>
-     <section class="de-panel" id="s-data" aria-label="Data and privacy" hidden><div class="de-section-head"><span class="de-label">Data and privacy</span></div>
-      <div class="a-pref"><div class="a-pt">Your files</div><div class="a-pd">Files stay with the project owner. Customer files are not used to train models.</div><span class="de-tag">Private</span></div>
-      <div class="a-pref"><div class="a-pt">Export my data</div><div class="a-pd">A ZIP of your projects, documents and notes, sent to your email.</div><button class="de-btn a-ghost" id="ex" type="button">Request export</button></div>
-      <div class="a-danger"><div class="a-pt">Delete account</div><div class="a-pd" style="margin:4px 0 var(--bc-space-3)">This removes your account and wallet. Projects you own move to an admin of your organization first.</div><button class="de-btn a-ghost" id="del" type="button">Delete account</button> <span class="a-sub" id="delm"></span></div></section>
-     <div class="a-note">Names, emails and plan details are samples (A). Sign-in and passwords are handled by Clerk.</div>
-    </div>
-   </div>
-  </div></div>
+  <header class="de-topbar"><div class="de-label">Dashboard</div><div class="de-topbar-actions"><button class="de-btn">Ask AI</button><button class="de-btn">Support</button><div class="de-avatar" style="margin-left:8px">G</div></div></header>
+  <div class="o-ghost">The page you came from sits behind this window.</div>
  </main>
 </div>
-<div class="a-dock a-mobile"><div class="de-tabbar"><button class="de-tab"><svg class="de-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg><span>New chat</span></button><button class="de-tab"><svg class="de-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18zM12 7v5l3 2"/></svg><span>Recents</span></button><button class="de-tab"><svg class="de-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16v14H4zM4 10h16M10 10v9"/></svg><span>Dashboard</span></button><button class="de-tab is-active"><svg class="de-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h.01M12 12h.01M19 12h.01"/></svg><span>More</span></button></div></div>
+<div class="o-back" id="back"><div class="o-modal" role="dialog" aria-modal="true" aria-labelledby="otitle">
+ <div class="o-top"><h2 id="otitle">Settings</h2><button class="de-iconbtn" id="close" type="button" aria-label="Close settings"><svg class="de-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+ <div class="o-body">
+  <nav class="o-nav" id="nav" role="tablist" aria-label="Settings sections">
+   <label class="o-find"><svg class="de-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 4a7 7 0 1 0 0 14 7 7 0 0 0 0-14zM21 21l-5-5"/></svg><input id="sq" placeholder="Search" autocomplete="off" aria-label="Search settings"></label>
+   <button class="o-nb" role="tab" data-s="account" aria-selected="true"><svg class="de-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM4 21a8 8 0 0 1 16 0"/></svg>Account</button>
+   <button class="o-nb" role="tab" data-s="billing" aria-selected="false"><svg class="de-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18v12H3zM3 10h18"/></svg>Billing</button>
+   <button class="o-nb" role="tab" data-s="usage" aria-selected="false"><svg class="de-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 20V10M12 20V4M19 20v-7"/></svg>Usage</button>
+   <div class="o-sep"></div>
+   <button class="o-nb" role="tab" data-s="team" aria-selected="false"><svg class="de-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM3 20a6 6 0 0 1 12 0M16 11a3 3 0 1 0 0-6M17 14a6 6 0 0 1 4 6"/></svg>Team</button>
+   <button class="o-nb" role="tab" data-s="prefs" aria-selected="false"><svg class="de-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h10M18 7h2M4 17h2M10 17h10M14 4v6M6 14v6"/></svg>Preferences</button>
+   <button class="o-nb" role="tab" data-s="privacy" aria-selected="false"><svg class="de-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/></svg>Privacy</button>
+   <div class="o-nores" id="nores" hidden>No settings match.</div>
+  </nav>
+  <div class="o-pane" id="pane"></div>
+ </div></div></div>
 <script>
 (function(){
  var $=function(i){return document.getElementById(i)};
- function esc(x){return String(x).replace(/&/g,'&amp;').replace(/</g,'&lt;')}
- function sec(s){['profile','plan','team','prefs','data'].forEach(function(k){$('s-'+k).hidden=k!==s});[].forEach.call($('nav').children,function(b){b.setAttribute('aria-selected',String(b.dataset.s===s))})}
- $('nav').addEventListener('click',function(e){var b=e.target.closest('button');if(b)sec(b.dataset.s)});
- $('sv').addEventListener('click',function(){$('pn').textContent=$('f-n').value||'Unnamed';$('svm').textContent='Saved.';setTimeout(function(){$('svm').textContent=''},2000)});
- var LV=[['Basic Viewer','$0','View and comment on shared projects. Up to 3 projects of your own. Small daily AI cap.'],['Starter bundle','[$20] (A)','Add-on for Basic Viewer: wallet tokens plus 20 GB storage.'],['Pro','$30 / user / month','Faster responses, priority access, premium models, desktop app.'],['Team','$50 / user / month','Everything in Pro plus an admin panel for people, roles and permissions.']];
- $('lv').innerHTML=LV.map(function(l){var cur=l[0]==='Pro';return '<div class="a-lv"><div class="a-lvn">'+l[0]+' <span class="a-sub" style="font-weight:400">· '+l[1]+'</span></div><div class="a-lvd">'+l[2]+'</div>'+(cur?'<span class="de-tag">Current</span>':'<button class="de-btn a-ghost" type="button" style="height:36px">'+(l[0]==='Basic Viewer'?'Downgrade':'Switch')+'</button>')+'</div>'}).join('');
- var M=[['Grant Block','[email on file]','Admin'],['[Engineer]','[email on file]','Editor'],['[Maintenance tech]','[email on file]','Viewer']];
- function mem(){$('tn').textContent=M.length+' people';$('mem').innerHTML=M.map(function(m,i){var me=i===0;return '<div class="a-mem"><div class="de-avatar">'+esc(m[0].charAt(0)==='['?m[0].charAt(1):m[0].charAt(0))+'</div><div><div class="a-mn">'+esc(m[0])+(me?' (you)':'')+'</div><div class="a-me">'+esc(m[1])+'</div></div><select data-r="'+i+'" aria-label="Role of '+esc(m[0])+'"'+(me?' disabled':'')+'>'+['Admin','Editor','Commenter','Viewer'].map(function(r){return '<option'+(r===m[2]?' selected':'')+'>'+r+'</option>'}).join('')+'</select>'+(me?'<span></span>':'<button class="de-btn" data-rm="'+i+'" type="button" style="height:36px">Remove</button>')+'</div>'}).join('')}
- $('mem').addEventListener('change',function(e){var r=e.target.dataset.r;if(r)M[+r][2]=e.target.value});
- var armed=-1;$('mem').addEventListener('click',function(e){var b=e.target.closest('[data-rm]');if(!b)return;var i=+b.dataset.rm;if(armed===i){M.splice(i,1);armed=-1;mem()}else{armed=i;b.textContent='Confirm remove'}});
- $('inv').addEventListener('submit',function(e){e.preventDefault();var v=$('ie').value.trim();if(!/^\S+@\S+\.\S+$/.test(v)){$('im').textContent='Enter a full email address.';return}M.push([v.split('@')[0],v,'Viewer']);$('ie').value='';$('im').textContent='Invite sent to '+v+'. They join as Viewer.';mem()});
- mem();
- [].forEach.call(document.querySelectorAll('.a-seg'),function(g){g.addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;[].forEach.call(g.children,function(c){c.setAttribute('aria-pressed',String(c===b))})})});
- [].forEach.call(document.querySelectorAll('.a-sw'),function(s){s.addEventListener('click',function(){s.setAttribute('aria-checked',String(s.getAttribute('aria-checked')!=='true'))})});
- $('ex').addEventListener('click',function(){this.textContent='Export requested'});
- var d=0;$('del').addEventListener('click',function(){if(!d){d=1;this.textContent='Confirm delete';$('delm').textContent='Click again to confirm. Nothing is deleted in this preview.';setTimeout(function(){d=0;$('del').textContent='Delete account';$('delm').textContent=''},4000)}else{d=0;this.textContent='Delete account';$('delm').textContent='Preview only: no account was deleted.'}});
+ function esc(x){return String(x).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/"/g,'&quot;')}
+ function m(n){return '$'+n.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2})}
+ /* All values are samples (A). */
+ var st={s:'account',name:'Grant Block',call:'Grant',work:'Engineering',bal:18.4,amt:25,ar:false,th:5,rf:25,lim:100,per:'this',units:0,text:0,n1:true,n2:false,
+  mem:[['Grant Block','[email on file]','Admin'],['[Engineer]','[email on file]','Editor'],['[Maintenance tech]','[email on file]','Viewer']],armRm:-1,armDel:0,armOut:0,msg:''};
+ var DEV=[['Chrome (Windows)','Kansas City, Missouri, US','Oct 14, 2026, 4:10 PM','Nov 3, 2026, 10:56 PM',0],['Desktop app (Windows)','Kansas City, Missouri, US','Oct 14, 2026, 3:54 PM','Nov 11, 2026, 10:22 AM',1],['Chrome (Windows)','Kansas City, Kansas, US','Aug 14, 2026, 6:41 AM','Nov 10, 2026, 6:16 PM',0],['Mobile browser (Android)','Kansas City, Kansas, US','Aug 13, 2026, 5:51 PM','Nov 10, 2026, 9:31 AM',0]];
+ var U={this:{task:[['Chat',31.2],['Document search',6.8],['CAD generation',14.0],['Storage',10.0]]},last:{task:[['Chat',24.5],['Document search',3.1],['CAD generation',8.0],['Storage',10.0]]}};
+ function row(t,d,ctl,one){return '<div class="o-row'+(one?' is-one':'')+'"><div class="o-t">'+t+'</div>'+(d?'<div class="o-d">'+d+'</div>':'')+(ctl||'')+'</div>'}
+ function seg(g,opts,sel){return '<div class="o-seg" data-g="'+g+'">'+opts.map(function(o,i){return '<button type="button" data-i="'+i+'" aria-pressed="'+(i===sel)+'">'+o+'</button>'}).join('')+'</div>'}
+ function sw(k,on,label){return '<button class="o-sw" type="button" data-sw="'+k+'" role="switch" aria-checked="'+on+'" aria-label="'+label+'"></button>'}
+ function pAccount(){return '<div class="o-sec"><h3>Profile</h3>'
+  +row('Profile photo','PNG, JPEG or WebP, up to 10 MB.','<div class="o-av" aria-hidden="true">'+esc(st.name.charAt(0))+'</div>')
+  +row('Full name','','<input class="o-in" data-f="name" value="'+esc(st.name)+'" aria-label="Full name">',1)
+  +row('What should I call you?','','<input class="o-in" data-f="call" value="'+esc(st.call)+'" aria-label="What should I call you">',1)
+  +row('What best describes your work?','','<select class="o-in" data-f="work" aria-label="Work">'+['Engineering','Maintenance','Purchasing','Manufacturing','Other'].map(function(w){return '<option'+(w===st.work?' selected':'')+'>'+w+'</option>'}).join('')+'</select>',1)
+  +row('Email','Sign-in and passwords are handled by Clerk.','<span class="o-mono">[email on file]</span>',1)
+  +row('Organization','Projects shared with the organization are visible to everyone in it.','<span class="o-mono">Block Concepts · Admin</span>',1)
+  +row('Organization ID','','<span class="o-mono">[org-id] <button class="de-iconbtn de-iconbtn-sm" data-copy="1" type="button" aria-label="Copy organization ID"><svg class="de-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9zM5 15V4h11"/></svg></button></span>',1)
+  +'<div class="o-row is-one"><div><button class="o-btn is-main" data-act="save" type="button">Save changes</button> <span class="o-ok" aria-live="polite">'+st.msg+'</span></div></div></div>'
+  +'<div class="o-sec"><div style="display:flex;justify-content:space-between;align-items:center;gap:12px"><h3>Where you are logged in</h3><button class="o-btn" data-act="out" type="button">'+(st.armOut?'Confirm log out':'Log out of all devices')+'</button></div>'
+  +'<table class="o-tbl"><tr><th>Device</th><th>Location</th><th>Signed in</th><th>Last active</th></tr>'+DEV.map(function(d){return '<tr><td>'+d[0]+(d[4]?'<span class="de-tag o-cur">Current</span>':'')+'</td><td>'+d[1]+'</td><td>'+d[2]+'</td><td>'+d[3]+'</td></tr>'}).join('')+'</table></div>'}
+ function pBilling(){var low=st.bal<5;return '<div class="o-sec"><h3>Plan</h3>'
+  +row('Pro <span class="de-tag o-cur">Current</span>','$30 per user per month. Faster responses, priority access, premium models, desktop app.','<button class="o-btn" type="button">Change plan</button>')
+  +row('Storage','12.4 GB of 20 GB used. Each extra 20 GB is $10 a month.','<div class="o-bar" role="progressbar" aria-valuenow="62" aria-valuemin="0" aria-valuemax="100" aria-label="Storage used"><i style="width:62%"></i></div>')+'</div>'
+  +'<div class="o-sec"><h3>Wallet</h3>'
+  +row('Balance',(low?'Your balance is low. At zero I stop answering until you add funds.':'Starter bundle tokens are spent before your wallet.'),'<span class="o-big" style="'+(low?'color:#dcae62':'')+'">'+m(st.bal)+'</span>')
+  +row('Add funds','Paid by [card ending 4242] (A) through Stripe.','<div class="o-amts">'+[10,25,50,100].map(function(a){return '<button type="button" data-a="'+a+'" class="'+(a===st.amt?'is-on':'')+'">$'+a+'</button>'}).join('')+'<button class="o-btn is-main" data-act="add" type="button">Add '+m(st.amt)+'</button></div>')
+  +row('Auto-refill',st.ar?'I add '+m(st.rf)+' when the balance falls below '+m(st.th)+', up to the monthly limit.':'Off. Usage stops when the balance runs out.',sw('ar',st.ar,'Auto-refill'))
+  +(st.ar?row('When the balance falls below','','<input class="o-in" data-n="th" inputmode="decimal" value="'+st.th+'" aria-label="Threshold in dollars">',1)+row('Refill amount','','<input class="o-in" data-n="rf" inputmode="decimal" value="'+st.rf+'" aria-label="Refill in dollars">',1):'')
+  +row('Monthly spending limit','You are never charged past this in a month.','<input class="o-in" data-n="lim" inputmode="decimal" value="'+st.lim+'" aria-label="Monthly limit in dollars">',1)+'</div>'}
+ function pUsage(){var u=U[st.per],t=u.task.reduce(function(a,x){return a+x[1]},0);return '<div class="o-sec"><div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap"><h3>Usage</h3>'+seg('per',['This month','Last month'],st.per==='this'?0:1)+'</div>'
+  +'<div class="o-tiles"><div class="o-tile"><span class="de-label">Spent</span><b>'+m(t)+'</b></div><div class="o-tile"><span class="de-label">Chat and search</span><b>'+m(u.task[0][1]+u.task[1][1])+'</b></div><div class="o-tile"><span class="de-label">CAD generation</span><b>'+m(u.task[2][1])+'</b></div><div class="o-tile"><span class="de-label">Storage</span><b>'+m(u.task[3][1])+'</b></div></div>'
+  +u.task.map(function(x){return '<div class="o-br"><span>'+x[0]+'</span><b>'+m(x[1])+'</b><div class="o-brb"><i style="width:'+Math.round(x[1]/t*100)+'%"></i></div></div>'}).join('')
+  +'<div class="o-d" style="margin-top:12px">Sample figures (A). No price per token is shown because rates are set after cost testing. Lite uses no tokens.</div></div>'}
+ function pTeam(){return '<div class="o-sec"><h3>Team</h3><div class="o-d" style="margin:4px 0 8px">Roles control who can view, comment or edit shared projects.</div>'+st.mem.map(function(x,i){var me=i===0;return '<div class="o-mem"><div class="de-avatar">'+esc(x[0].charAt(0)==='['?x[0].charAt(1):x[0].charAt(0))+'</div><div><div class="o-t">'+esc(x[0])+(me?' (you)':'')+'</div><div class="o-mono">'+esc(x[1])+'</div></div><select data-r="'+i+'" aria-label="Role of '+esc(x[0])+'"'+(me?' disabled':'')+'>'+['Admin','Editor','Commenter','Viewer'].map(function(r){return '<option'+(r===x[2]?' selected':'')+'>'+r+'</option>'}).join('')+'</select>'+(me?'<span></span>':'<button class="o-btn" data-rm="'+i+'" type="button">'+(st.armRm===i?'Confirm remove':'Remove')+'</button>')+'</div>'}).join('')
+  +'<form class="o-inv" id="inv"><input class="o-in" id="ie" type="email" placeholder="Invite by email" autocomplete="off" aria-label="Invite by email"><button class="o-btn is-main" type="submit">Send invite</button></form><div class="o-ok" id="im" aria-live="polite">'+st.msg+'</div></div>'}
+ function pPrefs(){return '<div class="o-sec"><h3>Preferences</h3>'
+  +row('Units','How I show sizes and pressures. You can still type either.',seg('units',['Inches, psi','Millimeters, bar'],st.units))
+  +row('Text size','Applies on mobile.',seg('text',['Large','Extra large'],st.text))
+  +row('Email me when a quote is approved','Sent when someone approves a quote or an ask for a quote in your projects.',sw('n1',st.n1,'Email when a quote is approved'))
+  +row('Weekly summary','A Monday email with your dashboard week.',sw('n2',st.n2,'Weekly summary'))+'</div>'}
+ function pPrivacy(){return '<div class="o-sec"><h3>Privacy</h3>'
+  +row('Your files','Files stay with the project owner. Customer files are not used to train models.','<span class="de-tag">Private</span>')
+  +row('Export my data','A ZIP of your projects, documents and notes, sent to your email.','<button class="o-btn" data-act="exp" type="button">'+(st.exp?'Export requested':'Request export')+'</button>')
+  +row('Delete account','Removes your account and wallet. Projects you own move to an admin of your organization first.','<button class="o-btn" data-act="del" type="button">'+(st.armDel?'Confirm delete':'Delete account')+'</button>')
+  +'<div class="o-ok" style="color:var(--bc-muted)">'+st.msg+'</div></div>'}
+ var P={account:pAccount,billing:pBilling,usage:pUsage,team:pTeam,prefs:pPrefs,privacy:pPrivacy};
+ function draw(keep){var pane=$('pane'),y=pane.scrollTop;pane.innerHTML=P[st.s]();pane.scrollTop=keep?y:0;[].forEach.call($('nav').querySelectorAll('[data-s]'),function(b){b.setAttribute('aria-selected',String(b.dataset.s===st.s))})}
+ $('nav').addEventListener('click',function(e){var b=e.target.closest('[data-s]');if(!b)return;st.s=b.dataset.s;st.msg='';st.armRm=-1;st.armDel=0;st.armOut=0;draw()});
+ $('sq').addEventListener('input',function(){var q=this.value.trim().toLowerCase(),n=0;[].forEach.call($('nav').querySelectorAll('[data-s]'),function(b){var hit=!q||b.textContent.toLowerCase().indexOf(q)>-1||({account:'profile name email organization devices',billing:'plan wallet funds refill card storage',usage:'spent chat cad storage',team:'members roles invite',prefs:'units text size notifications',privacy:'files export delete data'})[b.dataset.s].indexOf(q)>-1;b.hidden=!hit;if(hit)n++});$('nores').hidden=n>0});
+ var pane=$('pane');
+ pane.addEventListener('input',function(e){var t=e.target;if(t.dataset.f)st[t.dataset.f]=t.value;if(t.dataset.n){var v=parseFloat(t.value);if(isFinite(v)&&v>=0)st[t.dataset.n]=v}});
+ pane.addEventListener('change',function(e){var t=e.target;if(t.dataset.f)st[t.dataset.f]=t.value;if(t.dataset.r)st.mem[+t.dataset.r][2]=t.value;if(t.dataset.n)draw(true)});
+ pane.addEventListener('submit',function(e){e.preventDefault();var v=$('ie').value.trim();if(!/^\S+@\S+\.\S+$/.test(v)){$('im').textContent='Enter a full email address.';return}st.mem.push([v.split('@')[0],v,'Viewer']);st.msg='Invite sent to '+v+'. They join as Viewer.';draw(true)});
+ pane.addEventListener('click',function(e){var t=e.target.closest('button');if(!t)return;
+  if(t.dataset.sw){var k=t.dataset.sw;st[k]=!st[k];draw(true);return}
+  if(t.dataset.a){st.amt=+t.dataset.a;draw(true);return}
+  if(t.dataset.g||t.parentNode.dataset.g){var g=t.parentNode.dataset.g,i=+t.dataset.i;if(g==='per')st.per=i?'last':'this';else st[g]=i;draw(true);return}
+  if(t.dataset.rm){var i2=+t.dataset.rm;if(st.armRm===i2){st.mem.splice(i2,1);st.armRm=-1}else st.armRm=i2;draw(true);return}
+  if(t.dataset.copy){t.style.color='#86c9a2';return}
+  var a=t.dataset.act;if(a==='save'){st.msg='Saved.';draw(true);setTimeout(function(){st.msg='';if(st.s==='account')draw(true)},2000)}
+  if(a==='add'){st.bal+=st.amt;draw(true)}
+  if(a==='out'){if(st.armOut){st.armOut=0}else st.armOut=1;draw(true)}
+  if(a==='exp'){st.exp=1;draw(true)}
+  if(a==='del'){if(st.armDel){st.armDel=0;st.msg='Preview only: no account was deleted.'}else{st.armDel=1;st.msg='Click again to confirm. Nothing is deleted in this preview.'}draw(true)}});
+ function closeIt(){if(document.referrer&&history.length>1)history.back();else location.href='../P19-dashboard/index.html'}
+ $('close').addEventListener('click',closeIt);
+ $('back').addEventListener('mousedown',function(e){if(e.target===this)closeIt()});
+ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeIt()});
+ var h=location.hash.slice(1);if(P[h])st.s=h;
+ draw();
 })();
 </script>
 <script>
