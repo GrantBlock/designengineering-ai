@@ -13,10 +13,10 @@ Page order is a **Draft (not yet approved by Grant)**, built from the App Plan M
 | P01 | Main chat, starting page | Web (desktop) | ☑ | `exports/P01-chat-start-desktop/Design_Engineering_App.html` | Done before this tracker; source of the design system |
 | P02 | Mobile chat, starting page | Web (mobile) | ☑ | `exports/P02-chat-start-mobile/Design_Engineering_Mobile.html` | Done before this tracker |
 | P03 | Chat conversation view (messages, attachments, answers with sources) | Desktop + mobile | ☑ | `exports/P03-chat-conversation/index.html` | Done 2026-11-11, one responsive page (Grant approved). Extends P01/P02 |
-| P04 | Sign in / sign up (Clerk) | Desktop + mobile | ◐ | `exports/P04-sign-in/index.html` | Draft 2026-11-11, one responsive page with a Sign in / Create account toggle a verification code screen and forgot password screens. Awaiting Grant's review |
+| P04 | Sign in / sign up (Clerk) | Desktop + mobile | ☑ | `exports/P04-sign-in/index.html` | Done 2026-11-11, one responsive page with nine states: Sign in, Create account, verification code, verified, forgot password, reset code, new password, password updated. Grant approved |
 | P05 | Projects list | Desktop + mobile | ☑ | `exports/P05-projects/index.html` | Done 2026-11-11. Landing page for projects; each row opens its P06 project page |
 | P06 | Project workspace (Import, Specifications, Layout, Schedule, Exports; files, chat, notes later) | Desktop + mobile | ☑ | `exports/P06-project-workspace/index.html` | Done 2026-11-11 (for now). Tabs: Import, Specifications, Layout, Schedule, Exports. Files, chat and notes tabs still to design |
-| P07 | Upload flow (STEP, OBJ, photos, PDFs) | Desktop + mobile | ☐ | | |
+| P07 | Upload flow (STEP, OBJ, photos, PDFs) | Desktop + mobile | ◐ | `exports/P07-upload-flow/index.html` | Draft 2026-11-11, one responsive page. Awaiting Grant's review |
 | P08 | 3D viewer | Desktop + mobile | ☐ | | |
 | P09 | Document search and data sheets | Desktop + mobile | ☐ | | |
 | P10 | Notes and tracking | Desktop + mobile | ☐ | | |
@@ -32,7 +32,7 @@ Page order is a **Draft (not yet approved by Grant)**, built from the App Plan M
 
 ## Next up
 
-First open item: **P04** (draft built, awaiting Grant's review), unless Grant says otherwise. P05, P06 and P18 (the projects section) are complete for now; open questions are in `../review-queue.md` RQ16 and RQ17.
+First open item: **P07** (draft built, awaiting Grant's review), unless Grant says otherwise. P05, P06 and P18 (the projects section) are complete for now; open questions are in `../review-queue.md` RQ16 and RQ17.
 
 ## Log
 
@@ -70,3 +70,7 @@ First open item: **P04** (draft built, awaiting Grant's review), unless Grant sa
 - Draft (not yet approved by Grant): P04 code boxes are light `bc-field` squares (56px high, 64px on mobile) with Overpass Mono digits and a steel-blue edge on error; Verify stays a disabled outline chip until six digits are entered; verified notice uses `bc-steel-blue-tint` with a check icon. Copy: "We sent a 6-digit code to [email]. It expires in 10 minutes." (10 minutes is an assumption (A)).
 - [stated] 2026-11-11: P04 gains the forgot password flow: Forgot password (email, Send code, Back to sign in), Enter code (same code screen with reset copy), New password (new and confirm fields with show/hide, mismatch and 8-character errors), and Password updated (Sign in). P04 now has nine states, all in one page. Prototype only: any code except 000000 passes.
 - Draft (not yet approved by Grant): the reset flow reuses the P04 patterns without new components. Reset reuses the 6-digit code screen; passwords must be at least 8 characters (matches the Clerk default (A)).
+- [stated] 2026-11-11: Grant approved P04 (Sign in / sign up) with all nine states, including the verification code and forgot password screens and the patterns logged above as drafts.
+- [stated] 2026-11-11: P07 (Upload flow) drafted at `exports/P07-upload-flow/index.html`: one responsive page under Vault / Uploads. Project picker, drop zone with accepted types (STEP, OBJ, photos, PDF), a This session queue, and a storage meter. Each file moves Uploading, then Preparing (convert for viewer, read photo, index for search), then Ready; unsupported files show Could not upload with Retry and Remove. Prototype only: real file picking and drag and drop, but simulated progress and no storage.
+- Draft (not yet approved by Grant): P07 patterns: dashed drop zone on `bc-surface` (steel-blue tint while dragging); file row with type tile, mono meta line, status text and 4px progress bar (steel-blue fill, pulsing while preparing); Ready tag; inline failure notice with Retry; storage meter card (Pro, 20 GB included); mobile adds a Take photo button and stacks the actions at 52px.
+- Draft (not yet approved by Grant): placeholder values marked (A) or in brackets: 500 MB per-file limit, accepted extensions (.step, .stp, .obj, .jpg, .jpeg, .png, .heic, .pdf), storage shown as 12.4 of 20 GB.
