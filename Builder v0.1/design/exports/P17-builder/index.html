@@ -262,148 +262,214 @@ button:focus-visible, textarea:focus-visible, input:focus-visible, [role="button
 @media (max-width:760px){.sbexpand{display:none!important}}
 
 /* P07 Upload flow: layout glue only; every value is a token. */
-/* P17 Builder (desktop app window): layout glue only; every value is a token. */
+/* P17 Builder (desktop app layout): layout glue only; every value is a token. */
 [hidden]{display:none!important}
-body{background:var(--bc-backdrop)}
-.b-win{display:flex;flex-direction:column;height:100vh;padding:10px;gap:0}
-.b-frame{display:flex;flex-direction:column;flex:1;min-height:0;border:1px solid var(--bc-edge);border-radius:var(--bc-radius-panel);background:var(--bc-canvas);overflow:hidden;box-shadow:var(--bc-shadow-panel)}
-.b-title{display:flex;align-items:center;gap:12px;height:44px;padding:0 6px 0 14px;border-bottom:1px solid var(--bc-hairline);background:var(--bc-surface);flex-shrink:0}
-.b-title img{width:22px;height:22px}
-.b-tn{font-size:13px;font-weight:600;padding-top:2px}
-.b-tp{font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--bc-muted);padding-top:2px}
-.b-wc{margin-left:auto;display:flex}
-.b-wc span{display:flex;align-items:center;justify-content:center;width:40px;height:32px;color:var(--bc-muted)}
-.b-body{display:grid;grid-template-columns:248px minmax(0,1fr);flex:1;min-height:0}
-.b-rail{display:flex;flex-direction:column;gap:4px;padding:20px 14px;border-right:1px solid var(--bc-hairline);background:var(--bc-surface);overflow-y:auto}
-.b-rail .de-label{padding:0 10px 8px}
-.b-st{all:unset;box-sizing:border-box;cursor:pointer;display:flex;align-items:center;gap:12px;min-height:44px;padding:2px 10px 0;border-radius:var(--bc-radius-control);color:var(--bc-muted);font-size:14px}
-.b-st:hover{background:var(--bc-surface-raised);color:var(--bc-ink)}
-.b-st:focus-visible{outline:2px solid var(--bc-steel-blue-text);outline-offset:2px}
-.b-st i{font-style:normal;display:flex;align-items:center;justify-content:center;flex-shrink:0;width:24px;height:24px;border-radius:999px;border:1px solid var(--bc-hairline);font-family:var(--font-mono);font-size:11px;padding-top:1px}
-.b-st[aria-current=step]{background:var(--bc-surface-raised);color:var(--bc-ink)}
-.b-st[aria-current=step] i{background:var(--bc-steel-blue-tint);border-color:transparent;color:var(--bc-steel-blue-text)}
-.b-st.is-done i{background:var(--bc-steel-blue);border-color:transparent;color:var(--bc-on-steel-blue)}
-.b-st:disabled{opacity:.45;cursor:default}
-.b-main{display:flex;flex-direction:column;min-width:0;min-height:0}
-.b-scroll{flex:1;overflow-y:auto;padding:28px 32px}
-.b-scroll h1{margin:6px 0 0;font-size:34px;font-weight:800;letter-spacing:-0.01em;line-height:.98;text-transform:uppercase}
-.b-scroll .lead{margin:var(--bc-space-3) 0 var(--bc-space-6);font-size:14px;line-height:1.5;color:var(--bc-muted);max-width:560px}
-.b-foot{display:flex;align-items:center;gap:var(--bc-space-3);padding:12px 20px;border-top:1px solid var(--bc-hairline);background:var(--bc-surface);flex-shrink:0}
-.b-foot .sp{flex:1;font-size:13px;color:var(--bc-muted)}
-.b-btn{height:40px;padding:2px 18px 0;border:1px solid var(--bc-hairline);border-radius:var(--bc-radius-control);background:var(--bc-surface-raised);color:var(--bc-ink);font:inherit;font-size:13px;font-weight:600;letter-spacing:.06em;cursor:pointer}
-.b-btn:hover:not(:disabled){border-color:var(--bc-steel-blue)}
-.b-btn.is-next{border-color:var(--bc-steel-blue);color:var(--bc-steel-blue-text);background:none}
-.b-btn.is-next:hover:not(:disabled){background:var(--bc-steel-blue-tint)}
-.b-btn:disabled{opacity:.4;cursor:default}
-.b-grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:var(--bc-space-3);max-width:760px}
-.b-grid .w6{grid-column:span 6}.b-grid .w4{grid-column:span 4}.b-grid .w12{grid-column:1/-1}
-.b-f{display:flex;flex-direction:column;gap:6px;min-width:0}
-.b-in{height:44px;padding:2px 12px 0;border:1px solid var(--bc-field-edge-soft);border-radius:var(--bc-radius-control);background:var(--bc-field);box-shadow:var(--bc-shadow-search);color:var(--bc-field-ink);font:inherit;font-size:16px;width:100%}
-.b-in:focus{outline:none;border-color:var(--bc-field-focus)}
-.b-in:disabled{color:var(--bc-field-muted)}
-.b-drop{display:flex;flex-direction:column;align-items:center;gap:var(--bc-space-2);padding:var(--bc-space-6);border:1px dashed var(--bc-hairline);border-radius:var(--bc-radius-card);background:var(--bc-surface);text-align:center;max-width:760px}
-.b-drop.is-over{border-color:var(--bc-steel-blue);background:var(--bc-steel-blue-tint)}
-.b-drop b{font-size:16px}.b-drop span{font-size:13px;color:var(--bc-muted)}
-.b-counts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--bc-space-3);max-width:760px;margin:var(--bc-space-4) 0}
-.b-tile{padding:12px 14px;border:1px solid var(--bc-edge-soft);border-radius:var(--bc-radius-card);background:var(--bc-surface-raised)}
-.b-tile b{display:block;font-size:22px;font-weight:700;margin-top:4px}
-.b-tile.is-req{border-color:var(--bc-steel-blue-edge)}
-.b-files{max-width:760px}
-.b-file{display:grid;grid-template-columns:36px minmax(0,1fr) auto auto;gap:var(--bc-space-3);align-items:center;padding:10px 4px;border-bottom:1px solid var(--bc-hairline)}
-.b-file:last-child{border-bottom:none}
+.de-shell-column{max-width:1120px}
+.b-head{display:flex;align-items:flex-end;justify-content:space-between;gap:var(--bc-space-4);flex-wrap:wrap;padding:var(--bc-space-8) 0 var(--bc-space-4)}
+.b-head h1{margin:6px 0 0;font-size:clamp(28px,4.4vh,40px);font-weight:800;letter-spacing:-0.01em;line-height:.98;text-transform:uppercase}
+.b-path{font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--bc-steel-blue-text)}
+.b-tabs{display:flex;gap:var(--bc-space-2);border-bottom:1px solid var(--bc-hairline);margin-bottom:var(--bc-space-4);overflow-x:auto}
+.b-tab{all:unset;cursor:pointer;display:flex;align-items:center;gap:10px;flex-shrink:0;height:var(--bc-touch-target);padding:2px 14px 0;color:var(--bc-muted);font-size:14px;font-weight:600;margin-bottom:-1px;border-bottom:2px solid transparent;white-space:nowrap}
+.b-tab:hover{color:var(--bc-ink)}
+.b-tab:focus-visible{outline:2px solid var(--bc-steel-blue-text);outline-offset:2px}
+.b-tab i{font-style:normal;display:flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:var(--bc-radius-pill);border:1px solid var(--bc-hairline);font-family:var(--font-mono);font-size:11px;padding-top:1px}
+.b-tab[aria-selected=true]{color:var(--bc-steel-blue-text);border-bottom-color:var(--bc-steel-blue-text)}
+.b-tab[aria-selected=true] i{background:var(--bc-steel-blue-tint);border-color:transparent}
+.b-tab.is-done i{background:var(--bc-steel-blue);border-color:transparent;color:var(--bc-on-steel-blue)}
+.b-tab:disabled{opacity:.45;cursor:default}
+.b-lead{margin:0 0 var(--bc-space-4);font-size:14px;line-height:1.5;color:var(--bc-muted);max-width:640px}
+.b-grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--bc-space-3);padding-top:var(--bc-space-2)}
+.b-card{all:unset;box-sizing:border-box;cursor:pointer;display:flex;align-items:flex-start;justify-content:space-between;gap:var(--bc-space-2);min-width:0;padding:12px 12px 12px 14px;border:1px solid var(--bc-edge-soft);border-radius:var(--bc-radius-card);background:var(--bc-surface-raised);transition:border-color 200ms}
+.b-card:hover{border-color:var(--bc-hairline)}
+.b-card.is-on{border-color:var(--bc-steel-blue);background:var(--bc-steel-blue-tint)}
+.b-card:focus-visible{outline:2px solid var(--bc-steel-blue-text);outline-offset:2px}
+.b-cb{display:flex;flex-direction:column;gap:4px;min-width:0}
+.b-cc{font-family:var(--font-mono);font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--bc-steel-blue-text)}
+.b-ct{font-size:15px;font-weight:600;line-height:1.3}
+.b-cs{font-size:12px;color:var(--bc-muted);line-height:1.4}
+.b-box{display:flex;align-items:center;justify-content:center;flex-shrink:0;width:22px;height:22px;border:1.5px solid var(--bc-muted);border-radius:6px;color:transparent;transition:border-color 200ms,background 200ms}
+.b-card.is-on .b-box,.b-row.is-on .b-box{border-color:var(--bc-steel-blue);background:var(--bc-steel-blue-tint);color:var(--bc-steel-blue-text)}
+.b-bar{display:flex;align-items:center;justify-content:space-between;gap:var(--bc-space-3);flex-wrap:wrap;margin:var(--bc-space-4) 0 var(--bc-space-2)}
+.b-sum{font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--bc-muted)}
+.b-link{all:unset;cursor:pointer;font-size:13px;color:var(--bc-steel-blue-text)}
+.b-link:hover{text-decoration:underline}
+.b-grp{display:flex;align-items:center;gap:var(--bc-space-3);margin:var(--bc-space-4) 4px 2px}
+.b-grp .de-label{color:var(--bc-ink)}
+.b-row{all:unset;box-sizing:border-box;cursor:pointer;display:grid;grid-template-columns:22px 36px minmax(0,1fr) auto;gap:var(--bc-space-3);align-items:center;width:100%;padding:10px 6px;border-bottom:1px solid var(--bc-hairline);border-radius:var(--bc-radius-control)}
+.b-row:hover{background:var(--bc-surface-raised)}
+.b-row:focus-visible{outline:2px solid var(--bc-steel-blue-text);outline-offset:2px}
 .b-ft{display:flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:var(--bc-radius-card);border:1px solid var(--bc-hairline);background:var(--bc-surface-raised);color:var(--bc-steel-blue-text)}
 .b-fn{font-size:14px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .b-fm{font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--bc-muted)}
-.b-bar{height:4px;border-radius:var(--bc-radius-bar);background:var(--bc-surface-raised);overflow:hidden;margin-top:6px}
-.b-bar i{display:block;height:100%;background:var(--bc-steel-blue);transition:width 250ms}
-.b-chk{display:grid;grid-template-columns:22px minmax(0,1fr);gap:var(--bc-space-3);padding:10px 4px;border-bottom:1px solid var(--bc-hairline);font-size:14px;max-width:760px}
+.b-pb{height:4px;border-radius:var(--bc-radius-bar);background:var(--bc-surface-raised);overflow:hidden;margin-top:6px}
+.b-pb i{display:block;height:100%;background:var(--bc-steel-blue);transition:width 250ms}
+.b-form{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:var(--bc-space-3);padding-top:var(--bc-space-2)}
+.b-form .w6{grid-column:span 6}.b-form .w12{grid-column:1/-1}
+.b-f{display:flex;flex-direction:column;gap:6px;min-width:0}
+.b-in{height:44px;padding:2px 12px 0;border:1px solid var(--bc-field-edge-soft);border-radius:var(--bc-radius-control);background:var(--bc-field);box-shadow:var(--bc-shadow-search);color:var(--bc-field-ink);font:inherit;font-size:16px;width:100%}
+.b-in:focus{outline:none;border-color:var(--bc-field-focus)}
+.b-chk{display:grid;grid-template-columns:22px minmax(0,1fr);gap:var(--bc-space-3);padding:10px 4px;border-bottom:1px solid var(--bc-hairline);font-size:14px}
 .b-chk:last-child{border-bottom:none}
 .b-chk .ic{display:flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:999px;border:1.5px solid var(--bc-muted);color:transparent}
 .b-chk.ok .ic{border-color:#86c9a2;background:rgba(134,201,162,.14);color:#86c9a2}
 .b-chk.no .ic{border-color:#dcae62;color:#dcae62}
 .b-chk small{display:block;color:var(--bc-muted);font-size:13px;margin-top:2px}
-.b-tree{max-width:760px;margin-top:var(--bc-space-4);padding:14px 16px 12px;border:1px solid var(--bc-edge-soft);border-radius:var(--bc-radius-card);background:var(--bc-surface);font-family:var(--font-mono);font-size:12px;line-height:1.8;color:var(--bc-muted)}
+.b-tree{margin-top:var(--bc-space-3);padding:14px 16px 12px;border:1px solid var(--bc-edge-soft);border-radius:var(--bc-radius-card);background:var(--bc-canvas);font-family:var(--font-mono);font-size:12px;line-height:1.8;color:var(--bc-muted)}
 .b-tree b{color:var(--bc-ink);font-weight:500}
-.b-res{max-width:760px;padding:var(--bc-card-pad);border:1px solid var(--bc-steel-blue-edge);border-radius:var(--bc-radius-card);background:var(--bc-steel-blue-tint)}
+.b-cols{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:var(--bc-space-4);align-items:start}
+.b-res{padding:var(--bc-card-pad);border:1px solid var(--bc-steel-blue-edge);border-radius:var(--bc-radius-card);background:var(--bc-steel-blue-tint);margin-top:var(--bc-space-3)}
 .b-res dl{display:grid;grid-template-columns:auto 1fr;gap:6px var(--bc-space-6);margin:var(--bc-space-3) 0 0}
 .b-res dt{font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--bc-muted);padding-top:2px}
-.b-res dd{margin:0;text-align:right;font-size:14px;overflow:hidden;text-overflow:ellipsis}
-.b-note{max-width:760px;margin-top:var(--bc-space-4);font-size:13px;color:var(--bc-muted);line-height:1.5}
-@media (max-width:760px){.b-win{padding:0;height:auto;min-height:100vh}.b-frame{border-radius:0;border:none}.b-body{grid-template-columns:1fr}.b-rail{flex-direction:row;overflow-x:auto;padding:8px 12px;border-right:none;border-bottom:1px solid var(--bc-hairline)}.b-rail .de-label{display:none}.b-st{flex-shrink:0;white-space:nowrap}.b-scroll{padding:20px 16px}.b-scroll h1{font-size:30px}.b-grid .w6,.b-grid .w4{grid-column:1/-1}.b-counts{grid-template-columns:repeat(2,minmax(0,1fr))}.b-in{height:52px}.b-btn{height:48px}.b-wc{display:none}.b-file{grid-template-columns:36px minmax(0,1fr) auto}.b-file .b-fm.ext{display:none}}
+.b-res dd{margin:0;text-align:right;font-size:14px}
+.b-acts{display:flex;gap:var(--bc-space-2);flex-wrap:wrap;margin-top:var(--bc-space-3)}
+.b-btn{height:40px;padding:2px 18px 0;border:1px solid var(--bc-hairline);border-radius:var(--bc-radius-control);background:var(--bc-surface-raised);color:var(--bc-ink);font:inherit;font-size:13px;font-weight:600;letter-spacing:.06em;cursor:pointer}
+.b-btn:hover:not(:disabled){border-color:var(--bc-steel-blue)}
+.b-btn.is-next{border-color:var(--bc-steel-blue);color:var(--bc-steel-blue-text);background:none}
+.b-btn.is-next:hover:not(:disabled){background:var(--bc-steel-blue-tint)}
+.b-btn:disabled{opacity:.4;cursor:default}
+.b-foot{display:flex;align-items:center;gap:var(--bc-space-3);margin:var(--bc-space-6) 0 var(--bc-space-8)}
+.b-foot .sp{flex:1;font-size:13px;color:var(--bc-muted)}
+.b-note{margin-top:var(--bc-space-3);font-size:13px;color:var(--bc-muted);line-height:1.5}
+.b-mobile{display:none}
+@media (max-width:1000px){.b-grid3{grid-template-columns:repeat(2,minmax(0,1fr))}.b-cols{grid-template-columns:1fr}}
+@media (max-width:760px){
+ .de-shell{padding:0;gap:0;height:auto;min-height:100vh;display:block}
+ .de-sidebar,.de-topbar{display:none}
+ .de-shell-scroll{padding:0 var(--bc-gutter-mobile);overflow:visible;padding-bottom:140px}
+ .b-mobile{display:block}
+ .b-head h1{font-size:42px}.b-head .de-eyebrow{font-size:13px}
+ .b-grid3{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;margin:0 calc(-1*var(--bc-gutter-mobile));padding:var(--bc-space-2) var(--bc-gutter-mobile)}.b-card{flex:0 0 76%;scroll-snap-align:start}
+ .b-tab{padding:2px 10px 0;font-size:13px}.b-tab i{display:none}
+ .de-panel{background:none;border:none;box-shadow:none;padding:0}
+ .b-row{grid-template-columns:26px 36px minmax(0,1fr);min-height:var(--bc-touch-target)}.b-row .b-fm.ex{display:none}
+ .b-form .w6{grid-column:1/-1}.b-in{height:52px}.b-btn{height:48px}.b-foot .b-btn{flex:1}
+ .b-dock{position:fixed;left:0;right:0;bottom:0;padding:16px 12px 34px;background:linear-gradient(to bottom,rgba(30,30,32,0) 0,var(--bc-canvas) 24px)}
+}
+@media (min-width:761px){.b-dock,.b-mheader{display:none}}
 </style></head>
 <body>
-<div class="b-win"><div class="b-frame">
- <div class="b-title"><img src="../../assets/favicon.svg" alt=""><span class="b-tn">Builder</span><span class="b-tp" id="tp">New package</span>
-  <div class="b-wc" aria-hidden="true"><span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 12h14"/></svg></span><span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 6h12v12H6z"/></svg></span><span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 6l12 12M18 6L6 18"/></svg></span></div></div>
- <div class="b-body">
-  <nav class="b-rail" id="rail" aria-label="Steps"><span class="de-label">Lite package</span></nav>
-  <div class="b-main"><div class="b-scroll de-scroll" id="pane"></div>
-   <div class="b-foot"><button class="b-btn" id="back" type="button">Back</button><span class="sp" id="fh"></span><button class="b-btn is-next" id="next" type="button">Next</button></div></div>
- </div></div></div>
+<div class="de-shell">
+ <aside class="de-sidebar sb" aria-label="Sidebar" data-mode="projects">
+  <div class="sbtool">
+    <button class="sbicon" type="button" aria-label="Menu"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+    <button class="sbicon" type="button" data-sb="toggle" aria-label="Collapse sidebar"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0"><path d="M4 5h16v14H4zM9 5v14"/></svg></button>
+    <button class="sbicon" type="button" aria-label="Back"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0"><path d="M15 6l-6 6 6 6"/></svg></button>
+    <button class="sbicon sbdim" type="button" tabindex="-1" aria-disabled="true" aria-label="Forward"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0"><path d="M9 6l6 6-6 6"/></svg></button>
+    <span style="flex:1"></span>
+    <div class="sbseg" role="tablist" aria-label="Sidebar mode"><button class="sbsegb " type="button" role="tab" data-sbmode="chat" aria-label="Chat"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0"><path d="M5 5h14a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1h-8l-4 4v-4H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1z"/></svg></button><button class="sbsegb is-on" type="button" role="tab" data-sbmode="projects" aria-label="Projects"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0"><path d="M3 6h6l2 2h10v11H3z"/></svg></button></div>
+  </div>
+  <nav class="sbnav" aria-label="Main">
+    <a class="sbnew" href="../P01-chat-start-desktop/Design_Engineering_App.html"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0"><path d="M12 5v14M5 12h14"/></svg><span class="sblab">New</span></a>
+    <button class="sbrow" type="button"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0"><path d="M11 4a7 7 0 1 0 0 14 7 7 0 0 0 0-14zM21 21l-5-5"/></svg><span class="sblab">Search</span></button>
+    <a class="sbrow" href="../P19-dashboard/index.html"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0"><path d="M4 5h16v14H4zM4 10h16M10 10v9"/></svg><span class="sblab">Dashboard</span></a>
+    <button class="sbrow" type="button"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9zM12 12l8-4.5M12 12v9M12 12L4 7.5"/></svg><span class="sblab">Design</span></button>
+    <button class="sbrow" type="button" title="Artifacts and exports"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0"><path d="M3 7h18v13H3zM3 7l2-3h14l2 3M10 12h4"/></svg><span class="sblab">Vault</span></button>
+    <button class="sbrow" type="button" title="Imports"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0"><path d="M12 16V4M7 9l5-5 5 5M4 20h16"/></svg><span class="sblab">Uploads</span></button>
+    <button class="sbrow" type="button"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0"><path d="M5 12h.01M12 12h.01M19 12h.01"/></svg><span class="sblab">More</span></button>
+  </nav>
+  <div class="sbpane" data-sbpane="chat" hidden><div class="sbhead">Recents</div><div class="sbrecs de-scroll"><a class="sbrec" href="../P03-chat-conversation/index.html" title="GitHub branch organization workflow"><span class="sbfade">GitHub branch organization workflow</span></a><a class="sbrec" href="../P03-chat-conversation/index.html" title="Downtime by cause from stoppage CSV"><span class="sbfade">Downtime by cause from stoppage CSV</span></a><a class="sbrec" href="../P03-chat-conversation/index.html" title="Gear ratio for a hoist drive"><span class="sbfade">Gear ratio for a hoist drive</span></a><a class="sbrec" href="../P03-chat-conversation/index.html" title="Compare 304 and 316 stainless for washdown"><span class="sbfade">Compare 304 and 316 stainless for washdown</span></a><a class="sbrec" href="../P03-chat-conversation/index.html" title="Cable tray fill calculation"><span class="sbfade">Cable tray fill calculation</span></a><a class="sbrec" href="../P03-chat-conversation/index.html" title="Compressed air leak estimate"><span class="sbfade">Compressed air leak estimate</span></a><a class="sbrec" href="../P03-chat-conversation/index.html" title="PLC tag naming convention"><span class="sbfade">PLC tag naming convention</span></a><a class="sbrec" href="../P03-chat-conversation/index.html" title="Quote template wording"><span class="sbfade">Quote template wording</span></a></div></div>
+  <div class="sbpane" data-sbpane="projects"><div class="sbhead">Projects</div><div class="sbrecs de-scroll"><a class="sbrow sbnewproj" href="../P05-projects/index.html"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0"><path d="M12 5v14M5 12h14"/></svg><span class="sblab">New project</span></a><div class="sbgroup"><div class="sbgrow"><button class="sbgrp" type="button" aria-expanded="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0"><path d="M9 6l6 6-6 6"/></svg><span class="sblab">Palletizer retrofit</span><span class="sbcount">3</span></button><a class="sbgstart" href="../P01-chat-start-desktop/Design_Engineering_App.html?project=BC-Q-26041" title="Start chat in Palletizer retrofit" aria-label="Start chat in Palletizer retrofit"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 5h14a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1h-8l-4 4v-4H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zM12 8v5M9.5 10.5h5"/></svg></a></div><div class="sbkids"><a class="sbrec" href="../P06-project-workspace/index.html?project=BC-Q-26041" title="Pneumatic cylinder sizing for palletizer"><span class="sbfade">Pneumatic cylinder sizing for palletizer</span></a><a class="sbrec" href="../P06-project-workspace/index.html?project=BC-Q-26041" title="Layout review for pallet stack"><span class="sbfade">Layout review for pallet stack</span></a><a class="sbrec" href="../P06-project-workspace/index.html?project=BC-Q-26041" title="Safety circuit for guarded cell"><span class="sbfade">Safety circuit for guarded cell</span></a></div></div><div class="sbgroup"><div class="sbgrow"><button class="sbgrp" type="button" aria-expanded="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0"><path d="M9 6l6 6-6 6"/></svg><span class="sblab">Capping station</span><span class="sbcount">3</span></button><a class="sbgstart" href="../P01-chat-start-desktop/Design_Engineering_App.html?project=BC-Q-26038" title="Start chat in Capping station" aria-label="Start chat in Capping station"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 5h14a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1h-8l-4 4v-4H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zM12 8v5M9.5 10.5h5"/></svg></a></div><div class="sbkids"><a class="sbrec" href="../P06-project-workspace/index.html?project=BC-Q-26038" title="Capping station I/O list draft"><span class="sbfade">Capping station I/O list draft</span></a><a class="sbrec" href="../P06-project-workspace/index.html?project=BC-Q-26038" title="FAT checklist for capping station"><span class="sbfade">FAT checklist for capping station</span></a><a class="sbrec" href="../P06-project-workspace/index.html?project=BC-Q-26038" title="Servo axis overcurrent fault"><span class="sbfade">Servo axis overcurrent fault</span></a></div></div><div class="sbgroup"><div class="sbgrow"><button class="sbgrp" type="button" aria-expanded="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0"><path d="M9 6l6 6-6 6"/></svg><span class="sblab">Label applicator</span><span class="sbcount">2</span></button><a class="sbgstart" href="../P01-chat-start-desktop/Design_Engineering_App.html?project=BC-Q-26035" title="Start chat in Label applicator" aria-label="Start chat in Label applicator"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 5h14a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1h-8l-4 4v-4H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zM12 8v5M9.5 10.5h5"/></svg></a></div><div class="sbkids"><a class="sbrec" href="../P06-project-workspace/index.html?project=BC-Q-26035" title="Conveyor VFD and motor selection"><span class="sbfade">Conveyor VFD and motor selection</span></a><a class="sbrec" href="../P06-project-workspace/index.html?project=BC-Q-26035" title="Tolerance stack-up on bracket assembly"><span class="sbfade">Tolerance stack-up on bracket assembly</span></a></div></div></div></div>
+  <div class="sbfoot">
+    <button class="sbacct" type="button" aria-label="Account switcher"><span class="sbavatar">G</span><span class="sblab">Grant&nbsp;·&nbsp;Pro</span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0"><path d="M6 9l6 6 6-6"/></svg></button>
+    <a class="sbicon" href="../P15-account-settings/index.html" aria-label="Settings"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0"><path d="M12 9a3 3 0 1 0 0 6 3 3 0 0 0 0-6zM19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></a>
+  </div>
+</aside>
+ <button class="sbicon sbexpand" type="button" data-sb="expand" aria-label="Expand sidebar" hidden><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0"><path d="M4 5h16v14H4zM9 5v14"/></svg></button>
+ <main class="de-shell-main">
+  <header class="de-topbar"><div class="de-label">Builder</div>
+   <div class="de-topbar-actions"><button class="de-btn">Ask AI</button><button class="de-btn">Support</button><div class="de-avatar" style="margin-left:8px">G</div></div></header>
+  <div class="b-mobile b-mheader"><div class="de-mheader"><img src="../../assets/favicon.svg" alt=""><span class="de-brand">Design Engineering</span><div class="de-avatar de-avatar-lg">G</div></div></div>
+  <div class="de-shell-scroll de-scroll"><div class="de-shell-column">
+   <div class="b-head"><div><div class="de-eyebrow">Builder</div><h1>Package for Lite</h1></div><div class="b-path" id="path">Choose an organization</div></div>
+   <nav class="b-tabs" id="tabs" role="tablist" aria-label="Builder steps"></nav>
+   <div id="pane"></div>
+   <div class="b-foot"><button class="b-btn" id="back" type="button">Back</button><span class="sp" id="fh"></span><button class="b-btn is-next" id="next" type="button">Next</button></div>
+  </div></div>
+ </main>
+</div>
+<div class="b-dock b-mobile"><div class="de-tabbar"><button class="de-tab"><svg class="de-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg><span>New chat</span></button><button class="de-tab"><svg class="de-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18zM12 7v5l3 2"/></svg><span>Recents</span></button><button class="de-tab"><svg class="de-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16v14H4zM4 10h16M10 10v9"/></svg><span>Dashboard</span></button><button class="de-tab is-active"><svg class="de-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h.01M12 12h.01M19 12h.01"/></svg><span>More</span></button></div></div>
 <script>
 (function(){
  var $=function(i){return document.getElementById(i)};
  function esc(x){return String(x).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/"/g,'&quot;')}
  function ico(p,n){return '<svg class="de-icon" width="'+(n||18)+'" height="'+(n||18)+'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+p+'</svg>'}
- var IC={model:'<path d="M12 3l8 4.5v9L12 21l-8-4.5v-9zM12 12l8-4.5M12 12v9M12 12L4 7.5"/>',doc:'<path d="M7 3h7l5 5v13H7zM14 3v5h5M10 13h6M10 17h6"/>',note:'<path d="M5 4h14v16H5zM9 9h6M9 13h6"/>'};
- var KIND={model:'Model',doc:'Document',note:'Note'},DIR={model:'models/',doc:'docs/',note:'notes/'};
- var EXT={step:'model',stp:'model',obj:'model',pdf:'doc',md:'note',txt:'note'};
- function sz(b){return b>=1048576?(b/1048576).toFixed(1)+' MB':Math.max(1,Math.round(b/1024))+' KB'}
- /* Sample content (A). */
- var STEPS=['Details','Add files','Prepare','Review','Build'];
- var d={title:'Site 7332 maintenance package',client:'[Client or site]',org:'Block Concepts',contact:'[Contact name and email]',rev:'A',files:[{n:'conveyor-frame.step',k:'model',b:48234496,s:'wait'},{n:'drive-GB-220-datasheet.pdf',k:'doc',b:2516582,s:'wait'},{n:'palletizer-manual.pdf',k:'doc',b:19509248,s:'wait'},{n:'lockout-procedure.pdf',k:'doc',b:629145,s:'wait'},{n:'handoff-log.md',k:'note',b:18432,s:'wait'}],prep:'idle',built:null};
- var step=0,max=0;
- function n(k){return d.files.filter(function(f){return f.k===k}).length}
- function ready(){return d.files.length>0&&d.files.every(function(f){return f.s==='ready'})}
- function checks(){var docs=n('doc')>0,rd=ready(),mods=d.files.filter(function(f){return f.k==='model'}).every(function(f){return f.s==='ready'});
-  return [[!!d.title.trim()&&!!d.org.trim(),'Package details','Title, client or site, built-by organization'],[docs,'Documents present','At least one PDF in docs/ is required'],[rd,'Files prepared','Models converted to viewer files, documents indexed'],[rd&&docs,'Search index built','Lite uses it to search and chat without the cloud'],[mods,'Models converted','GLB files written next to the source CAD'],[rd,'Manifest with hashes','A SHA-256 hash for every file']]}
- function rail(){$('rail').innerHTML='<span class="de-label">Lite package</span>'+STEPS.map(function(s,i){return '<button class="b-st'+(i<max&&i!==step?' is-done':'')+'" type="button" data-i="'+i+'"'+(i===step?' aria-current="step"':'')+(i>max?' disabled':'')+'><i>'+(i<max&&i!==step?'✓':i+1)+'</i>'+s+'</button>'}).join('');
-  $('tp').textContent=d.title||'New package'}
- function pDetails(){return '<div class="de-eyebrow">Step 1</div><h1>Package details</h1><p class="lead">This goes on the cover sheet and in the manifest. Lite shows it when someone opens the package.</p><div class="b-grid"><div class="b-f w12"><label class="de-label" for="t">Title</label><input class="b-in" id="t" data-k="title" value="'+esc(d.title)+'"></div><div class="b-f w6"><label class="de-label" for="c">Client or site</label><input class="b-in" id="c" data-k="client" value="'+esc(d.client)+'"></div><div class="b-f w6"><label class="de-label" for="o">Built by</label><input class="b-in" id="o" data-k="org" value="'+esc(d.org)+'"></div><div class="b-f w6"><label class="de-label" for="ct">Contact</label><input class="b-in" id="ct" data-k="contact" value="'+esc(d.contact)+'"></div><div class="b-f w6"><label class="de-label" for="r">Revision</label><input class="b-in" id="r" data-k="rev" value="'+esc(d.rev)+'"></div></div>'}
- function pFiles(){return '<div class="de-eyebrow">Step 2</div><h1>Add files</h1><p class="lead">Add the models, manuals, data sheets, drawings, procedures and notes for this client or site. I put each one in the right folder.</p>'
-  +'<div class="b-drop" id="drop">'+ico('<path d="M12 16V4M7 9l5-5 5 5M5 20h14"/>',24)+'<b>Drop files or a folder here</b><span>STEP, OBJ, PDF, Markdown and text files</span><button class="b-btn is-next" id="pick" type="button" style="margin-top:6px">Choose files</button><input id="fi" type="file" multiple accept=".step,.stp,.obj,.pdf,.md,.txt" hidden></div>'
-  +'<div class="b-counts"><div class="b-tile"><span class="de-label">Models</span><b>'+n('model')+'</b></div><div class="b-tile is-req"><span class="de-label">Documents</span><b>'+n('doc')+'</b></div><div class="b-tile"><span class="de-label">Notes</span><b>'+n('note')+'</b></div><div class="b-tile"><span class="de-label">Total size</span><b>'+sz(d.files.reduce(function(a,f){return a+f.b},0))+'</b></div></div>'
-  +'<div class="b-files">'+(d.files.length?d.files.map(function(f,i){return '<div class="b-file"><div class="b-ft">'+ico(IC[f.k],16)+'</div><div style="min-width:0"><div class="b-fn">'+esc(f.n)+'</div><div class="b-fm">'+DIR[f.k]+'</div></div><span class="b-fm ext">'+KIND[f.k]+' · '+sz(f.b)+'</span><button class="de-iconbtn de-iconbtn-sm" data-rm="'+i+'" type="button" aria-label="Remove '+esc(f.n)+'">'+ico('<path d="M6 6l12 12M18 6L6 18"/>',16)+'</button></div>'}).join(''):'<div class="de-empty">No files yet.</div>')+'</div>'
-  +'<p class="b-note">At least one document (PDF) is required. Unsupported files are skipped.</p>'}
- function pPrep(){var done=d.files.filter(function(f){return f.s==='ready'}).length,tot=d.files.length;
-  return '<div class="de-eyebrow">Step 3</div><h1>Prepare</h1><p class="lead">I convert each model for the viewer, read each document, and build the search index so Lite can search and answer without the cloud.</p>'
-  +'<div style="display:flex;gap:12px;align-items:center;margin-bottom:16px"><button class="b-btn is-next" id="run" type="button"'+(d.prep==='run'||ready()?' disabled':'')+'>'+(ready()?'All files prepared':d.prep==='run'?'Preparing…':'Prepare files')+'</button><span class="b-fm">'+done+' of '+tot+' ready</span></div>'
-  +'<div class="b-files">'+d.files.map(function(f){var lab=f.s==='ready'?'<span class="de-tag">Ready</span>':f.s==='work'?'<span class="b-fm" style="color:var(--bc-steel-blue-text)">'+(f.k==='model'?'Converting':'Indexing')+'</span>':'<span class="b-fm">Waiting</span>';return '<div class="b-file"><div class="b-ft">'+ico(IC[f.k],16)+'</div><div style="min-width:0"><div class="b-fn">'+esc(f.n)+'</div><div class="b-bar"><i style="width:'+(f.s==='ready'?100:f.s==='work'?(f.p||10):0)+'%"></i></div></div><span></span>'+lab+'</div>'}).join('')+'</div>'
+ var CK=ico('<path d="M5 12l5 5 9-10"/>',14);
+ var IC={Model:'<path d="M12 3l8 4.5v9L12 21l-8-4.5v-9zM12 12l8-4.5M12 12v9M12 12L4 7.5"/>',Document:'<path d="M7 3h7l5 5v13H7zM14 3v5h5M10 13h6M10 17h6"/>',Note:'<path d="M5 4h14v16H5zM9 9h6M9 13h6"/>'};
+ var DIR={Model:'models/',Document:'docs/',Note:'notes/'};
+ /* Sample organizations, projects and Vault items (A). Items are what the Vault holds for each project. */
+ var ORGS=[
+  {id:'bc',n:'Block Concepts',s:'Your organization. 4 projects.',p:[
+   {id:'BC-Q-26041',n:'Palletizer retrofit',v:[['Process document, rev 3','Document',1.2],['Palletizer frame v4','Model',46],['GB-220 data sheet','Document',2.4],['Pneumatic cylinder sizing','Note',0.02]]},
+   {id:'BC-Q-26038',n:'Capping station',v:[['Capping station process document','Document',1.0],['Servo axis fault chat','Note',0.01]]},
+   {id:'BC-Q-26031',n:'Conveyor transfer bracket',v:[['Transfer bracket, spacer','Model',3.1]]},
+   {id:'ENG-RES',n:'Engineering resources (shared)',v:[['Lockout procedure LOTO-004','Document',0.6],['Standard guard layout','Model',8.2],['Handoff log template','Note',0.02]]}]},
+  {id:'ca',n:'[Client A]',s:'Client organization. 2 projects.',p:[
+   {id:'CA-001',n:'[Plant 1 line]',v:[['Line 1 manual','Document',19.5],['Line 1 layout','Model',22]]},
+   {id:'CA-002',n:'[Plant 2 line]',v:[['Line 2 manual','Document',14.8]]}]},
+  {id:'cb',n:'[Client B]',s:'Client organization. 1 project.',p:[{id:'CB-001',n:'[Site 7332]',v:[['Site 7332 process document','Document',1.4],['Conveyor frame','Model',48],['Site handoff log','Note',0.02]]}]}];
+ var STEPS=['Organization','Projects','Vault','Prepare','Build'];
+ var st={step:0,max:0,org:null,projs:{},items:{},prep:'idle',title:'',client:'',by:'Block Concepts',contact:'[Contact name and email]',rev:'A',built:null};
+ function org(){return ORGS.filter(function(o){return o.id===st.org})[0]}
+ function selProjs(){return org()?org().p.filter(function(p){return st.projs[p.id]}):[]}
+ function items(){var a=[];selProjs().forEach(function(p){p.v.forEach(function(v,i){var k=p.id+'|'+i;a.push({k:k,p:p,n:v[0],t:v[1],mb:v[2],on:st.items[k]!==false,s:(st.status&&st.status[k])||'wait',pc:(st.pct&&st.pct[k])||0})})});return a}
+ function chosen(){return items().filter(function(i){return i.on})}
+ function sz(mb){return mb>=1?mb.toFixed(1)+' MB':Math.max(1,Math.round(mb*1024))+' KB'}
+ function ready(){var c=chosen();return c.length>0&&c.every(function(i){return i.s==='ready'})}
+ function slug(){return (st.title||'package').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')}
+ function tabs(){$('tabs').innerHTML=STEPS.map(function(s,i){var done=i<st.max&&i!==st.step;return '<button class="b-tab'+(done?' is-done':'')+'" role="tab" type="button" data-i="'+i+'" aria-selected="'+(i===st.step)+'"'+(i>st.max?' disabled':'')+'><i>'+(done?'✓':i+1)+'</i>'+s+'</button>'}).join('');
+  $('path').textContent=org()?org().n+(selProjs().length?' / '+selProjs().length+(selProjs().length===1?' project':' projects'):''):'Choose an organization'}
+ function pOrg(){return '<p class="b-lead">Projects belong to an organization. Choose the organization whose Vault you are packaging. A client package is built from that client\'s organization.</p><div class="b-grid3" role="group" aria-label="Organization">'+ORGS.map(function(o){var on=st.org===o.id;return '<button class="b-card'+(on?' is-on':'')+'" type="button" data-o="'+o.id+'" aria-pressed="'+on+'"><span class="b-cb"><span class="b-cc">Organization</span><span class="b-ct">'+esc(o.n)+'</span><span class="b-cs">'+esc(o.s)+'</span></span></button>'}).join('')+'</div>'}
+ function pProj(){var o=org();return '<p class="b-lead">Choose the projects from '+esc(o.n)+' to include. Shared projects, such as engineering resources, can go in too.</p><div class="b-bar"><span class="b-sum">'+selProjs().length+' of '+o.p.length+' selected</span><span><button class="b-link" data-all="1" type="button">Select all</button> · <button class="b-link" data-none="1" type="button">Clear</button></span></div><div class="b-grid3" role="group" aria-label="Projects">'+o.p.map(function(p){var on=!!st.projs[p.id];return '<button class="b-card'+(on?' is-on':'')+'" type="button" data-p="'+p.id+'" aria-pressed="'+on+'"><span class="b-cb"><span class="b-cc">'+esc(p.id)+'</span><span class="b-ct">'+esc(p.n)+'</span><span class="b-cs">'+p.v.length+' in the Vault</span></span><span class="b-box">'+CK+'</span></button>'}).join('')+'</div>'}
+ function pVault(){var all=items(),h='';selProjs().forEach(function(p){var rows=all.filter(function(i){return i.p===p});h+='<div class="b-grp"><span class="de-label">'+esc(p.n)+'</span><span class="b-fm">'+esc(p.id)+'</span></div>'+rows.map(function(i){return '<button class="b-row'+(i.on?' is-on':'')+'" type="button" data-k="'+i.k+'" role="checkbox" aria-checked="'+i.on+'"><span class="b-box">'+CK+'</span><span class="b-ft">'+ico(IC[i.t],16)+'</span><span style="min-width:0"><span class="b-fn" style="display:block">'+esc(i.n)+'</span><span class="b-fm">'+DIR[i.t]+'</span></span><span class="b-fm ex">'+i.t+' · '+sz(i.mb)+'</span></button>'}).join('')});
+  var c=chosen();return '<p class="b-lead">Choose what from the Vault goes into the package. Models go to models/, documents to docs/ and notes to notes/.</p><div class="b-bar"><span class="b-sum">'+c.length+' of '+all.length+' items · '+sz(c.reduce(function(a,i){return a+i.mb},0))+'</span></div>'+h+'<p class="b-note">At least one document is required. Chats are exported as notes.</p>'}
+ function pPrep(){var c=chosen(),dn=c.filter(function(i){return i.s==='ready'}).length;
+  return '<p class="b-lead">I convert each model for the viewer, read each document, and build the search index so Lite can search and answer without the cloud.</p><div class="b-acts" style="margin:0 0 12px"><button class="b-btn is-next" id="run" type="button"'+(st.prep==='run'||ready()?' disabled':'')+'>'+(ready()?'All items prepared':st.prep==='run'?'Preparing…':'Prepare items')+'</button><span class="b-fm" style="align-self:center">'+dn+' of '+c.length+' ready</span></div>'
+  +c.map(function(i){var lab=i.s==='ready'?'<span class="de-tag">Ready</span>':i.s==='work'?'<span class="b-fm" style="color:var(--bc-steel-blue-text)">'+(i.t==='Model'?'Converting':'Indexing')+'</span>':'<span class="b-fm">Waiting</span>';return '<div class="b-row" style="cursor:default;grid-template-columns:36px minmax(0,1fr) auto"><span class="b-ft">'+ico(IC[i.t],16)+'</span><span style="min-width:0"><span class="b-fn" style="display:block">'+esc(i.n)+'</span><span class="b-pb"><i style="width:'+(i.s==='ready'?100:i.s==='work'?(i.pc||10):0)+'%"></i></span></span>'+lab+'</div>'}).join('')
   +'<p class="b-note">Preparing may use AI to read and index documents. That use is paid from your wallet: estimated [$X] for this package (A).</p>'}
- function pReview(){var c=checks(),all=c.every(function(x){return x[0]});
-  return '<div class="de-eyebrow">Step 4</div><h1>Review</h1><p class="lead">Check that the package is complete before it is built and signed.</p>'
-  +c.map(function(x){return '<div class="b-chk '+(x[0]?'ok':'no')+'"><span class="ic">'+(x[0]?ico('<path d="M5 12l5 5 9-10"/>',14):ico('<path d="M12 8v5M12 16h.01"/>',14))+'</span><div>'+x[1]+'<small>'+x[2]+'</small></div></div>'}).join('')
-  +'<div class="b-tree"><b>'+esc(slug())+'.lite.zip</b><br>├ manifest.json<br>├ cover.pdf<br>├ models/ <b>'+n('model')+' source + '+n('model')+' GLB</b><br>├ docs/ <b>'+n('doc')+' PDF</b><br>├ notes/ <b>'+n('note')+' file'+(n('note')===1?'':'s')+'</b><br>├ index/ <b>search index</b><br>└ signature.sig</div>'}
- function slug(){return (d.title||'package').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')}
- function pBuild(){if(d.built)return '<div class="de-eyebrow">Step 5</div><h1>Package built</h1><p class="lead">The package is signed and ready to hand over. Lite shows who built it and warns if a file is changed.</p><div class="b-res"><span class="de-tag">Signed</span><dl><dt>File</dt><dd>'+esc(d.built.name)+'</dd><dt>Size</dt><dd>'+d.built.size+'</dd><dt>Format</dt><dd>Lite package v0.1</dd><dt>Built by</dt><dd>'+esc(d.org)+'</dd><dt>Manifest hash</dt><dd class="o-mono" style="font-family:var(--font-mono);font-size:12px">[SHA-256]</dd></dl></div><div style="display:flex;gap:12px;margin-top:16px"><button class="b-btn" type="button" id="show">Show in folder</button><button class="b-btn" type="button" id="again">Start another package</button></div>'
-  return '<div class="de-eyebrow">Step 5</div><h1>Build and sign</h1><p class="lead">I write the package, add a cover sheet and a manifest with a hash for every file, and sign it with your Builder key.</p><div class="b-res"><dl><dt>Output</dt><dd>'+esc(slug())+'.lite.zip</dd><dt>Folders</dt><dd>models, docs, notes, index</dd><dt>Signed with</dt><dd>[Builder key, '+esc(d.org)+']</dd></dl></div><div style="margin-top:16px"><button class="b-btn is-next" id="build" type="button">Build package</button></div><p class="b-note">Lite opens the package read-only and never uploads its content.</p>'}
- var PG=[pDetails,pFiles,pPrep,pReview,pBuild];
- function draw(){rail();$('pane').innerHTML=PG[step]();$('back').disabled=step===0||(step===4&&!!d.built);
-  var nx=$('next'),ok=true,hint='';
-  if(step===0){ok=!!d.title.trim()&&!!d.org.trim();hint=ok?'':'Enter a title and who built it.'}
-  if(step===1){ok=n('doc')>0;hint=ok?'':'Add at least one PDF document.'}
-  if(step===2){ok=ready();hint=ok?'':'Prepare every file to continue.'}
-  if(step===3){ok=checks().every(function(x){return x[0]});hint=ok?'':'Fix the items marked above.'}
-  nx.hidden=step===4;nx.disabled=!ok;$('fh').textContent=hint}
- function go(i){step=i;if(i>max)max=i;draw()}
- $('rail').addEventListener('click',function(e){var b=e.target.closest('[data-i]');if(b&&+b.dataset.i<=max)go(+b.dataset.i)});
- $('next').addEventListener('click',function(){go(step+1)});$('back').addEventListener('click',function(){go(step-1)});
+ function checks(){var c=chosen(),docs=c.some(function(i){return i.t==='Document'}),rd=ready(),mods=c.filter(function(i){return i.t==='Model'}).every(function(i){return i.s==='ready'});return [[!!st.title.trim()&&!!st.by.trim(),'Package details','Title and who built it'],[docs,'Documents present','At least one document is required'],[rd,'Items prepared','Models converted, documents indexed'],[rd&&docs,'Search index built','Lite uses it to search and chat without the cloud'],[mods,'Models converted','Viewer files written next to the source CAD'],[rd,'Manifest with hashes','A SHA-256 hash for every file']]}
+ function pBuild(){var c=chosen(),k=function(t){return c.filter(function(i){return i.t===t}).length};
+  if(st.built)return '<p class="b-lead">The package is signed and ready to hand over. Lite shows who built it and warns if a file is changed.</p><div class="b-res"><span class="de-tag">Signed</span><dl><dt>File</dt><dd>'+esc(st.built.name)+'</dd><dt>Size</dt><dd>'+st.built.size+'</dd><dt>Organization</dt><dd>'+esc(org().n)+'</dd><dt>Projects</dt><dd>'+selProjs().length+'</dd><dt>Format</dt><dd>Lite package v0.1</dd><dt>Manifest hash</dt><dd style="font-family:var(--font-mono);font-size:12px">[SHA-256]</dd></dl></div><div class="b-acts"><button class="b-btn" id="show" type="button">Show in folder</button><button class="b-btn" id="again" type="button">Start another package</button></div>';
+  var cs=checks(),ok=cs.every(function(x){return x[0]});
+  return '<div class="b-cols"><section class="de-panel"><div class="de-section-head"><span class="de-label">Package details</span></div><div class="b-form"><div class="b-f w12"><label class="de-label" for="t">Title</label><input class="b-in" id="t" data-k="title" value="'+esc(st.title)+'"></div><div class="b-f w6"><label class="de-label" for="c">Client or site</label><input class="b-in" id="c" data-k="client" value="'+esc(st.client)+'"></div><div class="b-f w6"><label class="de-label" for="o">Built by</label><input class="b-in" id="o" data-k="by" value="'+esc(st.by)+'"></div><div class="b-f w6"><label class="de-label" for="ct">Contact</label><input class="b-in" id="ct" data-k="contact" value="'+esc(st.contact)+'"></div><div class="b-f w6"><label class="de-label" for="r">Revision</label><input class="b-in" id="r" data-k="rev" value="'+esc(st.rev)+'"></div></div></section>'
+   +'<section class="de-panel"><div class="de-section-head"><span class="de-label">Review</span></div>'+cs.map(function(x){return '<div class="b-chk '+(x[0]?'ok':'no')+'"><span class="ic">'+(x[0]?CK:ico('<path d="M12 8v5M12 16h.01"/>',14))+'</span><div>'+x[1]+'<small>'+x[2]+'</small></div></div>'}).join('')
+   +'<div class="b-tree"><b>'+esc(slug()||'package')+'.lite.zip</b><br>├ manifest.json<br>├ cover.pdf<br>├ models/ <b>'+k('Model')+'</b><br>├ docs/ <b>'+k('Document')+'</b><br>├ notes/ <b>'+k('Note')+'</b><br>├ index/ <b>search index</b><br>└ signature.sig</div>'
+   +'<div class="b-acts"><button class="b-btn is-next" id="build" type="button"'+(ok?'':' disabled')+'>Build and sign</button></div><p class="b-note">Lite opens the package read-only and never uploads its content.</p></section></div>'}
+ var PG=[pOrg,pProj,pVault,pPrep,pBuild];
+ function foot(){var s=st.step,ok=true,h='';
+  if(s===0){ok=!!st.org;h=ok?'':'Choose an organization.'}
+  if(s===1){ok=selProjs().length>0;h=ok?'':'Choose at least one project.'}
+  if(s===2){ok=chosen().some(function(i){return i.t==='Document'});h=ok?'':'Include at least one document.'}
+  if(s===3){ok=ready();h=ok?'':'Prepare every item to continue.'}
+  $('next').hidden=s===4;$('next').disabled=!ok;$('fh').textContent=h;$('back').disabled=s===0||(s===4&&!!st.built)}
+ function draw(){tabs();$('pane').innerHTML=PG[st.step]();foot()}
+ function go(i){st.step=i;if(i>st.max)st.max=i;draw();window.scrollTo(0,0)}
+ $('tabs').addEventListener('click',function(e){var b=e.target.closest('[data-i]');if(b&&+b.dataset.i<=st.max)go(+b.dataset.i)});
+ $('next').addEventListener('click',function(){go(st.step+1)});$('back').addEventListener('click',function(){go(st.step-1)});
+ function reset(from){st.max=Math.min(st.max,from);st.prep='idle';st.status={};st.pct={}}
  var pane=$('pane');
- pane.addEventListener('input',function(e){var k=e.target.dataset.k;if(k){d[k]=e.target.value;max=Math.min(max,0);$('tp').textContent=d.title||'New package';var ok=!!d.title.trim()&&!!d.org.trim();$('next').disabled=!ok;$('fh').textContent=ok?'':'Enter a title and who built it.'}});
- function addFiles(fl){[].forEach.call(fl,function(f){var e=f.name.split('.').pop().toLowerCase(),k=EXT[e];if(k)d.files.push({n:f.name,k:k,b:f.size,s:'wait'})});d.prep='idle';max=Math.min(max,1);draw()}
+ pane.addEventListener('input',function(e){var k=e.target.dataset.k;if(!k)return;st[k]=e.target.value;var cs=checks();if(k==='title'||k==='by'){var b=$('build');if(b)b.disabled=!cs.every(function(x){return x[0]});[].forEach.call(document.querySelectorAll('.b-chk'),function(el,i){el.className='b-chk '+(cs[i][0]?'ok':'no')});var t=document.querySelector('.b-tree b');if(t)t.textContent=(slug()||'package')+'.lite.zip'}});
  pane.addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;
-  if(b.id==='pick')$('fi').click();
-  if(b.dataset.rm){d.files.splice(+b.dataset.rm,1);max=Math.min(max,1);draw()}
+  if(b.dataset.o){if(st.org!==b.dataset.o){st.org=b.dataset.o;st.projs={};st.items={};st.title=org().n+' package';st.client=org().n;reset(0)}go(1);return}
+  if(b.dataset.p){st.projs[b.dataset.p]=!st.projs[b.dataset.p];reset(1);draw();return}
+  if(b.dataset.all){org().p.forEach(function(p){st.projs[p.id]=true});reset(1);draw();return}
+  if(b.dataset.none){st.projs={};reset(1);draw();return}
+  if(b.dataset.k){st.items[b.dataset.k]=st.items[b.dataset.k]===false;reset(2);draw();return}
   if(b.id==='run')run();
-  if(b.id==='build'){d.built={name:slug()+'.lite.zip',size:sz(d.files.reduce(function(a,f){return a+f.b},0)*1.1)};max=4;draw()}
+  if(b.id==='build'){st.built={name:slug()+'.lite.zip',size:sz(chosen().reduce(function(a,i){return a+i.mb},0)*1.1)};st.max=4;draw()}
   if(b.id==='show')b.textContent='Opened (preview only)';
-  if(b.id==='again'){d.built=null;d.files=[];d.title='';d.prep='idle';max=0;go(0)}});
- pane.addEventListener('change',function(e){if(e.target.id==='fi'){addFiles(e.target.files);e.target.value=''}});
- ['dragenter','dragover'].forEach(function(t){pane.addEventListener(t,function(e){var z=e.target.closest('#drop');if(z){e.preventDefault();z.classList.add('is-over')}})});
- ['dragleave','drop'].forEach(function(t){pane.addEventListener(t,function(e){var z=e.target.closest('#drop');if(z){e.preventDefault();z.classList.remove('is-over');if(t==='drop')addFiles(e.dataTransfer.files)}})});
- function run(){d.prep='run';var q=d.files.filter(function(f){return f.s!=='ready'}),i=0;
-  (function nxt(){if(i>=q.length){d.prep='done';draw();return}var f=q[i];f.s='work';f.p=10;draw();var t=setInterval(function(){f.p=Math.min(100,f.p+20+Math.random()*20);if(f.p>=100){clearInterval(t);f.s='ready';i++;draw();setTimeout(nxt,150)}else draw()},180)})()}
- draw();
+  if(b.id==='again'){st.built=null;st.org=null;st.projs={};st.items={};st.title='';st.max=0;reset(0);go(0)}});
+ function run(){st.prep='run';st.status=st.status||{};st.pct=st.pct||{};var q=chosen().filter(function(i){return i.s!=='ready'}),n=0;
+  (function nxt(){if(n>=q.length){st.prep='done';draw();return}var i=q[n];st.status[i.k]='work';st.pct[i.k]=10;draw();var t=setInterval(function(){st.pct[i.k]=Math.min(100,(st.pct[i.k]||10)+20+Math.random()*20);if(st.pct[i.k]>=100){clearInterval(t);st.status[i.k]='ready';n++;draw();setTimeout(nxt,150)}else draw()},180)})()}
+ reset(0);draw();
 })();
+</script>
+<script>
+(function(){var sb=document.querySelector(".sb");if(!sb)return;var ex=document.querySelector(".sbexpand");
+function mode(m){sb.setAttribute("data-mode",m);sb.querySelectorAll("[data-sbmode]").forEach(function(b){b.classList.toggle("is-on",b.dataset.sbmode===m)});sb.querySelectorAll("[data-sbpane]").forEach(function(p){p.hidden=p.dataset.sbpane!==m})}
+sb.addEventListener("click",function(e){var b=e.target.closest("button");if(!b)return;
+if(b.dataset.sbmode)mode(b.dataset.sbmode);
+else if(b.dataset.sb==="toggle"){sb.style.display="none";ex.hidden=false}
+else if(b.classList.contains("sbgrp")){var g=b.closest(".sbgroup"),c=g.classList.toggle("is-closed");b.setAttribute("aria-expanded",String(!c))}});
+ex.addEventListener("click",function(){sb.style.display="";ex.hidden=true})})();
 </script>
 </body></html>
