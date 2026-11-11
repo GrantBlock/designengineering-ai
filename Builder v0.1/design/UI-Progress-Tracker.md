@@ -24,14 +24,14 @@ Page order is a **Draft (not yet approved by Grant)**, built from the App Plan M
 | P12 | Process flows (the process and each process in detail, like a Xometry part configuration) | Desktop + mobile | ☑ | `exports/P12-process-config/index.html` | Done 2026-11-11. Opened from a P06 process card; saves back to the P06 summary. Added 2026-11-10 |
 | P13 | Plans and vendor requests (inside the P06 Exports tab: Process document, Ask for a quote, Produce a quote) | Desktop + mobile | ◐ | `exports/P06-project-workspace/index.html` (Exports tab) | Built into P06 2026-11-11, awaiting Grant's review. No separate page |
 | P14 | Wallet and usage (prepaid tokens, auto-refill) | Desktop + mobile | ◐ | `exports/P14-wallet-usage/index.html` | Drafted 2026-11-11, awaiting Grant's review |
-| P15 | Account and settings | Desktop + mobile | ☐ | | |
+| P15 | Account and settings | Desktop + mobile | ◐ | `exports/P15-account-settings/index.html` | Drafted 2026-11-11, awaiting Grant's review |
 | P16 | Lite app window (offline 3D viewer, search, on-device chat) | Desktop app | ☐ | | |
 | P17 | Builder (package a client or site into a Lite zip) | Desktop app | ☐ | | |
 | P19 | Dashboard (weekly view: this week, this month, last week) | Desktop + mobile | ☑ | `exports/P19-dashboard/index.html` | Layout only; sample data. Added 2026-11-10 from Grant's weekly tracker zip. Approved 2026-11-11 |
 
 ## Next up
 
-First open item: **P15** (P14 is drafted and awaiting review), unless Grant says otherwise. P08 is done (the 3D designer); its feature spec is waiting for Grant's edits.
+First open item: **P16** (P15 is drafted and awaiting review), unless Grant says otherwise. P08 is done (the 3D designer); its feature spec is waiting for Grant's edits.
 
 ## Log
 
@@ -107,3 +107,6 @@ First open item: **P15** (P14 is drafted and awaiting review), unless Grant says
 - [stated] 2026-11-11: Grant approved P13 inside the P06 Exports tab (Process document, Ask for a quote, Produce a quote).
 - [stated] 2026-11-11: P14 (Wallet and usage) drafted at `exports/P14-wallet-usage/index.html`, from App Plan 6.2 and 6.3: one responsive page. Balance card with a meter against the monthly spending limit and a low balance warning (usage stops at zero); Add funds with four preset amounts; Auto-refill switch with its threshold, refill amount and monthly limit; Usage for This month or Last month with Spent, Chat and search, CAD generation and Storage tiles, By task and By project bars, and a Recent activity list (model, task, cost). No price per token is shown because rates are set after cost testing. Prototype only: sample figures, no payment.
 - Draft (not yet approved by Grant): P14 patterns: balance card with a steel-blue edge and a 6px meter (amber when low, using the P19 warning color family); amount chips; switch control; usage bars in `bc-steel-blue`. Preset amounts, the monthly limit and the Pro and card line are placeholders (A).
+- [stated] 2026-11-11: Grant approved P14 (Wallet and usage).
+- [stated] 2026-11-11: P15 (Account and settings) drafted at `exports/P15-account-settings/index.html`: one responsive page with a section list (a tab row on mobile): Profile (name, title, email and organization read-only, Save profile, Change password), Membership (current plan Pro with storage meter, the levels Basic Viewer, Starter bundle, Pro and Team with prices from the App Plan), Team (members with role select Admin, Editor, Commenter, Viewer; Remove with a second click; Invite by email), Preferences (units, text size, email when a quote is approved, weekly summary), and Data and privacy (files stay with the owner, Export my data, Delete account with a second click). Prototype only: sample people, nothing is saved or sent.
+- Draft (not yet approved by Grant): P15 patterns: vertical settings list with a steel-blue left edge on the selected item; switch control (same as P14); segmented option group; member row with role select; current plan card on `bc-steel-blue-tint`. Role names beyond the App Plan access levels (view, comment, edit) are my guess. Team is shown to everyone here, but the App Plan has the admin panel on Team and above. Turbo and Enterprise and Builder are not listed.
