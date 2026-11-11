@@ -20,8 +20,8 @@ Page order is a **Draft (not yet approved by Grant)**, built from the App Plan M
 | P08 | 3D designer (viewer is its first draft) | Desktop + mobile | ☑ | `exports/P08-3d-viewer/index.html` | Done 2026-11-11 (Grant approved). Chat-only 3D designer. Feature spec: `specs/P08-3D-Designer-Spec.md` |
 | P09 | Vault (project list on top, preview gallery of documents, schedules, models and chats below) | Desktop + mobile | ☑ | `exports/P09-vault/index.html` | Done 2026-11-11 (Grant approved). Built from Grant's artifacts gallery and template panel images |
 | P10 | Notes and tracking (inside the Dashboard, P19, through the Update assistant button) | Desktop + mobile | ☑ | `exports/P19-dashboard/index.html` | Done 2026-11-11. No separate page: Grant moved it into the Dashboard |
-| P11 | Calculators (custom, built by the user with the assistant) | Desktop + mobile | ◐ | `exports/P11-calculators/index.html` | Drafted 2026-11-11, awaiting Grant's review |
-| P12 | Process flows | Desktop | ☐ | | |
+| P11 | Calculators (custom, built by the user with the assistant) | Desktop + mobile | ☑ | `exports/P11-calculators/index.html` | Done 2026-11-11 (Grant approved). A template for custom calculators; none are prebuilt |
+| P12 | Process flows | Desktop + mobile | ◐ | `exports/P12-process-flows/index.html` | Drafted 2026-11-11, awaiting Grant's review |
 | P13 | Plans and vendor requests | Desktop + mobile | ☐ | | |
 | P14 | Wallet and usage (prepaid tokens, auto-refill) | Desktop + mobile | ☐ | | |
 | P15 | Account and settings | Desktop + mobile | ☐ | | |
@@ -32,7 +32,7 @@ Page order is a **Draft (not yet approved by Grant)**, built from the App Plan M
 
 ## Next up
 
-First open item: **P12** (P11 is drafted and awaiting review), unless Grant says otherwise. P08 is done (the 3D designer); its feature spec is waiting for Grant's edits.
+First open item: **P13** (P12 is drafted and awaiting review), unless Grant says otherwise. P08 is done (the 3D designer); its feature spec is waiting for Grant's edits.
 
 ## Log
 
@@ -98,3 +98,7 @@ First open item: **P12** (P11 is drafted and awaiting review), unless Grant says
 - Draft (not yet approved by Grant): P11 patterns: calculator cards reuse the P09 Vault project card style; number field with a mono unit at the right on the light field; a highlighted input (steel-blue edge) for values the assistant filled from chat; result tiles with the main result in `bc-steel-blue-text`; dashed formula box in mono. The calculator list and their categories are placeholders.
 - [stated] 2026-11-11: Grant: P11 builds no calculators of its own. It is a template for custom engineering calculators that users build for their own work, such as line throughput or hydraulic sizing. The page now shows the user's calculators (two samples: Line throughput and Hydraulic cylinder sizing, tagged Yours), a New calculator card that opens a build panel (describe it, I draft inputs, formula and results, you check it, with Build in chat opening P03), and keeps Fill from chat, results with formula, Explain in chat, Save to project and Reset. The earlier cylinder, gearbox and conveyor calculators are removed. Samples and defaults are placeholders (A).
 - Draft (not yet approved by Grant): the New calculator card uses a dashed edge; the build panel is a three-step guide beside a describe field. Whether a built calculator is saved per user, per project or per organization is open.
+- [stated] 2026-11-11: Grant approved P11 (Calculators). A built calculator is saved per user or per project, and it is stored in artifacts (the Vault). The save control on P11 is now a Save in selector (My calculators or a project) beside Save to Vault.
+- [stated] 2026-11-11: Grant: projects are shared inside an organization and are not limited to sold projects. An example is an engineering resources project for things the company's team has refined. The Dashboard groups (Sold, Quoting, Waiting), the P05 Projects list and the status values do not yet allow a project that is a resource rather than a job. Not changed yet; waiting for Grant on how such a project is shown.
+- [stated] 2026-11-11: P12 (Process flows) drafted at `exports/P12-process-flows/index.html`: one responsive page (desktop wraps the flow across rows, mobile stacks it). Project and Flow selectors (a shared Engineering resources project is in the list), a Draft flow field (type the steps separated by commas or then and I draft them at 5 s each (A)), Steps, Total time and Slowest step tiles, the flow as numbered step cards joined by arrows (slowest step has a steel-blue left edge, decisions have a dashed edge), an Add step card, and a step editor (name, time, type Process, Check, Decision or Move, notes, Move earlier, Move later, Delete step). Prototype only: sample steps, not saved, a straight chain with no branches.
+- Draft (not yet approved by Grant): P12 patterns: step card (mono number and type, name, time); arrow connectors in `bc-steel-blue-text`; slowest step marker; dashed Add step card; step editor panel with light fields. Step types and the straight-chain layout are my guess. Branching (decisions with yes and no paths) is not designed.
