@@ -20,7 +20,7 @@ Page order is a **Draft (not yet approved by Grant)**, built from the App Plan M
 | P08 | 3D designer (viewer is its first draft) | Desktop + mobile | ☑ | `exports/P08-3d-viewer/index.html` | Done 2026-11-11 (Grant approved). Chat-only 3D designer. Feature spec: `specs/P08-3D-Designer-Spec.md` |
 | P09 | Vault (project list on top, preview gallery of documents, schedules, models and chats below) | Desktop + mobile | ☑ | `exports/P09-vault/index.html` | Done 2026-11-11 (Grant approved). Built from Grant's artifacts gallery and template panel images |
 | P10 | Notes and tracking (inside the Dashboard, P19, through the Update assistant button) | Desktop + mobile | ☑ | `exports/P19-dashboard/index.html` | Done 2026-11-11. No separate page: Grant moved it into the Dashboard |
-| P11 | Calculators (chat-enabled) | Desktop + mobile | ☐ | | |
+| P11 | Calculators (chat-enabled) | Desktop + mobile | ◐ | `exports/P11-calculators/index.html` | Drafted 2026-11-11, awaiting Grant's review |
 | P12 | Process flows | Desktop | ☐ | | |
 | P13 | Plans and vendor requests | Desktop + mobile | ☐ | | |
 | P14 | Wallet and usage (prepaid tokens, auto-refill) | Desktop + mobile | ☐ | | |
@@ -32,7 +32,7 @@ Page order is a **Draft (not yet approved by Grant)**, built from the App Plan M
 
 ## Next up
 
-First open item: **P11**, unless Grant says otherwise. P08 is done (the 3D designer); its feature spec is waiting for Grant's edits.
+First open item: **P12** (P11 is drafted and awaiting review), unless Grant says otherwise. P08 is done (the 3D designer); its feature spec is waiting for Grant's edits.
 
 ## Log
 
@@ -93,3 +93,6 @@ First open item: **P11**, unless Grant says otherwise. P08 is done (the 3D desig
 - [stated] 2026-11-11: Grant: Notes and tracking (P10) lives inside the Dashboard (P19), not on its own page, because New in the sidebar is for a new chat session. P19 gets an Update assistant button in the header. It opens a panel with Project, Status (No change, Quoting, Sold, In progress, Waiting, Done) and an Update text field; Save update adds an entry to a new Updates log at the bottom of the dashboard (project, status tag, From chat tag, time, text, delete). The standalone P10 draft was removed (in git history). Prototype only: sample entries, not saved.
 - Draft (not yet approved by Grant): P19 Update assistant patterns: outline steel-blue header button; collapsible form panel with light fields; Updates log rows with mono project line and status tag. The status list, the Updates log placement and the idea that the assistant reads these updates are my guess. Tasks are not part of this panel; the dashboard rows already show tasks.
 - [stated] 2026-11-11: The Update assistant panel on P19 collapses: a chevron beside its title folds it to a one-line bar and unfolds it. The header button opens it (or unfolds it); Cancel closes it.
+- [stated] 2026-11-11: Grant approved P10 inside the Dashboard (P19): the Update assistant button, its collapsible panel (Project, Status, Update) and the Updates log, with the patterns logged above as drafts.
+- [stated] 2026-11-11: P11 (Calculators) drafted at `exports/P11-calculators/index.html`: one responsive page. Calculator cards in the template panel style (Pneumatic cylinder force, Gearbox output, Conveyor drive power), a Describe it field with Fill from chat that picks a calculator and fills the numbers it finds, then inputs with units on the left and results with the formula on the right, with Explain in chat (opens P03), Save to project and Reset. Mobile scrolls the cards sideways and stacks inputs above results. The three calculators work (real formulas); defaults and efficiencies are assumptions (A). Prototype only: Fill from chat is simple text matching, not the assistant.
+- Draft (not yet approved by Grant): P11 patterns: calculator cards reuse the P09 Vault project card style; number field with a mono unit at the right on the light field; a highlighted input (steel-blue edge) for values the assistant filled from chat; result tiles with the main result in `bc-steel-blue-text`; dashed formula box in mono. The calculator list and their categories are placeholders.
