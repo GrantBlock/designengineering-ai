@@ -15,7 +15,7 @@ Page order is a **Draft (not yet approved by Grant)**, built from the App Plan M
 | P03 | Chat conversation view (messages, attachments, answers with sources) | Desktop + mobile | ☐ | | Extends P01/P02 |
 | P04 | Sign in / sign up (Clerk) | Desktop + mobile | ☐ | | |
 | P05 | Projects list | Desktop + mobile | ◐ | `exports/P05-projects/index.html` | Landing page for projects; each row opens its P06 project page. Awaiting Grant's review |
-| P06 | Project workspace (Specifications, Layout, Documents, Schedule; files, chat, notes later) | Desktop + mobile | ◐ | `exports/P06-project-workspace/index.html` | Process layout with a summary card per process; each opens P18. Awaiting Grant's review |
+| P06 | Project workspace (Specifications, Layout, Schedule, Documents; files, chat, notes later) | Desktop + mobile | ◐ | `exports/P06-project-workspace/index.html` | Process layout with a summary card per process; each opens P18. Awaiting Grant's review |
 | P07 | Upload flow (STEP, OBJ, photos, PDFs) | Desktop + mobile | ☐ | | |
 | P08 | 3D viewer | Desktop + mobile | ☐ | | |
 | P09 | Document search and data sheets | Desktop + mobile | ☐ | | |
@@ -49,5 +49,6 @@ First open item: **P03**, unless Grant says otherwise.
 - [stated] 2026-11-11: Documents tab has three sections only: 1 Generate (choose sheets, edit title block and text), 2 Preview, 3 History (numbered revisions, each can be previewed or used as a starting point). The concept assembly sheet block is removed. The Schedule gantt can be included as one sheet per schedule.
 - Draft (not yet approved by Grant): Layout blocks use the app's neutral graphite fill and steel-blue selection, not per-type colors as in the Liveblocks example. Live multi-user editing is a placeholder.
 - [stated] 2026-11-11: P06 Layout tab replaced with the live overhead layout (blocks drawn to scale, numbered badges, flow arrows, names), with a Selected process panel (placed against, side, align, flow) and the Proposed operation order. The live layout preview and operation order are removed from the Specifications tab. The free-form flow canvas from the earlier Layout draft is dropped (still in git history).
+- [stated] 2026-11-11: P06 tab order is now 1 Specifications, 2 Layout, 3 Schedule, 4 Documents (Schedule comes before Documents because Documents can include the schedule chart).
 - Draft (not yet approved by Grant): page order P03 to P17 above.
 - [stated] 2026-11-06: Shortcut phrase "design the next page" added; see ../shortcuts.md.
