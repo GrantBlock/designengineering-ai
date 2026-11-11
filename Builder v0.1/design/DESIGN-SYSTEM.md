@@ -19,7 +19,7 @@ Tokens `bc-space-*`, `bc-radius-*`, `bc-shadow-*`. Shell gap 10px, mobile gutter
 - **Mobile:** `MobileHeader`, Hero, ActionCard rail, `SectionHeader` plus `ProjectRow`s. Dock (`MobileComposer` over `TabBar`) fixed at the bottom.
 
 ## Navigation (same on desktop and mobile)
-Home, Recents, Projects, then Design (Mechanical, Electrical, Controls, Simulation), then Library (Standards, Assessments, Quotes, Documentation, Testing). Desktop shows these in the sidebar. Mobile shows five tabs: Home, Recents, Projects, Design, Library. "Ask" is the composer and the primary ActionCard, not a tab or nav item.
+Home, Recents, Projects, then Design (Mechanical, Electrical, Controls, Software, Manufacturing), then Library (Standards, Assessments, Quotes, Documentation, Testing). Desktop shows these in the sidebar. Mobile shows five tabs: Home, Recents, Projects, Design, Library. "Ask" is the composer and the primary ActionCard, not a tab or nav item.
 
 ## Components
 Names and props are in `system-kit/components/*/README.md`: AppShell, Sidebar, NavItem, TopBar, Hero, Composer, MobileComposer, Message, Panel, SectionHeader, PromptCard, EmptyNote, Button, IconButton, Tag, Avatar, Icon, SearchField, ActionCard, ProjectRow, StageProgress, MobileHeader, TabBar.
@@ -33,7 +33,7 @@ Names and props are in `system-kit/components/*/README.md`: AppShell, Sidebar, N
 ## Content
 - Voice: plain, technical, no emoji, no exclamation marks. Address the person as "you".
 - Assistant voice: first person singular ("I will start by...", "Tell me..."), since the assistant has its own name. Draft (not yet approved by Grant).
-- Prompt card categories: Mechanical, Electrical, Controls, Simulation, Library (Library replaces Deliver).
+- Prompt card categories: Mechanical, Electrical, Controls, Software, Manufacturing, Library (Library replaces Deliver).
 - Assistant name: undecided. Use the placeholder `[Assistant name]` everywhere; current thinking "Lev" (Draft, not yet approved by Grant).
 - Project numbers: BC-Q-YYNNN for Block Concepts. The prefix is configurable per organization (for Builder customers), so build it as a setting, not a constant.
 - Sentence case for nav, cards, chips and placeholders. Mono uppercase for labels, counts and stages.
@@ -68,3 +68,4 @@ The Block Concepts Word-document tokens (light theme, 2px and 4px corners, Aptos
 - Draft (not yet approved by Grant): Delete asks for a second click ("Confirm delete") because browser dialogs are not available in previews.
 - Draft (not yet approved by Grant): generated process documents are drawn on white drawing sheets (Block Concepts title block, Barlow Semi Condensed and Inter, blue accent) to match the existing 7332 Process Document; they sit as paper previews inside the Graphite app.
 - Draft (not yet approved by Grant): the Layout view draws blocks to scale on `bc-canvas` with numbered `bc-steel-blue` badges and `bc-steel-blue-text` flow arrows.
+- [stated] 2026-11-11: Grant changed the sidebar Design group to Mechanical, Electrical, Controls, Software, Manufacturing (Simulation removed). New icons `code` (Software) and `factory` (Manufacturing). Draft (not yet approved by Grant): child items for Software (Applications, Firmware, Integrations) and Manufacturing (Process plans, Work instructions, Tooling) are placeholders in P01 and the kit previews.

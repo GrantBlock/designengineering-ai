@@ -50,7 +50,7 @@ Design Engineering is Block Concepts' workspace for automation design: mechanica
 ## Iconography
 
 - Icons are thin line icons drawn for this app: a 24-unit grid with a 1.6 stroke (1.8–2 for small chevrons, plus and send), round caps and joins. In the UI, use `DE.Icon` (`currentColor`). The Icons asset group holds the same icons as SVG files for docs and exports.
-- Each discipline has a fixed icon: Mechanical `cube`, Electrical `bolt`, Controls `chip`, Simulation `wave`, Library `book`, with its items Standards, Assessments, Quotes, Documentation and Testing (`clipboard`, `tag`, `doc`, `check`) as children. Ask AI is always `sparkle`.
+- Each discipline has a fixed icon: Mechanical `cube`, Electrical `bolt`, Controls `chip`, Software `code`, Manufacturing `factory`, Library `book`, with its items Standards, Assessments, Quotes, Documentation and Testing (`clipboard`, `tag`, `doc`, `check`) as children. Ask AI is always `sparkle`.
 - Icons take their row's colour (`bc-muted` at rest, `bc-ink` on hover). The only filled icon is a set star.
 - No emoji and no illustration. The app mark (Logos → `de-mark.svg`) is the only picture.
 

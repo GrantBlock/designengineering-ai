@@ -13,6 +13,8 @@
     bolt: 'M13 3L5 13h6l-1 8 8-10h-6z',
     chip: 'M7 7h10v10H7zM10 3v4M14 3v4M10 17v4M14 17v4M3 10h4M3 14h4M17 10h4M17 14h4',
     wave: 'M3 12h3l3-7 4 14 3-7h5',
+    code: 'M8 7l-5 5 5 5M16 7l5 5-5 5M14 4l-4 16',
+    factory: 'M3 21h18M5 21V11l5 3V11l5 3V5h4v16',
     clipboard: 'M9 4h6v3H9zM6 6h12v15H6zM9 12h6M9 16h4',
     doc: 'M6 3h8l4 4v14H6zM14 3v4h4M9 13h6M9 17h6',
     tag: 'M3 12V4h8l10 10-8 8z',
