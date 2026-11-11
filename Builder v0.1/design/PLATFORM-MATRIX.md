@@ -20,7 +20,7 @@ Surfaces: **Web desktop** (browser, wide), **Web mobile** (browser or phone app,
 | P06 | Project: Exports (process document, ask for a quote, produce a quote) | Full | View, download | - | Review and approval need a full screen |
 | P12 | Process configuration (inside a project) | Full | View | - | |
 | P07 | Uploads | Full | Full (camera) | - | Take a pic is mobile |
-| P08 | 3D designer | Full | View (orbit, ask) | - | Chat-only building could work on mobile later |
+| P08 | 3D designer (extension) | Full | View (orbit, ask) | - | Purchased extension; chat-only building could work on mobile later |
 | P09 | Vault | Full | Full (browse, open) | - | |
 | P11 | Calculators (custom, built from a template) | Full (build) | Use | - | Build on desktop, run anywhere |
 | P15 | Settings: Account, Billing, Usage, Preferences, Privacy | Full | Full | - | |
@@ -53,6 +53,21 @@ Grant, 2026-11-11: **chat in general** is the free tier; **chat in projects** is
 3. May a free person attach files to a general chat, or does anything with a file need a project?
 4. Does the Starter bundle unlock project chat, or only more general chat?
 
+## Plans and extensions
+
+Grant, 2026-11-11: **Pro gets projects, and Pro then buys the extensions.** Extensions are Design (the 3D designer, P08) and Builder (P17). Draft (not yet approved by Grant): everything below is a proposal.
+
+| | Free (general chat) | Pro | Pro plus Design | Pro plus Builder |
+| --- | --- | --- | --- | --- |
+| Chat in general | Yes, with a daily cap | Yes | Yes | Yes |
+| Projects and project chat | - | Yes | Yes | Yes |
+| Vault, Uploads, Dashboard, Settings | Settings and Dashboard only | Yes | Yes | Yes |
+| Calculators, process flows, plans and quotes | - | Yes | Yes | Yes |
+| 3D designer (P08) | - | - (view a model in the Vault) | Yes | - |
+| Builder (P17) and Lite packages | - | - | - | Yes (desktop only) |
+
+Navigation: the Design and Builder rows stay in the sidebar for everyone. Without the extension they open a short page that says what it is and how to add it (Settings, Billing, Extensions). Draft (not yet approved by Grant).
+
 ## Open questions
 
 1. Should phones edit Specifications and Process configuration fields, or only view?
@@ -63,3 +78,4 @@ Grant, 2026-11-11: **chat in general** is the free tier; **chat in projects** is
 
 - [stated] 2026-11-11: Grant: Builder is desktop only; a decision matrix is wanted because not everything needs to be on the mobile app. Matrix created as a Draft.
 - [stated] 2026-11-11: Grant: chat in general is the free tier; chat in projects is in the Pro plan. The Chat by plan section lists the limits as a Draft.
+- [stated] 2026-11-11: Grant: Builder is an extension along with Design. Pro gets projects, then buys the extensions. Added the Plans and extensions table (Draft).

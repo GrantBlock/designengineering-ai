@@ -424,8 +424,11 @@ button:focus-visible, textarea:focus-visible, input:focus-visible, [role="button
   +'<table class="o-tbl"><tr><th>Device</th><th>Location</th><th>Signed in</th><th>Last active</th></tr>'+DEV.map(function(d){return '<tr><td>'+d[0]+(d[4]?'<span class="de-tag o-cur">Current</span>':'')+'</td><td>'+d[1]+'</td><td>'+d[2]+'</td><td>'+d[3]+'</td></tr>'}).join('')+'</table></div>'}
  function pBilling(){var low=st.bal<5;return '<div class="o-sec"><h3>Plan</h3>'
   +row('Pro <span class="de-tag o-cur">Current</span>','$30 per user per month. Faster responses, priority access, premium models, desktop app.','<button class="o-btn" type="button">Change plan</button>')
-  +row('Builder <span class="de-tag o-cur">Active</span>','Extension. Packages an organization\'s Vault into Lite packages. $600 per seat per year (A).','<button class="o-btn" type="button">Manage</button>')
+  +row('Projects','Included with Pro: shared projects, project chat, uploads and the Vault.','<span class="de-tag">Included</span>')
   +row('Storage','12.4 GB of 20 GB used. Each extra 20 GB is $10 a month.','<div class="o-bar" role="progressbar" aria-valuenow="62" aria-valuemin="0" aria-valuemax="100" aria-label="Storage used"><i style="width:62%"></i></div>')+'</div>'
+  +'<div class="o-sec"><h3>Extensions</h3>'
+  +row('Design <span class="de-tag o-cur">Active</span>','The 3D designer: build and change parts by chatting. Price [$X] a month (A).','<button class="o-btn" type="button">Manage</button>')
+  +row('Builder <span class="de-tag o-cur">Active</span>','Packages an organization\'s Vault into Lite packages. $600 per seat per year (A). Desktop only.','<button class="o-btn" type="button">Manage</button>')+'</div>'
   +'<div class="o-sec"><h3>Wallet</h3>'
   +row('Balance',(low?'Your balance is low. At zero I stop answering until you add funds.':'Starter bundle tokens are spent before your wallet.'),'<span class="o-big" style="'+(low?'color:#dcae62':'')+'">'+m(st.bal)+'</span>')
   +row('Add funds','Paid by [card ending 4242] (A) through Stripe.','<div class="o-amts">'+[10,25,50,100].map(function(a){return '<button type="button" data-a="'+a+'" class="'+(a===st.amt?'is-on':'')+'">$'+a+'</button>'}).join('')+'<button class="o-btn is-main" data-act="add" type="button">Add '+m(st.amt)+'</button></div>')
