@@ -120,3 +120,7 @@ Log for [[designengineering-ai]]; companion to [[designengineering-ai-sba-memory
 - [stated] 2026-11-09: D2 Web framework is Next.js + TypeScript
 - [stated] 2026-11-09: Claude builds as much as possible to Grant's architecture and instructions; Grant services the app himself for the first 3 years (A); no temporary shortcuts that need rebuilding
 - Draft (not yet approved by Grant): Next.js runs on Workers through the OpenNext Cloudflare adapter; see Builder v0.1/development-path.md
+
+## Signing & approvals (I01, 2026-11-09)
+- [stated] 2026-11-09: D13 (draft until the App Plan log is updated): vendor and customer documents (approval drawings, contracts, proposals) use a widely trusted e-sign platform from the start, behind a thin adapter, chosen for compatibility with Grant's own system requirements; not for internal or cGMP use; signed paper scans can be uploaded; the task owner closes a step by uploading the document; PO and invoice tracking is track-only. Platform not yet chosen (DocuSign, PandaDoc and others under review).
+- [stated] 2026-11-09: the app is intended as a company organization app that collects what Grant does across his current apps (monday.com, Onshape, Drive and others) into one place; missing features are added to ideas.md as they come up.

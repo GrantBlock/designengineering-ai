@@ -50,13 +50,13 @@ Design Engineering is Block Concepts' workspace for automation design: mechanica
 ## Iconography
 
 - Icons are thin line icons drawn for this app: a 24-unit grid with a 1.6 stroke (1.8–2 for small chevrons, plus and send), round caps and joins. In the UI, use `DE.Icon` (`currentColor`). The Icons asset group holds the same icons as SVG files for docs and exports.
-- Each discipline has a fixed icon: Mechanical `cube`, Electrical `bolt`, Controls `chip`, Simulation `wave`, Library `book`, with its items Standards, Assessments, Quotes, Documentation and Testing (`clipboard`, `tag`, `doc`, `check`) as children. Ask AI is always `sparkle`.
+- Each discipline has a fixed icon: Mechanical `cube`, Electrical `bolt`, Controls `chip`, Software `code`; Operations items Manufacturing `factory`, Process `process`, Maintenance `wrench`; Vault items Documents `doc` and Uploads `upload`; Tools items Simulation `wave` and Troubleshoot `search` and Data Analysis `chart`; New `plus`. Design items have no children. Ask AI is always `sparkle`.
 - Icons take their row's colour (`bc-muted` at rest, `bc-ink` on hover). The only filled icon is a set star.
 - No emoji and no illustration. The app mark (Logos → `de-mark.svg`) is the only picture.
 
 ## Building a new page
 
-1. **Desktop:** `AppShell` with `Sidebar` (the app's groups: top, Design, Library) and `TopBar` (crumb as "Section  /  Item").
+1. **Desktop:** `AppShell` with `Sidebar` (the app's groups: top, Design, Operations, Vault, Tools; headings collapse) and `TopBar` (crumb as "Section  /  Item").
 2. **Empty page:** `Hero` → `Composer` → `Panel`s of `PromptCard`s. **Working page:** `Message`s, with the `Composer` sticky at the bottom.
 3. **Collections:** a `Panel` opened by a `SectionHeader`, holding cards three across. Use `EmptyNote` when the collection is empty.
 4. **Mobile:** `MobileHeader` → `Hero mobile` → an `ActionCard` rail (one `primary` first) → `SectionHeader mobile` + `ProjectRow`s, with the dock (`MobileComposer` + `TabBar`) fixed at the bottom.
@@ -66,7 +66,7 @@ Design Engineering is Block Concepts' workspace for automation design: mechanica
 
 - Graphite is the only app theme. The older Block Concepts token set (light theme, 2px and 4px corners, Word-document colors, Aptos) is for Block Concepts Word documents only and is not part of this system.
 - Wordmark: "Design Engineering" (formal, in the UI) and "designengineering.ai" (slug, URLs and domains).
-- Mobile navigation mirrors the desktop sidebar: Home, Recents, Projects, Design, Library.
+- Mobile navigation mirrors the desktop sidebar: New, Recents, Projects, Design, More (More stands for Operations, Vault and Tools).
 - The disarmed send button is `bc-field-send-off` with a `bc-field-muted` arrow on desktop and mobile.
 - Text size: mobile offers Large (1) and Extra large (1.12 scale) as a user setting.
 - Project numbers (BC-Q-YYNNN) are configurable per organization.

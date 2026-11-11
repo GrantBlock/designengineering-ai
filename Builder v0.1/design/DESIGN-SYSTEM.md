@@ -23,7 +23,7 @@ Tokens `bc-space-*`, `bc-radius-*`, `bc-shadow-*`. Shell gap 10px, mobile gutter
 - **Today row:** `bc-steel-blue-tint` ground with a 3px `bc-steel-blue` left edge, date shown as "Today" in `bc-steel-blue-text`.
 
 ## Navigation (same on desktop and mobile)
-Home, Recents, Projects, then Design (Mechanical, Electrical, Controls, Simulation), then Library (Standards, Assessments, Quotes, Documentation, Testing). Desktop shows these in the sidebar. Mobile shows five tabs: Home, Recents, Projects, Design, Library. "Ask" is the composer and the primary ActionCard, not a tab or nav item.
+New, Recents, Projects (plain buttons, no drop-downs), then three collapsible headings: Design (Mechanical, Electrical, Controls, Software; no sub-items), Operations (Manufacturing, Process, Maintenance), Vault (Documents, Uploads) and Tools (Simulation, Troubleshoot, Data Analysis). Desktop shows these in the sidebar. Mobile has five tabs: New, Recents, Projects, Design, More (More stands for Operations, Vault and Tools). "Ask" is the composer and the primary ActionCard, not a tab or nav item.
 
 ## Components
 Names and props are in `system-kit/components/*/README.md`: AppShell, Sidebar, NavItem, TopBar, Hero, Composer, MobileComposer, Message, Panel, SectionHeader, PromptCard, EmptyNote, Button, IconButton, Tag, Avatar, Icon, SearchField, ActionCard, ProjectRow, StageProgress, MobileHeader, TabBar.
@@ -37,7 +37,7 @@ Names and props are in `system-kit/components/*/README.md`: AppShell, Sidebar, N
 ## Content
 - Voice: plain, technical, no emoji, no exclamation marks. Address the person as "you".
 - Assistant voice: first person singular ("I will start by...", "Tell me..."), since the assistant has its own name. Draft (not yet approved by Grant).
-- Prompt card categories: Mechanical, Electrical, Controls, Simulation, Library (Library replaces Deliver).
+- Prompt card categories: Mechanical, Electrical, Controls, Software, Manufacturing, Vault (Library was removed 2026-11-11).
 - Assistant name: undecided. Use the placeholder `[Assistant name]` everywhere; current thinking "Lev" (Draft, not yet approved by Grant).
 - Project numbers: BC-Q-YYNNN for Block Concepts. The prefix is configurable per organization (for Builder customers), so build it as a setting, not a constant.
 - Sentence case for nav, cards, chips and placeholders. Mono uppercase for labels, counts and stages.
@@ -63,4 +63,20 @@ The Block Concepts Word-document tokens (light theme, 2px and 4px corners, Aptos
 - Draft (not yet approved by Grant): assistant speaks in first person singular.
 - (Superseded by the line above) Library holds Standards, Assessments, Quotes, Documentation and Testing as children. Mobile "Design" tab uses the `cube` icon.
 - Draft (not yet approved by Grant): the design system is whatever P01 and P02 already use. (Earlier line, kept.)
+- [stated] 2026-11-11: Projects section pages P05, P06 and P18 are complete for now (Grant). They are built from `system-kit/` tokens and components. Patterns they introduced, none yet confirmed one by one:
+- Draft (not yet approved by Grant): two-pane detail pages use a content column up to 1120px (the system caps at 760px); the 760px cap stays for list and single-column pages.
+- Draft (not yet approved by Grant): page tabs are a numbered row (circle with number, label, steel-blue underline on the active tab), used for the P06 sections.
+- Draft (not yet approved by Grant): progress fills (stage bars, Gantt bars) use the `bc-steel-blue` fill; Not started stays an empty `bc-surface-raised` bar.
+- Draft (not yet approved by Grant): "Next" and "Generate" actions are a chip with a `bc-steel-blue` border and `bc-steel-blue-text` label, not a filled button.
+- Draft (not yet approved by Grant): dropdown menu (Import, Export) is a chip button with a chevron and a `bc-surface-raised` menu with `bc-edge` border; sections can collapse with a chevron.
+- Draft (not yet approved by Grant): Delete asks for a second click ("Confirm delete") because browser dialogs are not available in previews.
+- Draft (not yet approved by Grant): generated process documents are drawn on white drawing sheets (Block Concepts title block, Barlow Semi Condensed and Inter, blue accent) to match the existing 7332 Process Document; they sit as paper previews inside the Graphite app.
+- Draft (not yet approved by Grant): the Layout view draws blocks to scale on `bc-canvas` with numbered `bc-steel-blue` badges and `bc-steel-blue-text` flow arrows.
+- [stated] 2026-11-11: Grant changed the sidebar Design group to Mechanical, Electrical, Controls, Software, Manufacturing (Simulation removed). New icons `code` (Software) and `factory` (Manufacturing). Draft (not yet approved by Grant): child items for Software (Applications, Firmware, Integrations) and Manufacturing (Process plans, Work instructions, Tooling) are placeholders in P01 and the kit previews.
+- [stated] 2026-11-11: Grant changed the desktop sidebar to New, Recents, Projects, then collapsible headings Design (five items, no sub-items), Vault (Documents, Uploads) and Tools (Simulation). Library and its children are removed; Home is renamed New. The two Library prompt cards in P01 now use the category Vault. Draft (not yet approved by Grant): mobile tabs (Home, Recents, Projects, Design, Library) are unchanged until Grant says how they should map; heading open/closed state is not remembered between visits.
+- [stated] 2026-11-11: Grant made Recents and Projects plain buttons with no drop-down lists or chevrons.
+- [stated] 2026-11-11: Grant moved Manufacturing out of Design into a new collapsible heading Operations (Manufacturing, Process, Maintenance), and added Troubleshoot under Tools. Order is Design, Operations, Vault, Tools. New icons `process` and `wrench`; Troubleshoot uses the `search` icon (Draft, not yet approved by Grant).
+- [stated] 2026-11-11: Grant added Data Analysis under Tools. Icon `chart` (bar chart) is Draft (not yet approved by Grant).
+- [stated] 2026-11-11: Grant asked for the mobile tabs to match the desktop sidebar. Mobile tabs are now New, Recents, Projects, Design, More. Draft (not yet approved by Grant): More stands for Operations, Vault and Tools because five tabs cannot hold all groups; the More screen is not designed yet. The P02 Library prompt card now uses the category Vault.
 - [stated] 2026-11-11: Dashboard layout (P19) approved: 1120px two-column width, status tags and group progress, priority and done colors, Today row highlight. Semantic colors are an exception to the Steel Blue-only rule, limited to status.
+- [stated] 2026-11-11: Grant approved P03 (Chat conversation view) and its patterns: numbered citation chips, source cards, Sources side panel (300px, desktop above 1100px), attachment file chips, mobile source bottom sheet, content column widened to 1084px when a side panel is present.

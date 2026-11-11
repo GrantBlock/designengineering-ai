@@ -2,6 +2,7 @@
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Project workspace — Design Engineering</title>
 <link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 @font-face{font-family:"Overpass";src:url("../../system-kit/fonts/Overpass.woff2") format("woff2");font-weight:300 800;font-style:normal;font-display:swap}
 @font-face{font-family:"Overpass Mono";src:url("../../system-kit/fonts/OverpassMono.woff2") format("woff2");font-weight:400 500;font-style:normal;font-display:swap}
@@ -138,6 +139,14 @@ button:focus-visible, textarea:focus-visible, input:focus-visible, [role="button
 .de-nav-row > span:not(.de-tag) { flex: 1; padding-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .de-nav-chev { color: var(--bc-muted); transition: transform 250ms; }
 .de-nav-row.is-open .de-nav-chev { transform: rotate(90deg); }
+.de-collapsible { margin-top: 22px; }
+.de-group-head { display: flex; align-items: center; justify-content: space-between; width: 100%; padding: 6px 10px; border: none; border-radius: var(--bc-radius-control); background: transparent; color: var(--bc-muted); cursor: pointer; }
+.de-group-head:hover { background: var(--bc-surface-raised); color: var(--bc-ink); }
+.de-group-head .de-nav-chev { transform: rotate(90deg); }
+.is-collapsed .de-group-head .de-nav-chev { transform: rotate(0deg); }
+.is-collapsed .de-group-body { display: none; }
+.de-group-body { display: flex; flex-direction: column; gap: 2px; margin-top: 4px; }
+.de-nav-empty { padding: 6px 10px; font-size: 13px; color: var(--bc-muted); opacity: .7; }
 .de-nav-children { display: flex; flex-direction: column; gap: 1px; margin: 2px 0 6px 18px; padding-left: 12px; border-left: 1px solid var(--bc-hairline); }
 .de-nav-child { display: flex; align-items: center; min-height: 32px; padding: 2px 10px 0; border: none; border-radius: var(--bc-radius-control); background: transparent; color: var(--bc-muted); font: inherit; font-size: 13px; text-align: left; cursor: pointer; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .de-nav-child:hover { background: var(--bc-surface-raised); color: var(--bc-ink); }
@@ -342,6 +351,111 @@ select.pg-in{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xml
 .s-sec .g-wrap{border-bottom:1px solid var(--bc-hairline);margin-bottom:var(--bc-space-3)}
 .s-sec .g-bar{border-top:1px solid var(--bc-hairline)}
 @media (max-width:760px){.s-act{margin-left:0;width:100%}.s-sub{width:100%}.s-ren{width:100%}.s-sec{padding:0 0 var(--bc-space-3);background:var(--bc-surface);border:1px solid var(--bc-edge);border-radius:var(--bc-radius-panel)}}
+.doc-wrap{min-width:0;width:100%}
+.doc-sheets{display:flex;flex-direction:column;gap:var(--bc-space-4);align-items:center}
+.doc-pagewrap{box-shadow:0 6px 26px rgba(0,0,0,.45);background:#fff;overflow:hidden;flex:0 0 auto}
+.doc-scale{transform-origin:top left;position:relative;background:#fff;color:#222;font-family:"Inter","Helvetica Neue",Arial,sans-serif}
+.p6-rail-doc{position:static}
+.doc-actions{margin-top:var(--bc-space-3)}
+.doc-file{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none}
+.p18-drop-l{display:inline-flex;cursor:pointer}
+.doc-file:focus-visible+.de-btn{outline:2px solid var(--bc-steel-blue-text);outline-offset:2px}
+.ds-frame{position:absolute;inset:14px;border:2px solid #222}.ds-frame2{position:absolute;inset:20px;border:1px solid #222}
+.ds-area1{position:absolute;left:28px;top:28px;right:28px;bottom:150px}
+.ds-h1{position:absolute;left:14px;top:8px;font:700 22px/1 "Barlow Semi Condensed","Overpass",sans-serif;letter-spacing:.14em;color:#333}
+.ds-map{position:absolute;left:0;right:0;top:44px;bottom:0}.ds-map svg{width:100%;height:100%}
+.ds-map .sm-n{font:700 12px "Barlow Semi Condensed","Overpass",sans-serif;fill:#222;text-transform:uppercase;letter-spacing:.02em}
+.ds-map .sm-d{font:9px "Barlow Semi Condensed","Overpass",sans-serif;fill:#888}
+.ds-map .sm-a{fill:none;stroke:#1a6dbf;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.ds-map .sm-b{font:700 11px "Inter",sans-serif;fill:#fff}
+.ds-tb{position:absolute;left:20px;right:20px;bottom:20px;height:130px;border-top:1px solid #222}
+.ds-area2{position:absolute;left:34px;right:34px;top:34px;bottom:150px;overflow:hidden}
+.ds-h2{font:700 24px/1.1 "Barlow Semi Condensed","Overpass",sans-serif;letter-spacing:.1em;color:#222}
+.ds-sub{font-size:12px;color:#888;letter-spacing:.06em;margin-top:2px;text-transform:uppercase}
+.ds-rule{height:2px;background:#222;margin:12px 0 16px}
+.ds-p{font-size:13px;line-height:1.6;color:#333;margin:0 0 16px}
+.ds-h3{font:700 15px/1.2 "Barlow Semi Condensed","Overpass",sans-serif;letter-spacing:.08em;color:#1a6dbf;text-transform:uppercase;margin:4px 0 8px}
+.ds-t{width:100%;border-collapse:collapse;font-size:11px}
+.ds-t th{background:#1a6dbf;color:#fff;text-align:left;padding:6px;font-weight:600}
+.ds-t td{padding:7px 6px;color:#444;border-bottom:1px solid #e6e6e6}.ds-t tr.alt td{background:#f6f9fc}
+.ds-t td.n{font-weight:700;color:#1a6dbf}.ds-t td b{color:#222}.ds-t .ty{color:#999;font-size:10px}.ds-t td.fl{white-space:nowrap;text-align:center;color:#1a6dbf;font-size:12px}
+.ds-two{display:flex;gap:24px;margin-top:20px}
+.ds-ol{margin:0;padding-left:18px;font-size:12px;line-height:1.7;color:#333}
+.ut{display:flex;justify-content:space-between;border-bottom:1px dotted #ccc;font-size:12px;line-height:1.9;color:#333}.ut.last{border-bottom:none}
+.ds-img{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:#fff}.ds-img img{max-width:100%;max-height:100%;display:block}
+.ds-empty{position:absolute;inset:20px;display:flex;align-items:center;justify-content:center;font-size:16px;color:#888;text-align:center;padding:40px}
+.tb{display:flex;height:100%}
+.tb-prop{flex:0 0 34%;border-right:1px solid #222;padding:6px 8px;display:flex;flex-direction:column;gap:4px}
+.tb-fine{font-size:7px;line-height:1.35;color:#444}.tb-note{font-size:8px;color:#666}
+.tb-mid{flex:1;border-right:1px solid #222;display:flex;flex-direction:column}
+.tb-co{flex:1;padding:8px 10px;border-bottom:1px solid #222;display:flex;flex-direction:column;justify-content:center}
+.tb-name{font:700 22px/1.1 "Barlow Semi Condensed","Overpass",sans-serif;letter-spacing:.02em;color:#111}.tb-mail{font-size:9px;color:#555;margin-top:2px}
+.tb-row{display:flex}
+.tb-right{flex:0 0 210px;display:flex;flex-direction:column}
+.tb-c{border-right:1px solid #222;padding:4px 8px;display:flex;flex-direction:column;justify-content:center;min-width:0}
+.tb-l{font-size:8px;letter-spacing:.06em;color:#666;text-transform:uppercase}.tb-v{font:700 13px/1.2 "Barlow Semi Condensed","Overpass",sans-serif;color:#111;margin-top:1px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.tb-foot{flex:0 0 26px;padding:3px 8px;font-size:8px;color:#555;display:flex;align-items:center;justify-content:space-between}.tb-foot b{color:#111}
+@page land{size:11in 8.5in;margin:0}@page port{size:8.5in 11in;margin:0}
+.ds-land{page:land}.ds-port{page:port}
+@media print{
+ body{background:#fff}
+ .de-sidebar,.de-topbar,.pg-head,.p6-steps,.p6-rail-doc,.pg-mobile,.pg-mheader,.pg-dock{display:none!important}
+ .de-shell{display:block;height:auto;padding:0;background:#fff}.de-shell-scroll{overflow:visible;padding:0}.de-shell-column{max-width:none}
+ .pg-grid{display:block;padding:0}.doc-sheets{display:block}
+ .doc-pagewrap{width:auto!important;height:auto!important;box-shadow:none;break-after:page}
+ .doc-scale{transform:none!important}
+}
+.doc-gen-grid{display:grid;grid-template-columns:260px minmax(0,1fr);gap:var(--bc-space-6);padding:var(--bc-space-2) 0 0}
+.doc-inc{display:flex;flex-direction:column;gap:2px}
+.doc-inc label{display:flex;align-items:center;gap:10px;font-size:14px;padding:7px 0;cursor:pointer}
+.doc-inc input{accent-color:var(--bc-steel-blue);width:16px;height:16px}
+.doc-inc .doc-sub{padding-left:26px;font-size:13px;color:var(--bc-muted)}.doc-inc .doc-sub span{font-family:var(--font-mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;margin-left:auto}
+.doc-inc .de-label{margin-bottom:6px}
+.g-none2{font-size:13px;color:var(--bc-muted);padding-left:26px}
+.doc-actions{display:flex;gap:var(--bc-space-2);justify-content:flex-end;margin-top:var(--bc-space-4);padding-top:var(--bc-space-3);border-top:1px solid var(--bc-hairline)}
+.doc-actions .is-next,.doc-pact .is-next{border-color:var(--bc-steel-blue);color:var(--bc-steel-blue-text)}
+.doc-sec .de-section-head{height:44px;gap:var(--bc-space-3)}
+.doc-sec .de-section-head .s-tog+.de-label{margin-right:auto}
+.doc-sec.is-closed>:not(.de-section-head){display:none}
+.doc-sec.is-closed .de-section-head{margin-bottom:0;border-bottom:none}
+.doc-pact{display:flex;gap:4px}
+.hist-row{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:var(--bc-space-3);padding:12px 0;border-bottom:1px solid var(--bc-hairline)}.hist-row:last-child{border-bottom:none}
+.hist-main{display:flex;flex-direction:column;gap:2px;min-width:0}.hist-main b{font-size:14px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.hist-main span{font-family:var(--font-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--bc-muted)}
+.hist-act{display:flex;gap:4px}
+.ds-map .g-mo{font:600 11px "Inter",sans-serif;fill:#555;text-transform:uppercase;letter-spacing:.04em}
+.ds-map .g-nm{font:600 12px "Inter",sans-serif;fill:#222}
+.ds-map .g-dt{font:10px "Inter",sans-serif;fill:#888}
+.ds-map .g-td{font:700 9px "Inter",sans-serif;fill:#1a6dbf;letter-spacing:.08em}
+@media print{.doc-hide-print,.doc-prevhead{display:none!important}.doc-sec{background:none;border:none;box-shadow:none;padding:0}}
+@media (max-width:760px){.fl-stage{height:480px}.fl-f{width:100%}.fl-mini{display:none}.doc-gen-grid{grid-template-columns:1fr}.hist-row{grid-template-columns:auto 1fr}.hist-act{grid-column:1/-1}.doc-actions{flex-wrap:wrap}.fl-dock{max-width:calc(100% - 24px);overflow-x:auto}.fl-view{bottom:76px}}
+.lv-panel{padding-bottom:12px}
+.lv-stage{position:relative;height:540px;border-radius:var(--bc-radius-card);background:var(--bc-canvas);border:1px solid var(--bc-edge-soft);overflow:hidden}
+.lv-stage svg{width:100%;height:100%;display:block}
+.lv-box{fill:var(--bc-surface-raised);stroke:var(--bc-edge-soft);stroke-width:1.5}
+.lv-b{cursor:pointer}.lv-b:hover .lv-box{stroke:var(--bc-steel-blue-edge)}.lv-b.is-sel .lv-box{stroke:var(--bc-steel-blue-text);stroke-width:2}
+.lv-b:focus-visible{outline:none}.lv-b:focus-visible .lv-box{stroke:var(--bc-steel-blue-text);stroke-width:2}
+.lv-ar{fill:none;stroke:var(--bc-steel-blue-text);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;pointer-events:none}
+.lv-n{fill:var(--bc-ink);font-family:var(--font-sans);font-size:13px;font-weight:600;pointer-events:none}
+.lv-d{fill:var(--bc-muted);font-family:var(--font-mono);font-size:11px;letter-spacing:.06em;pointer-events:none}
+.lv-bd{pointer-events:none}.lv-bd circle{fill:var(--bc-steel-blue)}.lv-bd text{fill:var(--bc-on-steel-blue);font-family:var(--font-sans);font-size:12px;font-weight:700;pointer-events:none}
+.lv-selhead{display:flex;align-items:center;gap:var(--bc-space-3);margin-bottom:var(--bc-space-3)}.lv-selhead b{font-size:15px;font-weight:600;padding-top:2px}
+.lv-edit{margin-top:var(--bc-space-3);width:100%;justify-content:center;height:var(--bc-touch-target)}
+@media (max-width:760px){.lv-stage{height:420px}}
+.s-danger{color:var(--bc-ink);background:var(--bc-surface-raised);border:1px solid var(--bc-steel-blue-edge)}
+.s-arch{margin-top:var(--bc-space-1)}
+.s-arow{padding:12px 16px}
+.imp-body{padding:var(--bc-space-2) 0}
+.imp-hint,.imp-msg{margin:var(--bc-space-2) 0 0}
+.imp-msg{color:var(--bc-steel-blue-text);min-height:18px}
+.dd{position:relative}
+.dd-b .de-icon{transition:transform 200ms}.dd-b[aria-expanded=true] .de-icon{transform:rotate(180deg)}
+.dd-m{position:absolute;top:calc(100% + 4px);left:0;z-index:30;min-width:250px;display:flex;flex-direction:column;gap:2px;padding:4px;background:var(--bc-surface-raised);border:1px solid var(--bc-edge);border-radius:var(--bc-radius-card);box-shadow:var(--bc-shadow-panel)}
+.dd-m button{all:unset;box-sizing:border-box;display:flex;align-items:center;min-height:var(--bc-control-height);padding:2px 10px 0;border-radius:var(--bc-radius-control);font-size:13px;color:var(--bc-ink);cursor:pointer}
+.dd-m button:hover,.dd-m button:focus-visible{background:var(--bc-surface)}
+.dd-m button:focus-visible{outline:2px solid var(--bc-steel-blue-text);outline-offset:-2px}
+.spec-msg{margin:0;min-height:18px;color:var(--bc-steel-blue-text)}
+@media print{#doc-prev.is-closed>*{display:block!important}}
 @media (max-width:760px){.p6-dl{grid-template-columns:repeat(2,minmax(0,1fr))}.p6-step{flex:1;justify-content:center;padding:2px 6px 0;font-size:13px}.p6-ref .de-search{width:100%}.p6-card{padding:14px}.p6-card-head .de-btn{height:var(--bc-touch-target)}}
 
 </style></head>
@@ -350,9 +464,8 @@ select.pg-in{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xml
  <aside class="de-sidebar">
   <div class="de-sidebar-head"><img src="../../assets/favicon.svg" alt=""><span class="de-brand">Design Engineering</span></div>
   <div class="de-sidebar-search"><label class="de-search"><svg class="de-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg><input type="search" placeholder="Quick search" aria-label="Quick search"><span class="de-kbd">Ctrl K</span></label></div>
-  <nav class="de-sidebar-nav de-scroll" aria-label="Main"><div class="de-nav-group"><div class="de-nav-item"><button class="de-nav-row"><svg class="de-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l9-7 9 7v9h-6v-6H9v6H3z"/></svg><span>Home</span></button></div><div class="de-nav-item"><button class="de-nav-row"><svg class="de-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18zM12 7v5l3 2"/></svg><span>Recents</span><svg class="de-icon de-nav-chev" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button></div><div class="de-nav-item"><button class="de-nav-row is-active"><svg class="de-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h6l2 2h10v11H3z"/></svg><span>Projects</span><svg class="de-icon de-nav-chev" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button></div></div>
-<div class="de-nav-group"><div class="de-label">Design</div><div class="de-nav-item"><button class="de-nav-row"><svg class="de-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9zM12 12l8-4.5M12 12v9M12 12L4 7.5"/></svg><span>Mechanical</span><svg class="de-icon de-nav-chev" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button></div><div class="de-nav-item"><button class="de-nav-row"><svg class="de-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 3L5 13h6l-1 8 8-10h-6z"/></svg><span>Electrical</span><svg class="de-icon de-nav-chev" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button></div><div class="de-nav-item"><button class="de-nav-row"><svg class="de-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 7h10v10H7zM10 3v4M14 3v4M10 17v4M14 17v4M3 10h4M3 14h4M17 10h4M17 14h4"/></svg><span>Controls</span><svg class="de-icon de-nav-chev" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button></div><div class="de-nav-item"><button class="de-nav-row"><svg class="de-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12h3l3-7 4 14 3-7h5"/></svg><span>Simulation</span><span class="de-tag">New</span><svg class="de-icon de-nav-chev" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button></div></div>
-<div class="de-nav-group"><div class="de-nav-item"><button class="de-nav-row"><svg class="de-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3zM5 17a3 3 0 0 1 3-3h11"/></svg><span>Library</span><svg class="de-icon de-nav-chev" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button></div></div></nav>
+  <nav class="de-sidebar-nav de-scroll" aria-label="Main"><div class="de-nav-group"><div class="de-nav-item"><button class="de-nav-row"><svg class="de-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg><span>New</span></button></div><div class="de-nav-item"><button class="de-nav-row"><svg class="de-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18zM12 7v5l3 2"/></svg><span>Recents</span></button></div><div class="de-nav-item"><button class="de-nav-row is-active"><svg class="de-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h6l2 2h10v11H3z"/></svg><span>Projects</span></button></div></div><div class="de-nav-group de-collapsible"><button class="de-group-head" aria-expanded="true"><span class="de-label">Design</span><svg class="de-icon de-nav-chev" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button><div class="de-group-body"><div class="de-nav-item"><button class="de-nav-row"><svg class="de-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9zM12 12l8-4.5M12 12v9M12 12L4 7.5"/></svg><span>Mechanical</span></button></div><div class="de-nav-item"><button class="de-nav-row"><svg class="de-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 3L5 13h6l-1 8 8-10h-6z"/></svg><span>Electrical</span></button></div><div class="de-nav-item"><button class="de-nav-row"><svg class="de-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 7h10v10H7zM10 3v4M14 3v4M10 17v4M14 17v4M3 10h4M3 14h4M17 10h4M17 14h4"/></svg><span>Controls</span></button></div><div class="de-nav-item"><button class="de-nav-row"><svg class="de-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5M14 4l-4 16"/></svg><span>Software</span></button></div></div></div><div class="de-nav-group de-collapsible"><button class="de-group-head" aria-expanded="true"><span class="de-label">Operations</span><svg class="de-icon de-nav-chev" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button><div class="de-group-body"><div class="de-nav-item"><button class="de-nav-row"><svg class="de-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18M5 21V11l5 3V11l5 3V5h4v16"/></svg><span>Manufacturing</span></button></div><div class="de-nav-item"><button class="de-nav-row"><svg class="de-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h6v5H4zM14 14h6v5h-6zM10 7.5h2a2 2 0 0 1 2 2V14"/></svg><span>Process</span></button></div><div class="de-nav-item"><button class="de-nav-row"><svg class="de-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18v3h3l6.3-6.3a4 4 0 0 0 5.4-5.4l-2.4 2.4-2.6-.6-.6-2.6z"/></svg><span>Maintenance</span></button></div></div></div><div class="de-nav-group de-collapsible"><button class="de-group-head" aria-expanded="true"><span class="de-label">Vault</span><svg class="de-icon de-nav-chev" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button><div class="de-group-body"><div class="de-nav-item"><button class="de-nav-row"><svg class="de-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h8l4 4v14H6zM14 3v4h4M9 13h6M9 17h6"/></svg><span>Documents</span></button></div><div class="de-nav-item"><button class="de-nav-row"><svg class="de-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4M7 9l5-5 5 5M4 20h16"/></svg><span>Uploads</span></button></div></div></div><div class="de-nav-group de-collapsible"><button class="de-group-head" aria-expanded="true"><span class="de-label">Tools</span><svg class="de-icon de-nav-chev" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button><div class="de-group-body"><div class="de-nav-item"><button class="de-nav-row"><svg class="de-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12h3l3-7 4 14 3-7h5"/></svg><span>Simulation</span></button></div><div class="de-nav-item"><button class="de-nav-row"><svg class="de-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 4a7 7 0 1 0 0 14 7 7 0 0 0 0-14zM21 21l-5-5"/></svg><span>Troubleshoot</span></button></div><div class="de-nav-item"><button class="de-nav-row"><svg class="de-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h16M7 16v-5M12 16V5M17 16v-8"/></svg><span>Data Analysis</span></button></div></div></div>
+  </nav>
   <div class="de-sidebar-foot"><button class="de-btn-row"><svg class="de-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .8-1 1.5V14M12 17.5v.01"/></svg><span>Support</span></button></div>
  </aside>
  <main class="de-shell-main">
@@ -364,31 +477,75 @@ select.pg-in{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xml
     <div class="p6-meta"><span>Stage 3 — Build</span><div class="de-stages"><i class="is-done"></i><i class="is-done"></i><i class="is-done"></i><i></i><i></i></div></div>
    </div>
    <div class="p6-steps" role="tablist" aria-label="Project sections">
-    <button class="p6-step" role="tab" id="t1" aria-selected="true" aria-controls="s1"><i>1</i>Process layout</button>
-    <button class="p6-step" role="tab" id="t2" aria-selected="false" aria-controls="s2"><i>2</i>Process document</button>
-    <button class="p6-step" role="tab" id="t3" aria-selected="false" aria-controls="s3"><i>3</i>Schedule</button>
+    <button class="p6-step" role="tab" id="t5" aria-selected="false" aria-controls="s5"><i>1</i>Import</button>
+    <button class="p6-step" role="tab" id="t1" aria-selected="true" aria-controls="s1"><i>2</i>Specifications</button>
+    <button class="p6-step" role="tab" id="t2" aria-selected="false" aria-controls="s2"><i>3</i>Layout</button>
+    <button class="p6-step" role="tab" id="t4" aria-selected="false" aria-controls="s4"><i>4</i>Schedule</button>
+    <button class="p6-step" role="tab" id="t3" aria-selected="false" aria-controls="s3"><i>5</i>Exports</button>
    </div>
-   <div id="s1" role="tabpanel" aria-labelledby="t1" class="pg-grid">
+   <div id="s1" role="tabpanel" aria-labelledby="t1">
     <div class="pg-stack">
-     <p class="p6-intro">Lay out the line one process at a time, in the order the product flows. Open a process to configure it in detail. The summary here updates when you save.</p>
-     <div class="p6-ref"><label class="de-search"><input id="ref" value="7332-A" aria-label="Reference number"></label><button class="de-btn de-btn-chip">Reload past configuration</button></div>
+     <p class="p6-intro">List each process in the line, in the order the product flows. Open a process to configure it in detail. The summary here updates when you save.</p>
+     <div class="p6-ref"><label class="de-search"><input id="ref" value="7332-A" aria-label="Reference number"></label>
+      <div class="dd" id="dd-imp"><button class="de-btn de-btn-chip dd-b" aria-haspopup="menu" aria-expanded="false">Import<svg class="de-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button><div class="dd-m" role="menu" hidden>
+       <button role="menuitem" data-dd="reload">Reload past configuration</button>
+       <button role="menuitem" data-dd="csv">Add processes from CSV</button>
+       <button role="menuitem" data-dd="gotoimp">Drawings and revision files</button></div></div>
+      <div class="dd" id="dd-exp"><button class="de-btn de-btn-chip dd-b" aria-haspopup="menu" aria-expanded="false">Export<svg class="de-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button><div class="dd-m" role="menu" hidden>
+       <button role="menuitem" data-dd="savecsv">Processes as CSV</button>
+       <button role="menuitem" data-dd="gotoexp">Process document</button></div></div>
+      <input type="file" id="csv-file" class="doc-file" accept=".csv,text/csv" aria-label="Choose a CSV of processes"></div>
+     <p class="pg-note spec-msg" id="spec-msg" role="status"></p>
      <div id="cards" class="pg-stack"></div>
      <button class="p6-add" id="add"><svg class="de-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>Add process</button>
+     <div class="pg-nav" style="padding-bottom:var(--bc-space-6)"><button class="de-btn de-btn-chip is-next" id="next">Layout<svg class="de-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button></div>
     </div>
-    <aside class="pg-rail" aria-label="Summary">
-     <section class="de-panel"><div class="de-section-head"><span class="de-label">Live layout preview</span><span class="de-tag de-tag-plain" id="cnt"></span></div><svg id="map" class="pg-map" viewBox="0 0 360 260" role="img" aria-label="Process layout"></svg></section>
+   </div>
+   <div id="s2" role="tabpanel" aria-labelledby="t2" hidden class="pg-grid">
+    <div class="pg-stack">
+     <section class="de-panel lv-panel" aria-label="Live layout"><div class="de-section-head"><span class="de-label">Live layout</span><span class="de-tag de-tag-plain" id="lv-cnt"></span></div>
+      <div class="lv-stage" id="lv-stage"><svg id="lv-svg" role="group" aria-label="Overhead layout of the processes, drawn to scale"></svg></div></section>
+    </div>
+    <aside class="pg-rail" aria-label="Layout details">
+     <section class="de-panel"><div class="de-section-head"><span class="de-label">Selected process</span></div><div id="lv-sel"></div></section>
      <section class="de-panel"><div class="de-section-head"><span class="de-label">Proposed operation order</span></div><div class="p6-order" id="order"></div><p class="pg-note" id="ready"></p></section>
-     <div class="pg-nav"><button class="de-btn de-btn-chip is-next" id="next">Process document<svg class="de-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button></div>
     </aside>
    </div>
-   <div id="s2" role="tabpanel" aria-labelledby="t2" class="pg-grid" hidden>
-    <div class="pg-stack"><section class="de-panel"><div class="de-section-head"><span class="de-label">Process document</span><span class="de-tag de-tag-plain">Draft</span></div>
-     <table class="p6-t"><thead><tr><th>#</th><th>Process</th><th>Size (L × W)</th><th>Air</th><th>Electrical</th></tr></thead><tbody id="doc"></tbody></table>
-     <p class="pg-note">[Document layout to be designed. It builds from the processes in step 1.]</p></section></div>
-    <aside class="pg-rail"><section class="de-panel"><div class="de-section-head"><span class="de-label">Totals</span></div><div class="p6-sum" id="sum"></div></section>
-     <div class="pg-nav"><button class="de-btn de-btn-chip" id="back2">Back</button><button class="de-btn de-btn-chip">Download<svg class="de-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg></button></div></aside>
+   <div id="s3" role="tabpanel" aria-labelledby="t3" hidden class="pg-stack">
+    <div id="expwrap" class="pg-stack">
+    <section class="de-panel doc-sec doc-hide-print" id="doc-imp"><div class="de-section-head"><button class="de-iconbtn de-iconbtn-sm s-tog" data-sec="doc-imp" aria-expanded="true" aria-label="Collapse import"><svg class="de-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button><span class="de-label sec-name" data-nm="Import">1 · Import</span><span class="de-tag de-tag-plain" id="imp-n"></span></div>
+     <div class="imp-body"><label class="p18-drop-l"><input type="file" id="imp-file" class="doc-file" accept="image/*,.json,application/json" multiple><span class="de-btn de-btn-chip"><svg class="de-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>Add files</span></label>
+      <p class="pg-note imp-hint">Drawing images (PNG or JPG) can be added as sheets. A revision file (.json) saved from History is added as a revision.</p><p class="pg-note imp-msg" id="imp-msg" role="status"></p></div>
+     <div id="imp-list"></div></section>
+    <section class="de-panel doc-sec doc-hide-print" id="doc-gen"><div class="de-section-head"><button class="de-iconbtn de-iconbtn-sm s-tog" data-sec="doc-gen" aria-expanded="true" aria-label="Collapse generate"><svg class="de-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button><span class="de-label sec-name" data-nm="Generate">2 · Generate</span><span class="de-tag de-tag-plain" id="doc-next"></span></div>
+     <div class="doc-gen-grid">
+      <div class="doc-inc"><span class="de-label">Include</span>
+       <label><input type="checkbox" id="i-map">Overhead view</label>
+       <label><input type="checkbox" id="i-desc">Process description</label>
+       <label><input type="checkbox" id="i-gantt">Schedule chart</label>
+       <div id="i-sched"></div>
+       <div id="i-imp"></div></div>
+      <div class="pg-fields">
+       <div class="pg-f w6"><label for="d-title">Title</label><input class="pg-in" id="d-title" data-d="title"></div>
+       <div class="pg-f w3"><label for="d-dwg">Drawing no.</label><input class="pg-in" id="d-dwg" data-d="dwg"></div>
+       <div class="pg-f w3"><label for="d-date">Date</label><input class="pg-in" id="d-date" data-d="date"></div>
+       <div class="pg-f w6"><label for="d-size">Size</label><input class="pg-in" id="d-size" data-d="size"></div>
+       <div class="pg-f w3"><label for="d-s1">Scale, landscape</label><input class="pg-in" id="d-s1" data-d="scale1"></div>
+       <div class="pg-f w3"><label for="d-s2">Scale, portrait</label><input class="pg-in" id="d-s2" data-d="scale2"></div>
+       <div class="pg-f w12"><label for="d-sub">Subtitle</label><input class="pg-in" id="d-sub" data-d="sub"></div>
+       <div class="pg-f w12"><label for="d-desc">Process description</label><textarea class="pg-in" id="d-desc" data-d="desc" rows="5"></textarea></div>
+       <div class="pg-f w6"><label for="d-seq">Sequence of operation (one step per line)</label><textarea class="pg-in" id="d-seq" data-d="seq" rows="5"></textarea></div>
+       <div class="pg-f w6"><label for="d-ctl">Control voltage</label><input class="pg-in" id="d-ctl" data-d="ctl"></div>
+      </div>
+     </div>
+     <div class="doc-actions"><button class="de-btn" id="d-regen">Rebuild steps from stations</button><button class="de-btn de-btn-chip is-next" id="d-gen">Generate document</button></div></section>
+    <section class="de-panel doc-sec" id="doc-prev"><div class="de-section-head doc-prevhead"><button class="de-iconbtn de-iconbtn-sm s-tog" data-sec="doc-prev" aria-expanded="true" aria-label="Collapse preview"><svg class="de-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button><span class="de-label sec-name" data-nm="Preview">3 · Preview</span><span class="de-tag de-tag-plain" id="doc-ptag"></span><span class="doc-pact"><button class="de-btn de-btn-chip is-next" id="d-print">Print / Save as PDF</button></span></div>
+     <div id="docwrap" class="doc-wrap"><div id="docsheets" class="doc-sheets"></div></div></section>
+    <section class="de-panel doc-sec doc-hide-print" id="doc-hist"><div class="de-section-head"><button class="de-iconbtn de-iconbtn-sm s-tog" data-sec="doc-hist" aria-expanded="true" aria-label="Collapse history"><svg class="de-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button><span class="de-label sec-name" data-nm="History">4 · History</span><span class="de-tag de-tag-plain" id="hist-n"></span></div><div id="hist"></div></section>
+    </div>
    </div>
-   <div id="s3" role="tabpanel" aria-labelledby="t3" hidden>
+   <div id="s5" role="tabpanel" aria-labelledby="t5" hidden class="pg-stack"></div>
+   <div id="s4" role="tabpanel" aria-labelledby="t4" hidden>
     <div class="g-sum" id="gsum"></div>
     <div id="sched" class="pg-stack"></div>
     <button class="p6-add" id="gaddsched" style="margin-top:var(--bc-space-3)"><svg class="de-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>Add schedule</button>
@@ -403,29 +560,40 @@ select.pg-in{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xml
 
 var PROJ={'BC-Q-26041':'Palletizer retrofit','BC-Q-26038':'Capping station','BC-Q-26035':'Dispensing cell guarding','BC-Q-26031':'Conveyor transfer bracket','BC-Q-26027':'Washdown motor VFD sizing','BC-Q-26019':'Case erector controls upgrade'};
 var FLOW=['Vertical','Horizontal','Right to left','Left to right'];
-var BLANK={type:'',speed:'',ppc:'',len:'',wid:'',hgt:'',wt:'',psi:'',cfm:'',volt:'',phase:'',amp:'',flow:'Vertical',notes:''};
-var DEFAULTS=[
- {type:'Sand Mixer + Hopper',speed:'',ppc:'',len:'144',wid:'120',hgt:'',wt:'',psi:'80',cfm:'4',volt:'480',phase:'3',amp:'30',flow:'Vertical',notes:''},
- {type:'Incline Sand Conveyor',speed:'',ppc:'',len:'216',wid:'18',hgt:'',wt:'',psi:'',cfm:'',volt:'480',phase:'3',amp:'10',flow:'Vertical',notes:''},
- {type:'Horizontal Sand Conveyor',speed:'',ppc:'',len:'',wid:'',hgt:'',wt:'',psi:'',cfm:'',volt:'',phase:'',amp:'',flow:'Right to left',notes:''}];
+var BLANK={anchor:'',side:'',align:'',type:'',speed:'',ppc:'',len:'',wid:'',hgt:'',wt:'',psi:'',cfm:'',volt:'',phase:'',amp:'',flow:'Vertical',notes:''};
+var DEFAULTS=[{"type": "Sand Mixer + Hopper", "speed": "", "ppc": "", "len": "144", "wid": "120", "hgt": "", "wt": "", "psi": "80", "cfm": "4", "volt": "480", "phase": "3", "amp": "30", "flow": "Vertical", "notes": "", "anchor": "", "side": "", "align": ""}, {"type": "Incline Sand Conveyor", "speed": "", "ppc": "", "len": "216", "wid": "18", "hgt": "", "wt": "", "psi": "", "cfm": "", "volt": "480", "phase": "3", "amp": "10", "flow": "Vertical", "notes": "", "anchor": "1", "side": "above", "align": "center"}, {"type": "Horizontal Sand Conveyor", "speed": "", "ppc": "", "len": "240", "wid": "24", "hgt": "", "wt": "", "psi": "", "cfm": "", "volt": "480", "phase": "3", "amp": "10", "flow": "Right to left", "notes": "", "anchor": "2", "side": "left", "align": "start"}, {"type": "Molding Hopper", "speed": "", "ppc": "", "len": "114", "wid": "112", "hgt": "", "wt": "", "psi": "80", "cfm": "3", "volt": "480", "phase": "3", "amp": "15", "flow": "Vertical", "notes": "", "anchor": "5", "side": "left", "align": "start"}, {"type": "Molding Press", "speed": "", "ppc": "", "len": "240", "wid": "112", "hgt": "", "wt": "", "psi": "80", "cfm": "8", "volt": "480", "phase": "3", "amp": "60", "flow": "Left to right", "notes": "", "anchor": "3", "side": "above", "align": "start"}, {"type": "Transfer Conveyor", "speed": "", "ppc": "", "len": "414", "wid": "24", "hgt": "", "wt": "", "psi": "", "cfm": "", "volt": "480", "phase": "3", "amp": "12", "flow": "Left to right", "notes": "", "anchor": "5", "side": "right", "align": "start"}, {"type": "Transfer Conveyor", "speed": "", "ppc": "", "len": "624", "wid": "24", "hgt": "", "wt": "", "psi": "", "cfm": "", "volt": "480", "phase": "3", "amp": "15", "flow": "Vertical", "notes": "", "anchor": "6", "side": "below", "align": "end"}, {"type": "Transfer Conveyor", "speed": "", "ppc": "", "len": "408", "wid": "24", "hgt": "", "wt": "", "psi": "", "cfm": "", "volt": "480", "phase": "3", "amp": "12", "flow": "Right to left", "notes": "", "anchor": "7", "side": "below", "align": "end"}, {"type": "Sand Reclamation", "speed": "", "ppc": "", "len": "108", "wid": "96", "hgt": "", "wt": "", "psi": "80", "cfm": "6", "volt": "480", "phase": "3", "amp": "25", "flow": "Vertical", "notes": "", "anchor": "1", "side": "below", "align": "center"}];
 var Q=new URLSearchParams(location.search),PN=PROJ[Q.get('project')]?Q.get('project'):'BC-Q-26041';
 function load(){try{var v=localStorage.getItem('de-proc-'+PN);if(v)return JSON.parse(v)}catch(e){}return JSON.parse(JSON.stringify(DEFAULTS))}
 function save(S){try{localStorage.setItem('de-proc-'+PN,JSON.stringify(S))}catch(e){}}
 function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
 function missing(s){var m=[];if(!s.type)m.push('type');if(!s.len||!s.wid)m.push('size');if(!(s.volt&&s.amp)&&!(s.psi))m.push('utilities');return m}
+function layoutPos(S){
+ var pos=[],busy={},G=16;
+ function size(s){var w=parseFloat(s.wid)||60,l=parseFloat(s.len)||80,hz=(s.flow!=='Vertical');return {w:hz?l:w,h:hz?w:l}}
+ function get(i){
+  if(pos[i])return pos[i];
+  var s=S[i],z=size(s),x=0,y=0,ai=(s.anchor!==undefined&&s.anchor!=='')?parseInt(s.anchor,10)-1:(i>0?i-1:-1);
+  if(ai===i||ai<0||ai>=S.length||busy[i])ai=-1;
+  if(ai>=0){busy[i]=1;var a=get(ai);delete busy[i];
+   var side=s.side||(s.flow==='Vertical'?'below':s.flow==='Right to left'?'left':'right'),al=s.align||'center';
+   if(side==='right'||side==='left'){x=side==='right'?a.x+a.w+G:a.x-z.w-G;y=al==='start'?a.y:al==='end'?a.y+a.h-z.h:a.y+a.h/2-z.h/2}
+   else{y=side==='below'?a.y+a.h+G:a.y-z.h-G;x=al==='start'?a.x:al==='end'?a.x+a.w-z.w:a.x+a.w/2-z.w/2}}
+  return pos[i]={x:x,y:y,w:z.w,h:z.h}}
+ S.forEach(function(s,i){get(i)});
+ var minx=0,miny=0,maxx=0,maxy=0;
+ pos.forEach(function(p){minx=Math.min(minx,p.x);miny=Math.min(miny,p.y);maxx=Math.max(maxx,p.x+p.w);maxy=Math.max(maxy,p.y+p.h)});
+ return {pos:pos,minx:minx,miny:miny,W:Math.max(maxx-minx,1),H:Math.max(maxy-miny,1)}}
+function flowPath(x,y,w,h,flow){
+ var cx=x+w/2,cy=y+h/2,e=Math.min(10,Math.max(4,Math.min(w,h)/3));
+ if(flow==='Vertical')return 'M'+cx+' '+(cy-e*1.4)+'V'+(cy+e*1.4)+'M'+(cx-e*.7)+' '+(cy-e*.6)+'L'+cx+' '+(cy-e*1.4)+'L'+(cx+e*.7)+' '+(cy-e*.6)+'M'+(cx-e*.7)+' '+(cy+e*.6)+'L'+cx+' '+(cy+e*1.4)+'L'+(cx+e*.7)+' '+(cy+e*.6);
+ var d=flow==='Right to left'?-1:1;
+ return 'M'+(cx-d*e*1.4)+' '+cy+'H'+(cx+d*e*1.4)+'M'+(cx+d*e*.6)+' '+(cy-e*.7)+'L'+(cx+d*e*1.4)+' '+cy+'L'+(cx+d*e*.6)+' '+(cy+e*.7)}
 function drawMap(el,S,cur){
- var x=0,y=0,pos=[],minx=0,miny=0,maxx=0,maxy=0;
- S.forEach(function(s,i){var w=parseFloat(s.wid)||60,l=parseFloat(s.len)||80,hz=(s.flow!=='Vertical'),bw=hz?l:w,bh=hz?w:l;
-  if(i>0){var p=pos[i-1];if(s.flow==='Vertical'){x=p.x+p.w/2-bw/2;y=p.y+p.h+16}else if(s.flow==='Right to left'){x=p.x-bw-16;y=p.y+p.h/2-bh/2}else{x=p.x+p.w+16;y=p.y+p.h/2-bh/2}}
-  pos.push({x:x,y:y,w:bw,h:bh});minx=Math.min(minx,x);miny=Math.min(miny,y);maxx=Math.max(maxx,x+bw);maxy=Math.max(maxy,y+bh)});
- var W=Math.max(maxx-minx,1),H=Math.max(maxy-miny,1),k=Math.min(320/W,220/H),ox=(360-W*k)/2-minx*k,oy=(260-H*k)/2-miny*k,out='';
- pos.forEach(function(p,i){var rx=p.x*k+ox,ry=p.y*k+oy,rw=p.w*k,rh=p.h*k;
+ var c=layoutPos(S),k=Math.min(320/c.W,220/c.H),ox=(360-c.W*k)/2-c.minx*k,oy=(260-c.H*k)/2-c.miny*k,out='';
+ c.pos.forEach(function(p,i){var rx=p.x*k+ox,ry=p.y*k+oy,rw=Math.max(5,p.w*k),rh=Math.max(5,p.h*k);
   out+='<rect class="st'+(i===cur?' is-cur':'')+'" x="'+rx+'" y="'+ry+'" width="'+rw+'" height="'+rh+'" rx="3"/>';
-  out+='<g class="bd"><circle cx="'+(rx+8)+'" cy="'+(ry+8)+'" r="8"/><text x="'+(rx+8)+'" y="'+(ry+11.5)+'" font-size="10" text-anchor="middle">'+(i+1)+'</text></g>';
-  if(i>0){var q=pos[i-1],f=S[i].flow,ax,ay,bx,by;
-   if(f==='Vertical'){ax=q.x+q.w/2;ay=q.y+q.h;bx=p.x+p.w/2;by=p.y}else if(f==='Right to left'){ax=q.x;ay=q.y+q.h/2;bx=p.x+p.w;by=p.y+p.h/2}else{ax=q.x+q.w;ay=q.y+q.h/2;bx=p.x;by=p.y+p.h/2}
-   ax=ax*k+ox;ay=ay*k+oy;bx=bx*k+ox;by=by*k+oy;var dx=bx-ax,dy=by-ay,L=Math.hypot(dx,dy)||1,ux=dx/L,uy=dy/L;
-   out+='<path class="ar" d="M'+ax+' '+ay+'L'+bx+' '+by+'M'+(bx-ux*6-uy*3.5)+' '+(by-uy*6+ux*3.5)+'L'+bx+' '+by+'L'+(bx-ux*6+uy*3.5)+' '+(by-uy*6-ux*3.5)+'"/>'}});
+  if(Math.min(rw,rh)>=14)out+='<path class="ar" d="'+flowPath(rx,ry,rw,rh,S[i].flow)+'"/>';
+  out+='<g class="bd"><circle cx="'+(rx+6)+'" cy="'+(ry+6)+'" r="8"/><text x="'+(rx+6)+'" y="'+(ry+9.5)+'" font-size="10" text-anchor="middle">'+(i+1)+'</text></g>'});
  el.innerHTML=out}
 
 
@@ -438,16 +606,12 @@ function drawMap(el,S,cur){
  function cards(){
   document.getElementById('cards').innerHTML=S.map(function(s,i){
    var m=missing(s),size=(s.len&&s.wid)?s.len+' × '+s.wid+' in':'',air=s.psi?s.psi+' psi'+(s.cfm?' · '+s.cfm+' cfm':''):'',el=(s.volt&&s.amp)?s.volt+'V · '+(s.phase||'?')+'φ · '+s.amp+'A':'';
-   return '<article class="p6-card" aria-label="Process '+(i+1)+'"><div class="p6-card-head"><span class="pg-badge">'+(i+1)+'</span><span class="p6-card-title'+(s.type?'':' is-empty')+'">'+(s.type?esc(s.type):'[Untitled process]')+'</span><span class="de-tag">'+s.flow+'</span><a class="de-btn de-btn-chip" '+edit(i)+'><svg class="de-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20l4-1 11-11a2.1 2.1 0 00-3-3L5 16l-1 4z"/></svg>Edit configuration</a></div>'
+   return '<article class="p6-card" aria-label="Process '+(i+1)+'"><div class="p6-card-head"><span class="pg-badge">'+(i+1)+'</span><span class="p6-card-title'+(s.type?'':' is-empty')+'">'+(s.type?esc(s.type):'[Untitled process]')+'</span><span class="de-tag">'+s.flow+'</span><a class="de-btn de-btn-chip" '+edit(i)+'><svg class="de-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20l4-1 11-11a2.1 2.1 0 00-3-3L5 16l-1 4z"/></svg>Edit</a></div>'
    +'<dl class="p6-dl"><div><dt>Size (L × W)</dt>'+dd(size)+'</div><div><dt>Height</dt>'+dd(s.hgt,'in')+'</div><div><dt>Air</dt>'+dd(air)+'</div><div><dt>Electrical</dt>'+dd(el)+'</div><div><dt>Speed</dt>'+dd(s.speed)+'</div><div><dt>Parts / cycle</dt>'+dd(s.ppc)+'</div><div><dt>Weight</dt>'+dd(s.wt,'lb')+'</div><div><dt>Notes</dt>'+dd(s.notes?(s.notes.length>28?s.notes.slice(0,28)+'…':s.notes):'')+'</div></dl>'
    +'<div class="p6-card-foot">'+(m.length?'Needs '+m.join(', '):'Configured')+'</div></article>'}).join('');
   var done=S.filter(function(s){return !missing(s).length}).length;
-  document.getElementById('cnt').textContent=S.length+(S.length===1?' process':' processes');
-  document.getElementById('order').innerHTML=S.map(function(s,i){return '<span>'+(i+1)+'</span>'}).join('<span class="sep">→</span>');
-  document.getElementById('ready').textContent=done+' of '+S.length+' processes configured.';
-  drawMap(document.getElementById('map'),S,-1);
-  document.getElementById('doc').innerHTML=S.map(function(s,i){var air=s.psi?s.psi+' psi'+(s.cfm?' · '+s.cfm+' cfm':''):'—',el=(s.volt&&s.amp)?s.volt+'V · '+(s.phase||'?')+'φ · '+s.amp+'A':'—';return '<tr><td>'+(i+1)+'</td><td>'+esc(s.type||'[Untitled process]')+'</td><td>'+((s.len&&s.wid)?esc(s.len+' × '+s.wid+' in'):'—')+'</td><td>'+esc(air)+'</td><td>'+esc(el)+'</td></tr>'}).join('');
-  document.getElementById('sum').innerHTML='<div><span class="de-label">Processes</span><b>'+S.length+'</b></div><div><span class="de-label">Configured</span><b>'+done+'</b></div><div><span class="de-label">With air</span><b>'+S.filter(function(s){return s.psi}).length+'</b></div>'}
+  lvRender();
+  docRender()}
  document.getElementById('add').addEventListener('click',function(){S.push(JSON.parse(JSON.stringify(BLANK)));save(S);location.href='../P18-process-config/index.html?project='+PN+'&station='+(S.length-1)});
  /* ---- Schedule: several schedules per project, each collapsible, each with a timeline and a task builder ---- */
  var PENCILJS='<svg class="de-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20l4-1 11-11a2.1 2.1 0 00-3-3L5 16l-1 4z"/></svg>',CHEVJS='<svg class="de-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>',PLUSJS='<svg class="de-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>';
@@ -455,7 +619,7 @@ function drawMap(el,S,cur){
  if(!SCHEDS)SCHEDS=[{"id": "s1", "name": "Conveyor", "collapsed": false, "tasks": [{"id": "v1", "name": "Application Study", "start": "2026-08-03", "end": "2027-01-27", "bs": "2026-08-03", "be": "2027-01-27", "status": "In progress", "after": []}, {"id": "v2", "name": "Mechanical Design (1 of 2)", "start": "2026-08-03", "end": "2026-09-02", "bs": "2026-08-03", "be": "2026-09-02", "status": "Done", "after": []}, {"id": "v3", "name": "Electrical Design", "start": "2026-09-03", "end": "2026-11-01", "bs": "2026-09-03", "be": "2026-11-01", "status": "Done", "after": ["v2"]}, {"id": "v4", "name": "Software Design", "start": "2026-09-03", "end": "2026-12-21", "bs": "2026-09-03", "be": "2026-12-21", "status": "In progress", "after": ["v2"]}, {"id": "v5", "name": "Mechanical Design (2 of 2)", "start": "2026-09-04", "end": "2026-09-17", "bs": "2026-09-04", "be": "2026-09-17", "status": "Done", "after": ["v2"]}, {"id": "v6", "name": "Component Procurement", "start": "2026-09-18", "end": "2026-11-21", "bs": "2026-09-18", "be": "2026-11-21", "status": "In progress", "after": ["v5"]}, {"id": "v7", "name": "Panel Assembling", "start": "2026-11-02", "end": "2026-12-05", "bs": "2026-11-02", "be": "2026-12-05", "status": "In progress", "after": ["v3"]}, {"id": "v8", "name": "Main Assembly", "start": "2026-11-22", "end": "2026-12-05", "bs": "2026-11-22", "be": "2026-12-05", "status": "Not started", "after": ["v6", "v7"]}, {"id": "v9", "name": "Main Wiring", "start": "2026-12-06", "end": "2026-12-28", "bs": "2026-12-06", "be": "2026-12-28", "status": "Not started", "after": ["v8", "v4"]}, {"id": "v10", "name": "Software Troubleshooting", "start": "2026-12-29", "end": "2027-01-26", "bs": "2026-12-29", "be": "2027-01-26", "status": "Not started", "after": ["v9"]}]}, {"id": "s2", "name": "Capping", "collapsed": true, "tasks": [{"id": "c1", "name": "Mechanical design", "start": "2026-08-03", "end": "2026-09-04", "bs": "2026-08-03", "be": "2026-09-04", "status": "Done", "after": []}, {"id": "c2", "name": "Controls design", "start": "2026-09-07", "end": "2026-10-02", "bs": "2026-09-07", "be": "2026-10-02", "status": "Done", "after": ["c1"]}, {"id": "c3", "name": "Build and wiring", "start": "2026-10-05", "end": "2026-10-30", "bs": "2026-10-05", "be": "2026-10-30", "status": "Done", "after": ["c2"]}, {"id": "c4", "name": "FAT", "start": "2026-11-02", "end": "2026-11-06", "bs": "2026-11-02", "be": "2026-11-06", "status": "Done", "after": ["c3"]}]}];
  function saveS(){try{localStorage.setItem('de-scheds-'+PN,JSON.stringify(SCHEDS))}catch(e){}}
  var TODAY=Date.UTC(2026,10,10),DAY=864e5,MON=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
- var ZOOM={},BASE={},EDIT=null,RENAME=null,ROW=36,HEAD=64,GRP=36;
+ var ZOOM={},BASE={},EDIT=null,RENAME=null,DELCONF=null,SHOWARCH=false,ROW=36,HEAD=64,GRP=36;
  function pd(s){var a=s.split('-');return Date.UTC(+a[0],+a[1]-1,+a[2])}
  function iso(t){var d=new Date(t);return d.getUTCFullYear()+'-'+('0'+(d.getUTCMonth()+1)).slice(-2)+'-'+('0'+d.getUTCDate()).slice(-2)}
  function md(t){var d=new Date(t);return MON[d.getUTCMonth()]+' '+d.getUTCDate()}
@@ -506,7 +670,7 @@ function drawMap(el,S,cur){
   var h='<section class="de-panel s-sec" data-s="'+sch.id+'"><div class="s-head"><button class="de-iconbtn de-iconbtn-sm s-tog'+(col?' is-col':'')+'" data-act="toggle" aria-expanded="'+(!col)+'" aria-label="'+(col?'Expand':'Collapse')+' '+esc(sch.name)+'">'+CHEVJS+'</button>'
    +(RENAME===sch.id?'<input class="pg-in s-ren" data-f="sname" value="'+esc(sch.name)+'" aria-label="Schedule name">':'<span class="s-name">'+esc(sch.name)+'</span>')
    +'<span class="de-tag'+(all?'':' de-tag-plain')+'">'+(all?'Complete':done+' of '+T.length+' done')+'</span><span class="s-sub">'+sub+'</span>'
-   +'<span class="s-act"><button class="de-btn" data-act="rename">Rename</button><button class="de-btn" data-act="remove-sched">Remove</button></span></div>';
+   +'<span class="s-act"><button class="de-btn" data-act="rename">Rename</button><button class="de-btn" data-act="archive">Archive</button>'+(DELCONF===sch.id?'<button class="de-btn s-danger" data-act="remove-sched">Confirm delete</button><button class="de-btn" data-act="cancel-del">Cancel</button>':'<button class="de-btn" data-act="remove-sched">Delete</button>')+'</span></div>';
   if(!col){
    h+='<div class="g-bar"><span class="de-label">Timeline</span><div class="g-tools"><button class="de-btn de-btn-chip" data-act="base" aria-pressed="'+!!BASE[sch.id]+'">Baseline</button><button class="de-btn de-btn-chip" data-act="fit">Auto fit</button>'
     +'<select class="pg-in g-zoom" data-act="zoomsel" aria-label="Zoom"><option value="4"'+(ppd===4?' selected':'')+'>Months</option><option value="12"'+(ppd===12?' selected':'')+'>Weeks</option></select>'
@@ -515,23 +679,34 @@ function drawMap(el,S,cur){
    +'<div class="g-tasks"><div class="de-section-head"><span class="de-label">Tasks</span><button class="de-btn" data-act="add-task">'+PLUSJS+'Add task</button></div><div class="pg-stack">'
    +(T.length?T.map(function(t,i){return taskCard(sch,t,i)}).join(''):'<div class="de-empty">No tasks yet. Add the first one.</div>')+'</div></div>'}
   return h+'</section>'}
+ function live(){return SCHEDS.filter(function(s){return !s.archived})}
+ function archivedHTML(){
+  var A=SCHEDS.filter(function(s){return s.archived});if(!A.length)return '';
+  var h='<section class="de-panel s-sec s-arch" aria-label="Archived schedules"><div class="s-head"><button class="de-iconbtn de-iconbtn-sm s-tog'+(SHOWARCH?'':' is-col')+'" data-act="arch-toggle" aria-expanded="'+SHOWARCH+'" aria-label="'+(SHOWARCH?'Hide':'Show')+' archived schedules">'+CHEVJS+'</button><span class="s-name">Archived</span><span class="de-tag de-tag-plain">'+A.length+'</span></div>';
+  if(SHOWARCH)h+=A.map(function(s){var bd=bounds(s.tasks);return '<div class="hist-row s-arow" data-s="'+s.id+'"><span class="de-tag de-tag-plain">'+s.tasks.length+' tasks</span><div class="hist-main"><b>'+esc(s.name)+'</b><span>'+(bd?range(bd[0],bd[1]):'No tasks')+'</span></div><div class="hist-act"><button class="de-btn" data-act="restore">Restore</button>'+(DELCONF===s.id?'<button class="de-btn s-danger" data-act="remove-sched">Confirm delete</button><button class="de-btn" data-act="cancel-del">Cancel</button>':'<button class="de-btn" data-act="remove-sched">Delete</button>')+'</div></div>'}).join('');
+  return h+'</section>'}
  function summary(){
-  var all=[];SCHEDS.forEach(function(s){all=all.concat(s.tasks)});var bd=bounds(all),done=all.filter(function(t){return t.status==='Done'}).length;
-  document.getElementById('gsum').innerHTML=bd?'<div><span class="de-label">Start</span><b>'+mdy(bd[0])+'</b></div><div><span class="de-label">Finish</span><b>'+mdy(bd[1])+'</b></div><div><span class="de-label">Schedules</span><b>'+SCHEDS.length+'</b></div><div><span class="de-label">Days left</span><b>'+Math.max(0,Math.round((bd[1]-TODAY)/DAY))+'</b></div><div><span class="de-label">Tasks done</span><b>'+done+' of '+all.length+'</b></div>':''}
+  var all=[];live().forEach(function(s){all=all.concat(s.tasks)});var bd=bounds(all),done=all.filter(function(t){return t.status==='Done'}).length;
+  document.getElementById('gsum').innerHTML=bd?'<div><span class="de-label">Start</span><b>'+mdy(bd[0])+'</b></div><div><span class="de-label">Finish</span><b>'+mdy(bd[1])+'</b></div><div><span class="de-label">Schedules</span><b>'+live().length+'</b></div><div><span class="de-label">Days left</span><b>'+Math.max(0,Math.round((bd[1]-TODAY)/DAY))+'</b></div><div><span class="de-label">Tasks done</span><b>'+done+' of '+all.length+'</b></div>':''}
  var root=document.getElementById('sched');
  function render(){
   var sc={};[].forEach.call(root.querySelectorAll('[data-s]'),function(el){var g=el.querySelector('.g-scroll');if(g)sc[el.dataset.s]=g.scrollLeft});
-  root.innerHTML=SCHEDS.map(secHTML).join('')||'<div class="de-empty">No schedules yet. Add one below.</div>';
+  root.innerHTML=(live().map(secHTML).join('')||(SCHEDS.length?'':'<div class="de-empty">No schedules yet. Add one below.</div>'))+archivedHTML();
   [].forEach.call(root.querySelectorAll('[data-s]'),function(el){var g=el.querySelector('.g-scroll');if(g&&sc[el.dataset.s])g.scrollLeft=sc[el.dataset.s]});
   var r=root.querySelector('.s-ren');if(r){r.focus();r.select()}
   summary()}
  function find(el){var s=el.closest('[data-s]');return s?SCHEDS.filter(function(x){return x.id===s.dataset.s})[0]:null}
  function task(sch,id){return sch.tasks.filter(function(t){return t.id===id})[0]}
  root.addEventListener('click',function(e){
-  var b=e.target.closest('[data-act]');if(!b||b.tagName==='SELECT')return;var sch=find(b),a=b.dataset.act;if(!sch)return;
+  var b=e.target.closest('[data-act]');if(!b||b.tagName==='SELECT')return;var a=b.dataset.act;
+  if(a==='arch-toggle'){SHOWARCH=!SHOWARCH;render();return}
+  var sch=find(b);if(!sch)return;var wasConf=DELCONF;if(a!=='remove-sched')DELCONF=null;
   if(a==='toggle'){sch.collapsed=!sch.collapsed;if(sch.collapsed&&EDIT&&EDIT.s===sch.id)EDIT=null}
   else if(a==='rename'){RENAME=sch.id}
-  else if(a==='remove-sched'){SCHEDS=SCHEDS.filter(function(x){return x!==sch});if(EDIT&&EDIT.s===sch.id)EDIT=null}
+  else if(a==='archive'){sch.archived=true;if(EDIT&&EDIT.s===sch.id)EDIT=null;SHOWARCH=true}
+  else if(a==='restore'){sch.archived=false}
+  else if(a==='cancel-del'){}
+  else if(a==='remove-sched'){if(wasConf===sch.id){SCHEDS=SCHEDS.filter(function(x){return x!==sch});if(EDIT&&EDIT.s===sch.id)EDIT=null;DELCONF=null}else DELCONF=sch.id}
   else if(a==='base'){BASE[sch.id]=!BASE[sch.id]}
   else if(a==='zoomin'){ZOOM[sch.id]=Math.min(40,(ZOOM[sch.id]||4)*1.25)}
   else if(a==='zoomout'){ZOOM[sch.id]=Math.max(1,(ZOOM[sch.id]||4)/1.25)}
@@ -555,11 +730,218 @@ function drawMap(el,S,cur){
  root.addEventListener('focusout',function(e){if(e.target.classList.contains('s-ren')){var sch=find(e.target);if(sch&&RENAME===sch.id){sch.name=e.target.value.trim()||sch.name;RENAME=null;saveS();render()}}});
  document.getElementById('gaddsched').onclick=function(){var id='s'+Date.now();SCHEDS.push({id:id,name:'New schedule',collapsed:false,tasks:[]});RENAME=id;saveS();render()};
 
- function step(n){[1,2,3].forEach(function(i){document.getElementById('s'+i).hidden=i!==n;document.getElementById('t'+i).setAttribute('aria-selected',String(i===n))})}
- document.getElementById('t1').onclick=function(){step(1)};document.getElementById('t2').onclick=function(){step(2)};document.getElementById('t3').onclick=function(){step(3);render()};
- document.getElementById('next').onclick=function(){step(2)};document.getElementById('back2').onclick=function(){step(1)};
+ /* ---- Exports: 1 Import, 2 Generate, 3 Preview, 4 History ---- */
+ var NL=String.fromCharCode(10),TODAYS='11/11/2026',CTX=null,DOCK=0.6;
+ function clone(o){return JSON.parse(JSON.stringify(o))}
+ var DOCDEF={title:'7332 ASSEMBLY',dwg:'7332',ver:'1',date:TODAYS,size:'ANSI — A',scale1:'1:50',scale2:'1:20',sub:'7332 Concept Assembly — Sand Molding Line',
+  desc:'Prepared sand is discharged from the sand mixer and hopper onto the incline sand conveyor, which feeds the horizontal sand conveyor above the molding cell. Sand fills the molding hopper and is compacted at the molding press. Finished molds discharge onto the transfer conveyor loop, which carries them around the cell and returns spent sand through reclamation back to the mixer, closing the circuit.',
+  seq:['Sand mixer + hopper (1) discharges prepared sand.','Incline conveyor (2) elevates sand to the cell.','Horizontal conveyor (3) feeds the molding hopper (4).','Molding press (5) forms and compacts the mold.','Transfer conveyors (6-8) carry molds around the loop.','Sand reclamation (9) returns spent sand to the mixer.'].join(NL),ctl:'120V 1φ'};
+ var DOC=null,INC=null,HIST=null,VIEW=null,IMPS=[];
+ try{IMPS=JSON.parse(localStorage.getItem('de-imp-'+PN))||[]}catch(e){}
+ try{DOC=JSON.parse(localStorage.getItem('de-doc-'+PN))}catch(e){}
+ DOC=Object.assign({},DOCDEF,DOC||{});
+ try{INC=JSON.parse(localStorage.getItem('de-docinc-'+PN))}catch(e){}
+ if(!INC)INC={map:true,desc:true,gantt:true,sched:live().map(function(s){return s.id}),imp:[]};
+ INC.imp=INC.imp||[];
+ try{HIST=JSON.parse(localStorage.getItem('de-hist-'+PN))}catch(e){}
+ function saveDoc(){try{localStorage.setItem('de-doc-'+PN,JSON.stringify(DOC));localStorage.setItem('de-docinc-'+PN,JSON.stringify(INC));localStorage.setItem('de-hist-'+PN,JSON.stringify(HIST))}catch(e){}try{localStorage.setItem('de-imp-'+PN,JSON.stringify(IMPS))}catch(e){}}
+ function mkRev(n,iso){return {id:'r'+n+'-'+Date.now(),rev:n,at:iso,by:'Grant Block',doc:Object.assign(clone(DOC),{ver:String(n),date:TODAYS}),inc:Object.assign(clone(INC),{sched:(INC.sched||[]).filter(function(id){return live().some(function(s){return s.id===id})})}),S:clone(S),scheds:clone(SCHEDS)}}
+ if(!HIST||!HIST.length){var r0=mkRev(1,'2026-11-10');r0.doc.date='11/10/2026';HIST=[r0]}
+ VIEW=HIST[0].id;
+ function fmtFlow(f){return f==='Vertical'?'Vertical ↕':f==='Left to right'?'Left → Right':f==='Right to left'?'Right → Left':f}
+ function sheetMap(S){
+  var VW=1000,VH=590,c=layoutPos(S),k=Math.min((VW-160)/c.W,(VH-60)/c.H),ox=(VW-c.W*k)/2-c.minx*k,oy=(VH-c.H*k)/2-c.miny*k,o='',boxes=[],labels=[];
+  S.forEach(function(s,i){var p=c.pos[i],w=Math.max(26,p.w*k),h=Math.max(26,p.h*k);boxes.push({x:p.x*k+ox-(w-p.w*k)/2,y:p.y*k+oy-(h-p.h*k)/2,w:w,h:h})});
+  function hit(a,b){return a.x<b.x+b.w&&a.x+a.w>b.x&&a.y<b.y+b.h&&a.y+a.h>b.y}
+  S.forEach(function(s,i){var b=boxes[i],x=b.x,y=b.y,w=b.w,h=b.h,big=w>=120&&h>=46,cx=x+w/2,cy=y+h/2,nm=esc(s.type||'[Process]');
+   o+='<rect x="'+x+'" y="'+y+'" width="'+w+'" height="'+h+'" fill="#fbfbfb" stroke="#444" stroke-width="1.5"/>';
+   o+='<path d="'+(big?flowPath(x,y+h-24,w,20,s.flow):flowPath(x,y,w,h,s.flow))+'" class="sm-a"/>';
+   if(big)o+='<text x="'+cx+'" y="'+(cy-6)+'" text-anchor="middle" class="sm-n">'+nm+'</text><text x="'+cx+'" y="'+(cy+7)+'" text-anchor="middle" class="sm-d">'+esc((s.len&&s.wid)?s.len+' × '+s.wid+' in':'')+'</text>';
+   else{var tw=(s.type||'[Process]').length*6.4+10,th=14,cands=[{x:x+w+8,y:cy-th/2,a:'start',tx:x+w+8},{x:x-8-tw,y:cy-th/2,a:'end',tx:x-8},{x:cx-tw/2,y:y-th-4,a:'middle',tx:cx},{x:cx-tw/2,y:y+h+4,a:'middle',tx:cx}],pick=cands[0];
+    for(var q=0;q<cands.length;q++){var cd=cands[q],r={x:cd.x,y:cd.y,w:tw,h:th},bad=false;
+     if(cd.x<2||cd.x+tw>VW-2||cd.y<2||cd.y+th>VH-2)bad=true;
+     boxes.forEach(function(bb,j){if(j!==i&&hit(r,bb))bad=true});labels.forEach(function(l){if(hit(r,l))bad=true});
+     if(!bad){pick=cd;break}}
+    labels.push({x:pick.x,y:pick.y,w:tw,h:th});o+='<text x="'+pick.tx+'" y="'+(pick.y+11)+'" text-anchor="'+pick.a+'" class="sm-n">'+nm+'</text>'}
+   o+='<circle cx="'+(x-2)+'" cy="'+(y+2)+'" r="10" fill="#1a6dbf"/><text x="'+(x-2)+'" y="'+(y+6)+'" text-anchor="middle" class="sm-b">'+(i+1)+'</text>'});
+  return '<svg viewBox="0 0 '+VW+' '+VH+'" width="'+VW+'" height="'+VH+'" role="img" aria-label="Overhead view of the process layout">'+o+'</svg>'}
+ function ganttSVG(sc){
+  var T=sc.tasks,VW=1000,VH=590,LC=250,X0=LC+10,X1=VW-10,HH=36;
+  if(!T.length)return '<svg viewBox="0 0 '+VW+' '+VH+'" width="'+VW+'" height="'+VH+'"><text x="20" y="40" class="g-mo">[No tasks in this schedule]</text></svg>';
+  var mn=Infinity,mx=-Infinity;T.forEach(function(t){mn=Math.min(mn,pd(t.start));mx=Math.max(mx,pd(t.end))});
+  var d0=new Date(mn),start=Date.UTC(d0.getUTCFullYear(),d0.getUTCMonth(),1),d1=new Date(mx),end=Date.UTC(d1.getUTCFullYear(),d1.getUTCMonth()+1,1),k=(X1-X0)/((end-start)/DAY);
+  function X(t){return X0+(t-start)/DAY*k}
+  var n=T.length,rh=Math.max(16,Math.min(36,(VH-HH-8)/n)),o='',m=new Date(start),mi=0,months=Math.round((end-start)/DAY/30.4),step=Math.max(1,Math.ceil(months/12));
+  T.forEach(function(t,i){if(i%2)o+='<rect x="0" y="'+(HH+i*rh)+'" width="'+VW+'" height="'+rh+'" fill="#f6f9fc"/>'});
+  while(m.getTime()<end){var x=X(m.getTime());o+='<line x1="'+x+'" y1="'+(HH-8)+'" x2="'+x+'" y2="'+(HH+n*rh)+'" stroke="#d9dee5" stroke-width="1"/>';
+   if(mi%step===0)o+='<text x="'+(x+4)+'" y="22" class="g-mo">'+MON[m.getUTCMonth()]+(m.getUTCMonth()===0||mi===0?' '+m.getUTCFullYear():'')+'</text>';
+   m=new Date(Date.UTC(m.getUTCFullYear(),m.getUTCMonth()+1,1));mi++}
+  o+='<line x1="0" y1="'+HH+'" x2="'+VW+'" y2="'+HH+'" stroke="#222" stroke-width="1"/>';
+  var pos={};
+  T.forEach(function(t,i){var y=HH+i*rh,s=pd(t.start),e=pd(t.end),xs=X(s),w=Math.max(4,X(e+DAY)-xs),by=y+rh*.22,bh=rh*.56,nm=t.name.length>30?t.name.slice(0,29)+'…':t.name;pos[t.id]={r:xs+w,l:xs,y:y+rh/2};
+   o+='<text x="8" y="'+(y+rh/2+4)+'" class="g-nm">'+esc(nm)+'</text>';
+   if(rh>=20)o+='<text x="'+(LC)+'" y="'+(y+rh/2+4)+'" text-anchor="end" class="g-dt">'+esc(range(s,e))+'</text>';
+   if(t.status==='Done')o+='<rect x="'+xs+'" y="'+by+'" width="'+w+'" height="'+bh+'" rx="2" fill="#1a6dbf"/>';
+   else if(t.status==='In progress')o+='<rect x="'+xs+'" y="'+by+'" width="'+w+'" height="'+bh+'" rx="2" fill="#dbe8f6" stroke="#1a6dbf"/><rect x="'+xs+'" y="'+by+'" width="'+(w*pct(t))+'" height="'+bh+'" rx="2" fill="#1a6dbf"/>';
+   else o+='<rect x="'+xs+'" y="'+by+'" width="'+w+'" height="'+bh+'" rx="2" fill="#fff" stroke="#888"/>'});
+  T.forEach(function(t){(t.after||[]).forEach(function(a){var p=pos[a],c=pos[t.id];if(!p||!c)return;o+='<path d="M'+p.r+' '+p.y+'H'+(p.r+5)+'V'+c.y+'H'+(c.l-1)+'" fill="none" stroke="#777" stroke-width="1"/><path d="M'+(c.l-5)+' '+(c.y-3)+'L'+(c.l-1)+' '+c.y+'L'+(c.l-5)+' '+(c.y+3)+'" fill="none" stroke="#777" stroke-width="1"/>'})});
+  if(TODAY>=start&&TODAY<end){var tx=X(TODAY);o+='<line x1="'+tx+'" y1="'+(HH-8)+'" x2="'+tx+'" y2="'+(HH+n*rh)+'" stroke="#1a6dbf" stroke-width="1.5" stroke-dasharray="5 4"/><text x="'+tx+'" y="'+(HH-12)+'" text-anchor="middle" class="g-td">TODAY</text>'}
+  return '<svg viewBox="0 0 '+VW+' '+VH+'" width="'+VW+'" height="'+VH+'" role="img" aria-label="Schedule chart">'+o+'</svg>'}
+ function tblock(land,n,N){
+  var d=CTX.doc;function cell(l,v,st){return '<div class="tb-c" style="'+(st||'')+'"><div class="tb-l">'+l+'</div><div class="tb-v">'+esc(v)+'</div></div>'}
+  return '<div class="tb"><div class="tb-prop"><div class="tb-fine">PROPRIETARY AND CONFIDENTIAL — THE INFORMATION CONTAINED IN THIS DRAWING IS THE SOLE PROPERTY OF BLOCK CONCEPTS LLC. ANY REPRODUCTION IN PART OR AS A WHOLE WITHOUT THE WRITTEN PERMISSION OF BLOCK CONCEPTS LLC IS PROHIBITED.</div><div class="tb-note" style="margin-top:auto">BREAK ALL SHARP EDGES AND REMOVE BURRS</div><div class="tb-note">UNLESS OTHERWISE SPECIFIED, DIMENSIONS ARE IN INCHES</div><div class="tb-note">.XX : .01 &nbsp; .XXX : .005 &nbsp; ANGULAR : .1</div></div>'
+   +'<div class="tb-mid"><div class="tb-co"><div class="tb-name">BLOCK CONCEPTS LLC</div><div class="tb-mail">grant@blockconceptsllc.com · (913) 327-9271</div></div><div class="tb-row" style="flex:0 0 34px">'+cell('Title',d.title,'flex:1')+cell('Date',d.date,'border-right:none;flex:0 0 90px')+'</div></div>'
+   +'<div class="tb-right"><div class="tb-row" style="flex:1;border-bottom:1px solid #222">'+cell('Size',d.size,'flex:1')+cell('Ver',d.ver,'flex:0 0 46px')+cell('Scale',land?d.scale1:d.scale2,'border-right:none;flex:0 0 60px')+'</div><div class="tb-row" style="flex:1;border-bottom:1px solid #222">'+cell('Dwg No.',d.dwg,'flex:1;border-right:none')+'</div><div class="tb-foot"><span>DO NOT SCALE</span><b>SHEET '+n+' OF '+N+'</b></div></div></div>'}
+ function utilities(S){
+  var cnt={},psi=0,cfm=0;S.forEach(function(s){if(s.volt){var k=s.volt+'V '+(s.phase||'?')+'φ';cnt[k]=(cnt[k]||0)+1}if(s.psi)psi=Math.max(psi,parseFloat(s.psi)||0);cfm+=parseFloat(s.cfm)||0});
+  var main=Object.keys(cnt).sort(function(a,b){return cnt[b]-cnt[a]})[0]||'—';
+  return [['Main Power',main],['Control',CTX.doc.ctl||'—'],['Compressed Air',psi?psi+' psi':'—'],['Air Consumption',cfm?cfm+' cfm':'—'],['Stations',S.length+' Total']]}
+ function sheetList(snap){var a=[];if(snap.inc.map)a.push({t:'map'});if(snap.inc.desc)a.push({t:'desc'});(snap.inc.imp||[]).forEach(function(id){var im=IMPS.filter(function(x){return x.id===id})[0];a.push({t:'img',im:im,id:id})});if(snap.inc.gantt)(snap.inc.sched||[]).forEach(function(id){var sc=snap.scheds.filter(function(x){return x.id===id})[0];if(sc)a.push({t:'gantt',sc:sc})});return a}
+ function sheetsHTML(snap){
+  CTX=snap;var S=snap.S,L=sheetList(snap),N=L.length,d=snap.doc;
+  function wrap(cls,w,h,inner){return '<div class="doc-pagewrap" style="width:'+Math.round(w*DOCK)+'px;height:'+Math.round(h*DOCK)+'px"><div class="doc-scale '+cls+'" style="width:'+w+'px;height:'+h+'px;transform:scale('+DOCK+')">'+inner+'</div></div>'}
+  var frame='<div class="ds-frame"></div><div class="ds-frame2"></div>';
+  if(!N)return '<div class="de-empty">No sheets selected. Choose what to include in Generate.</div>';
+  return L.map(function(s,i){var n=i+1;
+   if(s.t==='map')return wrap('ds ds-land',1056,816,frame+'<div class="ds-area1"><div class="ds-h1">OVERHEAD VIEW — PROCESS LAYOUT</div><div class="ds-map">'+sheetMap(S)+'</div></div><div class="ds-tb">'+tblock(true,n,N)+'</div>');
+   if(s.t==='img')return wrap('ds ds-land',1056,816,s.im?'<div class="ds-img"><img src="'+s.im.src+'" alt="'+esc(s.im.name)+'"></div>':frame+'<div class="ds-empty">[Imported drawing removed]</div>');
+   if(s.t==='gantt')return wrap('ds ds-land',1056,816,frame+'<div class="ds-area1"><div class="ds-h1">SCHEDULE — '+esc(s.sc.name.toUpperCase())+'</div><div class="ds-map">'+ganttSVG(s.sc)+'</div></div><div class="ds-tb">'+tblock(true,n,N)+'</div>');
+   var rows=S.map(function(p,j){var air=p.psi?p.psi+' psi'+(p.cfm?' · '+p.cfm+' cfm':''):'—',el=(p.volt&&p.amp)?p.volt+'V · '+(p.phase||'?')+'φ · '+p.amp+'A':'—';
+    return '<tr class="'+(j%2?'alt':'')+'"><td class="n">'+(j+1)+'</td><td><b>Station '+(j+1)+'</b><div class="ty">'+esc(p.type||'[Process]')+'</div></td><td>'+esc(p.speed||'')+'</td><td>'+((p.len&&p.wid)?esc(p.len+' in × '+p.wid+' in'):'—')+'</td><td>'+esc(p.ppc?p.ppc+' / cy':'')+'</td><td>'+esc(air)+'</td><td>'+esc(el)+'</td><td class="fl">'+esc(fmtFlow(p.flow))+'</td></tr>'}).join('');
+   var seq=d.seq.split(NL).filter(function(l){return l.trim()}).map(function(l){return '<li>'+esc(l)+'</li>'}).join('');
+   var ut=utilities(S).map(function(r,j,a){return '<div class="ut'+(j===a.length-1?' last':'')+'"><span>'+r[0]+'</span><b>'+esc(r[1])+'</b></div>'}).join('');
+   return wrap('ds ds-port',816,1056,frame+'<div class="ds-area2"><div class="ds-h2">PROCESS DESCRIPTION</div><div class="ds-sub">'+esc(d.sub)+'</div><div class="ds-rule"></div><p class="ds-p">'+esc(d.desc)+'</p><div class="ds-h3">Station Schedule</div>'
+    +'<table class="ds-t"><thead><tr><th style="width:24px">#</th><th>Station</th><th>Speed</th><th>L × W</th><th>Pc/Cy</th><th>Air</th><th>Elec.</th><th style="text-align:center;width:96px;white-space:nowrap">Flow</th></tr></thead><tbody>'+rows+'</tbody></table>'
+    +'<div class="ds-two"><div style="flex:1"><div class="ds-h3">Sequence of Operation</div><ol class="ds-ol">'+seq+'</ol></div><div style="flex:0 0 210px"><div class="ds-h3">Utilities Summary</div>'+ut+'</div></div></div><div class="ds-tb">'+tblock(false,n,N)+'</div>')}).join('')}
+ function fdate(iso){var a=iso.split('-');return MON[+a[1]-1]+' '+(+a[2])+', '+a[0]}
+ function renderPreview(){
+  var el=document.getElementById('docsheets');if(!el)return;var w=document.getElementById('docwrap').clientWidth;DOCK=w>0?Math.min(1,(w-2)/1056):.6;
+  var snap=HIST.filter(function(h){return h.id===VIEW})[0]||HIST[0];
+  el.innerHTML=sheetsHTML(snap);
+  document.getElementById('doc-ptag').textContent='Rev '+snap.rev+' · '+fdate(snap.at)+' · '+sheetList(snap).length+' sheets'}
+ function renderHist(){
+  document.getElementById('hist-n').textContent=HIST.length+(HIST.length===1?' revision':' revisions');
+  document.getElementById('hist').innerHTML=HIST.map(function(h){var n=sheetList(h).length;
+   return '<div class="hist-row" data-id="'+h.id+'"><span class="de-tag'+(h.id===VIEW?'':' de-tag-plain')+'">Rev '+h.rev+'</span><div class="hist-main"><b>'+esc(h.doc.title)+'</b><span>'+fdate(h.at)+' · '+esc(h.by)+' · '+n+(n===1?' sheet':' sheets')+'</span></div><div class="hist-act"><button class="de-btn" data-h="open">'+(h.id===VIEW?'Showing':'Preview')+'</button><button class="de-btn" data-h="load">Use as starting point</button><button class="de-btn" data-h="dl">Save file</button></div></div>'}).join('')}
+ function fillForm(){
+  [].forEach.call(document.querySelectorAll('[data-d]'),function(f){f.value=DOC[f.dataset.d]});
+  document.getElementById('i-map').checked=!!INC.map;document.getElementById('i-desc').checked=!!INC.desc;document.getElementById('i-gantt').checked=!!INC.gantt;
+  document.getElementById('i-sched').innerHTML=live().map(function(s){return '<label class="doc-sub"><input type="checkbox" data-sid="'+s.id+'"'+((INC.sched||[]).indexOf(s.id)>-1?' checked':'')+(INC.gantt?'':' disabled')+'>'+esc(s.name)+' <span>'+s.tasks.length+' tasks</span></label>'}).join('')||'<span class="g-none2">No schedules yet.</span>';
+  document.getElementById('i-imp').innerHTML=IMPS.filter(function(m){return m.kind==='image'}).map(function(m){return '<label class="doc-sub"><input type="checkbox" data-iid="'+m.id+'"'+(INC.imp.indexOf(m.id)>-1?' checked':'')+'>'+esc(m.name)+' <span>Drawing</span></label>'}).join('');
+  document.getElementById('doc-next').textContent='Next: Rev '+(Math.max.apply(null,HIST.map(function(h){return h.rev}))+1)}
+
+ function fsize(n){return n>1048576?(n/1048576).toFixed(1)+' MB':Math.max(1,Math.round(n/1024))+' KB'}
+ function renderImp(){
+  document.getElementById('imp-n').textContent=IMPS.length+(IMPS.length===1?' file':' files');
+  document.getElementById('imp-list').innerHTML=IMPS.map(function(m){return '<div class="hist-row" data-iid="'+m.id+'"><span class="de-tag">'+(m.kind==='image'?'Drawing':'Revision')+'</span><div class="hist-main"><b>'+esc(m.name)+'</b><span>'+fsize(m.size)+' · '+fdate(m.at)+(m.kind==='revision'?' · Rev '+m.rev:'')+'</span></div><div class="hist-act">'+(m.kind==='revision'?'<button class="de-btn" data-i="open">Preview</button>':'<button class="de-btn" data-i="use">'+(INC.imp.indexOf(m.id)>-1?'In export':'Add to export')+'</button>')+'<button class="de-btn" data-i="rm">Remove</button></div></div>'}).join('')}
+ function impMsg(t){document.getElementById('imp-msg').textContent=t}
+ function addImp(m){IMPS.push(m);saveDoc();renderImp();fillForm()}
+ document.getElementById('imp-file').addEventListener('change',function(e){
+  var files=[].slice.call(e.target.files||[]);impMsg('');
+  files.forEach(function(f){var r=new FileReader(),id='i'+Date.now()+Math.floor(Math.random()*1000),today='2026-11-11';
+   if(f.type.indexOf('image/')===0){r.onload=function(){INC.imp.push(id);addImp({id:id,kind:'image',name:f.name,size:f.size,at:today,src:r.result});impMsg('Added '+f.name+' as a drawing sheet.')};r.readAsDataURL(f)}
+   else if(/[.]json$/i.test(f.name)){r.onload=function(){try{var o=JSON.parse(r.result);if(!o||!o.doc||!o.inc||!o.S||!o.scheds)throw 1;var n=Math.max.apply(null,HIST.map(function(h){return h.rev}))+1;o.id='r'+n+'-'+Date.now();o.rev=n;o.at=today;o.by='Imported';HIST.unshift(o);VIEW=o.id;addImp({id:id,kind:'revision',name:f.name,size:f.size,at:today,rev:n,rid:o.id});renderHist();impMsg('Added '+f.name+' as Rev '+n+'.')}catch(err){impMsg(f.name+' is not a revision file.')}};r.readAsText(f)}
+   else impMsg(f.name+' is not a supported file. Use PNG, JPG or a revision .json file.')});
+  e.target.value=''});
+ document.getElementById('imp-list').addEventListener('click',function(e){var b=e.target.closest('[data-i]'),row=e.target.closest('[data-iid]');if(!b||!row)return;var m=IMPS.filter(function(x){return x.id===row.dataset.iid})[0];if(!m)return;
+  if(b.dataset.i==='rm'){IMPS=IMPS.filter(function(x){return x!==m});INC.imp=INC.imp.filter(function(x){return x!==m.id});saveDoc();renderImp();fillForm()}
+  else if(b.dataset.i==='use'){var k=INC.imp.indexOf(m.id);if(k>-1)INC.imp.splice(k,1);else INC.imp.push(m.id);saveDoc();renderImp();fillForm()}
+  else if(b.dataset.i==='open'){if(HIST.some(function(h){return h.id===m.rid})){VIEW=m.rid;renderHist();renderPreview();document.getElementById('doc-prev').scrollIntoView({behavior:'smooth',block:'start'})}}});
+ function docOpen(){fillForm();renderImp();renderHist();renderPreview()}
+ function docRender(){if(!document.getElementById('s3').hidden||!document.getElementById('s5').hidden)renderPreview()}
+ [].forEach.call(document.querySelectorAll('[data-d]'),function(f){f.addEventListener('input',function(){DOC[f.dataset.d]=f.value;saveDoc()})});
+ ['map','desc','gantt'].forEach(function(k){document.getElementById('i-'+k).addEventListener('change',function(e){INC[k]=e.target.checked;saveDoc();fillForm()})});
+ document.getElementById('i-sched').addEventListener('change',function(){INC.sched=[].slice.call(document.querySelectorAll('#i-sched input:checked')).map(function(i){return i.dataset.sid});saveDoc()});
+ document.getElementById('i-imp').addEventListener('change',function(){INC.imp=[].slice.call(document.querySelectorAll('#i-imp input:checked')).map(function(i){return i.dataset.iid});saveDoc()});
+ document.getElementById('d-regen').onclick=function(){DOC.seq=S.map(function(s,i){return (s.type||'[Process]')+' ('+(i+1)+').'}).join(NL);document.getElementById('d-seq').value=DOC.seq;saveDoc()};
+ document.getElementById('d-gen').onclick=function(){var n=Math.max.apply(null,HIST.map(function(h){return h.rev}))+1,r=mkRev(n,'2026-11-11');HIST.unshift(r);VIEW=r.id;DOC.ver=String(n);DOC.date=TODAYS;saveDoc();fillForm();renderHist();renderPreview();document.getElementById('doc-prev').scrollIntoView({behavior:'smooth',block:'start'})};
+ document.getElementById('hist').addEventListener('click',function(e){var b=e.target.closest('[data-h]'),row=e.target.closest('[data-id]');if(!b||!row)return;var h=HIST.filter(function(x){return x.id===row.dataset.id})[0];if(!h)return;
+  if(b.dataset.h==='dl'){try{var bl=new Blob([JSON.stringify(h)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(bl);a.download=(h.doc.dwg||'document')+'-rev'+h.rev+'.json';document.body.appendChild(a);a.click();a.remove()}catch(err){}return}
+  if(b.dataset.h==='open'){VIEW=h.id;renderHist();renderPreview();document.getElementById('doc-prev').scrollIntoView({behavior:'smooth',block:'start'})}
+  else{DOC=Object.assign({},DOCDEF,clone(h.doc));INC=clone(h.inc);saveDoc();fillForm();document.getElementById('doc-gen').scrollIntoView({behavior:'smooth',block:'start'})}});
+ document.getElementById('d-print').onclick=function(){var pv=document.getElementById('doc-prev');pv.classList.remove('is-closed');try{window.print()}catch(e){}};
+ window.addEventListener('resize',function(){docRender()});
+ /* ---- Layout: live overhead view, drawn to scale from the specifications ---- */
+ var LVsel=null,LVsvg=document.getElementById('lv-svg'),LVstage=document.getElementById('lv-stage');
+ function lvRender(){
+  var done=S.filter(function(s){return !missing(s).length}).length,W=LVstage.clientWidth||900,H=LVstage.clientHeight||520;
+  document.getElementById('lv-cnt').textContent=S.length+(S.length===1?' process':' processes');
+  document.getElementById('order').innerHTML=S.map(function(s,i){return '<span>'+(i+1)+'</span>'}).join('<span class="sep">→</span>');
+  document.getElementById('ready').textContent=done+' of '+S.length+' processes configured.';
+  LVsvg.setAttribute('viewBox','0 0 '+W+' '+H);
+  if(!S.length){LVsvg.innerHTML='<text x="'+(W/2)+'" y="'+(H/2)+'" text-anchor="middle" class="lv-n">Add a process in Specifications to start the layout.</text>';return}
+  var c=layoutPos(S),k=Math.min((W-220)/c.W,(H-90)/c.H),ox=(W-c.W*k)/2-c.minx*k,oy=(H-c.H*k)/2-c.miny*k,o='',boxes=[],labels=[];
+  S.forEach(function(s,i){var p=c.pos[i],w=Math.max(14,p.w*k),h=Math.max(14,p.h*k);boxes.push({x:p.x*k+ox-(w-p.w*k)/2,y:p.y*k+oy-(h-p.h*k)/2,w:w,h:h})});
+  function hit(a,b){return a.x<b.x+b.w&&a.x+a.w>b.x&&a.y<b.y+b.h&&a.y+a.h>b.y}
+  S.forEach(function(s,i){var b=boxes[i],x=b.x,y=b.y,w=b.w,h=b.h,big=w>=130&&h>=56,cx=x+w/2,cy=y+h/2,nm=esc(s.type||'[Untitled process]'),sel=LVsel===i;
+   o+='<g class="lv-b'+(sel?' is-sel':'')+'" data-i="'+i+'" tabindex="0" role="button" aria-label="Process '+(i+1)+': '+nm+'"><rect class="lv-box" x="'+x+'" y="'+y+'" width="'+w+'" height="'+h+'" rx="4"/>';
+   o+='<path class="lv-ar" d="'+(big?flowPath(x,y+h-28,w,24,s.flow):flowPath(x,y,w,h,s.flow))+'"/>';
+   if(big)o+='<text x="'+cx+'" y="'+(cy-6)+'" text-anchor="middle" class="lv-n">'+nm+'</text><text x="'+cx+'" y="'+(cy+10)+'" text-anchor="middle" class="lv-d">'+esc((s.len&&s.wid)?s.len+' × '+s.wid+' in':'')+'</text>';
+   else{var tw=(s.type||'[Untitled process]').length*7+12,th=16,cands=[{x:x+w+10,y:cy-th/2,a:'start',tx:x+w+10},{x:x-10-tw,y:cy-th/2,a:'end',tx:x-10},{x:cx-tw/2,y:y-th-6,a:'middle',tx:cx},{x:cx-tw/2,y:y+h+6,a:'middle',tx:cx}],pick=cands[0];
+    for(var q=0;q<cands.length;q++){var cd=cands[q],r={x:cd.x,y:cd.y,w:tw,h:th},bad=false;
+     if(cd.x<2||cd.x+tw>W-2||cd.y<2||cd.y+th>H-2)bad=true;
+     boxes.forEach(function(bb,j){if(j!==i&&hit(r,bb))bad=true;if(hit(r,{x:bb.x-11,y:bb.y-11,w:26,h:26}))bad=true});labels.forEach(function(l){if(hit(r,l))bad=true});
+     if(!bad){pick=cd;break}}
+    labels.push({x:pick.x,y:pick.y,w:tw,h:th});o+='<text x="'+pick.tx+'" y="'+(pick.y+12)+'" text-anchor="'+pick.a+'" class="lv-n">'+nm+'</text>'}
+   o+='<g class="lv-bd"><circle cx="'+(x+2)+'" cy="'+(y+2)+'" r="11"/><text x="'+(x+2)+'" y="'+(y+6.5)+'" text-anchor="middle">'+(i+1)+'</text></g></g>'});
+  LVsvg.innerHTML=o;lvInspect()}
+ function lvInspect(){
+  var el=document.getElementById('lv-sel'),s=LVsel!==null&&S[LVsel];
+  if(!s){el.innerHTML='<p class="pg-note" style="margin:0">Select a block to change where it sits. Blocks are drawn to scale from each process size.</p>';return}
+  var i=LVsel,id='lv'+i+'-';
+  function sel(k,label,opts,val){return '<div class="pg-f w12"><label for="'+id+k+'">'+label+'</label><select class="pg-in" id="'+id+k+'" data-lv="'+k+'">'+opts.map(function(o){return '<option value="'+o[0]+'"'+(String(o[0])===String(val||'')?' selected':'')+'>'+o[1]+'</option>'}).join('')+'</select></div>'}
+  var anchors=[['','First process (origin)']].concat(S.map(function(x,j){return j===i?null:[String(j+1),'Process '+(j+1)+' · '+(x.type||'[Untitled]')]}).filter(Boolean));
+  el.innerHTML='<div class="lv-selhead"><span class="pg-badge">'+(i+1)+'</span><b>'+esc(s.type||'[Untitled process]')+'</b></div><div class="pg-fields">'
+   +sel('anchor','Placed against',anchors,s.anchor)
+   +sel('side','Side',[['','Default'],['right','Right of'],['left','Left of'],['above','Above'],['below','Below']],s.side)
+   +sel('align','Align',[['','Center'],['start','Start'],['end','End']],s.align)
+   +sel('flow','Flow direction',FLOW.map(function(f){return [f,f]}),s.flow)+'</div>'
+   +'<a class="de-btn de-btn-chip lv-edit" href="../P18-process-config/index.html?project='+PN+'&station='+i+'">'+PENCILJS+'Edit</a>'}
+ LVsvg.addEventListener('click',function(e){var b=e.target.closest('[data-i]');LVsel=b?parseInt(b.dataset.i,10):null;lvRender()});
+ LVsvg.addEventListener('keydown',function(e){var b=e.target.closest('[data-i]');if(b&&(e.key==='Enter'||e.key===' ')){e.preventDefault();LVsel=parseInt(b.dataset.i,10);lvRender();var n=LVsvg.querySelector('[data-i="'+LVsel+'"]');n&&n.focus()}});
+ document.getElementById('lv-sel').addEventListener('change',function(e){var k=e.target.dataset.lv;if(!k||LVsel===null)return;S[LVsel][k]=e.target.value;save(S);cards();lvRender()});
+ window.addEventListener('resize',function(){if(!document.getElementById('s2').hidden)lvRender()});
+ function lvOpen(){lvRender()}
+
+
+ /* ---- Import and Export dropdowns, shared Import/Exports tab body ---- */
+ function secLabels(mode){
+  var order=mode==='import'?['doc-imp','doc-gen','doc-prev','doc-hist']:['doc-gen','doc-prev','doc-hist'];
+  document.getElementById('doc-imp').hidden=mode!=='import';
+  order.forEach(function(id,i){var l=document.querySelector('#'+id+' .sec-name');l.textContent=(i+1)+' · '+l.dataset.nm})}
+ function expMode(mode){document.getElementById(mode==='import'?'s5':'s3').appendChild(document.getElementById('expwrap'));secLabels(mode)}
+ document.getElementById('expwrap').addEventListener('click',function(e){var b=e.target.closest('[data-sec]');if(!b)return;var sec=document.getElementById(b.dataset.sec),c=sec.classList.toggle('is-closed');b.classList.toggle('is-col',c);b.setAttribute('aria-expanded',String(!c));if(!c&&b.dataset.sec==='doc-prev')renderPreview()});
+ function ddClose(){[].forEach.call(document.querySelectorAll('.dd'),function(d){d.querySelector('.dd-m').hidden=true;d.querySelector('.dd-b').setAttribute('aria-expanded','false')})}
+ [].forEach.call(document.querySelectorAll('.dd-b'),function(b){b.addEventListener('click',function(e){e.stopPropagation();var m=b.parentNode.querySelector('.dd-m'),open=m.hidden;ddClose();m.hidden=!open;b.setAttribute('aria-expanded',String(open));if(open){var f=m.querySelector('button');f&&f.focus()}})});
+ document.addEventListener('click',function(e){if(!e.target.closest('.dd'))ddClose()});
+ document.addEventListener('keydown',function(e){if(e.key==='Escape')ddClose();
+  var m=e.target.closest&&e.target.closest('.dd-m');if(m&&(e.key==='ArrowDown'||e.key==='ArrowUp')){e.preventDefault();var it=[].slice.call(m.querySelectorAll('button')),i=it.indexOf(document.activeElement);it[(i+(e.key==='ArrowDown'?1:it.length-1))%it.length].focus()}});
+ function specMsg(t){document.getElementById('spec-msg').textContent=t}
+ var CSVCOLS={type:['type','process','name','station type'],len:['length','len','l'],wid:['width','wid','w'],hgt:['height','hgt','h'],wt:['weight','wt'],psi:['psi','pressure'],cfm:['cfm','flow'],volt:['volt','voltage','v'],phase:['phase'],amp:['amp','amps','current','a'],speed:['speed'],ppc:['ppc','parts / cycle','parts per cycle','parts'],flow:['flow direction','direction'],notes:['notes']};
+ function csvRows(t){var rows=[],row=[],f='',q=false,i,c;for(i=0;i<t.length;i++){c=t[i];if(q){if(c==='"'&&t[i+1]==='"'){f+='"';i++}else if(c==='"')q=false;else f+=c}else if(c==='"')q=true;else if(c===','){row.push(f);f=''}else if(c==='\n'||c==='\r'){if(c==='\r'&&t[i+1]==='\n')i++;row.push(f);f='';if(row.some(function(x){return x.trim()}))rows.push(row);row=[]}else f+=c}row.push(f);if(row.some(function(x){return x.trim()}))rows.push(row);return rows}
+ function csvCell(v){v=String(v==null?'':v);return /[",\n]/.test(v)?'"'+v.replace(/"/g,'""')+'"':v}
+ function downloadText(name,text,type){try{var bl=new Blob([text],{type:type}),a=document.createElement('a');a.href=URL.createObjectURL(bl);a.download=name;document.body.appendChild(a);a.click();a.remove();return true}catch(err){return false}}
+ document.getElementById('csv-file').addEventListener('change',function(e){
+  var f=e.target.files&&e.target.files[0];if(!f)return;var r=new FileReader();
+  r.onload=function(){var rows=csvRows(String(r.result));if(rows.length<2){specMsg(f.name+' has no rows to add.');return}
+   var head=rows[0].map(function(h){return h.trim().toLowerCase()}),map={};Object.keys(CSVCOLS).forEach(function(k){var ix=-1;CSVCOLS[k].forEach(function(n){if(ix<0)ix=head.indexOf(n)});if(ix>=0)map[k]=ix});
+   if(map.type===undefined){specMsg('Add a "type" column (the process name) to the CSV.');return}
+   var n=0;rows.slice(1).forEach(function(row){var s=JSON.parse(JSON.stringify(BLANK));Object.keys(map).forEach(function(k){s[k]=(row[map[k]]||'').trim()});if(!s.flow||FLOW.indexOf(s.flow)<0)s.flow='Vertical';if(s.type){S.push(s);n++}});
+   save(S);cards();specMsg('Added '+n+(n===1?' process':' processes')+' from '+f.name+'.')};
+  r.readAsText(f);e.target.value=''});
+ document.getElementById('dd-imp').addEventListener('click',function(e){var b=e.target.closest('[data-dd]');if(!b)return;ddClose();var a=b.dataset.dd;
+  if(a==='csv')document.getElementById('csv-file').click();
+  else if(a==='gotoimp')step(5);
+  else if(a==='reload'){var h=HIST[0];if(h&&h.S){S.length=0;clone(h.S).forEach(function(s){S.push(s)});save(S);cards();specMsg('Reloaded the processes from Rev '+h.rev+'.')}else specMsg('No past configuration to reload.')}});
+ document.getElementById('dd-exp').addEventListener('click',function(e){var b=e.target.closest('[data-dd]');if(!b)return;ddClose();var a=b.dataset.dd;
+  if(a==='gotoexp')step(3);
+  else if(a==='savecsv'){var ks=Object.keys(CSVCOLS),txt=[ks.map(function(k){return CSVCOLS[k][0]}).join(',')].concat(S.map(function(s){return ks.map(function(k){return csvCell(s[k])}).join(',')})).join('\n');specMsg(downloadText((DOC.dwg||'processes')+'-processes.csv',txt,'text/csv')?'Saved '+S.length+' processes as CSV.':'This preview cannot save files. Open the page from the repo to download.')}});
+ function step(n){[1,2,3,4,5].forEach(function(i){document.getElementById('s'+i).hidden=i!==n;document.getElementById('t'+i).setAttribute('aria-selected',String(i===n))});ddClose();if(n===2)lvOpen();if(n===3){expMode('export');docOpen()}if(n===5){expMode('import');docOpen()}if(n===4)render()}
+ [1,2,3,4,5].forEach(function(i){document.getElementById('t'+i).onclick=function(){step(i)}});
+ document.getElementById('next').onclick=function(){step(2)};
  cards();
 
 })();
 </script>
+<script>document.querySelectorAll(".de-group-head").forEach(function(b){b.addEventListener("click",function(){var g=b.parentNode;var c=g.classList.toggle("is-collapsed");b.setAttribute("aria-expanded",String(!c));});});</script>
 </body></html>

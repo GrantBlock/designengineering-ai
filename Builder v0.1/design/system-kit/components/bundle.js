@@ -13,6 +13,8 @@
     bolt: 'M13 3L5 13h6l-1 8 8-10h-6z',
     chip: 'M7 7h10v10H7zM10 3v4M14 3v4M10 17v4M14 17v4M3 10h4M3 14h4M17 10h4M17 14h4',
     wave: 'M3 12h3l3-7 4 14 3-7h5',
+    code: 'M8 7l-5 5 5 5M16 7l5 5-5 5M14 4l-4 16',
+    factory: 'M3 21h18M5 21V11l5 3V11l5 3V5h4v16',
     clipboard: 'M9 4h6v3H9zM6 6h12v15H6zM9 12h6M9 16h4',
     doc: 'M6 3h8l4 4v14H6zM14 3v4h4M9 13h6M9 17h6',
     tag: 'M3 12V4h8l10 10-8 8z',
@@ -20,6 +22,9 @@
     book: 'M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3zM5 17a3 3 0 0 1 3-3h11',
     sparkle: 'M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z',
     plus: 'M12 5v14M5 12h14',
+    chart: 'M4 20h16M7 16v-5M12 16V5M17 16v-8',
+    process: 'M4 5h6v5H4zM14 14h6v5h-6zM10 7.5h2a2 2 0 0 1 2 2V14',
+    wrench: 'M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18v3h3l6.3-6.3a4 4 0 0 0 5.4-5.4l-2.4 2.4-2.6-.6-.6-2.6z',
     send: 'M12 19V5M6 11l6-6 6 6',
     'arrow-up-right': 'M7 17L17 7M9 7h8v8',
     'chevron-right': 'M9 6l6 6-6 6',
@@ -141,6 +146,15 @@
 
   var LOGO = '/_blob/aa03c16b0467287f65c46044ec7093cb';
 
+  function NavGroup(p) {
+    var st = React.useState(!!p.collapsed), closed = st[0];
+    if (!p.label) return h('div', { className: 'de-nav-group' }, p.children);
+    return h('div', { className: cx('de-nav-group', 'de-collapsible', closed && 'is-collapsed') },
+      h('button', { type: 'button', className: 'de-group-head', 'aria-expanded': !closed, onClick: function () { st[1](!closed); } },
+        h('span', { className: 'de-label' }, p.label), h(Icon, { name: 'chevron-right', size: 12, strokeWidth: 2, className: 'de-nav-chev' })),
+      !closed && h('div', { className: 'de-group-body' }, p.children));
+  }
+
   function Sidebar(p) {
     var sel = React.useState(p.defaultActive || { id: 'home', child: null }), cur = sel[0];
     return h('aside', { className: 'de-sidebar' },
@@ -148,7 +162,7 @@
         h(IconButton, { size: 'xs', icon: 'chevron-updown', 'aria-label': 'Switch workspace' })),
       h('div', { className: 'de-sidebar-search' }, h(SearchField, null)),
       h('nav', { className: 'de-sidebar-nav de-scroll' }, (p.groups || []).map(function (g, gi) {
-        return h('div', { key: gi, className: 'de-nav-group' }, g.label && h('div', { className: 'de-label' }, g.label),
+        return h(NavGroup, { key: gi, label: g.label, collapsed: g.collapsed },
           g.items.map(function (it) {
             return h(NavItem, { key: it.id, icon: it.icon, label: it.label, tag: it.tag, children: it.children, defaultOpen: it.open,
               active: cur.id === it.id && !it.children, activeChild: cur.id === it.id ? cur.child : null,
