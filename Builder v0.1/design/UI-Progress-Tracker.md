@@ -1,6 +1,6 @@
 # UI Progress Tracker
 
-Updated 2026-11-06 · Grant Block
+Updated 2026-11-11 · Grant Block
 
 **Status key:** ☐ Not started · ◐ In progress · ☑ Done
 
@@ -14,8 +14,8 @@ Page order is a **Draft (not yet approved by Grant)**, built from the App Plan M
 | P02 | Mobile chat, starting page | Web (mobile) | ☑ | `exports/P02-chat-start-mobile/Design_Engineering_Mobile.html` | Done before this tracker |
 | P03 | Chat conversation view (messages, attachments, answers with sources) | Desktop + mobile | ☐ | | Extends P01/P02 |
 | P04 | Sign in / sign up (Clerk) | Desktop + mobile | ☐ | | |
-| P05 | Projects list | Desktop + mobile | ◐ | `exports/P05-projects/index.html` | Landing page for projects; each row opens its P06 project page. Awaiting Grant's review |
-| P06 | Project workspace (Import, Specifications, Layout, Schedule, Exports; files, chat, notes later) | Desktop + mobile | ◐ | `exports/P06-project-workspace/index.html` | Process layout with a summary card per process; each opens P18. Awaiting Grant's review |
+| P05 | Projects list | Desktop + mobile | ☑ | `exports/P05-projects/index.html` | Done 2026-11-11. Landing page for projects; each row opens its P06 project page |
+| P06 | Project workspace (Import, Specifications, Layout, Schedule, Exports; files, chat, notes later) | Desktop + mobile | ☑ | `exports/P06-project-workspace/index.html` | Done 2026-11-11 (for now). Tabs: Import, Specifications, Layout, Schedule, Exports. Files, chat and notes tabs still to design |
 | P07 | Upload flow (STEP, OBJ, photos, PDFs) | Desktop + mobile | ☐ | | |
 | P08 | 3D viewer | Desktop + mobile | ☐ | | |
 | P09 | Document search and data sheets | Desktop + mobile | ☐ | | |
@@ -27,11 +27,11 @@ Page order is a **Draft (not yet approved by Grant)**, built from the App Plan M
 | P15 | Account and settings | Desktop + mobile | ☐ | | |
 | P16 | Lite app window (offline 3D viewer, search, on-device chat) | Desktop app | ☐ | | |
 | P17 | Builder (package a client or site into a Lite zip) | Desktop app | ☐ | | |
-| P18 | Process configuration (one process in detail, like a Xometry part configuration) | Desktop + mobile | ◐ | `exports/P18-process-config/index.html` | Opened from a P06 process card; saves back to the P06 summary. Added 2026-11-10. Awaiting Grant's review |
+| P18 | Process configuration (one process in detail, like a Xometry part configuration) | Desktop + mobile | ☑ | `exports/P18-process-config/index.html` | Done 2026-11-11. Opened from a P06 process card; saves back to the P06 summary. Added 2026-11-10 |
 
 ## Next up
 
-First open item: **P03**, unless Grant says otherwise.
+First open item: **P03**, unless Grant says otherwise. P05, P06 and P18 (the projects section) are complete for now; open questions are in `../review-queue.md` RQ14 and RQ15.
 
 ## Log
 
@@ -54,5 +54,6 @@ First open item: **P03**, unless Grant says otherwise.
 - [stated] 2026-11-11: P06 tab Documents is renamed Exports, with four numbered sections: 1 Import, 2 Generate, 3 Preview, 4 History. Import accepts drawing images (added as sheets) and revision files (.json saved from History).
 - [stated] 2026-11-11: P06 gets a new first tab, Import, which duplicates the Exports tab (1 Import, 2 Generate, 3 Preview, 4 History). The Exports tab drops its Import section (1 Generate, 2 Preview, 3 History). Both tabs show the same shared body, so edits appear in each. Sections on both tabs collapse with a chevron.
 - [stated] 2026-11-11: The Specifications tab has Import and Export dropdown menus. Import: reload past configuration (from the latest revision), add processes from CSV, open the Import tab. Export: processes as CSV, open the Exports tab. The old Reload past configuration button moved into the Import menu.
+- [stated] 2026-11-11: Grant marked the projects section complete for now: P05 (Projects list), P06 (Project workspace) and P18 (Process configuration). P06 tabs: Import, Specifications, Layout, Schedule, Exports. Pages were reviewed as a private preview during the session; data in the prototypes is stored in browser localStorage (see `ISSUES.md` DI03).
 - Draft (not yet approved by Grant): page order P03 to P17 above.
 - [stated] 2026-11-06: Shortcut phrase "design the next page" added; see ../shortcuts.md.

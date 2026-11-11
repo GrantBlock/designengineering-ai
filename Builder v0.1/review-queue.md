@@ -23,6 +23,8 @@ Everything waiting on Grant, tagged by where it is best handled. The shortcut "w
 | RQ11 | Make the final picks for decisions D1 to D12 | vscode | ☐ | App Plan Section 4 |
 | RQ12 | Decide how to reach dev and preview builds from all computers (Cloudflare preview URLs, tunnel, Access login) and how Next.js runs on Cloudflare Workers | vscode | ☐ | `design/ISSUES.md` DI02, App Plan D1 |
 | RQ13 | Decide where the app lives, styling approach (O2) and package manager (O3) | vscode | ☐ | `development-path.md` |
+| RQ14 | Confirm the design-system patterns introduced in P05, P06 and P18 (1120px detail column, numbered page tabs, steel-blue progress fills, chip Next/Generate button, dropdown menus, two-step Delete, white drawing sheets for documents, to-scale Layout view) | vscode | ☐ | `design/DESIGN-SYSTEM.md` decision log |
+| RQ15 | Answer the open projects questions: what Import should accept (CSV columns, PDF drawings, past configurations), whether archived schedules can be exported, whether stage bars come from the schedule, drag-to-place blocks in Layout, and which page is next (P07 upload flow or P08 3D viewer) | mobile | ☐ | `design/UI-Progress-Tracker.md`, `ideas.md` I01 to I05 |
 
 ## Closed
 
@@ -39,3 +41,4 @@ Everything waiting on Grant, tagged by where it is best handled. The shortcut "w
 - [stated] 2026-11-06: Review queue created with surface tags mobile, code, vscode.
 - [stated] 2026-11-09: RQ12 added for dev and preview access (see design/ISSUES.md DI02).
 - [stated] 2026-11-09: RQ13 added for the open development-path decisions.
+- [stated] 2026-11-11: RQ14 and RQ15 added after the projects section (P05, P06, P18) was marked complete.
