@@ -23,15 +23,15 @@ Page order is a **Draft (not yet approved by Grant)**, built from the App Plan M
 | P11 | Calculators (custom, built by the user with the assistant) | Desktop + mobile | ☑ | `exports/P11-calculators/index.html` | Done 2026-11-11 (Grant approved). A template for custom calculators; none are prebuilt |
 | P12 | Process flows (the process and each process in detail, like a Xometry part configuration) | Desktop + mobile | ☑ | `exports/P12-process-config/index.html` | Done 2026-11-11. Opened from a P06 process card; saves back to the P06 summary. Added 2026-11-10 |
 | P13 | Plans and vendor requests (inside the P06 Exports tab: Process document, Ask for a quote, Produce a quote) | Desktop + mobile | ◐ | `exports/P06-project-workspace/index.html` (Exports tab) | Built into P06 2026-11-11, awaiting Grant's review. No separate page |
-| P14 | Wallet and usage (prepaid tokens, auto-refill) | Desktop + mobile | ◐ | `exports/P14-wallet-usage/index.html` | Drafted 2026-11-11, awaiting Grant's review |
+| P14 | Wallet and usage (prepaid tokens, auto-refill) | Desktop + mobile | ☑ | `exports/P14-wallet-usage/index.html` | Done 2026-11-11 (Grant approved). Its content is also in the P15 Settings overlay (Billing, Usage); not yet resolved which one stays |
 | P15 | Account and settings (overlay window) | Desktop + mobile | ☑ | `exports/P15-account-settings/index.html` | Done 2026-11-11 (Grant approved) as a Settings overlay |
-| P16 | Lite app window (a local app that opens the package Builder made from the Vault: file tree, viewer, AI chat) | Desktop app | ◐ | `exports/P16-lite/index.html` | Drafted 2026-11-11, awaiting Grant's review |
+| P16 | Lite app window (a local app that opens the package Builder made from the Vault: file tree, viewer, AI chat) | Desktop app | ☑ | `exports/P16-lite/index.html` | Done 2026-11-11 (Grant approved) |
 | P17 | Builder (extension in the primary navigation: organization, then projects, then the Vault, packaged into a Lite zip) | Desktop + mobile | ☑ | `exports/P17-builder/index.html` | Done 2026-11-11 (Grant approved) |
 | P19 | Dashboard (weekly view: this week, this month, last week) | Desktop + mobile | ☑ | `exports/P19-dashboard/index.html` | Layout only; sample data. Added 2026-11-10 from Grant's weekly tracker zip. Approved 2026-11-11 |
 
 ## Next up
 
-First open item: none; P16 is drafted and awaiting review; unless Grant says otherwise. P08 is done (the 3D designer); its feature spec is waiting for Grant's edits.
+First open item: none; all pages are done; unless Grant says otherwise. P08 is done (the 3D designer); its feature spec is waiting for Grant's edits.
 
 ## Log
 
@@ -121,3 +121,5 @@ First open item: none; P16 is drafted and awaiting review; unless Grant says oth
 - [stated] 2026-11-11: Grant approved P17 (Builder as an extension in the primary navigation). Lite (P16) is back: it is just a local app that opens the package Builder produced from the artifacts in the Vault, and it looks like a file explorer or help section with a selectable left sidebar and a right sidebar for AI chat.
 - [stated] 2026-11-11: P16 (Lite) drafted at `exports/P16-lite/index.html`: a local app window (title bar, no web app sidebar, offline). Left: package name and client, Search this package, a tree with About this package and one folder per project, each listing its documents, models and notes (collapsible, selectable). Center: the selected item read only, with a path bar and a Read only tag: About shows the signed and verified notice and package details; a document shows pages with Previous and Next and search matches highlighted; a model shows a viewport placeholder with its parts; a note shows its text. Right: the Assistant (On this computer) with sample answers drawn only from the package, numbered citation chips and source rows that open the page, three suggested questions, and a composer. An Assistant button in the title bar hides the right side. Under 900px the three areas become Files, View and Assistant tabs. Prototype only: sample content, canned answers, no real 3D.
 - Draft (not yet approved by Grant): P16 patterns: file tree rows with a steel-blue left edge on the selected one; citation chips and source rows as in P03; document on a light sheet as in P06. The on-device model, a real 3D viewer (Three.js, D8), and whether Lite users can add their own notes back are open (App Plan 3.2).
+- [stated] 2026-11-11: Grant approved P16 (Lite) and asked for a review of all pages.
+- [stated] 2026-11-11: Review of all pages run. Fixed: P01 sidebar now has the Builder row and a settings gear that opens P15; the active sidebar row is now set on P07 (Uploads), P08 (Design) and P09 (Vault); the P06 tab row scrolls sideways on phones instead of widening the page; P14 marked done in the tracker. Open items are listed in the review reply and in `ISSUES.md`.
