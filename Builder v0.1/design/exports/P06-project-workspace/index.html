@@ -576,7 +576,7 @@ function drawMap(el,S,cur){
  function cards(){
   document.getElementById('cards').innerHTML=S.map(function(s,i){
    var m=missing(s),size=(s.len&&s.wid)?s.len+' × '+s.wid+' in':'',air=s.psi?s.psi+' psi'+(s.cfm?' · '+s.cfm+' cfm':''):'',el=(s.volt&&s.amp)?s.volt+'V · '+(s.phase||'?')+'φ · '+s.amp+'A':'';
-   return '<article class="p6-card" aria-label="Process '+(i+1)+'"><div class="p6-card-head"><span class="pg-badge">'+(i+1)+'</span><span class="p6-card-title'+(s.type?'':' is-empty')+'">'+(s.type?esc(s.type):'[Untitled process]')+'</span><span class="de-tag">'+s.flow+'</span><a class="de-btn de-btn-chip" '+edit(i)+'><svg class="de-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20l4-1 11-11a2.1 2.1 0 00-3-3L5 16l-1 4z"/></svg>Edit configuration</a></div>'
+   return '<article class="p6-card" aria-label="Process '+(i+1)+'"><div class="p6-card-head"><span class="pg-badge">'+(i+1)+'</span><span class="p6-card-title'+(s.type?'':' is-empty')+'">'+(s.type?esc(s.type):'[Untitled process]')+'</span><span class="de-tag">'+s.flow+'</span><a class="de-btn de-btn-chip" '+edit(i)+'><svg class="de-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20l4-1 11-11a2.1 2.1 0 00-3-3L5 16l-1 4z"/></svg>Edit</a></div>'
    +'<dl class="p6-dl"><div><dt>Size (L × W)</dt>'+dd(size)+'</div><div><dt>Height</dt>'+dd(s.hgt,'in')+'</div><div><dt>Air</dt>'+dd(air)+'</div><div><dt>Electrical</dt>'+dd(el)+'</div><div><dt>Speed</dt>'+dd(s.speed)+'</div><div><dt>Parts / cycle</dt>'+dd(s.ppc)+'</div><div><dt>Weight</dt>'+dd(s.wt,'lb')+'</div><div><dt>Notes</dt>'+dd(s.notes?(s.notes.length>28?s.notes.slice(0,28)+'…':s.notes):'')+'</div></dl>'
    +'<div class="p6-card-foot">'+(m.length?'Needs '+m.join(', '):'Configured')+'</div></article>'}).join('');
   var done=S.filter(function(s){return !missing(s).length}).length;
@@ -866,7 +866,7 @@ function drawMap(el,S,cur){
    +sel('side','Side',[['','Default'],['right','Right of'],['left','Left of'],['above','Above'],['below','Below']],s.side)
    +sel('align','Align',[['','Center'],['start','Start'],['end','End']],s.align)
    +sel('flow','Flow direction',FLOW.map(function(f){return [f,f]}),s.flow)+'</div>'
-   +'<a class="de-btn de-btn-chip lv-edit" href="../P18-process-config/index.html?project='+PN+'&station='+i+'">'+PENCILJS+'Edit configuration</a>'}
+   +'<a class="de-btn de-btn-chip lv-edit" href="../P18-process-config/index.html?project='+PN+'&station='+i+'">'+PENCILJS+'Edit</a>'}
  LVsvg.addEventListener('click',function(e){var b=e.target.closest('[data-i]');LVsel=b?parseInt(b.dataset.i,10):null;lvRender()});
  LVsvg.addEventListener('keydown',function(e){var b=e.target.closest('[data-i]');if(b&&(e.key==='Enter'||e.key===' ')){e.preventDefault();LVsel=parseInt(b.dataset.i,10);lvRender();var n=LVsvg.querySelector('[data-i="'+LVsel+'"]');n&&n.focus()}});
  document.getElementById('lv-sel').addEventListener('change',function(e){var k=e.target.dataset.lv;if(!k||LVsel===null)return;S[LVsel][k]=e.target.value;save(S);cards();lvRender()});
