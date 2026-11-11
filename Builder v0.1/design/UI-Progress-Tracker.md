@@ -18,7 +18,7 @@ Page order is a **Draft (not yet approved by Grant)**, built from the App Plan M
 | P06 | Project workspace (Import, Specifications, Layout, Schedule, Exports; files, chat, notes later) | Desktop + mobile | ☑ | `exports/P06-project-workspace/index.html` | Done 2026-11-11 (for now). Tabs: Import, Specifications, Layout, Schedule, Exports. Files, chat and notes tabs still to design |
 | P07 | Upload flow (STEP, OBJ, photos, PDFs) | Desktop + mobile | ☑ | `exports/P07-upload-flow/index.html` | Done 2026-11-11, one responsive page. Accepts STEP, OBJ, pictures, PDF and ZIP; Take a pic on mobile (Grant approved) |
 | P08 | 3D designer (merged with P20; viewer is its first draft) | Desktop + mobile | ☑ | `exports/P08-3d-viewer/index.html` | Done 2026-11-11 (Grant approved). Chat-only 3D designer, merged with P20. Feature spec: `specs/P08-3D-Designer-Spec.md` |
-| P09 | Document search and data sheets | Desktop + mobile | ☐ | | |
+| P09 | Document search and data sheets | Desktop + mobile | ◐ | `exports/P09-document-search/index.html` | Drafted 2026-11-11, awaiting Grant's review |
 | P10 | Notes and tracking | Desktop + mobile | ☐ | | |
 | P11 | Calculators (chat-enabled) | Desktop + mobile | ☐ | | |
 | P12 | Process flows | Desktop | ☐ | | |
@@ -33,7 +33,7 @@ Page order is a **Draft (not yet approved by Grant)**, built from the App Plan M
 
 ## Next up
 
-First open item: **P09**, unless Grant says otherwise. P08 and P20 are done as one page (the 3D designer); its feature spec is waiting for Grant's edits.
+First open item: **P10** (P09 is drafted and awaiting review), unless Grant says otherwise. P08 and P20 are done as one page (the 3D designer); its feature spec is waiting for Grant's edits.
 
 ## Log
 
@@ -87,3 +87,6 @@ First open item: **P09**, unless Grant says otherwise. P08 and P20 are done as o
 - Draft (not yet approved by Grant): P08 designer UI: version strip of chips under the 3D view, panel tabs (Chat, Parts, Details), reference chip in chat, Save to Vault in the top bar.
 - [stated] 2026-11-11: Grant approved P08 (3D designer, merged with P20), including the chat-first layout (3D view, version strip, Chat, Parts and Details tabs) and the patterns logged above as drafts.
 
+- [stated] 2026-11-11: P09 (Document search and data sheets) drafted at `exports/P09-document-search/index.html`: one responsive page under Vault / Documents. Search field with project scope and type chips (All, Data sheets, Manuals, Drawings, Procedures), a Search results | Data sheets toggle, passage results with the page number and highlighted matches, an Ask in chat line (opens P03), and a document panel (page preview, details, key specifications read from the file, matches, Ask about this document, Open original, Add to a project). Mobile uses a bottom sheet for the document. Prototype only: searches a small built-in sample index, no real files.
+- Draft (not yet approved by Grant): P09 patterns: result row (type tile, title, mono meta with type tag, part and revision, page number, snippet with `bc-steel-blue-tint` match highlight); filter chips (outline, `bc-steel-blue-tint` when on); two-option toggle reused from P04; data sheet card with a 2 x 2 key specification grid; 320px document side panel above 1100px (same as the P03 side panel pattern, narrower content column 1084px); Ask in chat notice on `bc-steel-blue-tint`.
+- Draft (not yet approved by Grant): P09 sample documents, vendors, part numbers and values are placeholders marked (A) or in brackets.
