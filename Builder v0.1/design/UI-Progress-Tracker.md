@@ -15,7 +15,7 @@ Page order is a **Draft (not yet approved by Grant)**, built from the App Plan M
 | P03 | Chat conversation view (messages, attachments, answers with sources) | Desktop + mobile | ☐ | | Extends P01/P02 |
 | P04 | Sign in / sign up (Clerk) | Desktop + mobile | ☐ | | |
 | P05 | Projects list | Desktop + mobile | ◐ | `exports/P05-projects/index.html` | Landing page for projects; each row opens its P06 project page. Awaiting Grant's review |
-| P06 | Project workspace (process layout, process document, schedule; files, chat, notes later) | Desktop + mobile | ◐ | `exports/P06-project-workspace/index.html` | Process layout with a summary card per process; each opens P18. Awaiting Grant's review |
+| P06 | Project workspace (Specifications, Layout, Documents, Schedule; files, chat, notes later) | Desktop + mobile | ◐ | `exports/P06-project-workspace/index.html` | Process layout with a summary card per process; each opens P18. Awaiting Grant's review |
 | P07 | Upload flow (STEP, OBJ, photos, PDFs) | Desktop + mobile | ☐ | | |
 | P08 | 3D viewer | Desktop + mobile | ☐ | | |
 | P09 | Document search and data sheets | Desktop + mobile | ☐ | | |
@@ -45,5 +45,8 @@ First open item: **P03**, unless Grant says otherwise.
 - [stated] 2026-11-10: Schedule tab reworked: a project holds several schedules (for example Conveyor, Capping). Each schedule is collapsible, with its own Gantt timeline and a task builder (summary card per task, Edit button for name, dates, status and dependencies, Add task). Sample schedules are placeholders.
 - [stated] 2026-11-10: Process document tab rebuilt from Grant's 7332 Process Builder export: three drawing sheets (overhead view of the layout, process description with station schedule, sequence of operation and utilities summary, concept assembly drawing), Block Concepts title block, editable document details, print to PDF. Draft (not yet approved by Grant): sheets use the existing drawing-sheet look (white paper, Barlow Semi Condensed and Inter, blue #1a6dbf), not the app Graphite tokens.
 - [stated] 2026-11-10: P18 gains a Placement section (placed against another process, side, align) so the overhead layout can form loops. Sample processes are the nine stations from the 7332 Process Builder.
+- [stated] 2026-11-11: P06 tabs are now 1 Specifications (the process cards), 2 Layout (new: shared flow canvas with blocks, connectors, labels, shape dock and minimap, modeled on Grant's Liveblocks example), 3 Documents, 4 Schedule.
+- [stated] 2026-11-11: Documents tab has three sections only: 1 Generate (choose sheets, edit title block and text), 2 Preview, 3 History (numbered revisions, each can be previewed or used as a starting point). The concept assembly sheet block is removed. The Schedule gantt can be included as one sheet per schedule.
+- Draft (not yet approved by Grant): Layout blocks use the app's neutral graphite fill and steel-blue selection, not per-type colors as in the Liveblocks example. Live multi-user editing is a placeholder.
 - Draft (not yet approved by Grant): page order P03 to P17 above.
 - [stated] 2026-11-06: Shortcut phrase "design the next page" added; see ../shortcuts.md.
