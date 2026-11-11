@@ -19,7 +19,7 @@ Tokens `bc-space-*`, `bc-radius-*`, `bc-shadow-*`. Shell gap 10px, mobile gutter
 - **Mobile:** `MobileHeader`, Hero, ActionCard rail, `SectionHeader` plus `ProjectRow`s. Dock (`MobileComposer` over `TabBar`) fixed at the bottom.
 
 ## Navigation (same on desktop and mobile)
-New, Recents, Projects (plain buttons, no drop-downs), then three collapsible headings: Design (Mechanical, Electrical, Controls, Software; no sub-items), Operations (Manufacturing, Process, Maintenance), Vault (Documents, Uploads) and Tools (Simulation, Troubleshoot, Data Analysis). Desktop shows these in the sidebar. Mobile tabs are not yet updated (see log 2026-11-11). Mobile shows five tabs: Home, Recents, Projects, Design, Library. "Ask" is the composer and the primary ActionCard, not a tab or nav item.
+New, Recents, Projects (plain buttons, no drop-downs), then three collapsible headings: Design (Mechanical, Electrical, Controls, Software; no sub-items), Operations (Manufacturing, Process, Maintenance), Vault (Documents, Uploads) and Tools (Simulation, Troubleshoot, Data Analysis). Desktop shows these in the sidebar. Mobile has five tabs: New, Recents, Projects, Design, More (More stands for Operations, Vault and Tools). Mobile shows five tabs: Home, Recents, Projects, Design, Library. "Ask" is the composer and the primary ActionCard, not a tab or nav item.
 
 ## Components
 Names and props are in `system-kit/components/*/README.md`: AppShell, Sidebar, NavItem, TopBar, Hero, Composer, MobileComposer, Message, Panel, SectionHeader, PromptCard, EmptyNote, Button, IconButton, Tag, Avatar, Icon, SearchField, ActionCard, ProjectRow, StageProgress, MobileHeader, TabBar.
@@ -73,3 +73,4 @@ The Block Concepts Word-document tokens (light theme, 2px and 4px corners, Aptos
 - [stated] 2026-11-11: Grant made Recents and Projects plain buttons with no drop-down lists or chevrons.
 - [stated] 2026-11-11: Grant moved Manufacturing out of Design into a new collapsible heading Operations (Manufacturing, Process, Maintenance), and added Troubleshoot under Tools. Order is Design, Operations, Vault, Tools. New icons `process` and `wrench`; Troubleshoot uses the `search` icon (Draft, not yet approved by Grant).
 - [stated] 2026-11-11: Grant added Data Analysis under Tools. Icon `chart` (bar chart) is Draft (not yet approved by Grant).
+- [stated] 2026-11-11: Grant asked for the mobile tabs to match the desktop sidebar. Mobile tabs are now New, Recents, Projects, Design, More. Draft (not yet approved by Grant): More stands for Operations, Vault and Tools because five tabs cannot hold all groups; the More screen is not designed yet. The P02 Library prompt card now uses the category Vault.
