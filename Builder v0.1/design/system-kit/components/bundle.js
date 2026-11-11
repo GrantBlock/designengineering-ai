@@ -12,6 +12,7 @@
     'panel-left': 'M4 5h16v14H4zM9 5v14',
     'chevron-left': 'M15 6l-6 6 6 6',
     'chat-plus': 'M5 5h14a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1h-8l-4 4v-4H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zM12 8v5M9.5 10.5h5',
+    vault: 'M3 7h18v13H3zM3 7l2-3h14l2 3M10 12h4',
     chat: 'M5 5h14a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1h-8l-4 4v-4H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1z',
     dashboard: 'M4 5h16v14H4zM4 10h16M10 10v9',
     briefcase: 'M3 8h18v12H3zM9 8V5h6v3M3 13h18',
@@ -175,7 +176,7 @@
       h('div', { className: 'sbtool' }, tbtn('menu', 'Menu'), tbtn('panel-left', 'Collapse sidebar'), tbtn('chevron-left', 'Back'), tbtn('chevron-right', 'Forward', 'sbdim'),
         h('span', { style: { flex: 1 } }),
         h('div', { className: 'sbseg', role: 'tablist', 'aria-label': 'Sidebar mode' }, seg('chat', 'chat', 'Chat'), seg('projects', 'folder', 'Projects'))),
-      h('nav', { className: 'sbnav', 'aria-label': 'Main' }, row('plus', 'New', 'sbnew', 'new'), row('search', 'Search', 0, 'search'), row('dashboard', 'Dashboard', 0, 'dashboard'), row('cube', 'Design', 0, 'design'), row('briefcase', 'Customize', 0, 'customize'), row('more', 'More', 0, 'more')),
+      h('nav', { className: 'sbnav', 'aria-label': 'Main' }, row('plus', 'New', 'sbnew', 'new'), row('search', 'Search', 0, 'search'), row('dashboard', 'Dashboard', 0, 'dashboard'), row('cube', 'Design', 0, 'design'), row('vault', 'Vault', 0, 'vault'), row('upload', 'Uploads', 0, 'uploads'), row('more', 'More', 0, 'more')),
       mode === 'chat'
         ? h('div', { className: 'sbpane' }, h('div', { className: 'sbhead' }, 'Recents'), h('div', { className: 'sbrecs de-scroll' }, chats.map(chat)))
         : h('div', { className: 'sbpane' }, h('div', { className: 'sbhead' }, 'Projects'), h('div', { className: 'sbrecs de-scroll' }, row('plus', 'New project', 'sbrow sbnewproj', 'new-project'), projects.map(function (g) {
