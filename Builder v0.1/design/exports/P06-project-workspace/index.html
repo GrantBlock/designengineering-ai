@@ -432,6 +432,12 @@ select.pg-in{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xml
 .lv-selhead{display:flex;align-items:center;gap:var(--bc-space-3);margin-bottom:var(--bc-space-3)}.lv-selhead b{font-size:15px;font-weight:600;padding-top:2px}
 .lv-edit{margin-top:var(--bc-space-3);width:100%;justify-content:center;height:var(--bc-touch-target)}
 @media (max-width:760px){.lv-stage{height:420px}}
+.s-danger{color:var(--bc-ink);background:var(--bc-surface-raised);border:1px solid var(--bc-steel-blue-edge)}
+.s-arch{margin-top:var(--bc-space-1)}
+.s-arow{padding:12px 16px}
+.imp-body{padding:var(--bc-space-2) 0}
+.imp-hint,.imp-msg{margin:var(--bc-space-2) 0 0}
+.imp-msg{color:var(--bc-steel-blue-text);min-height:18px}
 @media (max-width:760px){.p6-dl{grid-template-columns:repeat(2,minmax(0,1fr))}.p6-step{flex:1;justify-content:center;padding:2px 6px 0;font-size:13px}.p6-ref .de-search{width:100%}.p6-card{padding:14px}.p6-card-head .de-btn{height:var(--bc-touch-target)}}
 
 </style></head>
@@ -457,7 +463,7 @@ select.pg-in{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xml
     <button class="p6-step" role="tab" id="t1" aria-selected="true" aria-controls="s1"><i>1</i>Specifications</button>
     <button class="p6-step" role="tab" id="t2" aria-selected="false" aria-controls="s2"><i>2</i>Layout</button>
     <button class="p6-step" role="tab" id="t4" aria-selected="false" aria-controls="s4"><i>3</i>Schedule</button>
-    <button class="p6-step" role="tab" id="t3" aria-selected="false" aria-controls="s3"><i>4</i>Documents</button>
+    <button class="p6-step" role="tab" id="t3" aria-selected="false" aria-controls="s3"><i>4</i>Exports</button>
    </div>
    <div id="s1" role="tabpanel" aria-labelledby="t1">
     <div class="pg-stack">
@@ -479,13 +485,18 @@ select.pg-in{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xml
     </aside>
    </div>
    <div id="s3" role="tabpanel" aria-labelledby="t3" hidden class="pg-stack">
-    <section class="de-panel doc-sec doc-hide-print" id="doc-gen"><div class="de-section-head"><span class="de-label">1 · Generate</span><span class="de-tag de-tag-plain" id="doc-next"></span></div>
+    <section class="de-panel doc-sec doc-hide-print" id="doc-imp"><div class="de-section-head"><span class="de-label">1 · Import</span><span class="de-tag de-tag-plain" id="imp-n"></span></div>
+     <div class="imp-body"><label class="p18-drop-l"><input type="file" id="imp-file" class="doc-file" accept="image/*,.json,application/json" multiple><span class="de-btn de-btn-chip"><svg class="de-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>Add files</span></label>
+      <p class="pg-note imp-hint">Drawing images (PNG or JPG) can be added as sheets. A revision file (.json) saved from History is added as a revision.</p><p class="pg-note imp-msg" id="imp-msg" role="status"></p></div>
+     <div id="imp-list"></div></section>
+    <section class="de-panel doc-sec doc-hide-print" id="doc-gen"><div class="de-section-head"><span class="de-label">2 · Generate</span><span class="de-tag de-tag-plain" id="doc-next"></span></div>
      <div class="doc-gen-grid">
       <div class="doc-inc"><span class="de-label">Include</span>
        <label><input type="checkbox" id="i-map">Overhead view</label>
        <label><input type="checkbox" id="i-desc">Process description</label>
        <label><input type="checkbox" id="i-gantt">Schedule chart</label>
-       <div id="i-sched"></div></div>
+       <div id="i-sched"></div>
+       <div id="i-imp"></div></div>
       <div class="pg-fields">
        <div class="pg-f w6"><label for="d-title">Title</label><input class="pg-in" id="d-title" data-d="title"></div>
        <div class="pg-f w3"><label for="d-dwg">Drawing no.</label><input class="pg-in" id="d-dwg" data-d="dwg"></div>
@@ -500,9 +511,9 @@ select.pg-in{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xml
       </div>
      </div>
      <div class="doc-actions"><button class="de-btn" id="d-regen">Rebuild steps from stations</button><button class="de-btn de-btn-chip is-next" id="d-gen">Generate document</button></div></section>
-    <section class="de-panel doc-sec" id="doc-prev"><div class="de-section-head doc-prevhead"><span class="de-label">2 · Preview</span><span class="de-tag de-tag-plain" id="doc-ptag"></span><span class="doc-pact"><button class="de-btn de-btn-chip is-next" id="d-print">Print / Save as PDF</button></span></div>
+    <section class="de-panel doc-sec" id="doc-prev"><div class="de-section-head doc-prevhead"><span class="de-label">3 · Preview</span><span class="de-tag de-tag-plain" id="doc-ptag"></span><span class="doc-pact"><button class="de-btn de-btn-chip is-next" id="d-print">Print / Save as PDF</button></span></div>
      <div id="docwrap" class="doc-wrap"><div id="docsheets" class="doc-sheets"></div></div></section>
-    <section class="de-panel doc-sec doc-hide-print" id="doc-hist"><div class="de-section-head"><span class="de-label">3 · History</span><span class="de-tag de-tag-plain" id="hist-n"></span></div><div id="hist"></div></section>
+    <section class="de-panel doc-sec doc-hide-print" id="doc-hist"><div class="de-section-head"><span class="de-label">4 · History</span><span class="de-tag de-tag-plain" id="hist-n"></span></div><div id="hist"></div></section>
    </div>
    <div id="s4" role="tabpanel" aria-labelledby="t4" hidden>
     <div class="g-sum" id="gsum"></div>
@@ -578,7 +589,7 @@ function drawMap(el,S,cur){
  if(!SCHEDS)SCHEDS=[{"id": "s1", "name": "Conveyor", "collapsed": false, "tasks": [{"id": "v1", "name": "Application Study", "start": "2026-08-03", "end": "2027-01-27", "bs": "2026-08-03", "be": "2027-01-27", "status": "In progress", "after": []}, {"id": "v2", "name": "Mechanical Design (1 of 2)", "start": "2026-08-03", "end": "2026-09-02", "bs": "2026-08-03", "be": "2026-09-02", "status": "Done", "after": []}, {"id": "v3", "name": "Electrical Design", "start": "2026-09-03", "end": "2026-11-01", "bs": "2026-09-03", "be": "2026-11-01", "status": "Done", "after": ["v2"]}, {"id": "v4", "name": "Software Design", "start": "2026-09-03", "end": "2026-12-21", "bs": "2026-09-03", "be": "2026-12-21", "status": "In progress", "after": ["v2"]}, {"id": "v5", "name": "Mechanical Design (2 of 2)", "start": "2026-09-04", "end": "2026-09-17", "bs": "2026-09-04", "be": "2026-09-17", "status": "Done", "after": ["v2"]}, {"id": "v6", "name": "Component Procurement", "start": "2026-09-18", "end": "2026-11-21", "bs": "2026-09-18", "be": "2026-11-21", "status": "In progress", "after": ["v5"]}, {"id": "v7", "name": "Panel Assembling", "start": "2026-11-02", "end": "2026-12-05", "bs": "2026-11-02", "be": "2026-12-05", "status": "In progress", "after": ["v3"]}, {"id": "v8", "name": "Main Assembly", "start": "2026-11-22", "end": "2026-12-05", "bs": "2026-11-22", "be": "2026-12-05", "status": "Not started", "after": ["v6", "v7"]}, {"id": "v9", "name": "Main Wiring", "start": "2026-12-06", "end": "2026-12-28", "bs": "2026-12-06", "be": "2026-12-28", "status": "Not started", "after": ["v8", "v4"]}, {"id": "v10", "name": "Software Troubleshooting", "start": "2026-12-29", "end": "2027-01-26", "bs": "2026-12-29", "be": "2027-01-26", "status": "Not started", "after": ["v9"]}]}, {"id": "s2", "name": "Capping", "collapsed": true, "tasks": [{"id": "c1", "name": "Mechanical design", "start": "2026-08-03", "end": "2026-09-04", "bs": "2026-08-03", "be": "2026-09-04", "status": "Done", "after": []}, {"id": "c2", "name": "Controls design", "start": "2026-09-07", "end": "2026-10-02", "bs": "2026-09-07", "be": "2026-10-02", "status": "Done", "after": ["c1"]}, {"id": "c3", "name": "Build and wiring", "start": "2026-10-05", "end": "2026-10-30", "bs": "2026-10-05", "be": "2026-10-30", "status": "Done", "after": ["c2"]}, {"id": "c4", "name": "FAT", "start": "2026-11-02", "end": "2026-11-06", "bs": "2026-11-02", "be": "2026-11-06", "status": "Done", "after": ["c3"]}]}];
  function saveS(){try{localStorage.setItem('de-scheds-'+PN,JSON.stringify(SCHEDS))}catch(e){}}
  var TODAY=Date.UTC(2026,10,10),DAY=864e5,MON=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
- var ZOOM={},BASE={},EDIT=null,RENAME=null,ROW=36,HEAD=64,GRP=36;
+ var ZOOM={},BASE={},EDIT=null,RENAME=null,DELCONF=null,SHOWARCH=false,ROW=36,HEAD=64,GRP=36;
  function pd(s){var a=s.split('-');return Date.UTC(+a[0],+a[1]-1,+a[2])}
  function iso(t){var d=new Date(t);return d.getUTCFullYear()+'-'+('0'+(d.getUTCMonth()+1)).slice(-2)+'-'+('0'+d.getUTCDate()).slice(-2)}
  function md(t){var d=new Date(t);return MON[d.getUTCMonth()]+' '+d.getUTCDate()}
@@ -629,7 +640,7 @@ function drawMap(el,S,cur){
   var h='<section class="de-panel s-sec" data-s="'+sch.id+'"><div class="s-head"><button class="de-iconbtn de-iconbtn-sm s-tog'+(col?' is-col':'')+'" data-act="toggle" aria-expanded="'+(!col)+'" aria-label="'+(col?'Expand':'Collapse')+' '+esc(sch.name)+'">'+CHEVJS+'</button>'
    +(RENAME===sch.id?'<input class="pg-in s-ren" data-f="sname" value="'+esc(sch.name)+'" aria-label="Schedule name">':'<span class="s-name">'+esc(sch.name)+'</span>')
    +'<span class="de-tag'+(all?'':' de-tag-plain')+'">'+(all?'Complete':done+' of '+T.length+' done')+'</span><span class="s-sub">'+sub+'</span>'
-   +'<span class="s-act"><button class="de-btn" data-act="rename">Rename</button><button class="de-btn" data-act="remove-sched">Remove</button></span></div>';
+   +'<span class="s-act"><button class="de-btn" data-act="rename">Rename</button><button class="de-btn" data-act="archive">Archive</button>'+(DELCONF===sch.id?'<button class="de-btn s-danger" data-act="remove-sched">Confirm delete</button><button class="de-btn" data-act="cancel-del">Cancel</button>':'<button class="de-btn" data-act="remove-sched">Delete</button>')+'</span></div>';
   if(!col){
    h+='<div class="g-bar"><span class="de-label">Timeline</span><div class="g-tools"><button class="de-btn de-btn-chip" data-act="base" aria-pressed="'+!!BASE[sch.id]+'">Baseline</button><button class="de-btn de-btn-chip" data-act="fit">Auto fit</button>'
     +'<select class="pg-in g-zoom" data-act="zoomsel" aria-label="Zoom"><option value="4"'+(ppd===4?' selected':'')+'>Months</option><option value="12"'+(ppd===12?' selected':'')+'>Weeks</option></select>'
@@ -638,23 +649,34 @@ function drawMap(el,S,cur){
    +'<div class="g-tasks"><div class="de-section-head"><span class="de-label">Tasks</span><button class="de-btn" data-act="add-task">'+PLUSJS+'Add task</button></div><div class="pg-stack">'
    +(T.length?T.map(function(t,i){return taskCard(sch,t,i)}).join(''):'<div class="de-empty">No tasks yet. Add the first one.</div>')+'</div></div>'}
   return h+'</section>'}
+ function live(){return SCHEDS.filter(function(s){return !s.archived})}
+ function archivedHTML(){
+  var A=SCHEDS.filter(function(s){return s.archived});if(!A.length)return '';
+  var h='<section class="de-panel s-sec s-arch" aria-label="Archived schedules"><div class="s-head"><button class="de-iconbtn de-iconbtn-sm s-tog'+(SHOWARCH?'':' is-col')+'" data-act="arch-toggle" aria-expanded="'+SHOWARCH+'" aria-label="'+(SHOWARCH?'Hide':'Show')+' archived schedules">'+CHEVJS+'</button><span class="s-name">Archived</span><span class="de-tag de-tag-plain">'+A.length+'</span></div>';
+  if(SHOWARCH)h+=A.map(function(s){var bd=bounds(s.tasks);return '<div class="hist-row s-arow" data-s="'+s.id+'"><span class="de-tag de-tag-plain">'+s.tasks.length+' tasks</span><div class="hist-main"><b>'+esc(s.name)+'</b><span>'+(bd?range(bd[0],bd[1]):'No tasks')+'</span></div><div class="hist-act"><button class="de-btn" data-act="restore">Restore</button>'+(DELCONF===s.id?'<button class="de-btn s-danger" data-act="remove-sched">Confirm delete</button><button class="de-btn" data-act="cancel-del">Cancel</button>':'<button class="de-btn" data-act="remove-sched">Delete</button>')+'</div></div>'}).join('');
+  return h+'</section>'}
  function summary(){
-  var all=[];SCHEDS.forEach(function(s){all=all.concat(s.tasks)});var bd=bounds(all),done=all.filter(function(t){return t.status==='Done'}).length;
-  document.getElementById('gsum').innerHTML=bd?'<div><span class="de-label">Start</span><b>'+mdy(bd[0])+'</b></div><div><span class="de-label">Finish</span><b>'+mdy(bd[1])+'</b></div><div><span class="de-label">Schedules</span><b>'+SCHEDS.length+'</b></div><div><span class="de-label">Days left</span><b>'+Math.max(0,Math.round((bd[1]-TODAY)/DAY))+'</b></div><div><span class="de-label">Tasks done</span><b>'+done+' of '+all.length+'</b></div>':''}
+  var all=[];live().forEach(function(s){all=all.concat(s.tasks)});var bd=bounds(all),done=all.filter(function(t){return t.status==='Done'}).length;
+  document.getElementById('gsum').innerHTML=bd?'<div><span class="de-label">Start</span><b>'+mdy(bd[0])+'</b></div><div><span class="de-label">Finish</span><b>'+mdy(bd[1])+'</b></div><div><span class="de-label">Schedules</span><b>'+live().length+'</b></div><div><span class="de-label">Days left</span><b>'+Math.max(0,Math.round((bd[1]-TODAY)/DAY))+'</b></div><div><span class="de-label">Tasks done</span><b>'+done+' of '+all.length+'</b></div>':''}
  var root=document.getElementById('sched');
  function render(){
   var sc={};[].forEach.call(root.querySelectorAll('[data-s]'),function(el){var g=el.querySelector('.g-scroll');if(g)sc[el.dataset.s]=g.scrollLeft});
-  root.innerHTML=SCHEDS.map(secHTML).join('')||'<div class="de-empty">No schedules yet. Add one below.</div>';
+  root.innerHTML=(live().map(secHTML).join('')||(SCHEDS.length?'':'<div class="de-empty">No schedules yet. Add one below.</div>'))+archivedHTML();
   [].forEach.call(root.querySelectorAll('[data-s]'),function(el){var g=el.querySelector('.g-scroll');if(g&&sc[el.dataset.s])g.scrollLeft=sc[el.dataset.s]});
   var r=root.querySelector('.s-ren');if(r){r.focus();r.select()}
   summary()}
  function find(el){var s=el.closest('[data-s]');return s?SCHEDS.filter(function(x){return x.id===s.dataset.s})[0]:null}
  function task(sch,id){return sch.tasks.filter(function(t){return t.id===id})[0]}
  root.addEventListener('click',function(e){
-  var b=e.target.closest('[data-act]');if(!b||b.tagName==='SELECT')return;var sch=find(b),a=b.dataset.act;if(!sch)return;
+  var b=e.target.closest('[data-act]');if(!b||b.tagName==='SELECT')return;var a=b.dataset.act;
+  if(a==='arch-toggle'){SHOWARCH=!SHOWARCH;render();return}
+  var sch=find(b);if(!sch)return;var wasConf=DELCONF;if(a!=='remove-sched')DELCONF=null;
   if(a==='toggle'){sch.collapsed=!sch.collapsed;if(sch.collapsed&&EDIT&&EDIT.s===sch.id)EDIT=null}
   else if(a==='rename'){RENAME=sch.id}
-  else if(a==='remove-sched'){SCHEDS=SCHEDS.filter(function(x){return x!==sch});if(EDIT&&EDIT.s===sch.id)EDIT=null}
+  else if(a==='archive'){sch.archived=true;if(EDIT&&EDIT.s===sch.id)EDIT=null;SHOWARCH=true}
+  else if(a==='restore'){sch.archived=false}
+  else if(a==='cancel-del'){}
+  else if(a==='remove-sched'){if(wasConf===sch.id){SCHEDS=SCHEDS.filter(function(x){return x!==sch});if(EDIT&&EDIT.s===sch.id)EDIT=null;DELCONF=null}else DELCONF=sch.id}
   else if(a==='base'){BASE[sch.id]=!BASE[sch.id]}
   else if(a==='zoomin'){ZOOM[sch.id]=Math.min(40,(ZOOM[sch.id]||4)*1.25)}
   else if(a==='zoomout'){ZOOM[sch.id]=Math.max(1,(ZOOM[sch.id]||4)/1.25)}
@@ -678,20 +700,22 @@ function drawMap(el,S,cur){
  root.addEventListener('focusout',function(e){if(e.target.classList.contains('s-ren')){var sch=find(e.target);if(sch&&RENAME===sch.id){sch.name=e.target.value.trim()||sch.name;RENAME=null;saveS();render()}}});
  document.getElementById('gaddsched').onclick=function(){var id='s'+Date.now();SCHEDS.push({id:id,name:'New schedule',collapsed:false,tasks:[]});RENAME=id;saveS();render()};
 
- /* ---- Documents: 1 Generate, 2 Preview, 3 History ---- */
+ /* ---- Exports: 1 Import, 2 Generate, 3 Preview, 4 History ---- */
  var NL=String.fromCharCode(10),TODAYS='11/11/2026',CTX=null,DOCK=0.6;
  function clone(o){return JSON.parse(JSON.stringify(o))}
  var DOCDEF={title:'7332 ASSEMBLY',dwg:'7332',ver:'1',date:TODAYS,size:'ANSI — A',scale1:'1:50',scale2:'1:20',sub:'7332 Concept Assembly — Sand Molding Line',
   desc:'Prepared sand is discharged from the sand mixer and hopper onto the incline sand conveyor, which feeds the horizontal sand conveyor above the molding cell. Sand fills the molding hopper and is compacted at the molding press. Finished molds discharge onto the transfer conveyor loop, which carries them around the cell and returns spent sand through reclamation back to the mixer, closing the circuit.',
   seq:['Sand mixer + hopper (1) discharges prepared sand.','Incline conveyor (2) elevates sand to the cell.','Horizontal conveyor (3) feeds the molding hopper (4).','Molding press (5) forms and compacts the mold.','Transfer conveyors (6-8) carry molds around the loop.','Sand reclamation (9) returns spent sand to the mixer.'].join(NL),ctl:'120V 1φ'};
- var DOC=null,INC=null,HIST=null,VIEW=null;
+ var DOC=null,INC=null,HIST=null,VIEW=null,IMPS=[];
+ try{IMPS=JSON.parse(localStorage.getItem('de-imp-'+PN))||[]}catch(e){}
  try{DOC=JSON.parse(localStorage.getItem('de-doc-'+PN))}catch(e){}
  DOC=Object.assign({},DOCDEF,DOC||{});
  try{INC=JSON.parse(localStorage.getItem('de-docinc-'+PN))}catch(e){}
- if(!INC)INC={map:true,desc:true,gantt:true,sched:SCHEDS.map(function(s){return s.id})};
+ if(!INC)INC={map:true,desc:true,gantt:true,sched:live().map(function(s){return s.id}),imp:[]};
+ INC.imp=INC.imp||[];
  try{HIST=JSON.parse(localStorage.getItem('de-hist-'+PN))}catch(e){}
- function saveDoc(){try{localStorage.setItem('de-doc-'+PN,JSON.stringify(DOC));localStorage.setItem('de-docinc-'+PN,JSON.stringify(INC));localStorage.setItem('de-hist-'+PN,JSON.stringify(HIST))}catch(e){}}
- function mkRev(n,iso){return {id:'r'+n+'-'+Date.now(),rev:n,at:iso,by:'Grant Block',doc:Object.assign(clone(DOC),{ver:String(n),date:TODAYS}),inc:clone(INC),S:clone(S),scheds:clone(SCHEDS)}}
+ function saveDoc(){try{localStorage.setItem('de-doc-'+PN,JSON.stringify(DOC));localStorage.setItem('de-docinc-'+PN,JSON.stringify(INC));localStorage.setItem('de-hist-'+PN,JSON.stringify(HIST))}catch(e){}try{localStorage.setItem('de-imp-'+PN,JSON.stringify(IMPS))}catch(e){}}
+ function mkRev(n,iso){return {id:'r'+n+'-'+Date.now(),rev:n,at:iso,by:'Grant Block',doc:Object.assign(clone(DOC),{ver:String(n),date:TODAYS}),inc:Object.assign(clone(INC),{sched:(INC.sched||[]).filter(function(id){return live().some(function(s){return s.id===id})})}),S:clone(S),scheds:clone(SCHEDS)}}
  if(!HIST||!HIST.length){var r0=mkRev(1,'2026-11-10');r0.doc.date='11/10/2026';HIST=[r0]}
  VIEW=HIST[0].id;
  function fmtFlow(f){return f==='Vertical'?'Vertical ↕':f==='Left to right'?'Left → Right':f==='Right to left'?'Right → Left':f}
@@ -742,7 +766,7 @@ function drawMap(el,S,cur){
   var cnt={},psi=0,cfm=0;S.forEach(function(s){if(s.volt){var k=s.volt+'V '+(s.phase||'?')+'φ';cnt[k]=(cnt[k]||0)+1}if(s.psi)psi=Math.max(psi,parseFloat(s.psi)||0);cfm+=parseFloat(s.cfm)||0});
   var main=Object.keys(cnt).sort(function(a,b){return cnt[b]-cnt[a]})[0]||'—';
   return [['Main Power',main],['Control',CTX.doc.ctl||'—'],['Compressed Air',psi?psi+' psi':'—'],['Air Consumption',cfm?cfm+' cfm':'—'],['Stations',S.length+' Total']]}
- function sheetList(snap){var a=[];if(snap.inc.map)a.push({t:'map'});if(snap.inc.desc)a.push({t:'desc'});if(snap.inc.gantt)(snap.inc.sched||[]).forEach(function(id){var sc=snap.scheds.filter(function(x){return x.id===id})[0];if(sc)a.push({t:'gantt',sc:sc})});return a}
+ function sheetList(snap){var a=[];if(snap.inc.map)a.push({t:'map'});if(snap.inc.desc)a.push({t:'desc'});(snap.inc.imp||[]).forEach(function(id){var im=IMPS.filter(function(x){return x.id===id})[0];a.push({t:'img',im:im,id:id})});if(snap.inc.gantt)(snap.inc.sched||[]).forEach(function(id){var sc=snap.scheds.filter(function(x){return x.id===id})[0];if(sc)a.push({t:'gantt',sc:sc})});return a}
  function sheetsHTML(snap){
   CTX=snap;var S=snap.S,L=sheetList(snap),N=L.length,d=snap.doc;
   function wrap(cls,w,h,inner){return '<div class="doc-pagewrap" style="width:'+Math.round(w*DOCK)+'px;height:'+Math.round(h*DOCK)+'px"><div class="doc-scale '+cls+'" style="width:'+w+'px;height:'+h+'px;transform:scale('+DOCK+')">'+inner+'</div></div>'}
@@ -750,6 +774,7 @@ function drawMap(el,S,cur){
   if(!N)return '<div class="de-empty">No sheets selected. Choose what to include in Generate.</div>';
   return L.map(function(s,i){var n=i+1;
    if(s.t==='map')return wrap('ds ds-land',1056,816,frame+'<div class="ds-area1"><div class="ds-h1">OVERHEAD VIEW — PROCESS LAYOUT</div><div class="ds-map">'+sheetMap(S)+'</div></div><div class="ds-tb">'+tblock(true,n,N)+'</div>');
+   if(s.t==='img')return wrap('ds ds-land',1056,816,s.im?'<div class="ds-img"><img src="'+s.im.src+'" alt="'+esc(s.im.name)+'"></div>':frame+'<div class="ds-empty">[Imported drawing removed]</div>');
    if(s.t==='gantt')return wrap('ds ds-land',1056,816,frame+'<div class="ds-area1"><div class="ds-h1">SCHEDULE — '+esc(s.sc.name.toUpperCase())+'</div><div class="ds-map">'+ganttSVG(s.sc)+'</div></div><div class="ds-tb">'+tblock(true,n,N)+'</div>');
    var rows=S.map(function(p,j){var air=p.psi?p.psi+' psi'+(p.cfm?' · '+p.cfm+' cfm':''):'—',el=(p.volt&&p.amp)?p.volt+'V · '+(p.phase||'?')+'φ · '+p.amp+'A':'—';
     return '<tr class="'+(j%2?'alt':'')+'"><td class="n">'+(j+1)+'</td><td><b>Station '+(j+1)+'</b><div class="ty">'+esc(p.type||'[Process]')+'</div></td><td>'+esc(p.speed||'')+'</td><td>'+((p.len&&p.wid)?esc(p.len+' in × '+p.wid+' in'):'—')+'</td><td>'+esc(p.ppc?p.ppc+' / cy':'')+'</td><td>'+esc(air)+'</td><td>'+esc(el)+'</td><td class="fl">'+esc(fmtFlow(p.flow))+'</td></tr>'}).join('');
@@ -767,20 +792,41 @@ function drawMap(el,S,cur){
  function renderHist(){
   document.getElementById('hist-n').textContent=HIST.length+(HIST.length===1?' revision':' revisions');
   document.getElementById('hist').innerHTML=HIST.map(function(h){var n=sheetList(h).length;
-   return '<div class="hist-row" data-id="'+h.id+'"><span class="de-tag'+(h.id===VIEW?'':' de-tag-plain')+'">Rev '+h.rev+'</span><div class="hist-main"><b>'+esc(h.doc.title)+'</b><span>'+fdate(h.at)+' · '+esc(h.by)+' · '+n+(n===1?' sheet':' sheets')+'</span></div><div class="hist-act"><button class="de-btn" data-h="open">'+(h.id===VIEW?'Showing':'Preview')+'</button><button class="de-btn" data-h="load">Use as starting point</button></div></div>'}).join('')}
+   return '<div class="hist-row" data-id="'+h.id+'"><span class="de-tag'+(h.id===VIEW?'':' de-tag-plain')+'">Rev '+h.rev+'</span><div class="hist-main"><b>'+esc(h.doc.title)+'</b><span>'+fdate(h.at)+' · '+esc(h.by)+' · '+n+(n===1?' sheet':' sheets')+'</span></div><div class="hist-act"><button class="de-btn" data-h="open">'+(h.id===VIEW?'Showing':'Preview')+'</button><button class="de-btn" data-h="load">Use as starting point</button><button class="de-btn" data-h="dl">Save file</button></div></div>'}).join('')}
  function fillForm(){
   [].forEach.call(document.querySelectorAll('[data-d]'),function(f){f.value=DOC[f.dataset.d]});
   document.getElementById('i-map').checked=!!INC.map;document.getElementById('i-desc').checked=!!INC.desc;document.getElementById('i-gantt').checked=!!INC.gantt;
-  document.getElementById('i-sched').innerHTML=SCHEDS.map(function(s){return '<label class="doc-sub"><input type="checkbox" data-sid="'+s.id+'"'+((INC.sched||[]).indexOf(s.id)>-1?' checked':'')+(INC.gantt?'':' disabled')+'>'+esc(s.name)+' <span>'+s.tasks.length+' tasks</span></label>'}).join('')||'<span class="g-none2">No schedules yet.</span>';
+  document.getElementById('i-sched').innerHTML=live().map(function(s){return '<label class="doc-sub"><input type="checkbox" data-sid="'+s.id+'"'+((INC.sched||[]).indexOf(s.id)>-1?' checked':'')+(INC.gantt?'':' disabled')+'>'+esc(s.name)+' <span>'+s.tasks.length+' tasks</span></label>'}).join('')||'<span class="g-none2">No schedules yet.</span>';
+  document.getElementById('i-imp').innerHTML=IMPS.filter(function(m){return m.kind==='image'}).map(function(m){return '<label class="doc-sub"><input type="checkbox" data-iid="'+m.id+'"'+(INC.imp.indexOf(m.id)>-1?' checked':'')+'>'+esc(m.name)+' <span>Drawing</span></label>'}).join('');
   document.getElementById('doc-next').textContent='Next: Rev '+(Math.max.apply(null,HIST.map(function(h){return h.rev}))+1)}
- function docOpen(){fillForm();renderHist();renderPreview()}
+
+ function fsize(n){return n>1048576?(n/1048576).toFixed(1)+' MB':Math.max(1,Math.round(n/1024))+' KB'}
+ function renderImp(){
+  document.getElementById('imp-n').textContent=IMPS.length+(IMPS.length===1?' file':' files');
+  document.getElementById('imp-list').innerHTML=IMPS.map(function(m){return '<div class="hist-row" data-iid="'+m.id+'"><span class="de-tag">'+(m.kind==='image'?'Drawing':'Revision')+'</span><div class="hist-main"><b>'+esc(m.name)+'</b><span>'+fsize(m.size)+' · '+fdate(m.at)+(m.kind==='revision'?' · Rev '+m.rev:'')+'</span></div><div class="hist-act">'+(m.kind==='revision'?'<button class="de-btn" data-i="open">Preview</button>':'<button class="de-btn" data-i="use">'+(INC.imp.indexOf(m.id)>-1?'In export':'Add to export')+'</button>')+'<button class="de-btn" data-i="rm">Remove</button></div></div>'}).join('')}
+ function impMsg(t){document.getElementById('imp-msg').textContent=t}
+ function addImp(m){IMPS.push(m);saveDoc();renderImp();fillForm()}
+ document.getElementById('imp-file').addEventListener('change',function(e){
+  var files=[].slice.call(e.target.files||[]);impMsg('');
+  files.forEach(function(f){var r=new FileReader(),id='i'+Date.now()+Math.floor(Math.random()*1000),today='2026-11-11';
+   if(f.type.indexOf('image/')===0){r.onload=function(){INC.imp.push(id);addImp({id:id,kind:'image',name:f.name,size:f.size,at:today,src:r.result});impMsg('Added '+f.name+' as a drawing sheet.')};r.readAsDataURL(f)}
+   else if(/[.]json$/i.test(f.name)){r.onload=function(){try{var o=JSON.parse(r.result);if(!o||!o.doc||!o.inc||!o.S||!o.scheds)throw 1;var n=Math.max.apply(null,HIST.map(function(h){return h.rev}))+1;o.id='r'+n+'-'+Date.now();o.rev=n;o.at=today;o.by='Imported';HIST.unshift(o);VIEW=o.id;addImp({id:id,kind:'revision',name:f.name,size:f.size,at:today,rev:n,rid:o.id});renderHist();impMsg('Added '+f.name+' as Rev '+n+'.')}catch(err){impMsg(f.name+' is not a revision file.')}};r.readAsText(f)}
+   else impMsg(f.name+' is not a supported file. Use PNG, JPG or a revision .json file.')});
+  e.target.value=''});
+ document.getElementById('imp-list').addEventListener('click',function(e){var b=e.target.closest('[data-i]'),row=e.target.closest('[data-iid]');if(!b||!row)return;var m=IMPS.filter(function(x){return x.id===row.dataset.iid})[0];if(!m)return;
+  if(b.dataset.i==='rm'){IMPS=IMPS.filter(function(x){return x!==m});INC.imp=INC.imp.filter(function(x){return x!==m.id});saveDoc();renderImp();fillForm()}
+  else if(b.dataset.i==='use'){var k=INC.imp.indexOf(m.id);if(k>-1)INC.imp.splice(k,1);else INC.imp.push(m.id);saveDoc();renderImp();fillForm()}
+  else if(b.dataset.i==='open'){if(HIST.some(function(h){return h.id===m.rid})){VIEW=m.rid;renderHist();renderPreview();document.getElementById('doc-prev').scrollIntoView({behavior:'smooth',block:'start'})}}});
+ function docOpen(){fillForm();renderImp();renderHist();renderPreview()}
  function docRender(){if(document.getElementById('s3')&&!document.getElementById('s3').hidden)renderPreview()}
  [].forEach.call(document.querySelectorAll('[data-d]'),function(f){f.addEventListener('input',function(){DOC[f.dataset.d]=f.value;saveDoc()})});
  ['map','desc','gantt'].forEach(function(k){document.getElementById('i-'+k).addEventListener('change',function(e){INC[k]=e.target.checked;saveDoc();fillForm()})});
  document.getElementById('i-sched').addEventListener('change',function(){INC.sched=[].slice.call(document.querySelectorAll('#i-sched input:checked')).map(function(i){return i.dataset.sid});saveDoc()});
+ document.getElementById('i-imp').addEventListener('change',function(){INC.imp=[].slice.call(document.querySelectorAll('#i-imp input:checked')).map(function(i){return i.dataset.iid});saveDoc()});
  document.getElementById('d-regen').onclick=function(){DOC.seq=S.map(function(s,i){return (s.type||'[Process]')+' ('+(i+1)+').'}).join(NL);document.getElementById('d-seq').value=DOC.seq;saveDoc()};
  document.getElementById('d-gen').onclick=function(){var n=Math.max.apply(null,HIST.map(function(h){return h.rev}))+1,r=mkRev(n,'2026-11-11');HIST.unshift(r);VIEW=r.id;DOC.ver=String(n);DOC.date=TODAYS;saveDoc();fillForm();renderHist();renderPreview();document.getElementById('doc-prev').scrollIntoView({behavior:'smooth',block:'start'})};
  document.getElementById('hist').addEventListener('click',function(e){var b=e.target.closest('[data-h]'),row=e.target.closest('[data-id]');if(!b||!row)return;var h=HIST.filter(function(x){return x.id===row.dataset.id})[0];if(!h)return;
+  if(b.dataset.h==='dl'){try{var bl=new Blob([JSON.stringify(h)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(bl);a.download=(h.doc.dwg||'document')+'-rev'+h.rev+'.json';document.body.appendChild(a);a.click();a.remove()}catch(err){}return}
   if(b.dataset.h==='open'){VIEW=h.id;renderHist();renderPreview();document.getElementById('doc-prev').scrollIntoView({behavior:'smooth',block:'start'})}
   else{DOC=Object.assign({},DOCDEF,clone(h.doc));INC=clone(h.inc);saveDoc();fillForm();document.getElementById('doc-gen').scrollIntoView({behavior:'smooth',block:'start'})}});
  document.getElementById('d-print').onclick=function(){try{window.print()}catch(e){}};
