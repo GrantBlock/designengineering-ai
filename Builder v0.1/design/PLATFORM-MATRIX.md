@@ -9,7 +9,7 @@ Surfaces: **Web desktop** (browser, wide), **Web mobile** (browser or phone app,
 | ID | Page or feature | Web desktop | Web mobile | Desktop app | Reason |
 | --- | --- | --- | --- | --- | --- |
 | P01, P02 | Chat start | Full | Full | - | Core surface, same on both |
-| P03 | Chat conversation, sources | Full | Full | - | Maintenance staff ask on the floor |
+| P03 | Chat conversation, sources | Full | Full | - | Maintenance staff ask on the floor. General chat is the free tier, project chat is Pro (see Chat by plan) |
 | P04 | Sign in | Full | Full | - | |
 | P19 | Dashboard, Update assistant, Updates log | Full | Full | - | Logging a status from the phone is the main use |
 | P05 | Projects list | Full | Full | - | |
@@ -29,6 +29,30 @@ Surfaces: **Web desktop** (browser, wide), **Web mobile** (browser or phone app,
 | P16 | Lite (local package viewer, AI chat) | - | - | Full | Local app, offline |
 | - | Wallet add funds and auto-refill | Full | Full | - | A low balance should be fixable from the phone |
 
+## Chat by plan
+
+Grant, 2026-11-11: **chat in general** is the free tier; **chat in projects** is in the Pro plan. Rows marked Draft are proposals; numbers are placeholders.
+
+| | Chat in general (free tier) | Chat in projects (Pro) |
+| --- | --- | --- |
+| Where | New chat with "Chat in: General"; P01, P02, P03 | A project's chats (sidebar Projects mode, P05, P06) |
+| Knows | The model's general knowledge only | The project's files, data sheets, models, notes, schedule and updates, with cited sources |
+| Files and documents | Draft: can attach a file to one message; nothing is kept | Uploads, document search and the Vault, kept with the project |
+| 3D designer, calculators, process flows, plans and quotes | Draft: not available | Available (the project is where they run) |
+| Usage | Small daily AI cap paid by Block Concepts ([X] messages a day (A)) | Wallet tokens, faster responses, priority access, premium models |
+| History | Draft: Recents list, kept [X] days (A) | Kept with the project, shared in the organization |
+| Sharing | Private to the person | Shared inside the organization |
+| Storage | None (App Plan 6.1) | 20 GB included, then $10 per 20 GB per month |
+| Platforms | Web desktop, web mobile | Web desktop, web mobile (see the table above for what is view only) |
+| What the person sees when blocked | A note that the daily limit is used, with Upgrade | Wallet low or empty notice (Settings, Billing) |
+
+### Chat questions
+
+1. The App Plan (6.1) gives Basic Viewer up to 3 projects of their own, plus view and comment on shared projects, and a Starter bundle for tokens. If projects are Pro only, does Basic Viewer keep the 3 projects, or only view and comment on shared ones? The App Plan and memory log would then change (Word files win on levels).
+2. Can a free person open a project that was shared with them and chat in it, or only view and comment?
+3. May a free person attach files to a general chat, or does anything with a file need a project?
+4. Does the Starter bundle unlock project chat, or only more general chat?
+
 ## Open questions
 
 1. Should phones edit Specifications and Process configuration fields, or only view?
@@ -38,3 +62,4 @@ Surfaces: **Web desktop** (browser, wide), **Web mobile** (browser or phone app,
 ## Log
 
 - [stated] 2026-11-11: Grant: Builder is desktop only; a decision matrix is wanted because not everything needs to be on the mobile app. Matrix created as a Draft.
+- [stated] 2026-11-11: Grant: chat in general is the free tier; chat in projects is in the Pro plan. The Chat by plan section lists the limits as a Draft.
