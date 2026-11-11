@@ -219,7 +219,7 @@ button:focus-visible, textarea:focus-visible, input:focus-visible, [role="button
 .p5-tools{display:flex;flex-direction:column;gap:var(--bc-space-3);margin-bottom:var(--bc-space-4)}
 .p5-chips{display:flex;flex-wrap:wrap;gap:var(--bc-space-2);align-items:center}
 .p5-chips .de-btn-chip[aria-pressed=true]{border-color:var(--bc-steel-blue);color:var(--bc-steel-blue-text)}
-.p5-cols,.p5-row{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr) 112px 36px;align-items:center;gap:var(--bc-space-4)}
+.p5-cols,.p5-row{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr) 112px 76px;align-items:center;gap:var(--bc-space-4)}
 .p5-cols{padding:0 4px;height:32px;border-bottom:1px solid var(--bc-hairline);margin-bottom:0}
 .p5-cols button{all:unset;cursor:pointer;display:inline-flex;align-items:center;gap:4px;padding-top:2px;font-family:var(--font-mono);font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--bc-muted)}
 .p5-cols button:hover,.p5-cols button.is-sorted{color:var(--bc-ink)}
@@ -233,7 +233,10 @@ button:focus-visible, textarea:focus-visible, input:focus-visible, [role="button
 .p5-stage{display:flex;flex-direction:column;gap:8px}
 .p5-stage-text{font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--bc-steel-blue-text)}
 .p5-date{font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--bc-muted)}
-.p5-more{color:var(--bc-muted);display:flex;justify-content:center}
+.p5-more{color:var(--bc-muted);display:flex;align-items:center;justify-content:flex-end;gap:4px}
+.p5-chat{display:flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:10px;color:var(--bc-muted);cursor:pointer}
+.p5-chat:hover,.p5-chat:focus-visible{background:var(--bc-surface);color:var(--bc-steel-blue-text)}
+.p5-chat:focus-visible{outline:2px solid var(--bc-steel-blue-text);outline-offset:2px}
 .p5-empty{display:none;margin-top:var(--bc-space-2)}
 .p5-foot{padding:var(--bc-space-4) 0 var(--bc-space-6);font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--bc-muted)}
 .p5-mobile{display:none}
@@ -244,8 +247,8 @@ button:focus-visible, textarea:focus-visible, input:focus-visible, [role="button
  .de-shell-scroll{padding:0 var(--bc-gutter-mobile);overflow:visible;padding-bottom:180px}
  .p5-mobile{display:block}
  .p5-cols{display:none}
- .p5-row{grid-template-columns:minmax(0,1fr) 44px;grid-template-areas:"main more" "stage stage" "date date";gap:10px;padding:var(--bc-card-pad) 0}
- .p5-main{grid-area:main}.p5-more{grid-area:more;width:44px;height:44px;align-items:center}.p5-stage{grid-area:stage}.p5-date{grid-area:date}
+ .p5-row{grid-template-columns:minmax(0,1fr) 92px;grid-template-areas:"main more" "stage stage" "date date";gap:10px;padding:var(--bc-card-pad) 0}
+ .p5-main{grid-area:main}.p5-more{grid-area:more;width:92px;height:44px;align-items:center}.p5-chat{width:44px;height:44px}.p5-stage{grid-area:stage}.p5-date{grid-area:date}
  .p5-no{font-size:13px}.p5-name{font-size:21px;white-space:normal;line-height:1.25}
  .p5-stage-text{font-size:13px}
  .p5-head h1{font-size:42px}
@@ -349,27 +352,27 @@ button:focus-visible, textarea:focus-visible, input:focus-visible, [role="button
 <div class="p5-main"><span class="p5-no">BC-Q-26041</span><span class="p5-name">Palletizer retrofit</span></div>
 <div class="p5-stage"><span class="p5-stage-text">Stage 3 — Build</span><div class="de-stages"><i class="is-done"></i><i class="is-done"></i><i class="is-done"></i><i class=""></i><i class=""></i></div></div>
 <span class="p5-date" data-iso="2026-11-09"></span>
-<span class="p5-more"><svg class="de-icon" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="5" cy="12" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="19" cy="12" r="1.5"/></svg></span></a><a class="p5-row" href="../P06-project-workspace/index.html?project=BC-Q-26038" data-no="BC-Q-26038" data-name="Capping station" data-step="2" data-date="2026-11-06">
+<span class="p5-more"><span class="p5-chat" role="button" tabindex="0" title="Start chat in Palletizer retrofit" aria-label="Start chat in Palletizer retrofit"><svg class="de-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 5h14a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1h-8l-4 4v-4H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zM12 8v5M9.5 10.5h5"/></svg></span><svg class="de-icon" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="5" cy="12" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="19" cy="12" r="1.5"/></svg></span></a><a class="p5-row" href="../P06-project-workspace/index.html?project=BC-Q-26038" data-no="BC-Q-26038" data-name="Capping station" data-step="2" data-date="2026-11-06">
 <div class="p5-main"><span class="p5-no">BC-Q-26038</span><span class="p5-name">Capping station</span></div>
 <div class="p5-stage"><span class="p5-stage-text">Stage 2 — Design</span><div class="de-stages"><i class="is-done"></i><i class="is-done"></i><i class=""></i><i class=""></i><i class=""></i></div></div>
 <span class="p5-date" data-iso="2026-11-06"></span>
-<span class="p5-more"><svg class="de-icon" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="5" cy="12" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="19" cy="12" r="1.5"/></svg></span></a><a class="p5-row" href="../P06-project-workspace/index.html?project=BC-Q-26035" data-no="BC-Q-26035" data-name="Dispensing cell guarding" data-step="1" data-date="2026-11-03">
+<span class="p5-more"><span class="p5-chat" role="button" tabindex="0" title="Start chat in Capping station" aria-label="Start chat in Capping station"><svg class="de-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 5h14a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1h-8l-4 4v-4H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zM12 8v5M9.5 10.5h5"/></svg></span><svg class="de-icon" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="5" cy="12" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="19" cy="12" r="1.5"/></svg></span></a><a class="p5-row" href="../P06-project-workspace/index.html?project=BC-Q-26035" data-no="BC-Q-26035" data-name="Dispensing cell guarding" data-step="1" data-date="2026-11-03">
 <div class="p5-main"><span class="p5-no">BC-Q-26035</span><span class="p5-name">Dispensing cell guarding</span></div>
 <div class="p5-stage"><span class="p5-stage-text">Stage 1 — Assessment</span><div class="de-stages"><i class="is-done"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></div></div>
 <span class="p5-date" data-iso="2026-11-03"></span>
-<span class="p5-more"><svg class="de-icon" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="5" cy="12" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="19" cy="12" r="1.5"/></svg></span></a><a class="p5-row" href="../P06-project-workspace/index.html?project=BC-Q-26031" data-no="BC-Q-26031" data-name="Conveyor transfer bracket" data-step="4" data-date="2026-10-28">
+<span class="p5-more"><span class="p5-chat" role="button" tabindex="0" title="Start chat in Dispensing cell guarding" aria-label="Start chat in Dispensing cell guarding"><svg class="de-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 5h14a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1h-8l-4 4v-4H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zM12 8v5M9.5 10.5h5"/></svg></span><svg class="de-icon" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="5" cy="12" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="19" cy="12" r="1.5"/></svg></span></a><a class="p5-row" href="../P06-project-workspace/index.html?project=BC-Q-26031" data-no="BC-Q-26031" data-name="Conveyor transfer bracket" data-step="4" data-date="2026-10-28">
 <div class="p5-main"><span class="p5-no">BC-Q-26031</span><span class="p5-name">Conveyor transfer bracket</span></div>
 <div class="p5-stage"><span class="p5-stage-text">Stage 4 — FAT</span><div class="de-stages"><i class="is-done"></i><i class="is-done"></i><i class="is-done"></i><i class="is-done"></i><i class=""></i></div></div>
 <span class="p5-date" data-iso="2026-10-28"></span>
-<span class="p5-more"><svg class="de-icon" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="5" cy="12" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="19" cy="12" r="1.5"/></svg></span></a><a class="p5-row" href="../P06-project-workspace/index.html?project=BC-Q-26027" data-no="BC-Q-26027" data-name="Washdown motor VFD sizing" data-step="2" data-date="2026-10-21">
+<span class="p5-more"><span class="p5-chat" role="button" tabindex="0" title="Start chat in Conveyor transfer bracket" aria-label="Start chat in Conveyor transfer bracket"><svg class="de-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 5h14a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1h-8l-4 4v-4H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zM12 8v5M9.5 10.5h5"/></svg></span><svg class="de-icon" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="5" cy="12" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="19" cy="12" r="1.5"/></svg></span></a><a class="p5-row" href="../P06-project-workspace/index.html?project=BC-Q-26027" data-no="BC-Q-26027" data-name="Washdown motor VFD sizing" data-step="2" data-date="2026-10-21">
 <div class="p5-main"><span class="p5-no">BC-Q-26027</span><span class="p5-name">Washdown motor VFD sizing</span></div>
 <div class="p5-stage"><span class="p5-stage-text">Stage 2 — Design</span><div class="de-stages"><i class="is-done"></i><i class="is-done"></i><i class=""></i><i class=""></i><i class=""></i></div></div>
 <span class="p5-date" data-iso="2026-10-21"></span>
-<span class="p5-more"><svg class="de-icon" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="5" cy="12" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="19" cy="12" r="1.5"/></svg></span></a><a class="p5-row" href="../P06-project-workspace/index.html?project=BC-Q-26019" data-no="BC-Q-26019" data-name="Case erector controls upgrade" data-step="5" data-date="2026-10-02">
+<span class="p5-more"><span class="p5-chat" role="button" tabindex="0" title="Start chat in Washdown motor VFD sizing" aria-label="Start chat in Washdown motor VFD sizing"><svg class="de-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 5h14a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1h-8l-4 4v-4H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zM12 8v5M9.5 10.5h5"/></svg></span><svg class="de-icon" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="5" cy="12" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="19" cy="12" r="1.5"/></svg></span></a><a class="p5-row" href="../P06-project-workspace/index.html?project=BC-Q-26019" data-no="BC-Q-26019" data-name="Case erector controls upgrade" data-step="5" data-date="2026-10-02">
 <div class="p5-main"><span class="p5-no">BC-Q-26019</span><span class="p5-name">Case erector controls upgrade</span></div>
 <div class="p5-stage"><span class="p5-stage-text">Stage 5 — SAT</span><div class="de-stages"><i class="is-done"></i><i class="is-done"></i><i class="is-done"></i><i class="is-done"></i><i class="is-done"></i></div></div>
 <span class="p5-date" data-iso="2026-10-02"></span>
-<span class="p5-more"><svg class="de-icon" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="5" cy="12" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="19" cy="12" r="1.5"/></svg></span></a></div>
+<span class="p5-more"><span class="p5-chat" role="button" tabindex="0" title="Start chat in Case erector controls upgrade" aria-label="Start chat in Case erector controls upgrade"><svg class="de-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 5h14a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1h-8l-4 4v-4H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zM12 8v5M9.5 10.5h5"/></svg></span><svg class="de-icon" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="5" cy="12" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="19" cy="12" r="1.5"/></svg></span></a></div>
     <div class="de-empty p5-empty" id="empty">No projects match. Clear the search or the stage filter.</div>
    </section>
    <p class="p5-foot">Sample data. Project numbers use the BC-Q-YYNNN prefix (configurable per organization).</p>
@@ -412,4 +415,5 @@ else if(b.dataset.sb==="toggle"){sb.style.display="none";ex.hidden=false}
 else if(b.classList.contains("sbgrp")){var g=b.closest(".sbgroup"),c=g.classList.toggle("is-closed");b.setAttribute("aria-expanded",String(!c))}});
 ex.addEventListener("click",function(){sb.style.display="";ex.hidden=true})})();
 </script>
+<script>(function(){var go=function(e){var c=e.target.closest&&e.target.closest(".p5-chat");if(!c)return;if(e.type==="keydown"&&e.key!=="Enter"&&e.key!==" ")return;e.preventDefault();e.stopPropagation();location.href="../P01-chat-start-desktop/Design_Engineering_App.html"};document.addEventListener("click",go,true);document.addEventListener("keydown",go,true)})();</script>
 </body></html>
