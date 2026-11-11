@@ -164,7 +164,7 @@
 
   function Sidebar(p) {
     var ms = React.useState(p.defaultMode || 'chat'), mode = ms[0];
-    var cs = React.useState({}), closed = cs[0];
+    var cs = React.useState(p.closedGroups || { General: true }), closed = cs[0];
     var projects = p.projects || [], chats = p.chats || [];
     function tbtn(icon, label, extra) { return h('button', { type: 'button', className: cx('sbicon', extra), 'aria-label': label }, h(Icon, { name: icon, size: 18 })); }
     function seg(m, icon, label) { return h('button', { type: 'button', role: 'tab', 'aria-label': label, className: cx('sbsegb', mode === m && 'is-on'), onClick: function () { ms[1](m); } }, h(Icon, { name: icon, size: 16 })); }

@@ -8,3 +8,4 @@ The desktop navigation panel, in four regions: top toolbar, primary nav, a scrol
 - **List:** Chat mode shows one `Recents` list. Projects mode shows a collapsible group per project (name, mono chat count), each listing its chats indented under a hairline. Titles are one line and fade out on the right when long.
 - **Footer:** gray initial avatar, "Grant · Pro" with a chevron (account switcher), settings gear.
 - 264px wide, `bc-radius-shell`, `bc-shadow-shell`. The old Design, Operations, Vault and Tools groups and Quick search are retired; see DESIGN-SYSTEM.md.
+- The General group is a dropdown that starts closed; its chats are a copy of the Chat mode Recents list. Pass `closedGroups` (`{name: true}`) to change which groups start closed.
