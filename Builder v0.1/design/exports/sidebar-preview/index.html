@@ -1,0 +1,341 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Projects — Design Engineering</title>
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+<style>
+@font-face{font-family:"Overpass";src:url("../../system-kit/fonts/Overpass.woff2") format("woff2");font-weight:300 800;font-style:normal;font-display:swap}
+@font-face{font-family:"Overpass Mono";src:url("../../system-kit/fonts/OverpassMono.woff2") format("woff2");font-weight:400 500;font-style:normal;font-display:swap}
+:root{--bc-backdrop:#141416;--bc-canvas:#1e1e20;--bc-surface:#29292c;--bc-surface-raised:#353538;--bc-hairline:rgba(255,255,255,0.07);--bc-edge:rgba(255,255,255,0.06);--bc-edge-soft:rgba(255,255,255,0.05);--bc-ink:#ececed;--bc-muted:#9d9da3;--bc-placeholder-text:#7c7c82;--bc-steel-blue:#4682b4;--bc-steel-blue-text:#7faad0;--bc-steel-blue-hover:#3a6f9c;--bc-steel-blue-tint:rgba(70,130,180,0.2);--bc-steel-blue-edge:rgba(127,170,208,0.45);--bc-on-steel-blue:#ffffff;--bc-on-steel-blue-line:rgba(255,255,255,0.35);--bc-on-steel-blue-fill:rgba(255,255,255,0.16);--bc-scroll-thumb:rgba(255,255,255,0.14);--bc-field:#f1f1ef;--bc-field-pressed:#e6e6e3;--bc-field-ink:#1e1e20;--bc-field-muted:#5c5c63;--bc-field-placeholder:#6b6b72;--bc-field-hairline:rgba(0,0,0,0.12);--bc-field-edge:rgba(255,255,255,0.6);--bc-field-edge-soft:rgba(255,255,255,0.5);--bc-field-focus:rgba(127,170,208,0.5);--bc-field-steel-text:#2f5f8a;--bc-field-send-off:#c9c9c6;--bc-space-1:4px;--bc-space-2:8px;--bc-space-3:12px;--bc-space-4:16px;--bc-space-6:24px;--bc-space-8:32px;--bc-space-12:48px;--bc-space-16:64px;--bc-shell-gap:10px;--bc-card-pad:18px;--bc-gutter-mobile:20px;--bc-topbar-height:56px;--bc-control-height:36px;--bc-touch-target:44px;--bc-sidebar-width:264px;--bc-content-width:760px;--bc-radius-bar:2px;--bc-radius-logo:6px;--bc-radius-control:10px;--bc-radius-card:12px;--bc-radius-bubble:14px;--bc-radius-panel:16px;--bc-radius-shell:18px;--bc-radius-composer:20px;--bc-radius-pill:999px;--bc-shadow-shell:inset 0 1px 0 rgba(255,255,255,0.05), 0 10px 30px rgba(0,0,0,0.28);--bc-shadow-panel:inset 0 1px 0 rgba(255,255,255,0.05), 0 8px 24px rgba(0,0,0,0.22);--bc-shadow-field:inset 0 1px 0 rgba(255,255,255,0.9), 0 12px 32px rgba(0,0,0,0.3), 0 2px 6px rgba(0,0,0,0.2);--bc-shadow-search:inset 0 1px 2px rgba(0,0,0,0.08), 0 2px 6px rgba(0,0,0,0.2);--font-sans:"Overpass", "Helvetica Neue", Helvetica, Arial, sans-serif;--font-mono:"Overpass Mono", ui-monospace, Consolas, "Courier New", monospace;}
+/* Design Engineering — component styles. Every value comes from tokens.json; literal values here are the source's own (letter-spacing, line-height, transitions). */
+html, body { margin: 0; }
+body { background: var(--bc-canvas); color: var(--bc-ink); font-family: var(--font-sans); -webkit-font-smoothing: antialiased; }
+*, *::before, *::after { box-sizing: border-box; }
+a { color: var(--bc-steel-blue-text); text-decoration: none; }
+a:hover { color: var(--bc-ink); text-decoration: underline; }
+button:focus-visible, textarea:focus-visible, input:focus-visible, [role="button"]:focus-visible { outline: 2px solid var(--bc-steel-blue-text); outline-offset: 2px; }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+
+/* preview helpers */
+.de-stage { padding: var(--bc-space-6); display: flex; flex-wrap: wrap; gap: var(--bc-space-3); align-items: center; background: var(--bc-canvas); }
+.de-stage-col { padding: var(--bc-space-6); display: flex; flex-direction: column; gap: var(--bc-space-4); background: var(--bc-canvas); }
+
+/* icon */
+.de-icon { flex-shrink: 0; display: block; }
+
+/* scroll */
+.de-scroll { scrollbar-width: thin; scrollbar-color: transparent transparent; scrollbar-gutter: stable; }
+.de-scroll:hover { scrollbar-color: var(--bc-scroll-thumb) transparent; }
+.de-scroll::-webkit-scrollbar { width: 6px; }
+.de-scroll::-webkit-scrollbar-thumb { background: transparent; border-radius: 6px; }
+.de-scroll:hover::-webkit-scrollbar-thumb { background: var(--bc-scroll-thumb); }
+.de-scroll::-webkit-scrollbar-button { display: none; height: 0; }
+
+/* ── Button ── */
+.de-btn { display: inline-flex; align-items: center; gap: var(--bc-space-2); height: var(--bc-control-height); padding: 2px 12px 0; border: none; border-radius: var(--bc-radius-control); background: none; color: var(--bc-ink); font: inherit; font-size: 12px; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; cursor: pointer; white-space: nowrap; }
+.de-btn .de-icon { margin-top: -2px; }
+.de-btn:hover { background: var(--bc-surface-raised); }
+.de-btn-chip { gap: 10px; padding: 2px 14px 0; background: var(--bc-surface-raised); border: 1px solid var(--bc-hairline); font-size: 13px; font-weight: 400; letter-spacing: 0; text-transform: none; }
+.de-btn-chip:hover { background: var(--bc-surface-raised); border-color: var(--bc-steel-blue); }
+.de-btn-chip .de-tag { margin-top: -2px; }
+.de-btn-row { display: flex; align-items: center; gap: var(--bc-space-3); width: 100%; min-height: var(--bc-control-height); padding: 0 10px; border: none; border-radius: var(--bc-radius-control); background: transparent; color: var(--bc-muted); font: inherit; font-size: 14px; text-align: left; cursor: pointer; }
+.de-btn-row:hover { background: var(--bc-surface-raised); color: var(--bc-ink); }
+.de-btn-row > span { flex: 1; padding-top: 2px; }
+
+/* ── IconButton ── */
+.de-iconbtn { display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; width: var(--bc-control-height); height: var(--bc-control-height); padding: 0; border: none; border-radius: var(--bc-radius-control); background: none; color: var(--bc-muted); cursor: pointer; }
+.de-iconbtn:hover { background: var(--bc-surface-raised); color: var(--bc-ink); }
+.de-iconbtn-sm { width: 32px; height: 32px; }
+.de-iconbtn-xs { width: 28px; height: 28px; }
+.de-iconbtn-outline { border: 1px solid var(--bc-field-hairline); color: var(--bc-field-muted); }
+.de-iconbtn-outline:hover { background: none; color: var(--bc-field-ink); border-color: var(--bc-field-muted); }
+.de-iconbtn-send { background: var(--bc-field-send-off); color: var(--bc-field-muted); transition: background 200ms; }
+.de-iconbtn-send.is-armed { background: var(--bc-steel-blue); color: var(--bc-on-steel-blue); }
+.de-iconbtn-send.is-armed:hover { background: var(--bc-steel-blue-hover); color: var(--bc-on-steel-blue); }
+.de-iconbtn-send:disabled { cursor: default; }
+.de-iconbtn-send:not(.is-armed):hover { background: var(--bc-field-send-off); color: var(--bc-field-muted); }
+.de-iconbtn-star.is-on { color: var(--bc-steel-blue-text); }
+.de-iconbtn-star:hover { background: var(--bc-surface); }
+
+/* ── Tag ── */
+.de-tag { display: inline-block; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--bc-steel-blue-text); background: var(--bc-steel-blue-tint); padding: 3px 6px 2px; border-radius: var(--bc-radius-control); white-space: nowrap; }
+.de-tag-plain { background: none; padding: 0; color: var(--bc-muted); }
+.de-kbd { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--bc-field-placeholder); }
+
+/* ── Avatar ── */
+.de-avatar { display: flex; align-items: center; justify-content: center; width: 28px; height: 28px; border-radius: var(--bc-radius-control); background: var(--bc-steel-blue-tint); color: var(--bc-steel-blue-text); font-size: 12px; font-weight: 700; padding-top: 2px; }
+.de-avatar-lg { width: var(--bc-touch-target); height: var(--bc-touch-target); border-radius: var(--bc-radius-card); font-size: 17px; padding-top: 3px; }
+
+/* ── Mono labels ── */
+.de-label { font-family: var(--font-mono); font-size: 11px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--bc-muted); }
+.de-eyebrow { font-family: var(--font-mono); font-size: 12px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--bc-steel-blue-text); }
+
+/* ── Hero ── */
+.de-hero { display: flex; flex-direction: column; align-items: center; gap: clamp(6px, 1.4vh, 12px); text-align: center; }
+.de-hero-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--bc-space-2); }
+.de-hero .de-eyebrow { margin-top: 4px; }
+.de-hero h1 { margin: 0; font-size: clamp(28px, 4.4vh, 40px); font-weight: 800; letter-spacing: -0.01em; line-height: 0.98; text-transform: uppercase; text-wrap: balance; }
+.de-hero-mobile { align-items: flex-start; text-align: left; gap: 10px; }
+.de-hero-mobile .de-eyebrow { font-size: 13px; margin-top: 0; }
+.de-hero-mobile h1 { font-size: 42px; }
+
+/* ── Panel + SectionHeader ── */
+.de-panel { display: flex; flex-direction: column; padding: 2px 12px 12px; border: 1px solid var(--bc-edge); border-radius: var(--bc-radius-panel); background: var(--bc-surface); box-shadow: var(--bc-shadow-panel); }
+.de-section-head { display: flex; align-items: center; justify-content: space-between; gap: var(--bc-space-2); height: 32px; border-bottom: 1px solid var(--bc-hairline); margin-bottom: var(--bc-space-2); }
+.de-section-head .de-label, .de-section-head .de-tag-plain { padding-top: 2px; }
+.de-section-head-mobile { height: var(--bc-touch-target); margin-bottom: 0; }
+.de-section-head-mobile .de-label { font-size: 13px; }
+.de-section-head-mobile a { font-size: 14px; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; padding: 12px 0 10px; }
+.de-grid-3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--bc-space-2); }
+
+/* ── PromptCard ── */
+.de-prompt { display: flex; align-items: center; gap: var(--bc-space-2); min-width: 0; padding: clamp(5px, 0.9vh, 9px) 4px clamp(4px, 0.8vh, 8px) 12px; background: var(--bc-surface-raised); border: 1px solid var(--bc-edge-soft); border-radius: var(--bc-radius-card); color: var(--bc-ink); cursor: pointer; transition: border-color 200ms; }
+.de-prompt:hover { border-color: var(--bc-steel-blue-edge); }
+.de-prompt-text { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 3px; }
+.de-prompt-cat { font-family: var(--font-mono); font-size: 10px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--bc-steel-blue-text); }
+.de-prompt-label { font-size: 13px; line-height: 1.4; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+/* ── EmptyNote ── */
+.de-empty { padding: 14px 12px 12px; border: 1px dashed var(--bc-hairline); border-radius: var(--bc-radius-card); font-size: 13px; color: var(--bc-muted); }
+
+/* ── Message ── */
+.de-msg { display: flex; flex-direction: column; gap: var(--bc-space-2); align-items: flex-start; }
+.de-msg.is-user { align-items: flex-end; }
+.de-msg .de-label { color: var(--bc-steel-blue-text); }
+.de-msg.is-user .de-label { color: var(--bc-muted); }
+.de-msg-body { max-width: 620px; padding: 0; border: 1px solid transparent; border-radius: var(--bc-radius-bubble); font-size: 16px; line-height: 1.6; white-space: pre-wrap; text-wrap: pretty; }
+.de-msg.is-user .de-msg-body { padding: 12px 16px; background: var(--bc-surface-raised); border-color: var(--bc-hairline); }
+
+/* ── SearchField ── */
+.de-search { display: flex; align-items: center; gap: var(--bc-space-2); height: var(--bc-control-height); padding: 0 10px; border: 1px solid var(--bc-field-edge-soft); border-radius: var(--bc-radius-control); background: var(--bc-field); color: var(--bc-field-ink); box-shadow: var(--bc-shadow-search); }
+.de-search .de-icon { color: var(--bc-field-muted); }
+.de-search input { flex: 1; min-width: 0; background: none; border: none; outline: none; color: var(--bc-field-ink); font: inherit; font-size: 13px; padding-top: 2px; }
+.de-search input::placeholder { color: var(--bc-field-placeholder); }
+
+/* ── Composer ── */
+.de-composer { border: 1px solid var(--bc-field-edge); border-radius: var(--bc-radius-composer); background: var(--bc-field); color: var(--bc-field-ink); box-shadow: var(--bc-shadow-field); }
+.de-composer:focus-within { border-color: var(--bc-field-focus); }
+.de-composer textarea { display: block; width: 100%; resize: none; background: none; border: none; outline: none; color: var(--bc-field-ink); font: inherit; font-size: 16px; line-height: 1.6; padding: 14px 18px 2px; min-height: 56px; }
+.de-composer textarea::placeholder, .de-composer input::placeholder { color: var(--bc-field-placeholder); }
+.de-composer-bar { display: flex; align-items: center; gap: 4px; padding: 8px 10px 10px; }
+.de-composer-bar .de-spacer { flex: 1; }
+.de-composer-meta { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--bc-field-muted); padding: 0 10px; }
+.de-composer .de-btn { gap: 6px; padding: 2px 10px 0; color: var(--bc-field-muted); font-size: 13px; font-weight: 400; letter-spacing: 0; text-transform: none; }
+.de-composer .de-btn:hover { color: var(--bc-field-ink); background: var(--bc-field-pressed); }
+.de-composer-mobile { display: flex; align-items: center; gap: var(--bc-space-2); height: 64px; padding: 0 8px 0 20px; }
+.de-composer-mobile input { flex: 1; min-width: 0; height: 100%; background: none; border: none; outline: none; color: var(--bc-field-ink); font: inherit; font-size: 18px; padding-top: 3px; }
+.de-composer-mobile .de-iconbtn-send { width: 48px; height: 48px; border-radius: var(--bc-radius-bubble); background: var(--bc-field-send-off); }
+.de-composer-mobile .de-iconbtn-send.is-armed { background: var(--bc-steel-blue); color: var(--bc-on-steel-blue); }
+
+/* ── NavItem ── */
+.de-nav-group { display: flex; flex-direction: column; gap: 2px; }
+.de-nav-group > .de-label { padding: 18px 10px 8px; }
+.de-nav-item { display: flex; flex-direction: column; }
+.de-nav-row { display: flex; align-items: center; gap: var(--bc-space-3); width: 100%; min-height: var(--bc-control-height); padding: 0 10px; border: none; border-radius: var(--bc-radius-control); background: transparent; color: var(--bc-muted); font: inherit; font-size: 14px; text-align: left; cursor: pointer; }
+.de-nav-row:hover { background: var(--bc-surface-raised); color: var(--bc-ink); }
+.de-nav-row.is-active { background: var(--bc-surface-raised); color: var(--bc-ink); }
+.de-nav-row.is-open { color: var(--bc-ink); }
+.de-nav-row > .de-icon { opacity: 0.85; }
+.de-nav-row > span:not(.de-tag) { flex: 1; padding-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.de-nav-chev { color: var(--bc-muted); transition: transform 250ms; }
+.de-nav-row.is-open .de-nav-chev { transform: rotate(90deg); }
+.de-collapsible { margin-top: 22px; }
+.de-group-head { display: flex; align-items: center; justify-content: space-between; width: 100%; padding: 6px 10px; border: none; border-radius: var(--bc-radius-control); background: transparent; color: var(--bc-muted); cursor: pointer; }
+.de-group-head:hover { background: var(--bc-surface-raised); color: var(--bc-ink); }
+.de-group-head .de-nav-chev { transform: rotate(90deg); }
+.is-collapsed .de-group-head .de-nav-chev { transform: rotate(0deg); }
+.is-collapsed .de-group-body { display: none; }
+.de-group-body { display: flex; flex-direction: column; gap: 2px; margin-top: 4px; }
+.de-nav-empty { padding: 6px 10px; font-size: 13px; color: var(--bc-muted); opacity: .7; }
+.de-nav-children { display: flex; flex-direction: column; gap: 1px; margin: 2px 0 6px 18px; padding-left: 12px; border-left: 1px solid var(--bc-hairline); }
+.de-nav-child { display: flex; align-items: center; min-height: 32px; padding: 2px 10px 0; border: none; border-radius: var(--bc-radius-control); background: transparent; color: var(--bc-muted); font: inherit; font-size: 13px; text-align: left; cursor: pointer; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.de-nav-child:hover { background: var(--bc-surface-raised); color: var(--bc-ink); }
+.de-nav-child.is-active { background: var(--bc-steel-blue-tint); color: var(--bc-steel-blue-text); }
+
+/* ── Sidebar ── */
+.de-sidebar { width: var(--bc-sidebar-width); flex-shrink: 0; display: flex; flex-direction: column; overflow: hidden; border: 1px solid var(--bc-edge); border-radius: var(--bc-radius-shell); background: var(--bc-surface); box-shadow: var(--bc-shadow-shell); }
+.de-sidebar-head { display: flex; align-items: center; gap: 10px; height: var(--bc-topbar-height); padding: 0 16px; border-bottom: 1px solid var(--bc-hairline); }
+.de-sidebar-head img { width: 26px; height: 26px; border-radius: var(--bc-radius-logo); }
+.de-brand { font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; white-space: nowrap; padding-top: 2px; color: var(--bc-ink); }
+.de-sidebar-head .de-iconbtn { margin-left: auto; }
+.de-sidebar-search { padding: 12px 12px 4px; }
+.de-sidebar-nav { flex: 1; overflow-y: auto; padding: 8px 6px 12px 12px; display: flex; flex-direction: column; gap: 2px; }
+.de-sidebar-foot { padding: 8px 12px; border-top: 1px solid var(--bc-hairline); }
+
+/* ── TopBar ── */
+.de-topbar { display: flex; align-items: center; justify-content: space-between; gap: var(--bc-space-6); height: var(--bc-topbar-height); padding: 0 var(--bc-space-6); border-bottom: 1px solid var(--bc-hairline); }
+.de-topbar-actions { display: flex; align-items: center; gap: 4px; }
+.de-topbar-actions .de-iconbtn:last-child { margin-left: 4px; }
+
+/* ── AppShell ── */
+.de-shell { display: flex; gap: var(--bc-shell-gap); padding: var(--bc-shell-gap); height: 100vh; min-height: 560px; background: var(--bc-canvas); color: var(--bc-ink); font-family: var(--font-sans); }
+.de-shell-main { flex: 1; min-width: 0; display: flex; flex-direction: column; background: var(--bc-canvas); }
+.de-shell-scroll { flex: 1; overflow-y: auto; display: flex; flex-direction: column; align-items: center; padding: 0 var(--bc-space-6); }
+.de-shell-column { width: 100%; max-width: var(--bc-content-width); display: flex; flex-direction: column; flex: 1; }
+
+/* ── Mobile: header ── */
+.de-mheader { display: flex; align-items: center; gap: var(--bc-space-3); padding: 8px var(--bc-gutter-mobile) 0; }
+.de-mheader img { width: 36px; height: 36px; border-radius: 8px; }
+.de-mheader .de-brand { flex: 1; font-size: 14px; }
+
+/* ── Mobile: ActionCard ── */
+.de-acard { flex: 0 0 236px; height: 252px; scroll-snap-align: start; display: flex; flex-direction: column; justify-content: space-between; padding: var(--bc-card-pad); border-radius: var(--bc-radius-composer); background: var(--bc-surface); border: 1px solid var(--bc-edge); color: var(--bc-ink); cursor: pointer; }
+.de-acard-top { display: flex; justify-content: space-between; align-items: flex-start; }
+.de-acard-tile { display: flex; align-items: center; justify-content: center; width: 48px; height: 48px; border-radius: var(--bc-radius-bubble); border: 1px solid var(--bc-hairline); color: var(--bc-steel-blue-text); }
+.de-acard-go { display: flex; align-items: center; justify-content: center; width: var(--bc-touch-target); height: var(--bc-touch-target); border-radius: var(--bc-radius-pill); background: var(--bc-surface-raised); }
+.de-acard-cat { font-family: var(--font-mono); font-size: 13px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--bc-steel-blue-text); }
+.de-acard-top > .de-acard-cat { padding-top: 6px; }
+.de-acard-title { font-size: 28px; font-weight: 800; line-height: 1; letter-spacing: -0.01em; text-transform: uppercase; }
+.de-acard-text { font-size: 21px; font-weight: 600; line-height: 1.25; text-wrap: pretty; }
+.de-acard-foot { display: flex; flex-direction: column; gap: var(--bc-space-2); }
+.de-acard-secondary { background: var(--bc-surface-raised); border-color: var(--bc-edge-soft); }
+.de-acard-secondary .de-acard-go { background: var(--bc-surface); }
+.de-acard-primary { background: var(--bc-steel-blue); border-color: transparent; color: var(--bc-on-steel-blue); }
+.de-acard-primary:active { background: var(--bc-steel-blue-hover); }
+.de-acard-primary .de-acard-tile { border-color: var(--bc-on-steel-blue-line); color: var(--bc-on-steel-blue); }
+.de-acard-primary .de-acard-go { background: var(--bc-on-steel-blue-fill); }
+.de-acard-rail { display: flex; gap: var(--bc-space-3); overflow-x: auto; scroll-snap-type: x mandatory; padding: 0 var(--bc-gutter-mobile) 4px; scroll-padding: 0 var(--bc-gutter-mobile); scrollbar-width: none; }
+.de-acard-rail::-webkit-scrollbar { display: none; }
+
+/* ── Mobile: StageProgress + ProjectRow ── */
+.de-stages { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 4px; }
+.de-stages > i { display: block; height: 4px; border-radius: var(--bc-radius-bar); background: var(--bc-surface-raised); }
+.de-stages > i.is-done { background: var(--bc-steel-blue); }
+.de-prow { display: flex; flex-direction: column; gap: 10px; padding: var(--bc-card-pad) 0; border-bottom: 1px solid var(--bc-hairline); cursor: pointer; }
+.de-prow-meta { display: flex; justify-content: space-between; gap: var(--bc-space-3); font-family: var(--font-mono); font-size: 13px; font-weight: 500; letter-spacing: 0.1em; }
+.de-prow-no { color: var(--bc-muted); }
+.de-prow-stage { color: var(--bc-steel-blue-text); text-transform: uppercase; }
+.de-prow-name { font-size: 21px; font-weight: 600; line-height: 1.25; }
+
+/* ── Mobile: TabBar ── */
+.de-tabbar { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); height: 68px; padding: 4px; border-radius: var(--bc-radius-composer); background: var(--bc-surface); border: 1px solid var(--bc-edge); }
+.de-tab { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; border: none; border-radius: var(--bc-radius-panel); background: transparent; color: var(--bc-muted); font: inherit; cursor: pointer; }
+.de-tab.is-active { background: var(--bc-steel-blue-tint); color: var(--bc-steel-blue-text); }
+.de-tab span { font-size: 12px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; }
+.de-mdock { display: flex; flex-direction: column; gap: 10px; padding: 16px 12px 34px; background: linear-gradient(to bottom, rgba(30,30,32,0) 0, var(--bc-canvas) 24px); }
+
+/* P05 Projects list: only layout glue; every value is a token. */
+.p5-head{display:flex;align-items:flex-end;justify-content:space-between;gap:var(--bc-space-4);padding:var(--bc-space-8) 0 var(--bc-space-4)}
+.p5-head h1{margin:6px 0 0;font-size:clamp(28px,4.4vh,40px);font-weight:800;letter-spacing:-0.01em;line-height:.98;text-transform:uppercase}
+.p5-tools{display:flex;flex-direction:column;gap:var(--bc-space-3);margin-bottom:var(--bc-space-4)}
+.p5-chips{display:flex;flex-wrap:wrap;gap:var(--bc-space-2);align-items:center}
+.p5-chips .de-btn-chip[aria-pressed=true]{border-color:var(--bc-steel-blue);color:var(--bc-steel-blue-text)}
+.p5-cols,.p5-row{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr) 112px 36px;align-items:center;gap:var(--bc-space-4)}
+.p5-cols{padding:0 4px;height:32px;border-bottom:1px solid var(--bc-hairline);margin-bottom:0}
+.p5-cols button{all:unset;cursor:pointer;display:inline-flex;align-items:center;gap:4px;padding-top:2px;font-family:var(--font-mono);font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--bc-muted)}
+.p5-cols button:hover,.p5-cols button.is-sorted{color:var(--bc-ink)}
+.p5-cols button:focus-visible{outline:2px solid var(--bc-steel-blue-text);outline-offset:2px}
+.p5-row{padding:var(--bc-card-pad) 4px;border-bottom:1px solid var(--bc-hairline);color:var(--bc-ink);text-decoration:none;transition:background 200ms}
+.p5-row:hover{background:var(--bc-surface-raised);text-decoration:none;color:var(--bc-ink)}
+.p5-row:last-child{border-bottom:none}
+.p5-main{display:flex;flex-direction:column;gap:4px;min-width:0}
+.p5-no{font-family:var(--font-mono);font-size:11px;font-weight:500;letter-spacing:.1em;color:var(--bc-muted)}
+.p5-name{font-size:16px;font-weight:600;line-height:1.3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.p5-stage{display:flex;flex-direction:column;gap:8px}
+.p5-stage-text{font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--bc-steel-blue-text)}
+.p5-date{font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--bc-muted)}
+.p5-more{color:var(--bc-muted);display:flex;justify-content:center}
+.p5-empty{display:none;margin-top:var(--bc-space-2)}
+.p5-foot{padding:var(--bc-space-4) 0 var(--bc-space-6);font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--bc-muted)}
+.p5-mobile{display:none}
+[hidden]{display:none!important}
+@media (max-width:760px){
+ .de-shell{padding:0;gap:0;height:auto;min-height:100vh;display:block}
+ .de-sidebar,.de-topbar{display:none}
+ .de-shell-scroll{padding:0 var(--bc-gutter-mobile);overflow:visible;padding-bottom:180px}
+ .p5-mobile{display:block}
+ .p5-cols{display:none}
+ .p5-row{grid-template-columns:minmax(0,1fr) 44px;grid-template-areas:"main more" "stage stage" "date date";gap:10px;padding:var(--bc-card-pad) 0}
+ .p5-main{grid-area:main}.p5-more{grid-area:more;width:44px;height:44px;align-items:center}.p5-stage{grid-area:stage}.p5-date{grid-area:date}
+ .p5-no{font-size:13px}.p5-name{font-size:21px;white-space:normal;line-height:1.25}
+ .p5-stage-text{font-size:13px}
+ .p5-head h1{font-size:42px}
+ .p5-chips{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin:0 calc(-1*var(--bc-gutter-mobile));padding:0 var(--bc-gutter-mobile)}
+ .p5-chips .de-btn{height:var(--bc-touch-target);flex-shrink:0}
+ .p5-dock{position:fixed;left:0;right:0;bottom:0}
+ .de-panel{background:none;border:none;box-shadow:none;padding:0}
+ .de-section-head{height:var(--bc-touch-target);margin-bottom:0}
+ .de-section-head .de-label{font-size:13px}
+}
+@media (min-width:761px){.p5-dock,.p5-mheader{display:none}}
+</style></head>
+<body>
+<div class="de-shell">
+ <aside class="de-sidebar">
+  <div class="de-sidebar-head"><img src="../../assets/favicon.svg" alt=""><span class="de-brand">Design Engineering</span></div>
+  <div class="de-sidebar-search"><label class="de-search"><svg class="de-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg><input type="search" placeholder="Quick search" aria-label="Quick search"><span class="de-kbd">Ctrl K</span></label></div>
+  <nav class="de-sidebar-nav de-scroll" aria-label="Main"><div class="de-nav-group"><div class="de-nav-item"><button class="de-nav-row"><svg class="de-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg><span>New</span></button></div><div class="de-nav-item"><button class="de-nav-row"><svg class="de-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18zM12 7v5l3 2"/></svg><span>Recents</span><svg class="de-icon de-nav-chev" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button></div><div class="de-nav-item"><button class="de-nav-row is-active"><svg class="de-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h6l2 2h10v11H3z"/></svg><span>Projects</span><svg class="de-icon de-nav-chev" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button></div></div><div class="de-nav-group de-collapsible"><button class="de-group-head" aria-expanded="true"><span class="de-label">Design</span><svg class="de-icon de-nav-chev" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button><div class="de-group-body"><div class="de-nav-item"><button class="de-nav-row"><svg class="de-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9zM12 12l8-4.5M12 12v9M12 12L4 7.5"/></svg><span>Mechanical</span></button></div><div class="de-nav-item"><button class="de-nav-row"><svg class="de-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 3L5 13h6l-1 8 8-10h-6z"/></svg><span>Electrical</span></button></div><div class="de-nav-item"><button class="de-nav-row"><svg class="de-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 7h10v10H7zM10 3v4M14 3v4M10 17v4M14 17v4M3 10h4M3 14h4M17 10h4M17 14h4"/></svg><span>Controls</span></button></div><div class="de-nav-item"><button class="de-nav-row"><svg class="de-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5M14 4l-4 16"/></svg><span>Software</span></button></div><div class="de-nav-item"><button class="de-nav-row"><svg class="de-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18M5 21V11l5 3V11l5 3V5h4v16"/></svg><span>Manufacturing</span></button></div></div></div><div class="de-nav-group de-collapsible"><button class="de-group-head" aria-expanded="true"><span class="de-label">Vault</span><svg class="de-icon de-nav-chev" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button><div class="de-group-body"><div class="de-nav-item"><button class="de-nav-row"><svg class="de-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h8l4 4v14H6zM14 3v4h4M9 13h6M9 17h6"/></svg><span>Documents</span></button></div><div class="de-nav-item"><button class="de-nav-row"><svg class="de-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4M7 9l5-5 5 5M4 20h16"/></svg><span>Uploads</span></button></div></div></div><div class="de-nav-group de-collapsible"><button class="de-group-head" aria-expanded="true"><span class="de-label">Tools</span><svg class="de-icon de-nav-chev" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button><div class="de-group-body"><div class="de-nav-empty">[Items to be defined]</div></div></div>
+  </nav>
+  <div class="de-sidebar-foot"><button class="de-btn-row"><svg class="de-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .8-1 1.5V14M12 17.5v.01"/></svg><span>Support</span></button></div>
+ </aside>
+ <main class="de-shell-main">
+  <header class="de-topbar"><div class="de-label">Projects</div>
+   <div class="de-topbar-actions"><button class="de-btn"><svg class="de-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>New project</button><button class="de-btn">Ask AI</button><button class="de-btn">Support</button><div class="de-avatar" style="margin-left:8px">G</div></div></header>
+  <div class="p5-mheader p5-mobile"><div class="de-mheader"><img src="../../assets/favicon.svg" alt=""><span class="de-brand">Design Engineering</span><div class="de-avatar de-avatar-lg">G</div></div></div>
+  <div class="de-shell-scroll de-scroll"><div class="de-shell-column">
+   <div class="p5-head"><div><div class="de-eyebrow">Block Concepts</div><h1>Projects</h1></div></div>
+   <div class="p5-tools">
+    <label class="de-search"><svg class="de-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg><input id="q" type="search" placeholder="Search by number, name or stage" aria-label="Search projects"></label>
+    <div class="p5-chips" role="group" aria-label="Filter by stage"><button class="de-btn de-btn-chip" data-stage="1">Assessment</button><button class="de-btn de-btn-chip" data-stage="2">Design</button><button class="de-btn de-btn-chip" data-stage="3">Build</button><button class="de-btn de-btn-chip" data-stage="4">FAT</button><button class="de-btn de-btn-chip" data-stage="5">SAT</button><button class="de-btn p5-clear" id="clear" hidden>Clear</button></div>
+   </div>
+   <section class="de-panel" aria-label="All projects">
+    <div class="de-section-head"><span class="de-label">All projects</span><span class="de-tag de-tag-plain" id="count"></span></div>
+    <div class="p5-cols" role="row"><button data-sort="name">Project<svg class="de-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 9l4-4 4 4M8 15l4 4 4-4"/></svg></button><button data-sort="step">Stage<svg class="de-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 9l4-4 4 4M8 15l4 4 4-4"/></svg></button><button data-sort="date" class="is-sorted">Updated<svg class="de-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 9l4-4 4 4M8 15l4 4 4-4"/></svg></button><span></span></div>
+    <div id="list"><a class="p5-row" href="../P06-project-workspace/index.html?project=BC-Q-26041" data-no="BC-Q-26041" data-name="Palletizer retrofit" data-step="3" data-date="2026-11-09">
+<div class="p5-main"><span class="p5-no">BC-Q-26041</span><span class="p5-name">Palletizer retrofit</span></div>
+<div class="p5-stage"><span class="p5-stage-text">Stage 3 — Build</span><div class="de-stages"><i class="is-done"></i><i class="is-done"></i><i class="is-done"></i><i class=""></i><i class=""></i></div></div>
+<span class="p5-date" data-iso="2026-11-09"></span>
+<span class="p5-more"><svg class="de-icon" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="5" cy="12" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="19" cy="12" r="1.5"/></svg></span></a><a class="p5-row" href="../P06-project-workspace/index.html?project=BC-Q-26038" data-no="BC-Q-26038" data-name="Capping station" data-step="2" data-date="2026-11-06">
+<div class="p5-main"><span class="p5-no">BC-Q-26038</span><span class="p5-name">Capping station</span></div>
+<div class="p5-stage"><span class="p5-stage-text">Stage 2 — Design</span><div class="de-stages"><i class="is-done"></i><i class="is-done"></i><i class=""></i><i class=""></i><i class=""></i></div></div>
+<span class="p5-date" data-iso="2026-11-06"></span>
+<span class="p5-more"><svg class="de-icon" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="5" cy="12" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="19" cy="12" r="1.5"/></svg></span></a><a class="p5-row" href="../P06-project-workspace/index.html?project=BC-Q-26035" data-no="BC-Q-26035" data-name="Dispensing cell guarding" data-step="1" data-date="2026-11-03">
+<div class="p5-main"><span class="p5-no">BC-Q-26035</span><span class="p5-name">Dispensing cell guarding</span></div>
+<div class="p5-stage"><span class="p5-stage-text">Stage 1 — Assessment</span><div class="de-stages"><i class="is-done"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></div></div>
+<span class="p5-date" data-iso="2026-11-03"></span>
+<span class="p5-more"><svg class="de-icon" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="5" cy="12" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="19" cy="12" r="1.5"/></svg></span></a><a class="p5-row" href="../P06-project-workspace/index.html?project=BC-Q-26031" data-no="BC-Q-26031" data-name="Conveyor transfer bracket" data-step="4" data-date="2026-10-28">
+<div class="p5-main"><span class="p5-no">BC-Q-26031</span><span class="p5-name">Conveyor transfer bracket</span></div>
+<div class="p5-stage"><span class="p5-stage-text">Stage 4 — FAT</span><div class="de-stages"><i class="is-done"></i><i class="is-done"></i><i class="is-done"></i><i class="is-done"></i><i class=""></i></div></div>
+<span class="p5-date" data-iso="2026-10-28"></span>
+<span class="p5-more"><svg class="de-icon" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="5" cy="12" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="19" cy="12" r="1.5"/></svg></span></a><a class="p5-row" href="../P06-project-workspace/index.html?project=BC-Q-26027" data-no="BC-Q-26027" data-name="Washdown motor VFD sizing" data-step="2" data-date="2026-10-21">
+<div class="p5-main"><span class="p5-no">BC-Q-26027</span><span class="p5-name">Washdown motor VFD sizing</span></div>
+<div class="p5-stage"><span class="p5-stage-text">Stage 2 — Design</span><div class="de-stages"><i class="is-done"></i><i class="is-done"></i><i class=""></i><i class=""></i><i class=""></i></div></div>
+<span class="p5-date" data-iso="2026-10-21"></span>
+<span class="p5-more"><svg class="de-icon" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="5" cy="12" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="19" cy="12" r="1.5"/></svg></span></a><a class="p5-row" href="../P06-project-workspace/index.html?project=BC-Q-26019" data-no="BC-Q-26019" data-name="Case erector controls upgrade" data-step="5" data-date="2026-10-02">
+<div class="p5-main"><span class="p5-no">BC-Q-26019</span><span class="p5-name">Case erector controls upgrade</span></div>
+<div class="p5-stage"><span class="p5-stage-text">Stage 5 — SAT</span><div class="de-stages"><i class="is-done"></i><i class="is-done"></i><i class="is-done"></i><i class="is-done"></i><i class="is-done"></i></div></div>
+<span class="p5-date" data-iso="2026-10-02"></span>
+<span class="p5-more"><svg class="de-icon" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="5" cy="12" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="19" cy="12" r="1.5"/></svg></span></a></div>
+    <div class="de-empty p5-empty" id="empty">No projects match. Clear the search or the stage filter.</div>
+   </section>
+   <p class="p5-foot">Sample data. Project numbers use the BC-Q-YYNNN prefix (configurable per organization).</p>
+  </div></div>
+ </main>
+</div>
+<div class="p5-dock de-mdock p5-mobile"><div class="de-tabbar"><button class="de-tab"><svg class="de-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l9-7 9 7v9h-6v-6H9v6H3z"/></svg><span>Home</span></button><button class="de-tab"><svg class="de-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18zM12 7v5l3 2"/></svg><span>Recents</span></button><button class="de-tab is-active"><svg class="de-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h6l2 2h10v11H3z"/></svg><span>Projects</span></button><button class="de-tab"><svg class="de-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9zM12 12l8-4.5M12 12v9M12 12L4 7.5"/></svg><span>Design</span></button><button class="de-tab"><svg class="de-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3zM5 17a3 3 0 0 1 3-3h11"/></svg><span>Library</span></button></div></div>
+<script>
+(function(){
+ var list=document.getElementById('list'),rows=[].slice.call(list.children),q=document.getElementById('q'),
+  chips=[].slice.call(document.querySelectorAll('[data-stage]')),count=document.getElementById('count'),empty=document.getElementById('empty'),
+  stage=0,sort='date',dir=-1,fmt=new Intl.DateTimeFormat('en-US',{month:'short',day:'numeric',year:'numeric'});
+ rows.forEach(function(r){var s=r.querySelector('.p5-date');s.textContent=fmt.format(new Date(s.dataset.iso+'T12:00:00'))});
+ function render(){
+  var t=q.value.trim().toLowerCase(),n=0;
+  rows.sort(function(a,b){var x=a.dataset[sort],y=b.dataset[sort];if(sort==='step'){x=+x;y=+y}return (x>y?1:x<y?-1:0)*dir});
+  rows.forEach(function(r){
+   var txt=(r.dataset.no+' '+r.dataset.name+' '+r.querySelector('.p5-stage-text').textContent).toLowerCase();
+   var ok=(!t||txt.indexOf(t)>-1)&&(!stage||+r.dataset.step===stage);
+   r.hidden=!ok;if(ok)n++;list.appendChild(r)});
+  document.getElementById('clear').hidden=!(t||stage);count.textContent=n+(n===1?' project':' projects');empty.style.display=n?'none':'block';
+ }
+ q.addEventListener('input',render);
+ chips.forEach(function(c){c.setAttribute('aria-pressed','false');c.addEventListener('click',function(){
+  var s=+c.dataset.stage;stage=stage===s?0:s;chips.forEach(function(x){x.setAttribute('aria-pressed',String(+x.dataset.stage===stage))});render()})});
+ document.getElementById('clear').addEventListener('click',function(){stage=0;q.value='';chips.forEach(function(x){x.setAttribute('aria-pressed','false')});render()});
+ [].forEach.call(document.querySelectorAll('[data-sort]'),function(b){b.addEventListener('click',function(){
+  var k=b.dataset.sort;if(sort===k)dir=-dir;else{sort=k;dir=k==='date'?-1:1}
+  [].forEach.call(document.querySelectorAll('[data-sort]'),function(x){x.classList.toggle('is-sorted',x===b)});render()})});
+ render();
+})();
+</script>
+<script>document.querySelectorAll(".de-group-head").forEach(function(b){b.addEventListener("click",function(){var g=b.parentNode;var c=g.classList.toggle("is-collapsed");b.setAttribute("aria-expanded",String(!c));});});</script>
+</body></html>
