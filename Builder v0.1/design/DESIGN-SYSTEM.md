@@ -18,6 +18,10 @@ Tokens `bc-space-*`, `bc-radius-*`, `bc-shadow-*`. Shell gap 10px, mobile gutter
 - **Desktop:** `AppShell`, `Sidebar`, `TopBar`. Empty page: Hero, Composer, Panels of PromptCards. Working page: Messages with the Composer sticky at the bottom.
 - **Mobile:** `MobileHeader`, Hero, ActionCard rail, `SectionHeader` plus `ProjectRow`s. Dock (`MobileComposer` over `TabBar`) fixed at the bottom.
 
+- **Dashboard (P19):** wide 1120px content column with two panels side by side (stacks under 1000px, single column on mobile). Summary tiles on `bc-surface-raised`. Rows group by status (Sold, Quoting, Waiting) with a small stage-bar progress and an "N of M done" count. Status tag: Sold uses `de-tag` (steel blue text), Quoting and Waiting use `de-tag-plain`.
+- **Status colors (P19, page-level semantic colors):** priority pill High `#ee8c87` on rgba(238,140,135,0.14), Medium `#dcae62` on rgba(220,174,98,0.14), Low plain outline; done check `#86c9a2`; overdue date uses the High color. Defined as `--p19-*` variables in the page; move them to `tokens.json` when a second page uses them. Steel Blue stays the only brand color.
+- **Today row:** `bc-steel-blue-tint` ground with a 3px `bc-steel-blue` left edge, date shown as "Today" in `bc-steel-blue-text`.
+
 ## Navigation (same on desktop and mobile)
 Home, Recents, Projects, then Design (Mechanical, Electrical, Controls, Simulation), then Library (Standards, Assessments, Quotes, Documentation, Testing). Desktop shows these in the sidebar. Mobile shows five tabs: Home, Recents, Projects, Design, Library. "Ask" is the composer and the primary ActionCard, not a tab or nav item.
 
@@ -59,3 +63,4 @@ The Block Concepts Word-document tokens (light theme, 2px and 4px corners, Aptos
 - Draft (not yet approved by Grant): assistant speaks in first person singular.
 - (Superseded by the line above) Library holds Standards, Assessments, Quotes, Documentation and Testing as children. Mobile "Design" tab uses the `cube` icon.
 - Draft (not yet approved by Grant): the design system is whatever P01 and P02 already use. (Earlier line, kept.)
+- [stated] 2026-11-11: Dashboard layout (P19) approved: 1120px two-column width, status tags and group progress, priority and done colors, Today row highlight. Semantic colors are an exception to the Steel Blue-only rule, limited to status.
