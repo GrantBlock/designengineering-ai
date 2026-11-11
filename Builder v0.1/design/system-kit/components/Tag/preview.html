@@ -1,0 +1,13 @@
+<!-- @dsCard group="Labels" height=72 -->
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><title>Tag — preview</title></head>
+<body>
+<div id="root"></div>
+<script>
+  var E = window.DE, h = React.createElement;
+  
+  ReactDOM.createRoot(document.getElementById('root')).render(h("div",{className:"de-stage"},h(React.Fragment,null,h(E.Tag,null,"New"),h(E.Tag,null,"Beta"),h(E.Tag,{plain:true},"3 saved"))));
+</script>
+</body>
+</html>

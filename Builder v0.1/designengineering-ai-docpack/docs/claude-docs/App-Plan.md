@@ -225,8 +225,8 @@ Filled in during the winter build as each final choice is made.
 
 | # | Layer | Preferred | Final choice | Decided on | Reason |
 | --- | --- | --- | --- | --- | --- |
-| D1 | Hosting | Cloudflare Workers |  |  |  |
-| D2 | Web framework | Next.js + TypeScript |  |  |  |
+| D1 | Hosting | Cloudflare Workers | Cloudflare Workers | 2026-11-09 | Approved by Grant; Next.js via the OpenNext adapter (Draft, see development-path.md) |
+| D2 | Web framework | Next.js + TypeScript | Next.js + TypeScript | 2026-11-09 | Approved by Grant |
 | D3 | Database | PostgreSQL + Prisma |  |  |  |
 | D4 | Sign-in | Clerk |  |  |  |
 | D5 | Real-time collaboration | Liveblocks |  |  |  |

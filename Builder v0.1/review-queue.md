@@ -18,13 +18,18 @@ Everything waiting on Grant, tagged by where it is best handled. The shortcut "w
 | RQ06 | Read the Lite package format draft v0.1 and give comments (decisions go to RQ10) | mobile | ☐ | App Plan 3.2 |
 | RQ07 | Add the P01 and P02 exports to the repo | code | ☐ | `design/exports/` |
 | RQ08 | Approve the design system extracted from P01/P02 | code | ☐ | `design/DESIGN-SYSTEM.md` |
-| RQ09 | Run "design the next page" once in a fresh session to confirm the shortcut loads | code | ☐ | `shortcuts.md` |
 | RQ10 | Choose the on-device model and minimum PC spec; Windows only or also macOS; can Lite users add notes | vscode | ☐ | App Plan 3.2, D11 to D12 |
 | RQ11 | Make the final picks for decisions D1 to D12 | vscode | ☐ | App Plan Section 4 |
+| RQ12 | Share your sales/project process knowledge (the checklist stages for paid projects). Needed before any checklist work on I01 | mobile | ☐ | `ideas.md` I01 |
+| RQ13 | Decision brief I01: e-sign, approvals, PO and invoice tracking. Draft D13: signing approach for vendor/customer documents. Options: (A) link-based tracked approval only; (B) link-based first, then a trusted platform adapter for contracts after the March 2027 gate (recommended); (C) trusted platform from the start. "Later" costs little; it stays out of the MVP. Affects Sections 4, 5.1 (finance visibility) and 5.2 (vendor terms), plus risks #4 and #9. Draft (not yet approved by Grant). Grant answered 2026-11-06: option C (trusted platform from the start, chosen for compatibility with his own system requirements); waiting for "log it" | mobile | ◐ | `ideas.md` I01 |
+| RQ14 | Decide how to reach dev and preview builds from all computers (Cloudflare preview URLs, tunnel, Access login) and how Next.js runs on Cloudflare Workers | vscode | ☐ | `design/ISSUES.md` DI02, App Plan D1 |
+| RQ15 | Decide where the app lives, styling approach (O2) and package manager (O3) | vscode | ☐ | `development-path.md` |
 
 ## Closed
 
-(none yet)
+| ID | Item | Closed | Answer |
+| --- | --- | --- | --- |
+| RQ09 | Run "design the next page" once in a fresh session to confirm the shortcut loads | 2026-11-06 | [stated] Grant ran "design the next page" and "where were we" in one message on mobile and got both |
 
 ## Rules
 
@@ -35,3 +40,6 @@ Everything waiting on Grant, tagged by where it is best handled. The shortcut "w
 ## Log
 
 - [stated] 2026-11-06: Review queue created with surface tags mobile, code, vscode.
+- [stated] 2026-11-06: RQ09 closed; shortcuts confirmed working on mobile.
+- [stated] 2026-11-09: RQ14 added for dev and preview access (see design/ISSUES.md DI02).
+- [stated] 2026-11-09: RQ15 added for the open development-path decisions.

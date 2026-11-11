@@ -114,3 +114,9 @@ Log for [[designengineering-ai]]; companion to [[designengineering-ai-sba-memory
 - [stated] 2026-11-05: Basic Viewer gets a small daily AI cap plus a limit of 3 projects of their own; shared projects don't count
 - [stated] 2026-11-05: Turbo kept for power users who can't justify Enterprise and don't need Team admin; after infrastructure upgrades
 - Draft (not yet approved by Grant): Lite package format v0.1 in App 3.2; proposed Electron desktop shell (D11) and llama.cpp + small open-weight model for Lite (D12); Team storage 20 GB per user assumed
+
+## Development path (2026-11-09)
+- [stated] 2026-11-09: D1 Hosting is Cloudflare Workers
+- [stated] 2026-11-09: D2 Web framework is Next.js + TypeScript
+- [stated] 2026-11-09: Claude builds as much as possible to Grant's architecture and instructions; Grant services the app himself for the first 3 years (A); no temporary shortcuts that need rebuilding
+- Draft (not yet approved by Grant): Next.js runs on Workers through the OpenNext Cloudflare adapter; see Builder v0.1/development-path.md

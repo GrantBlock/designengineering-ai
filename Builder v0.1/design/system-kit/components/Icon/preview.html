@@ -1,0 +1,13 @@
+<!-- @dsCard group="Foundations" height=96 -->
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><title>Icon — preview</title></head>
+<body>
+<div id="root"></div>
+<script>
+  var E = window.DE, h = React.createElement;
+  
+  ReactDOM.createRoot(document.getElementById('root')).render(h("div",{className:"de-stage",style:{color:"var(--bc-ink)"}},E.Icon.names.map(function(n){return h("span",{key:n,title:n,style:{display:"inline-flex",width:36,height:36,alignItems:"center",justifyContent:"center",borderRadius:10,background:"var(--bc-surface)"}},h(E.Icon,{name:n,size:16}))})));
+</script>
+</body>
+</html>
