@@ -214,6 +214,52 @@ button:focus-visible, textarea:focus-visible, input:focus-visible, [role="button
 .de-tab span { font-size: 12px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; }
 .de-mdock { display: flex; flex-direction: column; gap: 10px; padding: 16px 12px 34px; background: linear-gradient(to bottom, rgba(30,30,32,0) 0, var(--bc-canvas) 24px); }
 
+/* sidebar v2 (chat / projects switcher) */
+.sb .sbtool{display:flex;align-items:center;gap:2px;height:48px;padding:0 8px;flex-shrink:0}
+.sbicon{display:flex;align-items:center;justify-content:center;width:32px;height:32px;padding:0;background:none;border:none;border-radius:10px;color:var(--bc-muted);cursor:pointer}
+.sbicon:hover{background:var(--bc-surface-raised);color:var(--bc-ink)}
+.sbdim{opacity:.35;cursor:default;pointer-events:none}
+.sbexpand{position:fixed;left:20px;top:20px;z-index:5;background:var(--bc-surface);border:1px solid var(--bc-edge)}
+.sbexpand[hidden]{display:none}
+.sbseg{display:flex;gap:2px;padding:2px;border-radius:10px;background:var(--bc-canvas);border:1px solid var(--bc-hairline)}
+.sbsegb{display:flex;align-items:center;justify-content:center;width:30px;height:26px;padding:0;border:none;border-radius:8px;background:transparent;color:var(--bc-muted);cursor:pointer}
+.sbsegb:hover,.sbsegb.is-on{color:var(--bc-ink)}
+.sbsegb.is-on{background:var(--bc-surface-raised)}
+.sbnav{display:flex;flex-direction:column;gap:2px;padding:4px 10px 8px;flex-shrink:0}
+.sbrow,.sbnew{display:flex;align-items:center;gap:10px;width:100%;height:34px;padding:0 10px;border:none;border-radius:10px;background:transparent;color:var(--bc-muted);font:inherit;font-size:14px;text-align:left;text-decoration:none;cursor:pointer}
+.sbrow:hover,.sbrow.is-active{background:var(--bc-surface-raised);color:var(--bc-ink);text-decoration:none}
+.sbnew{margin-bottom:4px;border-radius:999px;background:var(--bc-surface-raised);border:1px solid var(--bc-hairline);color:var(--bc-ink);box-shadow:0 2px 6px rgba(0,0,0,.22)}
+.sbnew:hover{border-color:var(--bc-steel-blue-edge);color:var(--bc-ink);text-decoration:none}
+.sblab{flex:1;padding-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sbpane{flex:1;min-height:0;display:flex;flex-direction:column}
+.sbpane[hidden]{display:none}
+.sbhead{padding:14px 20px 6px;font-family:var(--font-mono);font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--bc-muted);flex-shrink:0}
+.sbrecs{flex:1;min-height:0;overflow-y:auto;padding:0 6px 8px 10px;display:flex;flex-direction:column;gap:1px}
+.sbrec{display:block;width:100%;min-height:34px;padding:0 10px;border-radius:10px;color:var(--bc-ink);font-size:14px;text-align:left;text-decoration:none;cursor:pointer}
+.sbrec:hover{background:var(--bc-surface-raised);color:var(--bc-ink);text-decoration:none}
+.sbfade{display:block;padding-top:8px;padding-bottom:6px;white-space:nowrap;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,#000 calc(100% - 28px),transparent);mask-image:linear-gradient(90deg,#000 calc(100% - 28px),transparent)}
+.sbgrp{display:flex;align-items:center;gap:8px;width:100%;height:34px;padding:0 10px;border:none;border-radius:10px;background:transparent;color:var(--bc-ink);font:inherit;font-size:14px;text-align:left;cursor:pointer}
+.sbgrp:hover{background:var(--bc-surface-raised)}
+.sbgrp svg{color:var(--bc-muted);transition:transform 200ms;transform:rotate(90deg)}
+.sbgroup.is-closed .sbgrp svg{transform:rotate(0)}
+.sbgroup.is-closed .sbkids{display:none}
+.sbgrow{display:flex;align-items:center;gap:2px;border-radius:10px}
+.sbgrow:hover{background:var(--bc-surface-raised)}
+.sbgrow .sbgrp{flex:1;min-width:0;background:transparent!important}
+.sbgstart{display:flex;align-items:center;justify-content:center;width:28px;height:28px;flex-shrink:0;border:none;border-radius:8px;background:transparent;color:var(--bc-muted);opacity:.55;cursor:pointer;text-decoration:none}
+.sbgrow:hover .sbgstart,.sbgstart:focus-visible{opacity:1}
+.sbgstart:hover{background:var(--bc-surface);color:var(--bc-steel-blue-text);opacity:1}
+.sbcount{font-family:var(--font-mono);font-size:10px;letter-spacing:.08em;color:var(--bc-muted);padding-top:2px}
+.sbkids{display:flex;flex-direction:column;gap:1px;margin:0 0 6px 16px;padding-left:8px;border-left:1px solid var(--bc-hairline)}
+.sbkids .sbrec{color:var(--bc-muted);font-size:13px;min-height:30px}
+.sbkids .sbrec:hover{color:var(--bc-ink)}
+.sbfoot{display:flex;align-items:center;gap:4px;padding:8px 8px 8px 10px;border-top:1px solid var(--bc-hairline);flex-shrink:0}
+.sbacct{display:flex;align-items:center;gap:10px;flex:1;min-width:0;height:40px;padding:0 8px;border:none;border-radius:10px;background:transparent;color:var(--bc-ink);font:inherit;font-size:14px;text-align:left;cursor:pointer}
+.sbacct:hover{background:var(--bc-surface-raised)}
+.sbacct .sblab{flex:0 1 auto}
+.sbacct svg:last-child{color:var(--bc-muted);margin-left:2px}
+.sbavatar{display:flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:999px;background:var(--bc-surface-raised);color:var(--bc-ink);font-size:12px;font-weight:700;padding-top:2px;flex-shrink:0}
+@media (max-width:760px){.sbexpand{display:none!important}}
 
 /* P07 Upload flow: layout glue only; every value is a token. */
 .p7-head{padding:var(--bc-space-8) 0 var(--bc-space-4)}
@@ -267,7 +313,7 @@ button:focus-visible, textarea:focus-visible, input:focus-visible, [role="button
  .p7-drop{align-items:stretch;padding:var(--bc-space-6) var(--bc-space-4);text-align:left;border-style:solid}
  .p7-drop-tile{display:none}.p7-drop-t{font-size:21px}.p7-drop-s{display:none}
  .p7-types,.p7-actions{justify-content:flex-start}
- .p7-actions{flex-direction:column}.p7-actions .de-btn{height:52px;justify-content:center;width:100%}
+ .p7-actions{display:grid;grid-template-columns:1fr 1fr;gap:var(--bc-space-2)}.p7-actions .de-btn{height:52px;justify-content:center;width:100%;padding-left:8px;padding-right:8px}.p7-actions .p7-camera{order:-1}
  .p7-row{grid-template-columns:40px minmax(0,1fr) auto;padding:var(--bc-card-pad) 0;align-items:start}
  .p7-name{white-space:normal;font-size:16px}.p7-meta{font-size:13px}
  .p7-rowact .de-iconbtn{width:44px;height:44px}
@@ -276,53 +322,6 @@ button:focus-visible, textarea:focus-visible, input:focus-visible, [role="button
  .de-section-head{height:var(--bc-touch-target);margin-bottom:0}.de-section-head .de-label{font-size:13px}
 }
 @media (min-width:761px){.p7-dock,.p7-mheader{display:none}.p7-camera{display:none!important}}
-
-/* sidebar v2 (chat / projects switcher) */
-.sb .sbtool{display:flex;align-items:center;gap:2px;height:48px;padding:0 8px;flex-shrink:0}
-.sbicon{display:flex;align-items:center;justify-content:center;width:32px;height:32px;padding:0;background:none;border:none;border-radius:10px;color:var(--bc-muted);cursor:pointer}
-.sbicon:hover{background:var(--bc-surface-raised);color:var(--bc-ink)}
-.sbdim{opacity:.35;cursor:default;pointer-events:none}
-.sbexpand{position:fixed;left:20px;top:20px;z-index:5;background:var(--bc-surface);border:1px solid var(--bc-edge)}
-.sbexpand[hidden]{display:none}
-.sbseg{display:flex;gap:2px;padding:2px;border-radius:10px;background:var(--bc-canvas);border:1px solid var(--bc-hairline)}
-.sbsegb{display:flex;align-items:center;justify-content:center;width:30px;height:26px;padding:0;border:none;border-radius:8px;background:transparent;color:var(--bc-muted);cursor:pointer}
-.sbsegb:hover,.sbsegb.is-on{color:var(--bc-ink)}
-.sbsegb.is-on{background:var(--bc-surface-raised)}
-.sbnav{display:flex;flex-direction:column;gap:2px;padding:4px 10px 8px;flex-shrink:0}
-.sbrow,.sbnew{display:flex;align-items:center;gap:10px;width:100%;height:34px;padding:0 10px;border:none;border-radius:10px;background:transparent;color:var(--bc-muted);font:inherit;font-size:14px;text-align:left;text-decoration:none;cursor:pointer}
-.sbrow:hover,.sbrow.is-active{background:var(--bc-surface-raised);color:var(--bc-ink);text-decoration:none}
-.sbnew{margin-bottom:4px;border-radius:999px;background:var(--bc-surface-raised);border:1px solid var(--bc-hairline);color:var(--bc-ink);box-shadow:0 2px 6px rgba(0,0,0,.22)}
-.sbnew:hover{border-color:var(--bc-steel-blue-edge);color:var(--bc-ink);text-decoration:none}
-.sblab{flex:1;padding-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.sbpane{flex:1;min-height:0;display:flex;flex-direction:column}
-.sbpane[hidden]{display:none}
-.sbhead{padding:14px 20px 6px;font-family:var(--font-mono);font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--bc-muted);flex-shrink:0}
-.sbrecs{flex:1;min-height:0;overflow-y:auto;padding:0 6px 8px 10px;display:flex;flex-direction:column;gap:1px}
-.sbrec{display:block;width:100%;min-height:34px;padding:0 10px;border-radius:10px;color:var(--bc-ink);font-size:14px;text-align:left;text-decoration:none;cursor:pointer}
-.sbrec:hover{background:var(--bc-surface-raised);color:var(--bc-ink);text-decoration:none}
-.sbfade{display:block;padding-top:8px;padding-bottom:6px;white-space:nowrap;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,#000 calc(100% - 28px),transparent);mask-image:linear-gradient(90deg,#000 calc(100% - 28px),transparent)}
-.sbgrp{display:flex;align-items:center;gap:8px;width:100%;height:34px;padding:0 10px;border:none;border-radius:10px;background:transparent;color:var(--bc-ink);font:inherit;font-size:14px;text-align:left;cursor:pointer}
-.sbgrp:hover{background:var(--bc-surface-raised)}
-.sbgrp svg{color:var(--bc-muted);transition:transform 200ms;transform:rotate(90deg)}
-.sbgroup.is-closed .sbgrp svg{transform:rotate(0)}
-.sbgroup.is-closed .sbkids{display:none}
-.sbgrow{display:flex;align-items:center;gap:2px;border-radius:10px}
-.sbgrow:hover{background:var(--bc-surface-raised)}
-.sbgrow .sbgrp{flex:1;min-width:0;background:transparent!important}
-.sbgstart{display:flex;align-items:center;justify-content:center;width:28px;height:28px;flex-shrink:0;border:none;border-radius:8px;background:transparent;color:var(--bc-muted);opacity:.55;cursor:pointer;text-decoration:none}
-.sbgrow:hover .sbgstart,.sbgstart:focus-visible{opacity:1}
-.sbgstart:hover{background:var(--bc-surface);color:var(--bc-steel-blue-text);opacity:1}
-.sbcount{font-family:var(--font-mono);font-size:10px;letter-spacing:.08em;color:var(--bc-muted);padding-top:2px}
-.sbkids{display:flex;flex-direction:column;gap:1px;margin:0 0 6px 16px;padding-left:8px;border-left:1px solid var(--bc-hairline)}
-.sbkids .sbrec{color:var(--bc-muted);font-size:13px;min-height:30px}
-.sbkids .sbrec:hover{color:var(--bc-ink)}
-.sbfoot{display:flex;align-items:center;gap:4px;padding:8px 8px 8px 10px;border-top:1px solid var(--bc-hairline);flex-shrink:0}
-.sbacct{display:flex;align-items:center;gap:10px;flex:1;min-width:0;height:40px;padding:0 8px;border:none;border-radius:10px;background:transparent;color:var(--bc-ink);font:inherit;font-size:14px;text-align:left;cursor:pointer}
-.sbacct:hover{background:var(--bc-surface-raised)}
-.sbacct .sblab{flex:0 1 auto}
-.sbacct svg:last-child{color:var(--bc-muted);margin-left:2px}
-.sbavatar{display:flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:999px;background:var(--bc-surface-raised);color:var(--bc-ink);font-size:12px;font-weight:700;padding-top:2px;flex-shrink:0}
-@media (max-width:760px){.sbexpand{display:none!important}}
 </style></head>
 <body>
 <div class="de-shell">
@@ -340,7 +339,8 @@ button:focus-visible, textarea:focus-visible, input:focus-visible, [role="button
     <button class="sbrow" type="button"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0"><path d="M11 4a7 7 0 1 0 0 14 7 7 0 0 0 0-14zM21 21l-5-5"/></svg><span class="sblab">Search</span></button>
     <a class="sbrow" href="../P19-dashboard/index.html"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0"><path d="M4 5h16v14H4zM4 10h16M10 10v9"/></svg><span class="sblab">Dashboard</span></a>
     <button class="sbrow" type="button"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9zM12 12l8-4.5M12 12v9M12 12L4 7.5"/></svg><span class="sblab">Design</span></button>
-    <button class="sbrow" type="button"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0"><path d="M3 8h18v12H3zM9 8V5h6v3M3 13h18"/></svg><span class="sblab">Customize</span></button>
+    <button class="sbrow" type="button" title="Artifacts and exports"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0"><path d="M3 7h18v13H3zM3 7l2-3h14l2 3M10 12h4"/></svg><span class="sblab">Vault</span></button>
+    <button class="sbrow" type="button" title="Imports"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0"><path d="M12 16V4M7 9l5-5 5 5M4 20h16"/></svg><span class="sblab">Uploads</span></button>
     <button class="sbrow" type="button"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0"><path d="M5 12h.01M12 12h.01M19 12h.01"/></svg><span class="sblab">More</span></button>
   </nav>
   <div class="sbpane" data-sbpane="chat" hidden><div class="sbhead">Recents</div><div class="sbrecs de-scroll"><a class="sbrec" href="../P03-chat-conversation/index.html" title="GitHub branch organization workflow"><span class="sbfade">GitHub branch organization workflow</span></a><a class="sbrec" href="../P03-chat-conversation/index.html" title="Downtime by cause from stoppage CSV"><span class="sbfade">Downtime by cause from stoppage CSV</span></a><a class="sbrec" href="../P03-chat-conversation/index.html" title="Gear ratio for a hoist drive"><span class="sbfade">Gear ratio for a hoist drive</span></a><a class="sbrec" href="../P03-chat-conversation/index.html" title="Compare 304 and 316 stainless for washdown"><span class="sbfade">Compare 304 and 316 stainless for washdown</span></a><a class="sbrec" href="../P03-chat-conversation/index.html" title="Cable tray fill calculation"><span class="sbfade">Cable tray fill calculation</span></a><a class="sbrec" href="../P03-chat-conversation/index.html" title="Compressed air leak estimate"><span class="sbfade">Compressed air leak estimate</span></a><a class="sbrec" href="../P03-chat-conversation/index.html" title="PLC tag naming convention"><span class="sbfade">PLC tag naming convention</span></a><a class="sbrec" href="../P03-chat-conversation/index.html" title="Quote template wording"><span class="sbfade">Quote template wording</span></a></div></div>
@@ -350,22 +350,22 @@ button:focus-visible, textarea:focus-visible, input:focus-visible, [role="button
     <button class="sbicon" type="button" aria-label="Settings"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0"><path d="M12 9a3 3 0 1 0 0 6 3 3 0 0 0 0-6zM19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></button>
   </div>
 </aside>
-<button class="sbicon sbexpand" type="button" data-sb="expand" aria-label="Expand sidebar" hidden><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0"><path d="M4 5h16v14H4zM9 5v14"/></svg></button>
+ <button class="sbicon sbexpand" type="button" data-sb="expand" aria-label="Expand sidebar" hidden><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0"><path d="M4 5h16v14H4zM9 5v14"/></svg></button>
  <main class="de-shell-main">
-  <header class="de-topbar"><div class="de-label">Vault  /  Uploads</div>
+  <header class="de-topbar"><div class="de-label">Uploads</div>
    <div class="de-topbar-actions"><button class="de-btn"><svg class="de-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>New session</button><button class="de-btn">Ask AI</button><button class="de-btn">Support</button><div class="de-avatar" style="margin-left:8px">G</div></div></header>
   <div class="p7-mheader p7-mobile"><div class="de-mheader"><img src="../../assets/favicon.svg" alt=""><span class="de-brand">Design Engineering</span><div class="de-avatar de-avatar-lg">G</div></div></div>
   <div class="de-shell-scroll de-scroll"><div class="de-shell-column">
-   <div class="p7-head"><div class="de-eyebrow">Vault</div><h1>Uploads</h1><p>Add models, photos and documents to a project. I prepare each file so you can view it, search it and ask about it.</p></div>
+   <div class="p7-head"><div class="de-eyebrow">Block Concepts</div><h1>Uploads</h1><p>Add models, pictures, documents and ZIP files to a project. I prepare each file so you can view it, search it and ask about it.</p></div>
    <div class="p7-target"><label class="de-label" for="proj">Add to project</label>
     <div class="p7-sel"><select id="proj"><option>BC-Q-26041&nbsp;·&nbsp; Palletizer retrofit</option><option>BC-Q-26038&nbsp;·&nbsp; Case packer line 2</option><option>BC-Q-26029&nbsp;·&nbsp; Conveyor transfer</option><option>No project (Vault only)</option></select><svg class="de-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 10l5 5 5-5"/></svg></div></div>
    <div class="p7-drop" id="drop" role="group" aria-label="Upload files">
     <div class="p7-drop-tile"><svg class="de-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4M7 9l5-5 5 5M5 20h14"/></svg></div>
     <div><div class="p7-drop-t">Drop files here</div><div class="p7-drop-s">or choose them from your computer</div></div>
-    <div class="p7-types" aria-label="Accepted types"><span class="de-tag">STEP</span><span class="de-tag">OBJ</span><span class="de-tag">Photos</span><span class="de-tag">PDF</span></div>
-    <div class="p7-actions"><button class="de-btn p7-choose" id="choose" type="button"><svg class="de-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4M7 9l5-5 5 5M5 20h14"/></svg>Choose files</button><button class="de-btn de-btn-chip p7-camera" id="cam" type="button"><svg class="de-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3v11H4zM12 17a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/></svg>Take photo</button></div>
-    <div class="de-kbd" style="color:var(--bc-muted)">Up to [500 MB] per file (A)</div>
-    <input id="file" type="file" multiple accept=".step,.stp,.obj,.jpg,.jpeg,.png,.heic,.pdf" hidden><input id="photo" type="file" accept="image/*" capture="environment" hidden>
+    <div class="p7-types" aria-label="Accepted types"><span class="de-tag">STEP</span><span class="de-tag">OBJ</span><span class="de-tag">Pictures</span><span class="de-tag">PDF</span><span class="de-tag">ZIP</span></div>
+    <div class="p7-actions"><button class="de-btn p7-choose" id="choose" type="button"><svg class="de-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4M7 9l5-5 5 5M5 20h14"/></svg>Choose files</button><button class="de-btn de-btn-chip p7-camera" id="cam" type="button"><svg class="de-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3v11H4zM12 17a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/></svg>Take a pic</button></div>
+    <div class="de-kbd" style="color:var(--bc-muted)">Up to [500 MB] per file (A). ZIP files are unpacked and each file inside is prepared on its own.</div>
+    <input id="file" type="file" multiple accept=".step,.stp,.obj,.jpg,.jpeg,.png,.heic,.webp,.gif,.tif,.tiff,.pdf,.zip,image/*" hidden><input id="photo" type="file" accept="image/*" capture="environment" hidden>
    </div>
    <section class="de-panel p7-list" aria-label="Upload queue"><div class="de-section-head"><span class="de-label">This session</span><span class="de-tag de-tag-plain" id="count"></span><button class="de-btn p7-clear" id="clearbtn" type="button" style="height:28px;padding:2px 8px 0;font-size:11px">Clear finished</button></div>
     <div id="list"></div><div class="de-empty" id="empty" hidden style="margin-top:8px">Nothing uploaded yet. Files you add appear here.</div></section>
@@ -380,18 +380,18 @@ button:focus-visible, textarea:focus-visible, input:focus-visible, [role="button
 <script>
 (function(){
  var $=function(i){return document.getElementById(i)},rows=[],id=0,used=12.4;
- var OK={step:'model',stp:'model',obj:'model',jpg:'photo',jpeg:'photo',png:'photo',heic:'photo',pdf:'doc'};
- var KIND={model:'3D model',photo:'Photo',doc:'Document'},ICON={model:'<path d="M12 3l8 4.5v9L12 21l-8-4.5v-9zM12 12l8-4.5M12 12v9M12 12L4 7.5"/>',photo:'<rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="1.6"/><path d="M21 16l-5-5-8 8"/>',doc:'<path d="M7 3h7l5 5v13H7zM14 3v5h5M10 13h6M10 17h6"/>'};
- var PREP={model:'Converting for the viewer',photo:'Reading the photo',doc:'Indexing for search'};
+ var OK={step:'model',stp:'model',obj:'model',jpg:'photo',jpeg:'photo',png:'photo',heic:'photo',webp:'photo',gif:'photo',tif:'photo',tiff:'photo',pdf:'doc',zip:'zip'};
+ var KIND={model:'3D model',photo:'Picture',doc:'Document',zip:'ZIP file'},ICON={model:'<path d="M12 3l8 4.5v9L12 21l-8-4.5v-9zM12 12l8-4.5M12 12v9M12 12L4 7.5"/>',photo:'<rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="1.6"/><path d="M21 16l-5-5-8 8"/>',doc:'<path d="M7 3h7l5 5v13H7zM14 3v5h5M10 13h6M10 17h6"/>',zip:'<path d="M5 4h14v4H5zM6 8h12v12H6zM12 8v4m-1.5 2h3M10.5 16h3"/>'};
+ var PREP={model:'Converting for the viewer',photo:'Reading the picture',doc:'Indexing for search',zip:'Unpacking the files'};
  function sz(b){return b>=1048576?(b/1048576).toFixed(1)+' MB':Math.max(1,Math.round(b/1024))+' KB'}
  function ico(p,n){return '<svg class="de-icon" width="'+(n||18)+'" height="'+(n||18)+'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+p+'</svg>'}
- function add(name,bytes,state,pct){var ext=name.split('.').pop().toLowerCase(),k=OK[ext];var r={id:++id,name:name,bytes:bytes,kind:k||'doc',state:k?state:'bad',pct:pct||0,why:k?'':'Not a supported type. Use STEP, OBJ, photos or PDF.'};rows.unshift(r);if(r.state==='up')go(r);render();return r}
+ function add(name,bytes,state,pct){var ext=name.split('.').pop().toLowerCase(),k=OK[ext];var r={id:++id,name:name,bytes:bytes,kind:k||'doc',state:k?state:'bad',pct:pct||0,why:k?'':'Not a supported type. Use STEP, OBJ, pictures, PDF or ZIP.'};rows.unshift(r);if(r.state==='up')go(r);render();return r}
  function go(r){var t=setInterval(function(){r.pct=Math.min(100,r.pct+8+Math.random()*14);if(r.pct>=100){clearInterval(t);r.state='prep';render();setTimeout(function(){r.state='ready';render()},2200)}else render()},400)}
  function render(){var h='';rows.forEach(function(r){
   var st,bar='',act='<button class="de-iconbtn de-iconbtn-sm" data-rm="'+r.id+'" aria-label="Remove '+r.name+'">'+ico('<path d="M6 6l12 12M18 6L6 18"/>',16)+'</button>';
   if(r.state==='up'){st='<span class="p7-st">Uploading '+Math.round(r.pct)+' percent</span>';bar='<div class="p7-bar" role="progressbar" aria-valuenow="'+Math.round(r.pct)+'" aria-valuemin="0" aria-valuemax="100"><i style="width:'+r.pct+'%"></i></div>'}
   else if(r.state==='prep'){st='<span class="p7-st">'+PREP[r.kind]+'</span>';bar='<div class="p7-bar is-prep"><i></i></div>'}
-  else if(r.state==='ready'){st='<span class="de-tag">Ready</span>'}
+  else if(r.state==='ready'){st='<span class="de-tag">Ready</span>'+(r.kind==='zip'?'<span>'+(r.inside||(r.inside=3+Math.floor(r.bytes/1048576)%20))+' files inside</span>':'')}
   else{st='<span class="p7-st is-bad">Could not upload</span>';bar='<div class="p7-err" role="alert">'+r.why+'</div>';act='<button class="de-iconbtn de-iconbtn-sm" data-rt="'+r.id+'" aria-label="Retry '+r.name+'">'+ico('<path d="M20 12a8 8 0 1 1-2.5-5.8M20 4v5h-5"/>',16)+'</button>'+act}
   h+='<div class="p7-row"><div class="p7-tile">'+ico(ICON[r.kind],18)+'</div><div class="p7-main"><div class="p7-name">'+r.name+'</div><div class="p7-meta"><span>'+(r.state==='bad'?'Unsupported':KIND[r.kind])+'</span><span>'+sz(r.bytes)+'</span>'+st+'</div>'+bar+'</div><div class="p7-rowact">'+act+'</div></div>'});
   $('list').innerHTML=h;$('empty').hidden=rows.length>0;$('count').textContent=rows.length+(rows.length===1?' file':' files');
@@ -406,7 +406,7 @@ button:focus-visible, textarea:focus-visible, input:focus-visible, [role="button
  var d=$('drop');['dragenter','dragover'].forEach(function(t){d.addEventListener(t,function(e){e.preventDefault();d.classList.add('is-over')})});
  ['dragleave','drop'].forEach(function(t){d.addEventListener(t,function(e){e.preventDefault();d.classList.remove('is-over')})});
  d.addEventListener('drop',function(e){take(e.dataTransfer.files)});
- var seed=[['palletizer-frame.step',48234496,'ready'],['gearbox-GB-220-datasheet.pdf',2516582,'prep'],['drive-guard-photo.jpg',3984588,'up',62],['pallet-layout.dwg',1153434,'bad']];
+ var seed=[['palletizer-frame.step',48234496,'ready'],['site-photos.zip',31457280,'ready'],['gearbox-GB-220-datasheet.pdf',2516582,'prep'],['drive-guard-photo.jpg',3984588,'up',62],['pallet-layout.dwg',1153434,'bad']];
  seed.reverse().forEach(function(s){var r=add(s[0],s[1],s[2]==='up'?'x':s[2],s[3]);if(s[2]==='up'){r.state='up';r.pct=s[3]}});render();
  document.querySelectorAll(".de-group-head").forEach(function(b){b.addEventListener("click",function(){var g=b.parentNode;var c=g.classList.toggle("is-collapsed");b.setAttribute("aria-expanded",String(!c))})});
 })();

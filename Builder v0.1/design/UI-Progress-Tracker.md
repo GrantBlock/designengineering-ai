@@ -16,8 +16,8 @@ Page order is a **Draft (not yet approved by Grant)**, built from the App Plan M
 | P04 | Sign in / sign up (Clerk) | Desktop + mobile | ☑ | `exports/P04-sign-in/index.html` | Done 2026-11-11, one responsive page with nine states: Sign in, Create account, verification code, verified, forgot password, reset code, new password, password updated. Grant approved |
 | P05 | Projects list | Desktop + mobile | ☑ | `exports/P05-projects/index.html` | Done 2026-11-11. Landing page for projects; each row opens its P06 project page |
 | P06 | Project workspace (Import, Specifications, Layout, Schedule, Exports; files, chat, notes later) | Desktop + mobile | ☑ | `exports/P06-project-workspace/index.html` | Done 2026-11-11 (for now). Tabs: Import, Specifications, Layout, Schedule, Exports. Files, chat and notes tabs still to design |
-| P07 | Upload flow (STEP, OBJ, photos, PDFs) | Desktop + mobile | ◐ | `exports/P07-upload-flow/index.html` | Draft 2026-11-11, one responsive page. Awaiting Grant's review |
-| P08 | 3D viewer | Desktop + mobile | ☐ | | |
+| P07 | Upload flow (STEP, OBJ, photos, PDFs) | Desktop + mobile | ☑ | `exports/P07-upload-flow/index.html` | Done 2026-11-11, one responsive page. Accepts STEP, OBJ, pictures, PDF and ZIP; Take a pic on mobile (Grant approved) |
+| P08 | 3D designer (merged with P20; viewer is its first draft) | Desktop + mobile | ☑ | `exports/P08-3d-viewer/index.html` | Done 2026-11-11 (Grant approved). Chat-only 3D designer, merged with P20. Feature spec: `specs/P08-3D-Designer-Spec.md` |
 | P09 | Document search and data sheets | Desktop + mobile | ☐ | | |
 | P10 | Notes and tracking | Desktop + mobile | ☐ | | |
 | P11 | Calculators (chat-enabled) | Desktop + mobile | ☐ | | |
@@ -29,11 +29,11 @@ Page order is a **Draft (not yet approved by Grant)**, built from the App Plan M
 | P17 | Builder (package a client or site into a Lite zip) | Desktop app | ☐ | | |
 | P18 | Process configuration (one process in detail, like a Xometry part configuration) | Desktop + mobile | ☑ | `exports/P18-process-config/index.html` | Done 2026-11-11. Opened from a P06 process card; saves back to the P06 summary. Added 2026-11-10 |
 | P19 | Dashboard (weekly view: this week, this month, last week) | Desktop + mobile | ☑ | `exports/P19-dashboard/index.html` | Layout only; sample data. Added 2026-11-10 from Grant's weekly tracker zip. Approved 2026-11-11 |
-| P20 | 3D designer (opened from Design in the sidebar): build parts, open STEP files to view and modify | Desktop + mobile | ☐ | | Added 2026-11-11. Scope from Grant: build parts; accept STEP files to view and modify. Draft (not yet approved by Grant): includes viewing, so it may absorb P08 (3D viewer) |
+| P20 | 3D designer (opened from Design in the sidebar): build parts, open STEP files to view and modify | Desktop + mobile | ☐ | | Merged into P08 on 2026-11-11 (Grant). Do not design separately |
 
 ## Next up
 
-First open item: **P07** (draft built, awaiting Grant's review), unless Grant says otherwise. P05, P06 and P18 (the projects section) are complete for now; open questions are in `../review-queue.md` RQ16 and RQ17.
+First open item: **P09**, unless Grant says otherwise. P08 and P20 are done as one page (the 3D designer); its feature spec is waiting for Grant's edits.
 
 ## Log
 
@@ -76,3 +76,14 @@ First open item: **P07** (draft built, awaiting Grant's review), unless Grant sa
 - [stated] 2026-11-11: P07 (Upload flow) drafted at `exports/P07-upload-flow/index.html`: one responsive page under Vault / Uploads. Project picker, drop zone with accepted types (STEP, OBJ, photos, PDF), a This session queue, and a storage meter. Each file moves Uploading, then Preparing (convert for viewer, read photo, index for search), then Ready; unsupported files show Could not upload with Retry and Remove. Prototype only: real file picking and drag and drop, but simulated progress and no storage.
 - Draft (not yet approved by Grant): P07 patterns: dashed drop zone on `bc-surface` (steel-blue tint while dragging); file row with type tile, mono meta line, status text and 4px progress bar (steel-blue fill, pulsing while preparing); Ready tag; inline failure notice with Retry; storage meter card (Pro, 20 GB included); mobile adds a Take photo button and stacks the actions at 52px.
 - Draft (not yet approved by Grant): placeholder values marked (A) or in brackets: 500 MB per-file limit, accepted extensions (.step, .stp, .obj, .jpg, .jpeg, .png, .heic, .pdf), storage shown as 12.4 of 20 GB.
+- [stated] 2026-11-11: Grant asked for P07 to accept pictures and ZIP files and for a Take a pic button on mobile. P07 now accepts STEP, OBJ, pictures (JPG, PNG, HEIC, WebP, GIF, TIFF), PDF and ZIP. A ZIP shows Unpacking the files, then Ready with the count of files inside; each file inside is prepared on its own. Mobile has Take a pic (opens the camera) beside Choose files. Rebuilt on the sidebar v2 and four-tab mobile bar from `development`; the Vault and Uploads nav entries no longer exist there, so the page has no highlighted nav row (where Uploads lives in the nav is open).
+- Draft (not yet approved by Grant): P07 ZIP handling (unpacked, files prepared separately, count shown) and the (A) accepted extension list.
+- [stated] 2026-11-11: Grant approved P07 (Upload flow), including pictures and ZIP support and the mobile Take a pic button. Its draft patterns (drop zone, file row with status bar, storage meter, ZIP handling) are approved with the page.
+- [stated] 2026-11-11: P08 (3D viewer) drafted at `exports/P08-3d-viewer/index.html`: one responsive page. Viewport with orbit (drag), zoom (scroll or pinch), pan (shift-drag), arrow-key orbit, standard views (Iso, Front, Top, Right), Shaded and Wire display, and Fit. Right panel: file card, Parts list (select, hide and show), Details (bodies, size L x W x H, material). An Ask about this part field sends a question to chat. Prototype only: the model is a placeholder palletizer conveyor drawn by a small built-in renderer, not a real STEP file and not Three.js (D8 is not yet approved); mobile stacks the viewport above the panels with the ask field in the dock.
+- Draft (not yet approved by Grant): P08 patterns: viewport on `bc-surface` with a floating toolbar (segmented view and display controls on `bc-canvas`, Fit icon button); model faces drawn in graphite tones with Steel Blue for the selected part; parts list row (name, body count, eye toggle) with a steel-blue tint when selected; details list with mono labels; ask field with a mono part context label inside the light composer field.
+- Draft (not yet approved by Grant): P08 placeholder values: the sample model, its part names and sizes, and materials marked (A). P08 as view only, with P20 absorbing editing, is open for Grant to confirm.
+- [stated] 2026-11-11: Grant: P08 and P20 are the same page. It is the builder for 3D design, opened from Design in the primary navigation, and it also appears inside a project chat when that skill is loaded. 3D models are stored in Vault and can be referenced in new chats to make variations and alternatives. P20 is merged into P08; the P08 viewer draft is its first version (viewing only).
+- [stated] 2026-11-11: Grant: the 3D designer has no manual tools, chat only; features are not to be discussed yet. P08 prototype reworked to a chat-first designer (3D view, version strip, panel with Chat, Parts and Details tabs, composer with a Vault reference button). Feature spec created at `specs/P08-3D-Designer-Spec.md` for Grant to edit.
+- Draft (not yet approved by Grant): P08 designer UI: version strip of chips under the 3D view, panel tabs (Chat, Parts, Details), reference chip in chat, Save to Vault in the top bar.
+- [stated] 2026-11-11: Grant approved P08 (3D designer, merged with P20), including the chat-first layout (3D view, version strip, Chat, Parts and Details tabs) and the patterns logged above as drafts.
+

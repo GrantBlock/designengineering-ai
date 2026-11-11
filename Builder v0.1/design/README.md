@@ -8,6 +8,7 @@ UI design work for designengineering.ai. Owner: Grant Block (Block Concepts LLC)
 | `DESIGN-SYSTEM.md` | Tokens and rules every page follows. Updated whenever a new page sets a new pattern. |
 | `ISSUES.md` | Open design and setup issues. |
 | `START-SESSION.md` | Copy-paste prompt that starts a design session. |
+| `specs/` | Feature specs for pages that need more than a layout, edited by Grant. `P08-3D-Designer-Spec.md` is the first. |
 | `exports/` | Finished page exports (HTML), one folder per page, named by tracker ID. |
 
 Rules: design from the first open page in the tracker; follow the design system; export to `exports/`; update the tracker; log new design-system decisions with a dated line. Draft items are not approved until Grant says so.
