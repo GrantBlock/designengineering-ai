@@ -29,6 +29,7 @@ Page order is a **Draft (not yet approved by Grant)**, built from the App Plan M
 | P17 | Builder (package a client or site into a Lite zip) | Desktop app | ☐ | | |
 | P18 | Process configuration (one process in detail, like a Xometry part configuration) | Desktop + mobile | ☑ | `exports/P18-process-config/index.html` | Done 2026-11-11. Opened from a P06 process card; saves back to the P06 summary. Added 2026-11-10 |
 | P19 | Dashboard (weekly view: this week, this month, last week) | Desktop + mobile | ☑ | `exports/P19-dashboard/index.html` | Layout only; sample data. Added 2026-11-10 from Grant's weekly tracker zip. Approved 2026-11-11 |
+| P20 | 3D designer (opened from Design in the sidebar) | Desktop + mobile | ☐ | | Added 2026-11-11. Draft (not yet approved by Grant): scope not defined; may overlap P08 3D viewer |
 
 ## Next up
 

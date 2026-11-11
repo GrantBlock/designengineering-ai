@@ -174,7 +174,7 @@
       h('div', { className: 'sbtool' }, tbtn('menu', 'Menu'), tbtn('panel-left', 'Collapse sidebar'), tbtn('chevron-left', 'Back'), tbtn('chevron-right', 'Forward', 'sbdim'),
         h('span', { style: { flex: 1 } }),
         h('div', { className: 'sbseg', role: 'tablist', 'aria-label': 'Sidebar mode' }, seg('chat', 'chat', 'Chat'), seg('projects', 'folder', 'Projects'))),
-      h('nav', { className: 'sbnav', 'aria-label': 'Main' }, row('plus', 'New', 'sbnew', 'new'), row('search', 'Search', 0, 'search'), row('dashboard', 'Dashboard', 0, 'dashboard'), row('briefcase', 'Customize', 0, 'customize'), row('more', 'More', 0, 'more')),
+      h('nav', { className: 'sbnav', 'aria-label': 'Main' }, row('plus', 'New', 'sbnew', 'new'), row('search', 'Search', 0, 'search'), row('dashboard', 'Dashboard', 0, 'dashboard'), row('cube', 'Design', 0, 'design'), row('briefcase', 'Customize', 0, 'customize'), row('more', 'More', 0, 'more')),
       mode === 'chat'
         ? h('div', { className: 'sbpane' }, h('div', { className: 'sbhead' }, 'Recents'), h('div', { className: 'sbrecs de-scroll' }, chats.map(chat)))
         : h('div', { className: 'sbpane' }, h('div', { className: 'sbhead' }, 'Projects'), h('div', { className: 'sbrecs de-scroll' }, projects.map(function (g) {
