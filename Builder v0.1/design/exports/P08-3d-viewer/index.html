@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>3D viewer — Design Engineering</title>
+<title>3D designer — Design Engineering</title>
 <link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
 <style>
 
@@ -285,7 +285,7 @@ button:focus-visible, textarea:focus-visible, input:focus-visible, [role="button
 .p8-ctx{font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--bc-field-steel-text);white-space:nowrap;padding-top:2px}
 .p8-ask .de-iconbtn-send{width:40px;height:40px;border-radius:var(--bc-radius-card)}
 .p8-note{font-family:var(--font-mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--bc-steel-blue-text);min-height:14px;padding:0 6px}
-.p8-side{width:320px;flex-shrink:0;display:flex;flex-direction:column;gap:var(--bc-shell-gap);min-height:0;overflow-y:auto}
+.p8-side{width:380px;flex-shrink:0;display:flex;flex-direction:column;gap:var(--bc-shell-gap);min-height:0}
 .p8-card{padding:2px 12px 12px;border:1px solid var(--bc-edge);border-radius:var(--bc-radius-panel);background:var(--bc-surface);box-shadow:var(--bc-shadow-panel)}
 .p8-file{display:flex;flex-direction:column;gap:6px;padding:var(--bc-card-pad);border:1px solid var(--bc-edge);border-radius:var(--bc-radius-panel);background:var(--bc-surface);box-shadow:var(--bc-shadow-panel)}
 .p8-file h1{margin:0;font-size:18px;font-weight:700;line-height:1.25;word-break:break-all}
@@ -301,9 +301,34 @@ button:focus-visible, textarea:focus-visible, input:focus-visible, [role="button
 .p8-props{display:grid;grid-template-columns:auto 1fr;gap:8px 16px;margin:4px 0 0;font-size:14px}
 .p8-props dt{font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--bc-muted);padding-top:3px}
 .p8-props dd{margin:0;text-align:right}
+.p8-vers{display:flex;align-items:center;gap:var(--bc-space-2);min-height:44px;overflow-x:auto;scrollbar-width:none}
+.p8-vers::-webkit-scrollbar{display:none}
+.p8-vers>.de-label{flex-shrink:0;padding-top:2px}
+.p8-ver{flex-shrink:0;display:flex;flex-direction:column;gap:2px;min-width:112px;padding:8px 14px 7px;border:1px solid var(--bc-hairline);border-radius:var(--bc-radius-card);background:var(--bc-surface-raised);color:var(--bc-ink);font:inherit;text-align:left;cursor:pointer;transition:border-color 200ms}
+.p8-ver:hover{border-color:var(--bc-steel-blue)}
+.p8-ver[aria-pressed=true]{border-color:var(--bc-steel-blue);background:var(--bc-steel-blue-tint)}
+.p8-ver:focus-visible{outline:2px solid var(--bc-steel-blue-text);outline-offset:2px}
+.p8-ver b{font-size:13px;font-weight:600;padding-top:2px}
+.p8-ver span{font-family:var(--font-mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--bc-muted)}
+.p8-ver[aria-pressed=true] span{color:var(--bc-steel-blue-text)}
+.p8-tabs{margin:0}
+.p8-tabs .p8-seg{width:100%}.p8-tabs .p8-seg button{flex:1}
+.p8-panel{display:flex;flex-direction:column;min-height:0;flex:1;border:1px solid var(--bc-edge);border-radius:var(--bc-radius-panel);background:var(--bc-surface);box-shadow:var(--bc-shadow-panel);overflow:hidden}
+.p8-panel-head{padding:12px 12px 0}
+.p8-pane{flex:1;min-height:0;overflow-y:auto;padding:12px}
+.p8-chat{display:flex;flex-direction:column;gap:var(--bc-space-6);padding:var(--bc-space-4) 4px 4px}
+.p8-chat .de-msg-body{font-size:15px;line-height:1.55;max-width:none}
+.p8-chat .de-msg.is-user .de-msg-body{max-width:92%}
+.p8-chip-ref{display:inline-flex;align-items:center;gap:6px;padding:6px 10px 4px;border:1px solid var(--bc-hairline);border-radius:var(--bc-radius-control);background:var(--bc-surface-raised);font-size:12px;color:var(--bc-ink)}
+.p8-chip-ref .de-icon{color:var(--bc-steel-blue-text)}
+.p8-compose{padding:12px;border-top:1px solid var(--bc-hairline)}
+.p8-compose .de-composer textarea{min-height:48px;font-size:15px;padding:12px 14px 2px}
+.p8-compose .de-composer-bar{padding:6px 8px 8px}
+.p8-compose .de-composer-meta{padding:0 6px}
+.p8-pane[hidden]{display:none}
 .p8-mobile{display:none}
 [hidden]{display:none!important}
-@media (max-width:1100px){.p8-side{width:280px}}
+@media (max-width:1100px){.p8-side{width:320px}}
 @media (max-width:760px){
  .de-shell{padding:0;gap:0;height:auto;min-height:100vh;display:block}
  .de-sidebar,.de-topbar,.sbexpand{display:none}
@@ -317,8 +342,12 @@ button:focus-visible, textarea:focus-visible, input:focus-visible, [role="button
  .p8-tools>div{display:contents}
  .p8-tools>div .p8-seg{position:absolute;left:0;bottom:0}
  .p8-ask{display:none}
- .p8-side{width:auto;overflow:visible;margin-top:var(--bc-space-4)}
+ .p8-side{width:auto;margin-top:var(--bc-space-4)}
  .p8-card,.p8-file{background:none;border:none;box-shadow:none;padding:0}
+ .p8-panel{background:none;border:none;box-shadow:none;overflow:visible}.p8-panel-head{padding:0}.p8-pane{padding:var(--bc-space-4) 0;overflow:visible}
+ .p8-compose{display:none}.p8-seg button{height:40px}.p8-tabs .p8-seg button{height:44px}
+ .p8-vers{margin:0 calc(-1*var(--bc-gutter-mobile));padding:0 var(--bc-gutter-mobile)}
+ .p8-chat .de-msg-body{font-size:16px}
  .p8-file h1{font-size:22px}.p8-file .row{font-size:13px}
  .p8-part{min-height:var(--bc-touch-target)}.p8-pn{font-size:16px}
  .p8-part .de-iconbtn{width:var(--bc-touch-target);height:var(--bc-touch-target)}
@@ -362,21 +391,25 @@ button:focus-visible, textarea:focus-visible, input:focus-visible, [role="button
 </aside>
  <button class="sbicon sbexpand" type="button" data-sb="expand" aria-label="Expand sidebar" hidden><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0"><path d="M4 5h16v14H4zM9 5v14"/></svg></button>
  <main class="de-shell-main">
-  <header class="de-topbar"><div class="de-label">Palletizer retrofit  /  palletizer-frame.step</div>
-   <div class="de-topbar-actions"><button class="de-btn"><svg class="de-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 9l5-5 5 5M5 14v6h14v-6"/></svg>Share</button><button class="de-btn"><svg class="de-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v12M7 11l5 5 5-5M5 20h14"/></svg>Download</button><button class="de-btn">Ask AI</button><div class="de-avatar" style="margin-left:8px">G</div></div></header>
-  <div class="p8-mobile p8-mhead"><button class="de-iconbtn" aria-label="Back"><svg class="de-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button><div class="p8-mhead-t"><span class="de-label">BC-Q-26041</span><b>palletizer-frame.step</b></div></div>
+  <header class="de-topbar"><div class="de-label">Design  /  3D designer  /  Palletizer frame</div>
+   <div class="de-topbar-actions"><button class="de-btn"><svg class="de-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h16v12H4zM4 8l2-4h12l2 4M10 13h4"/></svg>Save to Vault</button><button class="de-btn"><svg class="de-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v12M7 11l5 5 5-5M5 20h14"/></svg>Download</button><button class="de-btn">Support</button><div class="de-avatar" style="margin-left:8px">G</div></div></header>
+  <div class="p8-mobile p8-mhead"><button class="de-iconbtn" aria-label="Back"><svg class="de-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button><div class="p8-mhead-t"><span class="de-label">BC-Q-26041</span><b>3D designer</b></div></div>
   <div class="p8">
    <div class="p8-stage">
     <div class="p8-vp"><canvas id="cv" tabindex="0" role="img" aria-label="3D model of the palletizer frame. Drag to rotate, scroll to zoom, arrow keys to orbit."></canvas>
      <div class="p8-tools"><div class="p8-seg" role="group" aria-label="Standard views"><button data-view="iso" aria-pressed="true">Iso</button><button data-view="front" aria-pressed="false">Front</button><button data-view="top" aria-pressed="false">Top</button><button data-view="right" aria-pressed="false">Right</button></div><div style="display:flex;gap:8px"><div class="p8-seg" role="group" aria-label="Display"><button data-shade="shaded" aria-pressed="true">Shaded</button><button data-shade="wire" aria-pressed="false">Wire</button></div><button class="p8-fit" id="fit" aria-label="Fit to view"><svg class="de-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg></button></div></div>
      <div class="p8-hint">Drag to rotate  ·  Scroll to zoom  ·  Shift-drag to pan</div><div class="p8-axes" id="axes"></div></div>
-    <div class="p8-ask"><span class="p8-ctx" id="ctx"></span><input id="ask" placeholder="Ask about this model" aria-label="Ask about this model"><button class="de-iconbtn de-iconbtn-send" id="send" disabled aria-label="Send"><svg class="de-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6"/></svg></button></div>
-    <div class="p8-note" id="note" role="status"></div>
+    <div class="p8-vers" id="vers" role="group" aria-label="Versions"></div>
    </div>
-   <aside class="p8-side" aria-label="Model details">
-    <div class="p8-file"><div class="de-eyebrow">3D model</div><h1>palletizer-frame.step</h1><div class="row"><span>46.0 MB</span><span class="de-tag">Viewer-ready</span></div><div class="row"><span>Added Nov 11, 2026</span></div></div>
-    <section class="p8-card" aria-label="Parts"><div class="de-section-head"><span class="de-label">Parts</span><span class="de-tag de-tag-plain" id="pcount"></span></div><ul class="p8-parts" id="parts"></ul></section>
-    <section class="p8-card" aria-label="Details"><div class="de-section-head"><span class="de-label">Details</span><span class="de-tag de-tag-plain" id="ptitle"></span></div><dl class="p8-props" id="props"></dl></section>
+   <aside class="p8-side" aria-label="Designer">
+    <div class="p8-panel">
+     <div class="p8-panel-head"><div class="p8-file" style="margin-bottom:10px"><div class="de-eyebrow">3D design</div><h1>Palletizer frame</h1><div class="row"><span class="de-tag">In Vault</span><span id="fname">Original</span></div></div>
+      <div class="p8-tabs"><div class="p8-seg" role="group" aria-label="Panel"><button data-tab="chat" aria-pressed="true">Chat</button><button data-tab="parts" aria-pressed="false">Parts</button><button data-tab="details" aria-pressed="false">Details</button></div></div></div>
+     <div class="p8-pane de-scroll" id="pane-chat"><div class="p8-chat" id="chat" aria-live="polite"></div></div>
+     <div class="p8-pane de-scroll" id="pane-parts" hidden><div class="de-section-head"><span class="de-label">Parts</span><span class="de-tag de-tag-plain" id="pcount"></span></div><ul class="p8-parts" id="parts"></ul></div>
+     <div class="p8-pane de-scroll" id="pane-details" hidden><div class="de-section-head"><span class="de-label">Details</span><span class="de-tag de-tag-plain" id="ptitle"></span></div><dl class="p8-props" id="props"></dl></div>
+     <div class="p8-compose" id="compose"><div class="de-composer"><textarea id="ask" rows="1" placeholder="Describe a change or an alternative" aria-label="Describe a change"></textarea><div class="de-composer-bar"><button class="de-iconbtn de-iconbtn-sm de-iconbtn-outline" aria-label="Reference a model from Vault" title="Reference a model from Vault"><svg class="de-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h16v12H4zM4 8l2-4h12l2 4M10 13h4"/></svg></button><span class="de-composer-meta" id="ctx"></span><span class="de-spacer"></span><button class="de-iconbtn de-iconbtn-send" id="send" disabled aria-label="Send"><svg class="de-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6"/></svg></button></div></div></div>
+    </div>
    </aside>
   </div>
  </main>
@@ -406,16 +439,20 @@ button:focus-visible, textarea:focus-visible, input:focus-visible, [role="button
   for(i=0;i<n;i++){var q=v[i];v.push(axis==='x'?[cx+len/2,q[1],q[2]]:[q[0],q[1],cz+len/2])}
   for(i=0;i<n;i++){f.push([i,(i+1)%n,n+(i+1)%n,n+i])}
   var e0=[],e1=[];for(i=0;i<n;i++){e0.push(i);e1.push(n+i)}f.push(e0,e1);addFaces(pid,v,f)}
- [-1140,1140].forEach(function(x){[-360,360].forEach(function(z){box(1,x,350,z,60,700,60)})});
- [-360,360].forEach(function(z){box(1,0,660,z,2400,80,60)});
- [-1140,-380,380,1140].forEach(function(x){box(1,x,610,0,60,60,720)});
- for(var k=0;k<14;k++){prism(2,'z',-1050+k*161.5,708,0,700,28,10)}
- [-390,390].forEach(function(z){box(3,0,830,z,2400,110,20);[-1100,0,1100].forEach(function(x){box(3,x,760,z,30,80,30)})});
- box(4,1285,560,0,230,250,250);prism(5,'x',1560,560,0,330,105,14);
- box(6,-900,300,500,300,420,160);
- var all=[];parts.forEach(function(p){p.vis=true;var mn=[1e9,1e9,1e9],mx=[-1e9,-1e9,-1e9];p.f.forEach(function(f){f.pid=p.id;all.push(f);f.p.forEach(function(v){for(var i=0;i<3;i++){mn[i]=Math.min(mn[i],v[i]);mx[i]=Math.max(mx[i],v[i])}})});p.sz=[mx[0]-mn[0],mx[1]-mn[1],mx[2]-mn[2]];p.bb=[mn,mx]});
- var gmn=[1e9,1e9,1e9],gmx=[-1e9,-1e9,-1e9];parts.forEach(function(p){for(var i=0;i<3;i++){gmn[i]=Math.min(gmn[i],p.bb[0][i]);gmx[i]=Math.max(gmx[i],p.bb[1][i])}});
- var ctr=[(gmn[0]+gmx[0])/2,(gmn[1]+gmx[1])/2,(gmn[2]+gmx[2])/2],rad=Math.hypot(gmx[0]-gmn[0],gmx[1]-gmn[1],gmx[2]-gmn[2])/2;
+ function geom(P){parts.forEach(function(p){p.f=[]});for(var k in bodies)bodies[k]=0;var L=P.len,hw=P.wid/2,e=L/2-60;
+ [-e,e].forEach(function(x){[-(hw-40),hw-40].forEach(function(z){box(1,x,350,z,60,700,60)})});
+ [-(hw-40),hw-40].forEach(function(z){box(1,0,660,z,L,80,60)});
+ [-e,-e/3,e/3,e].forEach(function(x){box(1,x,610,0,60,60,P.wid-80)});
+ for(var k=0;k<P.nr;k++){prism(2,'z',-(L/2-150)+k*(L-300)/(P.nr-1),708,0,P.wid-100,28,10)}
+ [-(hw-10),hw-10].forEach(function(z){box(3,0,830,z,L,110,20);[-(L/2-100),0,L/2-100].forEach(function(x){box(3,x,760,z,30,80,30)})});
+ box(4,L/2+85,560,0,230,250,250);prism(5,'x',L/2+360,560,0,330,105,14);
+ box(6,-L/2+300,300,hw+100,300,420,160)}
+ var all=[],gmn,gmx,ctr,rad;
+ function finish(){all=[];parts.forEach(function(p){p.vis=p.vis!==false;var mn=[1e9,1e9,1e9],mx=[-1e9,-1e9,-1e9];p.f.forEach(function(f){f.pid=p.id;all.push(f);f.p.forEach(function(v){for(var i=0;i<3;i++){mn[i]=Math.min(mn[i],v[i]);mx[i]=Math.max(mx[i],v[i])}})});p.sz=[mx[0]-mn[0],mx[1]-mn[1],mx[2]-mn[2]];p.bb=[mn,mx]});
+ gmn=[1e9,1e9,1e9];gmx=[-1e9,-1e9,-1e9];parts.forEach(function(p){for(var i=0;i<3;i++){gmn[i]=Math.min(gmn[i],p.bb[0][i]);gmx[i]=Math.max(gmx[i],p.bb[1][i])}});
+ ctr=[(gmn[0]+gmx[0])/2,(gmn[1]+gmx[1])/2,(gmn[2]+gmx[2])/2];rad=Math.hypot(gmx[0]-gmn[0],gmx[1]-gmn[1],gmx[2]-gmn[2])/2}
+ var VERS=[{id:'o',name:'Original',sub:'Vault v1',P:{wid:800,len:2400,nr:14}},{id:'a',name:'Alternative A',sub:'1,000 mm wide',P:{wid:1000,len:2400,nr:14}},{id:'b',name:'Alternative B',sub:'3,000 mm long',P:{wid:800,len:3000,nr:18}}],ver=VERS[0];
+ geom(ver.P);finish();
  /* ---- camera ---- */
  var cv=$('cv'),g=cv.getContext('2d'),W=0,H=0,dpr=1;
  var cam={yaw:-35*Math.PI/180,pitch:24*Math.PI/180,zoom:1,px:0,py:0},sel=0,shade='shaded',anim=null,drag=null,pts={},pinch=0,reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -427,7 +464,7 @@ button:focus-visible, textarea:focus-visible, input:focus-visible, [role="button
  function draw(){if(!W)return;g.clearRect(0,0,W,H);var P=proj(),s=P.s,ox=W/2+cam.px,oy=H/2+cam.py+8;
   function sc(q){return [ox+q[0]*s,oy-q[1]*s]}
   /* ground grid */
-  g.lineWidth=1;g.strokeStyle=css(C.ink,.07);var gy=gmn[1],step=200,gx0=-1600,gx1=1900,gz0=-900,gz1=900;
+  g.lineWidth=1;g.strokeStyle=css(C.ink,.07);var gy=gmn[1],step=200,gx0=-2200,gx1=2600,gz0=-1200,gz1=1200;
   for(var x=gx0;x<=gx1;x+=step){var a=sc(P.t([x,gy,gz0])),b=sc(P.t([x,gy,gz1]));g.beginPath();g.moveTo(a[0],a[1]);g.lineTo(b[0],b[1]);g.stroke()}
   for(var z=gz0;z<=gz1;z+=step){var a2=sc(P.t([gx0,gy,z])),b2=sc(P.t([gx1,gy,z]));g.beginPath();g.moveTo(a2[0],a2[1]);g.lineTo(b2[0],b2[1]);g.stroke()}
   var L=[-0.45,0.8,0.55],ll=Math.hypot(L[0],L[1],L[2]);L=L.map(function(v){return v/ll});
@@ -467,16 +504,30 @@ button:focus-visible, textarea:focus-visible, input:focus-visible, [role="button
   $('pcount').textContent=parts.length+' parts'}
  function dim(n){return Math.round(n).toLocaleString('en-US')}
  function props(){var p=sel?parts[sel-1]:null,t=$('ptitle'),d=$('props');
-  if(!p){t.textContent='Whole model';d.innerHTML='<dt>Parts</dt><dd>'+parts.length+'</dd><dt>Bodies</dt><dd>'+Object.keys(bodies).reduce(function(a,k){return a+bodies[k]},0)+'</dd><dt>Size L × W × H</dt><dd>'+dim(gmx[0]-gmn[0])+' × '+dim(gmx[2]-gmn[2])+' × '+dim(gmx[1]-gmn[1])+' mm</dd><dt>Units</dt><dd>Millimeters</dd>';$('ctx').textContent='';$('ask').placeholder='Ask about this model';$('ask2').placeholder='Ask about this model';return}
-  t.textContent=p.name;d.innerHTML='<dt>Bodies</dt><dd>'+bodies[p.id]+'</dd><dt>Size L × W × H</dt><dd>'+dim(p.sz[0])+' × '+dim(p.sz[2])+' × '+dim(p.sz[1])+' mm</dd><dt>Material</dt><dd>'+p.mat+'</dd>';$('ctx').textContent=p.name;$('ask').placeholder='Ask about '+p.name.toLowerCase();$('ask2').placeholder='Ask about '+p.name.toLowerCase()}
+  if(!p){t.textContent=ver.name;d.innerHTML='<dt>Parts</dt><dd>'+parts.length+'</dd><dt>Bodies</dt><dd>'+Object.keys(bodies).reduce(function(a,k){return a+bodies[k]},0)+'</dd><dt>Size L × W × H</dt><dd>'+dim(gmx[0]-gmn[0])+' × '+dim(gmx[2]-gmn[2])+' × '+dim(gmx[1]-gmn[1])+' mm</dd><dt>Units</dt><dd>Millimeters</dd>';$('ctx').textContent='';$('ask').placeholder='Describe a change or an alternative';$('ask2').placeholder='Describe a change';return}
+  t.textContent=p.name;d.innerHTML='<dt>Bodies</dt><dd>'+bodies[p.id]+'</dd><dt>Size L × W × H</dt><dd>'+dim(p.sz[0])+' × '+dim(p.sz[2])+' × '+dim(p.sz[1])+' mm</dd><dt>Material</dt><dd>'+p.mat+'</dd>';$('ctx').textContent=p.name;$('ask').placeholder='Describe a change to the '+p.name.toLowerCase();$('ask2').placeholder='Change the '+p.name.toLowerCase()}
  function select(id){sel=id===sel?0:id;renderParts();props();draw()}
  $('parts').addEventListener('click',function(e){var b=e.target.closest('[data-eye]');if(b){var p=parts[b.dataset.eye-1];p.vis=!p.vis;if(!p.vis&&sel===p.id)sel=0;renderParts();props();draw();e.stopPropagation();return}var li=e.target.closest('[data-id]');if(li)select(+li.dataset.id)});
  $('parts').addEventListener('keydown',function(e){if((e.key==='Enter'||e.key===' ')&&e.target.dataset&&e.target.dataset.id){e.preventDefault();select(+e.target.dataset.id)}});
- /* ---- ask ---- */
+ /* ---- versions ---- */
+ function renderVers(){$('vers').innerHTML='<span class="de-label">Versions</span>'+VERS.map(function(v){return '<button class="p8-ver" data-v="'+v.id+'" aria-pressed="'+(v===ver)+'"><b>'+v.name+'</b><span>'+v.sub+'</span></button>'}).join('')}
+ function useVer(v){ver=v;geom(v.P);finish();if(sel&&!parts[sel-1].vis)sel=0;renderVers();renderParts();props();$('fname').textContent=v.name;go(cam.yaw*180/Math.PI,cam.pitch*180/Math.PI,1)}
+ $('vers').addEventListener('click',function(e){var b=e.target.closest('[data-v]');if(b)useVer(VERS.filter(function(v){return v.id===b.dataset.v})[0])});
+ /* ---- chat ---- */
+ var REF='<span class="p8-chip-ref">'+ico('<path d="M12 3l8 4.5v9L12 21l-8-4.5v-9zM12 12l8-4.5M12 12v9M12 12L4 7.5"/>')+'<span style="padding-top:2px">palletizer-frame.step · Vault</span></span>';
+ var msgs=[{u:1,t:'Make the conveyor 200 mm wider and keep the rollers evenly spaced.',ref:1},{u:0,t:'I made Alternative A. The frame is now 1,000 mm wide, the rollers and cross members are 200 mm longer, and the spacing is unchanged. The original stays in Vault as it was.'},{u:1,t:'Now make the original 600 mm longer with four more rollers.'},{u:0,t:'I made Alternative B from the original: 3,000 mm long with 18 rollers. Pick a version below the model to compare them.'}];
+ function msgHtml(m){return '<div class="de-msg'+(m.u?' is-user':'')+'"><span class="de-label">'+(m.u?'You':'[Assistant name]')+'</span><div class="de-msg-body">'+m.t+'</div>'+(m.ref?REF:'')+'</div>'}
+ function renderChat(){$('chat').innerHTML=msgs.map(msgHtml).join('');var p=$('pane-chat');p.scrollTop=p.scrollHeight}
+ var letters='ABCDEFGH',busy=0;
  function wire(inp,btn){inp.addEventListener('input',function(){var on=!!inp.value.trim();btn.classList.toggle('is-armed',on);btn.disabled=!on});
-  function send(){if(!inp.value.trim())return;var n=sel?parts[sel-1].name:'the whole model';$('note').textContent='Question added to chat about '+n;inp.value='';btn.classList.remove('is-armed');btn.disabled=true;setTimeout(function(){$('note').textContent=''},4000)}
-  btn.addEventListener('click',send);inp.addEventListener('keydown',function(e){if(e.key==='Enter')send()})}
+  function send(){var t=inp.value.trim();if(!t||busy)return;msgs.push({u:1,t:t.replace(/</g,'&lt;')});inp.value='';btn.classList.remove('is-armed');btn.disabled=true;busy=1;showTab('chat');renderChat();
+   setTimeout(function(){var n=VERS.length,nv={id:'v'+n,name:'Alternative '+letters[n-1],sub:'From '+ver.name,P:ver.P};VERS.push(nv);msgs.push({u:0,t:'I added '+nv.name+' from '+ver.name+'. In this prototype the geometry does not change.'});busy=0;renderChat();renderVers()},700)}
+  btn.addEventListener('click',send);inp.addEventListener('keydown',function(e){if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();send()}})}
  wire($('ask'),$('send'));wire($('ask2'),$('send2'));
+ /* ---- tabs ---- */
+ function showTab(n){[].forEach.call(document.querySelectorAll('[data-tab]'),function(b){b.setAttribute('aria-pressed',String(b.dataset.tab===n))});['chat','parts','details'].forEach(function(k){$('pane-'+k).hidden=k!==n});$('compose').hidden=n!=='chat'}
+ [].forEach.call(document.querySelectorAll('[data-tab]'),function(b){b.addEventListener('click',function(){showTab(b.dataset.tab)})});
+ renderVers();renderChat();showTab('chat');
  renderParts();props();size();window.addEventListener('resize',size);if(window.ResizeObserver)new ResizeObserver(size).observe(cv);
  document.querySelectorAll(".de-group-head").forEach(function(b){b.addEventListener("click",function(){var g=b.parentNode;var c=g.classList.toggle("is-collapsed");b.setAttribute("aria-expanded",String(!c))})});
 })();
