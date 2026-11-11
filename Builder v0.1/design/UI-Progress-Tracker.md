@@ -17,7 +17,7 @@ Page order is a **Draft (not yet approved by Grant)**, built from the App Plan M
 | P05 | Projects list | Desktop + mobile | ☑ | `exports/P05-projects/index.html` | Done 2026-11-11. Landing page for projects; each row opens its P06 project page |
 | P06 | Project workspace (Import, Specifications, Layout, Schedule, Exports; files, chat, notes later) | Desktop + mobile | ☑ | `exports/P06-project-workspace/index.html` | Done 2026-11-11 (for now). Tabs: Import, Specifications, Layout, Schedule, Exports. Files, chat and notes tabs still to design |
 | P07 | Upload flow (STEP, OBJ, photos, PDFs) | Desktop + mobile | ☑ | `exports/P07-upload-flow/index.html` | Done 2026-11-11, one responsive page. Accepts STEP, OBJ, pictures, PDF and ZIP; Take a pic on mobile (Grant approved) |
-| P08 | 3D designer (merged with P20; viewer is its first draft) | Desktop + mobile | ◐ | `exports/P08-3d-viewer/index.html` | Grant 2026-11-11: P08 and P20 are the same page, the builder for 3D design. Existing draft covers viewing only; build, edit and Vault tools still to design. Awaiting Grant's answers |
+| P08 | 3D designer (merged with P20; viewer is its first draft) | Desktop + mobile | ☑ | `exports/P08-3d-viewer/index.html` | Done 2026-11-11 (Grant approved). Chat-only 3D designer, merged with P20. Feature spec: `specs/P08-3D-Designer-Spec.md` |
 | P09 | Document search and data sheets | Desktop + mobile | ☐ | | |
 | P10 | Notes and tracking | Desktop + mobile | ☐ | | |
 | P11 | Calculators (chat-enabled) | Desktop + mobile | ☐ | | |
@@ -33,7 +33,7 @@ Page order is a **Draft (not yet approved by Grant)**, built from the App Plan M
 
 ## Next up
 
-First open item: **P08**, now the combined 3D designer (P08 + P20); the viewer draft exists, the builder tools are not designed yet.
+First open item: **P09**, unless Grant says otherwise. P08 and P20 are done as one page (the 3D designer); its feature spec is waiting for Grant's edits.
 
 ## Log
 
@@ -85,4 +85,5 @@ First open item: **P08**, now the combined 3D designer (P08 + P20); the viewer d
 - [stated] 2026-11-11: Grant: P08 and P20 are the same page. It is the builder for 3D design, opened from Design in the primary navigation, and it also appears inside a project chat when that skill is loaded. 3D models are stored in Vault and can be referenced in new chats to make variations and alternatives. P20 is merged into P08; the P08 viewer draft is its first version (viewing only).
 - [stated] 2026-11-11: Grant: the 3D designer has no manual tools, chat only; features are not to be discussed yet. P08 prototype reworked to a chat-first designer (3D view, version strip, panel with Chat, Parts and Details tabs, composer with a Vault reference button). Feature spec created at `specs/P08-3D-Designer-Spec.md` for Grant to edit.
 - Draft (not yet approved by Grant): P08 designer UI: version strip of chips under the 3D view, panel tabs (Chat, Parts, Details), reference chip in chat, Save to Vault in the top bar.
+- [stated] 2026-11-11: Grant approved P08 (3D designer, merged with P20), including the chat-first layout (3D view, version strip, Chat, Parts and Details tabs) and the patterns logged above as drafts.
 
