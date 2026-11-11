@@ -297,6 +297,26 @@ body{min-height:100vh}
  </form>
  <div class="p4-or"><span class="de-label">or</span></div>
  <button class="de-btn de-btn-chip p4-alt" type="button"><svg class="de-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.3-5.6M12 12h8"/></svg>Continue with Google</button>
+ <div id="rw" hidden>
+  <form class="p4-form" id="rf" novalidate>
+   <div class="p4-err" id="rerr" role="alert">Enter a valid email address.</div>
+   <div class="p4-field"><label class="de-label" for="rem">Work email</label><div class="p4-in"><input id="rem" type="email" autocomplete="email" placeholder="you@company.com"></div></div>
+   <button class="de-btn p4-go" type="submit">Send code</button>
+   <div class="p4-vlinks"><a href="#" id="rback">Back to sign in</a></div>
+  </form>
+ </div>
+ <div id="nw" hidden>
+  <form class="p4-form" id="nf" novalidate>
+   <div class="p4-err" id="nerr" role="alert"></div>
+   <div class="p4-field"><label class="de-label" for="np">New password</label><div class="p4-in"><input id="np" type="password" autocomplete="new-password" placeholder="At least 8 characters"><button type="button" class="de-iconbtn p4-tg" data-for="np" aria-label="Show password" aria-pressed="false"><svg class="de-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></button></div></div>
+   <div class="p4-field"><label class="de-label" for="cp">Confirm password</label><div class="p4-in"><input id="cp" type="password" autocomplete="new-password" placeholder="Repeat the password"><button type="button" class="de-iconbtn p4-tg" data-for="cp" aria-label="Show password" aria-pressed="false"><svg class="de-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></button></div></div>
+   <button class="de-btn p4-go" type="submit">Save password</button>
+  </form>
+ </div>
+ <div id="fd" hidden>
+  <div class="p4-form"><div class="p4-ok" role="status"><svg class="de-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span style="padding-top:2px">Your password has been changed.</span></div>
+   <button class="de-btn p4-go" type="button" id="fdgo">Sign in</button></div>
+ </div>
  <div id="vw" hidden>
   <div class="p4-form">
    <div class="p4-err" id="verr" role="alert">That code is not right. Check the email and try again.</div>
@@ -330,10 +350,13 @@ body{min-height:100vh}
  function tick(){var t=$('tm');if(left>0){t.innerHTML='Resend in 0:'+(left<10?'0':'')+left}else{t.innerHTML='<a href="#" id="rs">Resend code</a>';$('rs').onclick=function(k){k.preventDefault();start();ds.forEach(function(d){d.value=''});ds[0].focus();upd()}}}
  function start(){clearInterval(tmr);left=30;tick();tmr=setInterval(function(){left--;tick();if(left<=0)clearInterval(tmr)},1000)}
  function upd(){var c=ds.map(function(d){return d.value}).join('');$('vgo').disabled=c.length<6;$('code').classList.remove('is-bad');$('verr').classList.remove('is-on')}
- function showVerify(){em=$('em').value.trim();show(['.p4-seg','#f','.p4-or','.p4-alt','#ft'],false);show(['#vw'],true);
-  $('eb').textContent='Check your email';$('h1').textContent='Enter code';$('sub').textContent='We sent a 6-digit code to '+em+'. It expires in 10 minutes.';
+ var ALL=['.p4-seg','#f','.p4-or','.p4-alt','#ft','#vw','#dw','#rw','#nw','#fd'],ctx='verify';
+ function view(on,eb,h,sub){clearInterval(tmr);show(ALL,false);show(on,true);$('eb').textContent=eb;$('h1').textContent=h;$('sub').textContent=sub}
+ function showVerify(c){ctx=c||'verify';em=(ctx==='reset'?$('rem'):$('em')).value.trim();
+  view(['#vw'],ctx==='reset'?'Reset password':'Check your email','Enter code','We sent a 6-digit code to '+em+(ctx==='reset'?'. Enter it to reset your password.':'. It expires in 10 minutes.'));
   ds.forEach(function(d){d.value=''});upd();start();ds[0].focus()}
- function back(){clearInterval(tmr);show(['#vw','#dw'],false);show(['.p4-seg','#f','.p4-or','.p4-alt','#ft'],true);set(mode)}
+ function back(){clearInterval(tmr);show(ALL,false);show(['.p4-seg','#f','.p4-or','.p4-alt','#ft'],true);set(mode)}
+ function showReset(){view(['#rw'],'Reset password','Forgot password','Enter your work email and we will send a 6-digit code to reset your password.');$('err').classList.remove('is-on');$('rem').value=$('em').value;$('rerr').classList.remove('is-on');$('rem').focus()}
  ds.forEach(function(d,i){
   d.addEventListener('focus',function(){d.select()});
   d.addEventListener('input',function(){d.value=d.value.replace(/\D/g,'').slice(-1);if(d.value&&ds[i+1])ds[i+1].focus();upd()});
@@ -341,8 +364,15 @@ body{min-height:100vh}
   d.addEventListener('paste',function(k){var t=(k.clipboardData||window.clipboardData).getData('text').replace(/\D/g,'').slice(0,6);if(!t)return;k.preventDefault();ds.forEach(function(x,j){x.value=t[j]||''});ds[Math.min(t.length,5)].focus();upd()})});
  $('vgo').addEventListener('click',function(){var c=ds.map(function(d){return d.value}).join('');
   if(c==='000000'){$('code').classList.add('is-bad');$('verr').classList.add('is-on');return}
-  clearInterval(tmr);show(['#vw'],false);show(['#dw'],true);$('eb').textContent='Verified';$('h1').textContent='You are in';$('sub').textContent='Your email is confirmed.'});
- $('chg').addEventListener('click',function(k){k.preventDefault();back()});
+  if(ctx==='reset'){view(['#nw'],'Reset password','New password','Choose a new password for '+em+'.');$('nerr').classList.remove('is-on');$('np').focus();return}
+  view(['#dw'],'Verified','You are in','Your email is confirmed.')});
+ $('chg').addEventListener('click',function(k){k.preventDefault();if(ctx==='reset')showReset();else back()});
+ $('fg').addEventListener('click',function(k){k.preventDefault();showReset()});
+ $('rback').addEventListener('click',function(k){k.preventDefault();back()});
+ $('rf').addEventListener('submit',function(e){e.preventDefault();var ok=/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test($('rem').value.trim());$('rerr').classList.toggle('is-on',!ok);if(ok)showVerify('reset')});
+ $('nf').addEventListener('submit',function(e){e.preventDefault();var n=$('np').value,m=$('nerr');var msg=n.length<8?'Use at least 8 characters.':(n!==$('cp').value?'The two passwords do not match.':'');m.textContent=msg;m.classList.toggle('is-on',!!msg);if(!msg)view(['#fd'],'Done','Password updated','You can sign in with your new password now.')});
+ $('fdgo').addEventListener('click',function(){$('pw').value='';set('in');back()});
+ [].forEach.call(document.querySelectorAll('.p4-tg'),function(b){b.addEventListener('click',function(){var i=$(b.dataset.for),on=i.type==='password';i.type=on?'text':'password';b.setAttribute('aria-pressed',String(on));b.setAttribute('aria-label',on?'Hide password':'Show password')})});
  bind();
 })();
 </script>
