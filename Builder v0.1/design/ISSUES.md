@@ -8,6 +8,7 @@ Open design and setup issues. IDs stay fixed. Close an issue by moving it to Clo
 | --- | --- | --- | --- |
 | DI01 | Mobile tab labels (Recents, Projects) are tight with five tabs on 360px phones. Check on a small device; if needed, reduce label tracking or size. | code | `exports/P02-chat-start-mobile/` |
 | DI02 | No way to see the app and design exports from other computers while development stays on the main AI computer. Need a dev and preview deployment setup. Cloudflare Workers is the D1 proposal; how it works with Next.js is not yet decided. | vscode | App Plan D1, `../review-queue.md` RQ14 |
+| DI03 | The P05, P06 and P18 prototypes keep data in browser localStorage (keys `de-proc-`, `de-scheds-`, `de-doc-`, `de-docinc-`, `de-hist-`, `de-imp-`, `de-flow-`, each followed by the project number). A real data model and storage are needed before this is more than a design preview. Files cannot be downloaded from the private preview page, only from a local copy. | vscode | `exports/P05-projects/`, `exports/P06-project-workspace/`, `exports/P18-process-config/` |
 
 ## Closed
 
@@ -22,3 +23,4 @@ Two separate needs:
 ## Log
 
 - [stated] 2026-11-09: Issues file created. DI01 and DI02 added.
+- [stated] 2026-11-11: DI03 added for the localStorage stand-in data in the projects prototypes.

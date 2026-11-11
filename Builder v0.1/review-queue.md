@@ -24,6 +24,8 @@ Everything waiting on Grant, tagged by where it is best handled. The shortcut "w
 | RQ13 | Decision brief I01: e-sign, approvals, PO and invoice tracking. Draft D13: signing approach for vendor/customer documents. Options: (A) link-based tracked approval only; (B) link-based first, then a trusted platform adapter for contracts after the March 2027 gate (recommended); (C) trusted platform from the start. "Later" costs little; it stays out of the MVP. Affects Sections 4, 5.1 (finance visibility) and 5.2 (vendor terms), plus risks #4 and #9. Draft (not yet approved by Grant). Grant answered 2026-11-06: option C (trusted platform from the start, chosen for compatibility with his own system requirements); waiting for "log it" | mobile | ◐ | `ideas.md` I01 |
 | RQ14 | Decide how to reach dev and preview builds from all computers (Cloudflare preview URLs, tunnel, Access login) and how Next.js runs on Cloudflare Workers | vscode | ☐ | `design/ISSUES.md` DI02, App Plan D1 |
 | RQ15 | Decide where the app lives, styling approach (O2) and package manager (O3) | vscode | ☐ | `development-path.md` |
+| RQ16 | Confirm the design-system patterns introduced in P05, P06 and P18 (1120px detail column, numbered page tabs, steel-blue progress fills, chip Next/Generate button, dropdown menus, two-step Delete, white drawing sheets for documents, to-scale Layout view) | vscode | ☐ | `design/DESIGN-SYSTEM.md` decision log |
+| RQ17 | Answer the open projects questions: what Import should accept (CSV columns, PDF drawings, past configurations), whether archived schedules can be exported, whether stage bars come from the schedule, drag-to-place blocks in Layout, and which page is next (P07 upload flow or P08 3D viewer) | mobile | ☐ | `design/UI-Progress-Tracker.md`, `ideas.md` I03 to I07 |
 
 ## Closed
 
@@ -43,3 +45,4 @@ Everything waiting on Grant, tagged by where it is best handled. The shortcut "w
 - [stated] 2026-11-06: RQ09 closed; shortcuts confirmed working on mobile.
 - [stated] 2026-11-09: RQ14 added for dev and preview access (see design/ISSUES.md DI02).
 - [stated] 2026-11-09: RQ15 added for the open development-path decisions.
+- [stated] 2026-11-11: RQ16 and RQ17 added after the projects section (P05, P06, P18) was marked complete.

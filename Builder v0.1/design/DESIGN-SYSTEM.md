@@ -59,3 +59,12 @@ The Block Concepts Word-document tokens (light theme, 2px and 4px corners, Aptos
 - Draft (not yet approved by Grant): assistant speaks in first person singular.
 - (Superseded by the line above) Library holds Standards, Assessments, Quotes, Documentation and Testing as children. Mobile "Design" tab uses the `cube` icon.
 - Draft (not yet approved by Grant): the design system is whatever P01 and P02 already use. (Earlier line, kept.)
+- [stated] 2026-11-11: Projects section pages P05, P06 and P18 are complete for now (Grant). They are built from `system-kit/` tokens and components. Patterns they introduced, none yet confirmed one by one:
+- Draft (not yet approved by Grant): two-pane detail pages use a content column up to 1120px (the system caps at 760px); the 760px cap stays for list and single-column pages.
+- Draft (not yet approved by Grant): page tabs are a numbered row (circle with number, label, steel-blue underline on the active tab), used for the P06 sections.
+- Draft (not yet approved by Grant): progress fills (stage bars, Gantt bars) use the `bc-steel-blue` fill; Not started stays an empty `bc-surface-raised` bar.
+- Draft (not yet approved by Grant): "Next" and "Generate" actions are a chip with a `bc-steel-blue` border and `bc-steel-blue-text` label, not a filled button.
+- Draft (not yet approved by Grant): dropdown menu (Import, Export) is a chip button with a chevron and a `bc-surface-raised` menu with `bc-edge` border; sections can collapse with a chevron.
+- Draft (not yet approved by Grant): Delete asks for a second click ("Confirm delete") because browser dialogs are not available in previews.
+- Draft (not yet approved by Grant): generated process documents are drawn on white drawing sheets (Block Concepts title block, Barlow Semi Condensed and Inter, blue accent) to match the existing 7332 Process Document; they sit as paper previews inside the Graphite app.
+- Draft (not yet approved by Grant): the Layout view draws blocks to scale on `bc-canvas` with numbered `bc-steel-blue` badges and `bc-steel-blue-text` flow arrows.
