@@ -1004,6 +1004,7 @@ function drawMap(el,S,cur){
   else if(a==='savecsv'){var ks=Object.keys(CSVCOLS),txt=[ks.map(function(k){return CSVCOLS[k][0]}).join(',')].concat(S.map(function(s){return ks.map(function(k){return csvCell(s[k])}).join(',')})).join('\n');specMsg(downloadText((DOC.dwg||'processes')+'-processes.csv',txt,'text/csv')?'Saved '+S.length+' processes as CSV.':'This preview cannot save files. Open the page from the repo to download.')}});
  function step(n){[1,2,3,4,5].forEach(function(i){document.getElementById('s'+i).hidden=i!==n;document.getElementById('t'+i).setAttribute('aria-selected',String(i===n))});ddClose();if(n===2)lvOpen();if(n===3){expMode('export');docOpen()}if(n===5){expMode('import');docOpen()}if(n===4)render()}
  [1,2,3,4,5].forEach(function(i){document.getElementById('t'+i).onclick=function(){step(i)}});
+ {var tq=parseInt(Q.get('tab'),10);if(tq>=1&&tq<=5)step(tq)}
  document.getElementById('next').onclick=function(){step(2)};
  cards();
 

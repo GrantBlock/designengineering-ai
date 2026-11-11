@@ -329,6 +329,18 @@ select.pg-in{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xml
 .sbacct svg:last-child{color:var(--bc-muted);margin-left:2px}
 .sbavatar{display:flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:999px;background:var(--bc-surface-raised);color:var(--bc-ink);font-size:12px;font-weight:700;padding-top:2px;flex-shrink:0}
 @media (max-width:760px){.sbexpand{display:none!important}}
+.p6-steps{display:flex;gap:var(--bc-space-2);border-bottom:1px solid var(--bc-hairline);margin-bottom:var(--bc-space-4)}
+.p6-step{all:unset;cursor:pointer;display:flex;align-items:center;gap:10px;height:var(--bc-touch-target);padding:2px 14px 0;color:var(--bc-muted);font-size:14px;font-weight:600;margin-bottom:-1px;border-bottom:2px solid transparent}
+.p6-step:hover{color:var(--bc-ink)}
+.p6-step:focus-visible{outline:2px solid var(--bc-steel-blue-text);outline-offset:2px}
+.p6-step i{font-style:normal;display:flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:var(--bc-radius-pill);border:1px solid var(--bc-hairline);font-family:var(--font-mono);font-size:11px;padding-top:1px}
+.p6-step[aria-current=page]{color:var(--bc-steel-blue-text);border-bottom-color:var(--bc-steel-blue-text)}
+.p6-step[aria-current=page] i{background:var(--bc-steel-blue-tint);border-color:transparent}
+.p6-meta{display:flex;flex-direction:column;gap:8px;min-width:220px}
+.p6-meta span{font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--bc-steel-blue-text)}
+.p6-step{text-decoration:none}.p6-step:hover{text-decoration:none}
+@media (max-width:760px){.p6-step{flex:1;justify-content:center;padding:2px 6px 0;font-size:13px;gap:6px}.p6-step i{display:none}}
+.p18-bar{padding-top:0}
 </style></head>
 <body>
 <div class="de-shell">
@@ -362,8 +374,18 @@ select.pg-in{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xml
   <header class="de-topbar"><div class="de-label" id="crumb">Projects</div><div class="de-topbar-actions"><button class="de-btn"><svg class="de-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h8l4 4v14H6zM14 3v4h4M9 13h6M9 17h6"/></svg>Download</button><button class="de-btn">Ask AI</button><div class="de-avatar" style="margin-left:8px">G</div></div></header>
   <div class="pg-mheader pg-mobile"><div class="de-mheader"><img src="../../assets/favicon.svg" alt=""><span class="de-brand">Design Engineering</span><div class="de-avatar de-avatar-lg">G</div></div></div>
   <div class="de-shell-scroll de-scroll"><div class="de-shell-column pg-column">
+   <div class="pg-head">
+    <div><div class="de-eyebrow" id="no">BC-Q-26041</div><h1 id="pname">Palletizer retrofit</h1></div>
+    <div class="p6-meta"><span>Stage 3 — Build</span><div class="de-stages"><i class="is-done"></i><i class="is-done"></i><i class="is-done"></i><i></i><i></i></div></div>
+   </div>
+   <nav class="p6-steps" aria-label="Project sections">
+    <a class="p6-step" data-tab="5"><i>1</i>Import</a>
+    <a class="p6-step" data-tab="1" aria-current="page"><i>2</i>Specifications</a>
+    <a class="p6-step" data-tab="2"><i>3</i>Layout</a>
+    <a class="p6-step" data-tab="4"><i>4</i>Schedule</a>
+    <a class="p6-step" data-tab="3"><i>5</i>Exports</a>
+   </nav>
    <div class="p18-bar">
-    <div><div class="de-eyebrow" id="no">BC-Q-26041</div></div>
     <div style="display:flex;gap:var(--bc-space-2);align-items:center"><label class="de-label" for="pick">Process</label><select class="pg-in" id="pick" aria-label="Switch process"></select></div>
    </div>
    <div class="p18-grid">
@@ -371,7 +393,6 @@ select.pg-in{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xml
      <section class="de-panel"><div class="p18-title"><span class="pg-badge" id="badge">1</span><input class="pg-in" id="name" data-k="type" placeholder="[Process name]" aria-label="Process name" list="types"><datalist id="types"><option>Sand Mixer + Hopper</option><option>Incline Sand Conveyor</option><option>Horizontal Sand Conveyor</option><option>Molding Press</option><option>Transfer Conveyor</option></datalist></div>
       <svg id="map" class="pg-map" viewBox="0 0 360 260" role="img" aria-label="Where this process sits in the layout"></svg>
       <dl class="p18-dims"><dt>Length</dt><dd id="d-len"></dd><dt>Width</dt><dd id="d-wid"></dd><dt>Height</dt><dd id="d-hgt"></dd><dt>Weight</dt><dd id="d-wt"></dd></dl></section>
-     <section class="de-panel"><div class="de-section-head"><span class="de-label">Supporting files (0)</span></div><div class="p18-drop"><svg class="de-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>Drop drawings, datasheets or photos</div></section>
     </div></div>
     <div class="p18-col">
      <section class="p18-sec"><h2>Process</h2><p class="h">What this machine does and where the product goes next.</p><div class="pg-fields">
@@ -444,7 +465,7 @@ function drawMap(el,S,cur){
 
  var S=load(),idx=parseInt(Q.get('station'),10);if(!(idx>=0&&idx<S.length))idx=0;
  var back='../P06-project-workspace/index.html?project='+PN;
- document.getElementById('no').textContent=PN+' · '+PROJ[PN];
+ document.getElementById('no').textContent=PN;document.getElementById('pname').textContent=PROJ[PN];[].forEach.call(document.querySelectorAll('.p6-step[data-tab]'),function(a){a.href='../P06-project-workspace/index.html?project='+PN+'&tab='+a.dataset.tab});
  document.getElementById('crumb').innerHTML='<a href="../P05-projects/index.html" style="color:inherit">Projects</a>&nbsp;&nbsp;/&nbsp;&nbsp;<a href="'+back+'" style="color:inherit">'+PN+'</a>&nbsp;&nbsp;/&nbsp;&nbsp;Process '+(idx+1);
  document.getElementById('cancel').href=back;
  var pick=document.getElementById('pick');pick.innerHTML=S.map(function(s,i){return '<option value="'+i+'"'+(i===idx?' selected':'')+'>'+(i+1)+'. '+esc(s.type||'[Untitled process]')+'</option>'}).join('');
