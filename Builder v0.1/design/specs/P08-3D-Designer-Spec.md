@@ -1,4 +1,4 @@
-# 3D Designer: Feature Spec (P08, merged with P20)
+# 3D Designer: Feature Spec (P08)
 
 Status: **Draft (not yet approved by Grant)** · Created 2026-11-11 · Owner: Grant Block
 
@@ -12,7 +12,7 @@ The 3D designer is the builder for 3D design. You describe a part or an assembly
 
 ## 2. Decisions stated by Grant
 
-- [stated] 2026-11-11: P08 (3D viewer) and P20 (3D designer) are the same page. It is the builder for 3D design.
+- [stated] 2026-11-11: P08 is the 3D designer. It is the builder for 3D design.
 - [stated] 2026-11-11: It opens from Design in the primary navigation.
 - [stated] 2026-11-11: It also appears inside a project chat when that skill is loaded.
 - [stated] 2026-11-11: 3D models are stored in Vault and can be referenced in new chats to make variations and alternatives.
@@ -101,4 +101,4 @@ Sample model (palletizer conveyor frame with six parts), part names and sizes, m
 
 ## Log
 
-- [stated] 2026-11-11: Spec created from the P08 prototype after Grant merged P08 and P20 and chose chat-only building.
+- [stated] 2026-11-11: Spec created from the P08 prototype after Grant chose chat-only building.
