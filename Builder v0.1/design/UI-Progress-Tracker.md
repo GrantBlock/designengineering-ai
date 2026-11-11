@@ -23,7 +23,7 @@ Page order is a **Draft (not yet approved by Grant)**, built from the App Plan M
 | P11 | Calculators (custom, built by the user with the assistant) | Desktop + mobile | ☑ | `exports/P11-calculators/index.html` | Done 2026-11-11 (Grant approved). A template for custom calculators; none are prebuilt |
 | P12 | Process flows (the process and each process in detail, like a Xometry part configuration) | Desktop + mobile | ☑ | `exports/P12-process-config/index.html` | Done 2026-11-11. Opened from a P06 process card; saves back to the P06 summary. Added 2026-11-10 |
 | P13 | Plans and vendor requests (inside the P06 Exports tab: Process document, Ask for a quote, Produce a quote) | Desktop + mobile | ◐ | `exports/P06-project-workspace/index.html` (Exports tab) | Built into P06 2026-11-11, awaiting Grant's review. No separate page |
-| P14 | Wallet and usage (prepaid tokens, auto-refill) | Desktop + mobile | ☐ | | |
+| P14 | Wallet and usage (prepaid tokens, auto-refill) | Desktop + mobile | ◐ | `exports/P14-wallet-usage/index.html` | Drafted 2026-11-11, awaiting Grant's review |
 | P15 | Account and settings | Desktop + mobile | ☐ | | |
 | P16 | Lite app window (offline 3D viewer, search, on-device chat) | Desktop app | ☐ | | |
 | P17 | Builder (package a client or site into a Lite zip) | Desktop app | ☐ | | |
@@ -31,7 +31,7 @@ Page order is a **Draft (not yet approved by Grant)**, built from the App Plan M
 
 ## Next up
 
-First open item: **P14** (P13 is built into P06 and awaiting review), unless Grant says otherwise. P08 is done (the 3D designer); its feature spec is waiting for Grant's edits.
+First open item: **P15** (P14 is drafted and awaiting review), unless Grant says otherwise. P08 is done (the 3D designer); its feature spec is waiting for Grant's edits.
 
 ## Log
 
@@ -104,3 +104,6 @@ First open item: **P14** (P13 is built into P06 and awaiting review), unless Gra
 - [stated] 2026-11-11: Grant approved P12 (process page, multipage project header, no Supporting files).
 - [stated] 2026-11-11: Grant: Plans and vendor requests go inside the Exports tab of the project (P06), not on their own page. The existing process document is the plan. The Exports tab now has a document type switch at the top: Process document (unchanged), Ask for a quote and Produce a quote. Ask for a quote is the vendor request (vendor, ask for Quote, Lead time or Data sheet and CAD, needed by, items one per line prefilled from the project's processes, notes). Produce a quote is the customer quote (customer, valid until, tax, a price for each process, totals, terms). Both build a paper preview with a Review required stamp, a check box, Approve for release, Download PDF (preview only) and Send (only after approval), and a History of approved items saved in browser localStorage under `de-quotes-` plus the project number. The standalone P13 draft was deleted (git history).
 - Draft (not yet approved by Grant): the paper preview with a red Review required stamp that turns green after approval; the review check box card; the three-way document type switch. I read "the example you provided is produce a quote" as: the build-and-release flow also produces the customer quote. Prices are blank placeholders [Price] until entered. The vendor list is a placeholder.
+- [stated] 2026-11-11: Grant approved P13 inside the P06 Exports tab (Process document, Ask for a quote, Produce a quote).
+- [stated] 2026-11-11: P14 (Wallet and usage) drafted at `exports/P14-wallet-usage/index.html`, from App Plan 6.2 and 6.3: one responsive page. Balance card with a meter against the monthly spending limit and a low balance warning (usage stops at zero); Add funds with four preset amounts; Auto-refill switch with its threshold, refill amount and monthly limit; Usage for This month or Last month with Spent, Chat and search, CAD generation and Storage tiles, By task and By project bars, and a Recent activity list (model, task, cost). No price per token is shown because rates are set after cost testing. Prototype only: sample figures, no payment.
+- Draft (not yet approved by Grant): P14 patterns: balance card with a steel-blue edge and a 6px meter (amber when low, using the P19 warning color family); amount chips; switch control; usage bars in `bc-steel-blue`. Preset amounts, the monthly limit and the Pro and card line are placeholders (A).
