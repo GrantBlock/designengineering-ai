@@ -29,7 +29,7 @@ Page order is a **Draft (not yet approved by Grant)**, built from the App Plan M
 | P17 | Builder (package a client or site into a Lite zip) | Desktop app | ☐ | | |
 | P18 | Process configuration (one process in detail, like a Xometry part configuration) | Desktop + mobile | ☑ | `exports/P18-process-config/index.html` | Done 2026-11-11. Opened from a P06 process card; saves back to the P06 summary. Added 2026-11-10 |
 | P19 | Dashboard (weekly view: this week, this month, last week) | Desktop + mobile | ☑ | `exports/P19-dashboard/index.html` | Layout only; sample data. Added 2026-11-10 from Grant's weekly tracker zip. Approved 2026-11-11 |
-| P20 | 3D designer (opened from Design in the sidebar) | Desktop + mobile | ☐ | | Added 2026-11-11. Draft (not yet approved by Grant): scope not defined; may overlap P08 3D viewer |
+| P20 | 3D designer (opened from Design in the sidebar): build parts, open STEP files to view and modify | Desktop + mobile | ☐ | | Added 2026-11-11. Scope from Grant: build parts; accept STEP files to view and modify. Draft (not yet approved by Grant): includes viewing, so it may absorb P08 (3D viewer) |
 
 ## Next up
 
@@ -37,6 +37,7 @@ First open item: **P07** (draft built, awaiting Grant's review), unless Grant sa
 
 ## Log
 
+- [stated] 2026-11-11: P20 (3D designer) scope: build parts, and accept STEP files to view and modify.
 - [stated] 2026-11-09: P01 and P02 exports, favicon (`assets/favicon.svg`) and the design system kit (`system-kit/`) added from Grant's uploads.
 - [stated] 2026-11-06: P01 (main chat starting page) and P02 (mobile chat starting page) are done.
 - [stated] 2026-11-09: Design system extracted and reconciled; see DESIGN-SYSTEM.md. P01 and P02 exports updated to match (Graphite tokens only, Library nav, five mobile tabs, assistant name placeholder, send button).

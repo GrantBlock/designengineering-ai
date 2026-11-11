@@ -191,7 +191,7 @@ button:focus-visible, textarea:focus-visible, input:focus-visible, [role="button
 .de-prow-name { font-size: 21px; font-weight: 600; line-height: 1.25; }
 
 /* ── Mobile: TabBar ── */
-.de-tabbar { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); height: 68px; padding: 4px; border-radius: var(--bc-radius-composer); background: var(--bc-surface); border: 1px solid var(--bc-edge); }
+.de-tabbar { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); height: 68px; padding: 4px; border-radius: var(--bc-radius-composer); background: var(--bc-surface); border: 1px solid var(--bc-edge); }
 .de-tab { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; border: none; border-radius: var(--bc-radius-panel); background: transparent; color: var(--bc-muted); font: inherit; cursor: pointer; }
 .de-tab.is-active { background: var(--bc-steel-blue-tint); color: var(--bc-steel-blue-text); }
 .de-tab span { font-size: 12px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; }

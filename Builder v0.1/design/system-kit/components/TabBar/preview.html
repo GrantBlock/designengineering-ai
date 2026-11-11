@@ -6,7 +6,7 @@
 <div id="root"></div>
 <script>
   var E = window.DE, h = React.createElement;
-  var TABS=[{id:"new",label:"New",icon:"plus"},{id:"chats",label:"Chats",icon:"chat"},{id:"projects",label:"Projects",icon:"folder"},{id:"dashboard",label:"Dashboard",icon:"dashboard"},{id:"more",label:"More",icon:"more"}];
+  var TABS=[{id:"new",label:"New chat",icon:"plus"},{id:"recents",label:"Recents",icon:"clock"},{id:"dashboard",label:"Dashboard",icon:"dashboard"},{id:"more",label:"More",icon:"more"}];
   ReactDOM.createRoot(document.getElementById('root')).render(h("div",{className:"de-stage-col"},h("div",{style:{width:378}},h(E.TabBar,{tabs:TABS}))));
 </script>
 </body>
