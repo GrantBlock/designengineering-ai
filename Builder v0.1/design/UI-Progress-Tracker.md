@@ -19,7 +19,7 @@ Page order is a **Draft (not yet approved by Grant)**, built from the App Plan M
 | P07 | Upload flow (STEP, OBJ, photos, PDFs) | Desktop + mobile | ☑ | `exports/P07-upload-flow/index.html` | Done 2026-11-11, one responsive page. Accepts STEP, OBJ, pictures, PDF and ZIP; Take a pic on mobile (Grant approved) |
 | P08 | 3D designer (viewer is its first draft) | Desktop + mobile | ☑ | `exports/P08-3d-viewer/index.html` | Done 2026-11-11 (Grant approved). Chat-only 3D designer. Feature spec: `specs/P08-3D-Designer-Spec.md` |
 | P09 | Vault (project list on top, preview gallery of documents, schedules, models and chats below) | Desktop + mobile | ☑ | `exports/P09-vault/index.html` | Done 2026-11-11 (Grant approved). Built from Grant's artifacts gallery and template panel images |
-| P10 | Notes and tracking | Desktop + mobile | ◐ | `exports/P10-notes-tracking/index.html` | Drafted 2026-11-11, awaiting Grant's review |
+| P10 | Notes and tracking (inside the Dashboard, P19, through the Update assistant button) | Desktop + mobile | ☑ | `exports/P19-dashboard/index.html` | Done 2026-11-11. No separate page: Grant moved it into the Dashboard |
 | P11 | Calculators (chat-enabled) | Desktop + mobile | ☐ | | |
 | P12 | Process flows | Desktop | ☐ | | |
 | P13 | Plans and vendor requests | Desktop + mobile | ☐ | | |
@@ -32,7 +32,7 @@ Page order is a **Draft (not yet approved by Grant)**, built from the App Plan M
 
 ## Next up
 
-First open item: **P11** (P10 is drafted and awaiting review), unless Grant says otherwise. P08 is done (the 3D designer); its feature spec is waiting for Grant's edits.
+First open item: **P11**, unless Grant says otherwise. P08 is done (the 3D designer); its feature spec is waiting for Grant's edits.
 
 ## Log
 
@@ -90,5 +90,5 @@ First open item: **P11** (P10 is drafted and awaiting review), unless Grant says
 - Draft (not yet approved by Grant): P09 patterns: project card (selected = steel-blue edge on `bc-steel-blue-tint`); pill tabs on `bc-surface`; gallery card with drawn thumbnail (documents on a light sheet as in P06, schedules as bars, models as the cube icon, chats as bubbles), title, type tag, project and age; hover more button. Thumbnails are drawn placeholders, not real previews. Item types and tab names are my guess.
 - [stated] 2026-11-11: Grant approved P09 (Vault), including the project card list, type tabs, search, grid and list toggle, and thumbnail gallery patterns logged above as drafts.
 - [stated] 2026-11-11: Grant simplified page numbers: Vault is P09 and Design (3D designer) is P08. No P20 or P21 exist. The earlier Document search and data sheets draft was dropped from the exports (it is in git history); searching documents is not yet placed.
-- [stated] 2026-11-11: P10 (Notes and tracking) drafted at `exports/P10-notes-tracking/index.html`: one responsive page. Project picker and a Status select (Quoting, Sold, In progress, Waiting, Done), three summary tiles (Open, Overdue, Done), a Notes panel (add a note, newest first, author, time, From chat tag, delete) and a Tasks panel (add a task, check to complete, due date, priority, Open, Done and All filter). Mobile stacks the controls and shows Notes or Tasks through a two-option toggle. Prototype only: sample data, changes are not saved.
-- Draft (not yet approved by Grant): P10 patterns: task checkbox (22px, 28px on mobile) with the P19 done green; priority and overdue colors reused from P19; note row with avatar, mono meta line and From chat tag for notes the assistant adds; summary tiles on `bc-surface-raised`; light add fields with an outline Add chip. Notes and tasks are separate lists side by side (1120px column, stacks under 1000px). Status values and the From chat tag are my guess.
+- [stated] 2026-11-11: Grant: Notes and tracking (P10) lives inside the Dashboard (P19), not on its own page, because New in the sidebar is for a new chat session. P19 gets an Update assistant button in the header. It opens a panel with Project, Status (No change, Quoting, Sold, In progress, Waiting, Done) and an Update text field; Save update adds an entry to a new Updates log at the bottom of the dashboard (project, status tag, From chat tag, time, text, delete). The standalone P10 draft was removed (in git history). Prototype only: sample entries, not saved.
+- Draft (not yet approved by Grant): P19 Update assistant patterns: outline steel-blue header button; collapsible form panel with light fields; Updates log rows with mono project line and status tag. The status list, the Updates log placement and the idea that the assistant reads these updates are my guess. Tasks are not part of this panel; the dashboard rows already show tasks.
