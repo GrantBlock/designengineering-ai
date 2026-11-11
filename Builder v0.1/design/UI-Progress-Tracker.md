@@ -15,7 +15,7 @@ Page order is a **Draft (not yet approved by Grant)**, built from the App Plan M
 | P03 | Chat conversation view (messages, attachments, answers with sources) | Desktop + mobile | ☐ | | Extends P01/P02 |
 | P04 | Sign in / sign up (Clerk) | Desktop + mobile | ☐ | | |
 | P05 | Projects list | Desktop + mobile | ◐ | `exports/P05-projects/index.html` | Landing page for projects; each row opens its P06 project page. Awaiting Grant's review |
-| P06 | Project workspace (Specifications, Layout, Schedule, Exports; files, chat, notes later) | Desktop + mobile | ◐ | `exports/P06-project-workspace/index.html` | Process layout with a summary card per process; each opens P18. Awaiting Grant's review |
+| P06 | Project workspace (Import, Specifications, Layout, Schedule, Exports; files, chat, notes later) | Desktop + mobile | ◐ | `exports/P06-project-workspace/index.html` | Process layout with a summary card per process; each opens P18. Awaiting Grant's review |
 | P07 | Upload flow (STEP, OBJ, photos, PDFs) | Desktop + mobile | ☐ | | |
 | P08 | 3D viewer | Desktop + mobile | ☐ | | |
 | P09 | Document search and data sheets | Desktop + mobile | ☐ | | |
@@ -52,5 +52,7 @@ First open item: **P03**, unless Grant says otherwise.
 - [stated] 2026-11-11: P06 tab order is now 1 Specifications, 2 Layout, 3 Schedule, 4 Documents (Schedule comes before Documents because Documents can include the schedule chart).
 - [stated] 2026-11-11: Each schedule has three buttons: Rename, Archive, Delete. Archived schedules move to a collapsed Archived list with Restore and Delete. Delete asks for a second click (Confirm delete) because dialogs are not available.
 - [stated] 2026-11-11: P06 tab Documents is renamed Exports, with four numbered sections: 1 Import, 2 Generate, 3 Preview, 4 History. Import accepts drawing images (added as sheets) and revision files (.json saved from History).
+- [stated] 2026-11-11: P06 gets a new first tab, Import, which duplicates the Exports tab (1 Import, 2 Generate, 3 Preview, 4 History). The Exports tab drops its Import section (1 Generate, 2 Preview, 3 History). Both tabs show the same shared body, so edits appear in each. Sections on both tabs collapse with a chevron.
+- [stated] 2026-11-11: The Specifications tab has Import and Export dropdown menus. Import: reload past configuration (from the latest revision), add processes from CSV, open the Import tab. Export: processes as CSV, open the Exports tab. The old Reload past configuration button moved into the Import menu.
 - Draft (not yet approved by Grant): page order P03 to P17 above.
 - [stated] 2026-11-06: Shortcut phrase "design the next page" added; see ../shortcuts.md.

@@ -407,7 +407,9 @@ select.pg-in{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xml
 .doc-actions{display:flex;gap:var(--bc-space-2);justify-content:flex-end;margin-top:var(--bc-space-4);padding-top:var(--bc-space-3);border-top:1px solid var(--bc-hairline)}
 .doc-actions .is-next,.doc-pact .is-next{border-color:var(--bc-steel-blue);color:var(--bc-steel-blue-text)}
 .doc-sec .de-section-head{height:44px;gap:var(--bc-space-3)}
-.doc-sec .de-section-head .de-label:first-child{margin-right:auto}
+.doc-sec .de-section-head .s-tog+.de-label{margin-right:auto}
+.doc-sec.is-closed>:not(.de-section-head){display:none}
+.doc-sec.is-closed .de-section-head{margin-bottom:0;border-bottom:none}
 .doc-pact{display:flex;gap:4px}
 .hist-row{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:var(--bc-space-3);padding:12px 0;border-bottom:1px solid var(--bc-hairline)}.hist-row:last-child{border-bottom:none}
 .hist-main{display:flex;flex-direction:column;gap:2px;min-width:0}.hist-main b{font-size:14px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
@@ -438,6 +440,14 @@ select.pg-in{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xml
 .imp-body{padding:var(--bc-space-2) 0}
 .imp-hint,.imp-msg{margin:var(--bc-space-2) 0 0}
 .imp-msg{color:var(--bc-steel-blue-text);min-height:18px}
+.dd{position:relative}
+.dd-b .de-icon{transition:transform 200ms}.dd-b[aria-expanded=true] .de-icon{transform:rotate(180deg)}
+.dd-m{position:absolute;top:calc(100% + 4px);left:0;z-index:30;min-width:250px;display:flex;flex-direction:column;gap:2px;padding:4px;background:var(--bc-surface-raised);border:1px solid var(--bc-edge);border-radius:var(--bc-radius-card);box-shadow:var(--bc-shadow-panel)}
+.dd-m button{all:unset;box-sizing:border-box;display:flex;align-items:center;min-height:var(--bc-control-height);padding:2px 10px 0;border-radius:var(--bc-radius-control);font-size:13px;color:var(--bc-ink);cursor:pointer}
+.dd-m button:hover,.dd-m button:focus-visible{background:var(--bc-surface)}
+.dd-m button:focus-visible{outline:2px solid var(--bc-steel-blue-text);outline-offset:-2px}
+.spec-msg{margin:0;min-height:18px;color:var(--bc-steel-blue-text)}
+@media print{#doc-prev.is-closed>*{display:block!important}}
 @media (max-width:760px){.p6-dl{grid-template-columns:repeat(2,minmax(0,1fr))}.p6-step{flex:1;justify-content:center;padding:2px 6px 0;font-size:13px}.p6-ref .de-search{width:100%}.p6-card{padding:14px}.p6-card-head .de-btn{height:var(--bc-touch-target)}}
 
 </style></head>
@@ -460,15 +470,25 @@ select.pg-in{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xml
     <div class="p6-meta"><span>Stage 3 — Build</span><div class="de-stages"><i class="is-done"></i><i class="is-done"></i><i class="is-done"></i><i></i><i></i></div></div>
    </div>
    <div class="p6-steps" role="tablist" aria-label="Project sections">
-    <button class="p6-step" role="tab" id="t1" aria-selected="true" aria-controls="s1"><i>1</i>Specifications</button>
-    <button class="p6-step" role="tab" id="t2" aria-selected="false" aria-controls="s2"><i>2</i>Layout</button>
-    <button class="p6-step" role="tab" id="t4" aria-selected="false" aria-controls="s4"><i>3</i>Schedule</button>
-    <button class="p6-step" role="tab" id="t3" aria-selected="false" aria-controls="s3"><i>4</i>Exports</button>
+    <button class="p6-step" role="tab" id="t5" aria-selected="false" aria-controls="s5"><i>1</i>Import</button>
+    <button class="p6-step" role="tab" id="t1" aria-selected="true" aria-controls="s1"><i>2</i>Specifications</button>
+    <button class="p6-step" role="tab" id="t2" aria-selected="false" aria-controls="s2"><i>3</i>Layout</button>
+    <button class="p6-step" role="tab" id="t4" aria-selected="false" aria-controls="s4"><i>4</i>Schedule</button>
+    <button class="p6-step" role="tab" id="t3" aria-selected="false" aria-controls="s3"><i>5</i>Exports</button>
    </div>
    <div id="s1" role="tabpanel" aria-labelledby="t1">
     <div class="pg-stack">
      <p class="p6-intro">List each process in the line, in the order the product flows. Open a process to configure it in detail. The summary here updates when you save.</p>
-     <div class="p6-ref"><label class="de-search"><input id="ref" value="7332-A" aria-label="Reference number"></label><button class="de-btn de-btn-chip">Reload past configuration</button></div>
+     <div class="p6-ref"><label class="de-search"><input id="ref" value="7332-A" aria-label="Reference number"></label>
+      <div class="dd" id="dd-imp"><button class="de-btn de-btn-chip dd-b" aria-haspopup="menu" aria-expanded="false">Import<svg class="de-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button><div class="dd-m" role="menu" hidden>
+       <button role="menuitem" data-dd="reload">Reload past configuration</button>
+       <button role="menuitem" data-dd="csv">Add processes from CSV</button>
+       <button role="menuitem" data-dd="gotoimp">Drawings and revision files</button></div></div>
+      <div class="dd" id="dd-exp"><button class="de-btn de-btn-chip dd-b" aria-haspopup="menu" aria-expanded="false">Export<svg class="de-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button><div class="dd-m" role="menu" hidden>
+       <button role="menuitem" data-dd="savecsv">Processes as CSV</button>
+       <button role="menuitem" data-dd="gotoexp">Process document</button></div></div>
+      <input type="file" id="csv-file" class="doc-file" accept=".csv,text/csv" aria-label="Choose a CSV of processes"></div>
+     <p class="pg-note spec-msg" id="spec-msg" role="status"></p>
      <div id="cards" class="pg-stack"></div>
      <button class="p6-add" id="add"><svg class="de-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>Add process</button>
      <div class="pg-nav" style="padding-bottom:var(--bc-space-6)"><button class="de-btn de-btn-chip is-next" id="next">Layout<svg class="de-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button></div>
@@ -485,11 +505,12 @@ select.pg-in{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xml
     </aside>
    </div>
    <div id="s3" role="tabpanel" aria-labelledby="t3" hidden class="pg-stack">
-    <section class="de-panel doc-sec doc-hide-print" id="doc-imp"><div class="de-section-head"><span class="de-label">1 · Import</span><span class="de-tag de-tag-plain" id="imp-n"></span></div>
+    <div id="expwrap" class="pg-stack">
+    <section class="de-panel doc-sec doc-hide-print" id="doc-imp"><div class="de-section-head"><button class="de-iconbtn de-iconbtn-sm s-tog" data-sec="doc-imp" aria-expanded="true" aria-label="Collapse import"><svg class="de-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button><span class="de-label sec-name" data-nm="Import">1 · Import</span><span class="de-tag de-tag-plain" id="imp-n"></span></div>
      <div class="imp-body"><label class="p18-drop-l"><input type="file" id="imp-file" class="doc-file" accept="image/*,.json,application/json" multiple><span class="de-btn de-btn-chip"><svg class="de-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>Add files</span></label>
       <p class="pg-note imp-hint">Drawing images (PNG or JPG) can be added as sheets. A revision file (.json) saved from History is added as a revision.</p><p class="pg-note imp-msg" id="imp-msg" role="status"></p></div>
      <div id="imp-list"></div></section>
-    <section class="de-panel doc-sec doc-hide-print" id="doc-gen"><div class="de-section-head"><span class="de-label">2 · Generate</span><span class="de-tag de-tag-plain" id="doc-next"></span></div>
+    <section class="de-panel doc-sec doc-hide-print" id="doc-gen"><div class="de-section-head"><button class="de-iconbtn de-iconbtn-sm s-tog" data-sec="doc-gen" aria-expanded="true" aria-label="Collapse generate"><svg class="de-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button><span class="de-label sec-name" data-nm="Generate">2 · Generate</span><span class="de-tag de-tag-plain" id="doc-next"></span></div>
      <div class="doc-gen-grid">
       <div class="doc-inc"><span class="de-label">Include</span>
        <label><input type="checkbox" id="i-map">Overhead view</label>
@@ -511,10 +532,12 @@ select.pg-in{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xml
       </div>
      </div>
      <div class="doc-actions"><button class="de-btn" id="d-regen">Rebuild steps from stations</button><button class="de-btn de-btn-chip is-next" id="d-gen">Generate document</button></div></section>
-    <section class="de-panel doc-sec" id="doc-prev"><div class="de-section-head doc-prevhead"><span class="de-label">3 · Preview</span><span class="de-tag de-tag-plain" id="doc-ptag"></span><span class="doc-pact"><button class="de-btn de-btn-chip is-next" id="d-print">Print / Save as PDF</button></span></div>
+    <section class="de-panel doc-sec" id="doc-prev"><div class="de-section-head doc-prevhead"><button class="de-iconbtn de-iconbtn-sm s-tog" data-sec="doc-prev" aria-expanded="true" aria-label="Collapse preview"><svg class="de-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button><span class="de-label sec-name" data-nm="Preview">3 · Preview</span><span class="de-tag de-tag-plain" id="doc-ptag"></span><span class="doc-pact"><button class="de-btn de-btn-chip is-next" id="d-print">Print / Save as PDF</button></span></div>
      <div id="docwrap" class="doc-wrap"><div id="docsheets" class="doc-sheets"></div></div></section>
-    <section class="de-panel doc-sec doc-hide-print" id="doc-hist"><div class="de-section-head"><span class="de-label">4 · History</span><span class="de-tag de-tag-plain" id="hist-n"></span></div><div id="hist"></div></section>
+    <section class="de-panel doc-sec doc-hide-print" id="doc-hist"><div class="de-section-head"><button class="de-iconbtn de-iconbtn-sm s-tog" data-sec="doc-hist" aria-expanded="true" aria-label="Collapse history"><svg class="de-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button><span class="de-label sec-name" data-nm="History">4 · History</span><span class="de-tag de-tag-plain" id="hist-n"></span></div><div id="hist"></div></section>
+    </div>
    </div>
+   <div id="s5" role="tabpanel" aria-labelledby="t5" hidden class="pg-stack"></div>
    <div id="s4" role="tabpanel" aria-labelledby="t4" hidden>
     <div class="g-sum" id="gsum"></div>
     <div id="sched" class="pg-stack"></div>
@@ -818,7 +841,7 @@ function drawMap(el,S,cur){
   else if(b.dataset.i==='use'){var k=INC.imp.indexOf(m.id);if(k>-1)INC.imp.splice(k,1);else INC.imp.push(m.id);saveDoc();renderImp();fillForm()}
   else if(b.dataset.i==='open'){if(HIST.some(function(h){return h.id===m.rid})){VIEW=m.rid;renderHist();renderPreview();document.getElementById('doc-prev').scrollIntoView({behavior:'smooth',block:'start'})}}});
  function docOpen(){fillForm();renderImp();renderHist();renderPreview()}
- function docRender(){if(document.getElementById('s3')&&!document.getElementById('s3').hidden)renderPreview()}
+ function docRender(){if(!document.getElementById('s3').hidden||!document.getElementById('s5').hidden)renderPreview()}
  [].forEach.call(document.querySelectorAll('[data-d]'),function(f){f.addEventListener('input',function(){DOC[f.dataset.d]=f.value;saveDoc()})});
  ['map','desc','gantt'].forEach(function(k){document.getElementById('i-'+k).addEventListener('change',function(e){INC[k]=e.target.checked;saveDoc();fillForm()})});
  document.getElementById('i-sched').addEventListener('change',function(){INC.sched=[].slice.call(document.querySelectorAll('#i-sched input:checked')).map(function(i){return i.dataset.sid});saveDoc()});
@@ -829,7 +852,7 @@ function drawMap(el,S,cur){
   if(b.dataset.h==='dl'){try{var bl=new Blob([JSON.stringify(h)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(bl);a.download=(h.doc.dwg||'document')+'-rev'+h.rev+'.json';document.body.appendChild(a);a.click();a.remove()}catch(err){}return}
   if(b.dataset.h==='open'){VIEW=h.id;renderHist();renderPreview();document.getElementById('doc-prev').scrollIntoView({behavior:'smooth',block:'start'})}
   else{DOC=Object.assign({},DOCDEF,clone(h.doc));INC=clone(h.inc);saveDoc();fillForm();document.getElementById('doc-gen').scrollIntoView({behavior:'smooth',block:'start'})}});
- document.getElementById('d-print').onclick=function(){try{window.print()}catch(e){}};
+ document.getElementById('d-print').onclick=function(){var pv=document.getElementById('doc-prev');pv.classList.remove('is-closed');try{window.print()}catch(e){}};
  window.addEventListener('resize',function(){docRender()});
  /* ---- Layout: live overhead view, drawn to scale from the specifications ---- */
  var LVsel=null,LVsvg=document.getElementById('lv-svg'),LVstage=document.getElementById('lv-stage');
@@ -873,8 +896,41 @@ function drawMap(el,S,cur){
  window.addEventListener('resize',function(){if(!document.getElementById('s2').hidden)lvRender()});
  function lvOpen(){lvRender()}
 
- function step(n){[1,2,3,4].forEach(function(i){document.getElementById('s'+i).hidden=i!==n;document.getElementById('t'+i).setAttribute('aria-selected',String(i===n))});if(n===2)lvOpen();if(n===3)docOpen();if(n===4)render()}
- [1,2,3,4].forEach(function(i){document.getElementById('t'+i).onclick=function(){step(i)}});
+
+ /* ---- Import and Export dropdowns, shared Import/Exports tab body ---- */
+ function secLabels(mode){
+  var order=mode==='import'?['doc-imp','doc-gen','doc-prev','doc-hist']:['doc-gen','doc-prev','doc-hist'];
+  document.getElementById('doc-imp').hidden=mode!=='import';
+  order.forEach(function(id,i){var l=document.querySelector('#'+id+' .sec-name');l.textContent=(i+1)+' · '+l.dataset.nm})}
+ function expMode(mode){document.getElementById(mode==='import'?'s5':'s3').appendChild(document.getElementById('expwrap'));secLabels(mode)}
+ document.getElementById('expwrap').addEventListener('click',function(e){var b=e.target.closest('[data-sec]');if(!b)return;var sec=document.getElementById(b.dataset.sec),c=sec.classList.toggle('is-closed');b.classList.toggle('is-col',c);b.setAttribute('aria-expanded',String(!c));if(!c&&b.dataset.sec==='doc-prev')renderPreview()});
+ function ddClose(){[].forEach.call(document.querySelectorAll('.dd'),function(d){d.querySelector('.dd-m').hidden=true;d.querySelector('.dd-b').setAttribute('aria-expanded','false')})}
+ [].forEach.call(document.querySelectorAll('.dd-b'),function(b){b.addEventListener('click',function(e){e.stopPropagation();var m=b.parentNode.querySelector('.dd-m'),open=m.hidden;ddClose();m.hidden=!open;b.setAttribute('aria-expanded',String(open));if(open){var f=m.querySelector('button');f&&f.focus()}})});
+ document.addEventListener('click',function(e){if(!e.target.closest('.dd'))ddClose()});
+ document.addEventListener('keydown',function(e){if(e.key==='Escape')ddClose();
+  var m=e.target.closest&&e.target.closest('.dd-m');if(m&&(e.key==='ArrowDown'||e.key==='ArrowUp')){e.preventDefault();var it=[].slice.call(m.querySelectorAll('button')),i=it.indexOf(document.activeElement);it[(i+(e.key==='ArrowDown'?1:it.length-1))%it.length].focus()}});
+ function specMsg(t){document.getElementById('spec-msg').textContent=t}
+ var CSVCOLS={type:['type','process','name','station type'],len:['length','len','l'],wid:['width','wid','w'],hgt:['height','hgt','h'],wt:['weight','wt'],psi:['psi','pressure'],cfm:['cfm','flow'],volt:['volt','voltage','v'],phase:['phase'],amp:['amp','amps','current','a'],speed:['speed'],ppc:['ppc','parts / cycle','parts per cycle','parts'],flow:['flow direction','direction'],notes:['notes']};
+ function csvRows(t){var rows=[],row=[],f='',q=false,i,c;for(i=0;i<t.length;i++){c=t[i];if(q){if(c==='"'&&t[i+1]==='"'){f+='"';i++}else if(c==='"')q=false;else f+=c}else if(c==='"')q=true;else if(c===','){row.push(f);f=''}else if(c==='\n'||c==='\r'){if(c==='\r'&&t[i+1]==='\n')i++;row.push(f);f='';if(row.some(function(x){return x.trim()}))rows.push(row);row=[]}else f+=c}row.push(f);if(row.some(function(x){return x.trim()}))rows.push(row);return rows}
+ function csvCell(v){v=String(v==null?'':v);return /[",\n]/.test(v)?'"'+v.replace(/"/g,'""')+'"':v}
+ function downloadText(name,text,type){try{var bl=new Blob([text],{type:type}),a=document.createElement('a');a.href=URL.createObjectURL(bl);a.download=name;document.body.appendChild(a);a.click();a.remove();return true}catch(err){return false}}
+ document.getElementById('csv-file').addEventListener('change',function(e){
+  var f=e.target.files&&e.target.files[0];if(!f)return;var r=new FileReader();
+  r.onload=function(){var rows=csvRows(String(r.result));if(rows.length<2){specMsg(f.name+' has no rows to add.');return}
+   var head=rows[0].map(function(h){return h.trim().toLowerCase()}),map={};Object.keys(CSVCOLS).forEach(function(k){var ix=-1;CSVCOLS[k].forEach(function(n){if(ix<0)ix=head.indexOf(n)});if(ix>=0)map[k]=ix});
+   if(map.type===undefined){specMsg('Add a "type" column (the process name) to the CSV.');return}
+   var n=0;rows.slice(1).forEach(function(row){var s=JSON.parse(JSON.stringify(BLANK));Object.keys(map).forEach(function(k){s[k]=(row[map[k]]||'').trim()});if(!s.flow||FLOW.indexOf(s.flow)<0)s.flow='Vertical';if(s.type){S.push(s);n++}});
+   save(S);cards();specMsg('Added '+n+(n===1?' process':' processes')+' from '+f.name+'.')};
+  r.readAsText(f);e.target.value=''});
+ document.getElementById('dd-imp').addEventListener('click',function(e){var b=e.target.closest('[data-dd]');if(!b)return;ddClose();var a=b.dataset.dd;
+  if(a==='csv')document.getElementById('csv-file').click();
+  else if(a==='gotoimp')step(5);
+  else if(a==='reload'){var h=HIST[0];if(h&&h.S){S.length=0;clone(h.S).forEach(function(s){S.push(s)});save(S);cards();specMsg('Reloaded the processes from Rev '+h.rev+'.')}else specMsg('No past configuration to reload.')}});
+ document.getElementById('dd-exp').addEventListener('click',function(e){var b=e.target.closest('[data-dd]');if(!b)return;ddClose();var a=b.dataset.dd;
+  if(a==='gotoexp')step(3);
+  else if(a==='savecsv'){var ks=Object.keys(CSVCOLS),txt=[ks.map(function(k){return CSVCOLS[k][0]}).join(',')].concat(S.map(function(s){return ks.map(function(k){return csvCell(s[k])}).join(',')})).join('\n');specMsg(downloadText((DOC.dwg||'processes')+'-processes.csv',txt,'text/csv')?'Saved '+S.length+' processes as CSV.':'This preview cannot save files. Open the page from the repo to download.')}});
+ function step(n){[1,2,3,4,5].forEach(function(i){document.getElementById('s'+i).hidden=i!==n;document.getElementById('t'+i).setAttribute('aria-selected',String(i===n))});ddClose();if(n===2)lvOpen();if(n===3){expMode('export');docOpen()}if(n===5){expMode('import');docOpen()}if(n===4)render()}
+ [1,2,3,4,5].forEach(function(i){document.getElementById('t'+i).onclick=function(){step(i)}});
  document.getElementById('next').onclick=function(){step(2)};
  cards();
 
