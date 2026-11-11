@@ -345,6 +345,7 @@ button:focus-visible, textarea:focus-visible, input:focus-visible, [role="button
 .p19-upbtn{border:1px solid var(--bc-steel-blue);color:var(--bc-steel-blue-text);border-radius:var(--bc-radius-control);height:44px;padding:2px 18px 0;font-size:13px;font-weight:600;letter-spacing:.08em;flex-shrink:0}
 .p19-upbtn:hover,.p19-upbtn[aria-expanded=true]{background:var(--bc-steel-blue-tint)}
 .p19-up{margin-bottom:var(--bc-space-4)}
+[hidden]{display:none!important}
 .p19-upform{display:grid;grid-template-columns:minmax(0,1fr) 220px;gap:var(--bc-space-3) var(--bc-space-4);padding:var(--bc-space-2) 0 var(--bc-space-2)}
 .p19-f{display:flex;flex-direction:column;gap:6px;min-width:0}
 .p19-f.is-wide{grid-column:1/-1}
@@ -504,4 +505,5 @@ ex.addEventListener("click",function(){sb.style.display="";ex.hidden=true})})();
  draw();
 })();
 </script>
+<script src="../shared/ext.js"></script>
 </body></html>

@@ -418,4 +418,5 @@ else if(b.classList.contains("sbgrp")){var g=b.closest(".sbgroup"),c=g.classList
 ex.addEventListener("click",function(){sb.style.display="";ex.hidden=true})})();
 </script>
 <script>(function(){var go=function(e){var c=e.target.closest&&e.target.closest(".p5-chat");if(!c)return;if(e.type==="keydown"&&e.key!=="Enter"&&e.key!==" ")return;e.preventDefault();e.stopPropagation();var no=(c.closest(".p5-row")||{dataset:{}}).dataset.no||"";location.href=(matchMedia("(max-width:760px)").matches?"../P02-chat-start-mobile/Design_Engineering_Mobile.html":"../P01-chat-start-desktop/Design_Engineering_App.html")+"?project="+encodeURIComponent(no)};document.addEventListener("click",go,true);document.addEventListener("keydown",go,true)})();</script>
+<script src="../shared/ext.js"></script>
 </body></html>
