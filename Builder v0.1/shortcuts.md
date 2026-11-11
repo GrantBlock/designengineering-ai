@@ -43,11 +43,12 @@ Paths below are relative to `Builder v0.1/`. Memory logs are in `designengineeri
 
 Flow: park this idea, decision brief, answer, log it.
 
-## "design the next page"
+## "design the next page" (also: "start next page", "next page")
 
 **Description:** Designs the next open page from the UI tracker, matching the design system, and exports it to the repo.
 
 Steps:
+0. Run Branch sync first (root `CLAUDE.md` step 0). The page files live on `development` and in other session branches, not necessarily the one this session started on.
 1. Read `CLAUDE.md` and `design/README.md`.
 2. Open `design/UI-Progress-Tracker.md`. The page is the first row not marked ☑ (or the page Grant names, e.g. "design the next page: P05"). Say which page it is.
 3. Read `design/DESIGN-SYSTEM.md` and every file in `design/exports/`. If the design system is still a placeholder, extract it from the P01/P02 exports first and get Grant's approval.
@@ -69,3 +70,4 @@ Steps:
 - [stated] 2026-11-06: Ideas get IDs (I01...). "decision brief" accepts an idea ID, adds the brief to the review queue, and "log it" marks the idea Decided.
 - [stated] 2026-11-07: "park this idea" syncs with all remote branches before choosing an ID (an I01 collision happened on 2026-11-07). See "Branch sync" in CLAUDE.md.
 - Draft (not yet approved by Grant): "log it" and "end of day" shortcuts were suggested but not added.
+- [stated] 2026-11-11: "start next page" and "next page" also trigger "design the next page". Every session runs Branch sync before any shortcut, so missing pages are never reported before development and other branches are merged.
