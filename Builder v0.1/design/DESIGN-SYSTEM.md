@@ -19,7 +19,7 @@ Tokens `bc-space-*`, `bc-radius-*`, `bc-shadow-*`. Shell gap 10px, mobile gutter
 - **Mobile:** `MobileHeader`, Hero, ActionCard rail, `SectionHeader` plus `ProjectRow`s. Dock (`MobileComposer` over `TabBar`) fixed at the bottom.
 
 ## Navigation (same on desktop and mobile)
-New, Recents, Projects, then three collapsible headings: Design (Mechanical, Electrical, Controls, Software, Manufacturing; no sub-items), Vault (Documents, Uploads) and Tools (Simulation). Desktop shows these in the sidebar. Mobile tabs are not yet updated (see log 2026-11-11). Mobile shows five tabs: Home, Recents, Projects, Design, Library. "Ask" is the composer and the primary ActionCard, not a tab or nav item.
+New, Recents, Projects (plain buttons, no drop-downs), then three collapsible headings: Design (Mechanical, Electrical, Controls, Software, Manufacturing; no sub-items), Vault (Documents, Uploads) and Tools (Simulation). Desktop shows these in the sidebar. Mobile tabs are not yet updated (see log 2026-11-11). Mobile shows five tabs: Home, Recents, Projects, Design, Library. "Ask" is the composer and the primary ActionCard, not a tab or nav item.
 
 ## Components
 Names and props are in `system-kit/components/*/README.md`: AppShell, Sidebar, NavItem, TopBar, Hero, Composer, MobileComposer, Message, Panel, SectionHeader, PromptCard, EmptyNote, Button, IconButton, Tag, Avatar, Icon, SearchField, ActionCard, ProjectRow, StageProgress, MobileHeader, TabBar.
@@ -70,3 +70,4 @@ The Block Concepts Word-document tokens (light theme, 2px and 4px corners, Aptos
 - Draft (not yet approved by Grant): the Layout view draws blocks to scale on `bc-canvas` with numbered `bc-steel-blue` badges and `bc-steel-blue-text` flow arrows.
 - [stated] 2026-11-11: Grant changed the sidebar Design group to Mechanical, Electrical, Controls, Software, Manufacturing (Simulation removed). New icons `code` (Software) and `factory` (Manufacturing). Draft (not yet approved by Grant): child items for Software (Applications, Firmware, Integrations) and Manufacturing (Process plans, Work instructions, Tooling) are placeholders in P01 and the kit previews.
 - [stated] 2026-11-11: Grant changed the desktop sidebar to New, Recents, Projects, then collapsible headings Design (five items, no sub-items), Vault (Documents, Uploads) and Tools (Simulation). Library and its children are removed; Home is renamed New. The two Library prompt cards in P01 now use the category Vault. Draft (not yet approved by Grant): mobile tabs (Home, Recents, Projects, Design, Library) are unchanged until Grant says how they should map; heading open/closed state is not remembered between visits.
+- [stated] 2026-11-11: Grant made Recents and Projects plain buttons with no drop-down lists or chevrons.
