@@ -505,6 +505,41 @@ select.pg-in{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xml
 .sbacct svg:last-child{color:var(--bc-muted);margin-left:2px}
 .sbavatar{display:flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:999px;background:var(--bc-surface-raised);color:var(--bc-ink);font-size:12px;font-weight:700;padding-top:2px;flex-shrink:0}
 @media (max-width:760px){.sbexpand{display:none!important}}
+
+/* Quotes in Exports: ask for a quote (vendor) and produce a quote (customer). Paper follows the drawing-sheet look. */
+.q-types{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;padding:4px;max-width:520px;border:1px solid var(--bc-hairline);border-radius:var(--bc-radius-card);background:var(--bc-canvas)}
+.q-types button{height:36px;border:none;border-radius:var(--bc-radius-control);background:transparent;color:var(--bc-muted);font:inherit;font-size:12px;font-weight:500;letter-spacing:.05em;text-transform:uppercase;padding-top:2px;cursor:pointer;transition:background 200ms,color 200ms}
+.q-types button:hover{color:var(--bc-ink)}
+.q-types button[aria-selected=true]{background:var(--bc-surface-raised);color:var(--bc-ink)}
+.q-form{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:var(--bc-space-3);padding-top:var(--bc-space-2)}
+.q-form .w6{grid-column:span 6}.q-form .w4{grid-column:span 4}.q-form .w12{grid-column:1/-1}
+.q-lines{display:flex;flex-direction:column}
+.q-line{display:grid;grid-template-columns:minmax(0,1fr) 120px;gap:var(--bc-space-3);align-items:center;padding:8px 4px;border-bottom:1px solid var(--bc-hairline);font-size:15px}
+.q-line:last-child{border-bottom:none}
+.q-line input{height:40px}
+.q-pv{display:flex;flex-direction:column;gap:var(--bc-space-3);padding-top:var(--bc-space-2)}
+.q-paper{position:relative;background:#f4f4f5;color:#1f1f23;border-radius:6px;padding:28px 28px 24px;min-height:300px;box-shadow:0 2px 10px rgba(0,0,0,.35);font-size:13px;line-height:1.55}
+.q-paper h2{margin:0 0 2px;font-family:"Barlow Semi Condensed",var(--font-sans);font-size:22px;font-weight:700;text-transform:uppercase;color:#1a6dbf}
+.q-paper .m{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#6b6b73}
+.q-paper h3{margin:16px 0 4px;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#4a4a52}
+.q-paper table{width:100%;border-collapse:collapse;margin-top:4px}
+.q-paper th,.q-paper td{padding:5px 6px;border-bottom:1px solid #d4d4d8;text-align:left;font-size:12.5px}
+.q-paper th{font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:#6b6b73}
+.q-paper .n{text-align:right}.q-paper tr.t td{font-weight:700;border-bottom:none}
+.q-paper p{margin:4px 0}
+.q-stamp{position:absolute;top:22px;right:22px;padding:4px 8px 2px;border:2px solid #c0392b;border-radius:4px;color:#c0392b;font-family:var(--font-mono);font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;transform:rotate(3deg)}
+.q-stamp.ok{border-color:#2e7d52;color:#2e7d52}
+.q-empty{display:flex;align-items:center;justify-content:center;color:#6b6b73;text-align:center}
+.q-rev{padding:14px;border:1px solid var(--bc-steel-blue-edge);border-radius:var(--bc-radius-card);background:var(--bc-steel-blue-tint)}
+.q-rev label{display:flex;gap:var(--bc-space-3);align-items:flex-start;font-size:14px;line-height:1.45;cursor:pointer}
+.q-rev input{margin-top:3px;width:18px;height:18px;accent-color:var(--bc-steel-blue)}
+.q-acts{display:flex;flex-wrap:wrap;gap:var(--bc-space-2)}
+.q-acts .de-btn:disabled{opacity:.4;cursor:default}
+.q-h{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px var(--bc-space-4);align-items:center;padding:12px 4px;border-bottom:1px solid var(--bc-hairline)}
+.q-h:last-child{border-bottom:none}
+.q-ht{font-size:15px;font-weight:600}
+.q-hm{font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--bc-muted)}
+@media (max-width:760px){.q-types{max-width:none}.q-types button{height:44px;font-size:11px;padding:2px 4px 0}.q-form .w6,.q-form .w4{grid-column:1/-1}.q-line{grid-template-columns:1fr 96px}.q-paper{padding:22px 18px 20px}.q-acts .de-btn{flex:1;justify-content:center;height:var(--bc-touch-target)}}
 </style></head>
 <body>
 <div class="de-shell">
@@ -578,6 +613,7 @@ select.pg-in{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xml
     </aside>
    </div>
    <div id="s3" role="tabpanel" aria-labelledby="t3" hidden class="pg-stack">
+    <div class="q-types" id="qtypes" role="tablist" aria-label="Document type"><button type="button" role="tab" data-q="proc" aria-selected="true">Process document</button><button type="button" role="tab" data-q="rfq" aria-selected="false">Ask for a quote</button><button type="button" role="tab" data-q="quote" aria-selected="false">Produce a quote</button></div>
     <div id="expwrap" class="pg-stack">
     <section class="de-panel doc-sec doc-hide-print" id="doc-imp"><div class="de-section-head"><button class="de-iconbtn de-iconbtn-sm s-tog" data-sec="doc-imp" aria-expanded="true" aria-label="Collapse import"><svg class="de-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button><span class="de-label sec-name" data-nm="Import">1 · Import</span><span class="de-tag de-tag-plain" id="imp-n"></span></div>
      <div class="imp-body"><label class="p18-drop-l"><input type="file" id="imp-file" class="doc-file" accept="image/*,.json,application/json" multiple><span class="de-btn de-btn-chip"><svg class="de-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>Add files</span></label>
@@ -608,6 +644,14 @@ select.pg-in{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xml
     <section class="de-panel doc-sec" id="doc-prev"><div class="de-section-head doc-prevhead"><button class="de-iconbtn de-iconbtn-sm s-tog" data-sec="doc-prev" aria-expanded="true" aria-label="Collapse preview"><svg class="de-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button><span class="de-label sec-name" data-nm="Preview">3 · Preview</span><span class="de-tag de-tag-plain" id="doc-ptag"></span><span class="doc-pact"><button class="de-btn de-btn-chip is-next" id="d-print">Print / Save as PDF</button></span></div>
      <div id="docwrap" class="doc-wrap"><div id="docsheets" class="doc-sheets"></div></div></section>
     <section class="de-panel doc-sec doc-hide-print" id="doc-hist"><div class="de-section-head"><button class="de-iconbtn de-iconbtn-sm s-tog" data-sec="doc-hist" aria-expanded="true" aria-label="Collapse history"><svg class="de-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button><span class="de-label sec-name" data-nm="History">4 · History</span><span class="de-tag de-tag-plain" id="hist-n"></span></div><div id="hist"></div></section>
+    </div>
+    <div id="qwrap" class="pg-stack" hidden>
+     <section class="de-panel doc-sec" id="q-build"><div class="de-section-head"><span class="de-label" id="q-bt">1 · Build</span><span class="de-tag de-tag-plain" id="q-bk"></span></div><div class="q-form" id="q-form"></div></section>
+     <section class="de-panel doc-sec" id="q-prev"><div class="de-section-head"><span class="de-label">2 · Preview and release</span><span class="de-tag de-tag-plain" id="q-st"></span></div>
+      <div class="q-pv"><div class="q-paper q-empty" id="q-paper">Fill in the form, then Generate draft.</div>
+       <div class="q-rev" id="q-rev" hidden><label><input type="checkbox" id="q-ok"><span>I checked the quantities, part numbers, prices and dates against the project files and data sheets.</span></label></div>
+       <div class="q-acts" id="q-acts" hidden><button class="de-btn de-btn-chip is-next" id="q-appr" type="button" disabled>Approve for release</button><button class="de-btn" id="q-dl" type="button">Download PDF</button><button class="de-btn" id="q-send" type="button" disabled>Send</button></div></div></section>
+     <section class="de-panel doc-sec" id="q-hist"><div class="de-section-head"><span class="de-label">3 · History</span><span class="de-tag de-tag-plain" id="q-hn"></span></div><div id="q-hl"></div></section>
     </div>
    </div>
    <div id="s5" role="tabpanel" aria-labelledby="t5" hidden class="pg-stack"></div>
@@ -1008,6 +1052,54 @@ function drawMap(el,S,cur){
  document.getElementById('next').onclick=function(){step(2)};
  cards();
 
+
+ /* ---- Quotes in Exports: ask for a quote (vendor) and produce a quote (customer) ---- */
+ (function(){
+  var $=function(i){return document.getElementById(i)};
+  var kind='proc',doc=null,done=false,QH=[];
+  try{QH=JSON.parse(localStorage.getItem('de-quotes-'+PN)||'[]')}catch(e){}
+  function saveQ(){try{localStorage.setItem('de-quotes-'+PN,JSON.stringify(QH))}catch(e){}}
+  function money(n){return '$'+(Math.round(n*100)/100).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2})}
+  function names(){return S.map(function(x){return x.type}).filter(Boolean)}
+  function fld(id,label,w,inner){return '<div class="pg-f '+w+'"><label for="'+id+'">'+label+'</label>'+inner+'</div>'}
+  function form(){
+   if(kind==='rfq'){$('q-bt').textContent='1 · Build';$('q-bk').textContent='Ask for a quote';
+    $('q-form').innerHTML=fld('q-v','Vendor','w6','<select class="pg-in" id="q-v"><option>[Vendor A] · Midwest</option><option>[Vendor B] · Midwest</option><option>[Vendor C] · National</option></select>')
+     +fld('q-rq','Ask for','w3','<select class="pg-in" id="q-rq"><option>Quote</option><option>Lead time</option><option>Data sheet and CAD</option></select>')
+     +fld('q-by','Needed by','w3','<input class="pg-in" id="q-by" type="date" value="2026-12-04">')
+     +fld('q-it','Items to quote (one per line: quantity × item)','w12','<textarea class="pg-in" id="q-it" rows="6">'+names().map(function(n){return '1 × '+n}).join('\n')+'</textarea>')
+     +fld('q-nt','Notes to the vendor','w12','<textarea class="pg-in" id="q-nt" rows="3" placeholder="Ship-to, delivery terms, anything the vendor needs"></textarea>')
+     +'<div class="w12"><button class="de-btn de-btn-chip is-next" id="q-gen" type="button">Generate draft</button></div>'}
+   else if(kind==='quote'){$('q-bt').textContent='1 · Build';$('q-bk').textContent='Produce a quote';
+    $('q-form').innerHTML=fld('q-c','Customer','w6','<input class="pg-in" id="q-c" placeholder="[Customer name]">')
+     +fld('q-vu','Valid until','w3','<input class="pg-in" id="q-vu" type="date" value="2026-12-11">')
+     +fld('q-tx','Tax (%)','w3','<input class="pg-in" id="q-tx" inputmode="decimal" value="0">')
+     +'<div class="pg-f w12"><label>Price for each process (enter the price you quote)</label><div class="q-lines" id="q-lines">'+names().map(function(n,i){return '<div class="q-line"><span>'+esc(n)+'</span><input class="pg-in" data-p="'+i+'" inputmode="decimal" placeholder="[Price]" aria-label="Price of '+esc(n)+'"></div>'}).join('')+'</div></div>'
+     +fld('q-nt','Terms and notes','w12','<textarea class="pg-in" id="q-nt" rows="3" placeholder="Payment terms, lead time, what is excluded"></textarea>')
+     +'<div class="w12"><button class="de-btn de-btn-chip is-next" id="q-gen" type="button">Generate draft</button></div>'}
+   var g=$('q-gen');if(g)g.addEventListener('click',gen)}
+  function stamp(){return '<span class="q-stamp'+(done?' ok':'')+'">'+(done?'Approved by Grant':'Review required')+'</span>'}
+  function paper(){
+   if(!doc){$('q-paper').className='q-paper q-empty';$('q-paper').textContent='Fill in the form, then Generate draft.';$('q-rev').hidden=$('q-acts').hidden=true;$('q-st').textContent='';return}
+   $('q-paper').className='q-paper';var d=doc,h;
+   if(d.k==='rfq'){h=stamp()+'<div class="m">Block Concepts · Ask for a quote</div><h2>Request for '+esc(d.rq.toLowerCase())+'</h2><div class="m">'+PN+' · '+esc(PROJ[PN])+' · to '+esc(d.v)+' · needed by '+esc(d.by)+'</div><h3>Items</h3><table><tr><th>Item</th></tr>'+d.items.map(function(i){return '<tr><td>'+esc(i)+'</td></tr>'}).join('')+'</table>'+(d.nt?'<h3>Notes</h3><p>'+esc(d.nt)+'</p>':'')+'<h3>Please send</h3><p>Price, lead time and the current data sheet with CAD for each item. Reply with your quote number.</p>'}
+   else{var sub=0,rows=d.lines.map(function(l){sub+=l.p;return '<tr><td>'+esc(l.n)+'</td><td class="n">'+(l.p?money(l.p):'[Price]')+'</td></tr>'}).join(''),tax=sub*d.tx/100;
+    h=stamp()+'<div class="m">Block Concepts · Quote</div><h2>Quote for '+esc(PROJ[PN])+'</h2><div class="m">'+PN+' · for '+esc(d.c||'[Customer name]')+' · valid until '+esc(d.vu)+'</div><h3>Scope and price</h3><table><tr><th>Process</th><th class="n">Price</th></tr>'+rows+'<tr class="t"><td>Subtotal</td><td class="n">'+money(sub)+'</td></tr>'+(d.tx?'<tr class="t"><td>Tax ('+d.tx+'%)</td><td class="n">'+money(tax)+'</td></tr>':'')+'<tr class="t"><td>Total</td><td class="n">'+money(sub+tax)+'</td></tr></table>'+(d.nt?'<h3>Terms and notes</h3><p>'+esc(d.nt)+'</p>':'')}
+   $('q-paper').innerHTML=h;$('q-rev').hidden=done;$('q-acts').hidden=false;$('q-ok').checked=done;$('q-ok').disabled=done;$('q-appr').hidden=done;$('q-appr').disabled=!$('q-ok').checked||done;
+   $('q-send').textContent=d.k==='rfq'?'Send to vendor':'Send to customer';$('q-send').disabled=!done||d.sent;if(d.sent)$('q-send').textContent='Sent';
+   $('q-st').textContent=d.sent?'Sent':done?'Approved':'Draft, not released'}
+  function gen(){var d={k:kind,nt:$('q-nt').value.trim()};
+   if(kind==='rfq'){d.v=$('q-v').value;d.rq=$('q-rq').value;d.by=$('q-by').value;d.items=$('q-it').value.split('\n').map(function(x){return x.trim()}).filter(Boolean);if(!d.items.length){$('q-st').textContent='Add at least one item';return}}
+   else{d.c=$('q-c').value.trim();d.vu=$('q-vu').value;d.tx=parseFloat($('q-tx').value)||0;d.lines=names().map(function(n,i){var v=parseFloat(document.querySelector('[data-p="'+i+'"]').value);return {n:n,p:isFinite(v)&&v>0?v:0}})}
+   doc=d;done=false;paper();$('q-paper').scrollIntoView({block:'nearest'})}
+  function hist(){$('q-hn').textContent=QH.length+(QH.length===1?' document':' documents');$('q-hl').innerHTML=QH.length?QH.map(function(h){return '<div class="q-h"><div><div class="q-ht">'+esc(h.t)+'</div><div class="q-hm">'+(h.k==='rfq'?'Ask for a quote':'Quote')+' · '+esc(h.d)+'</div></div><span class="de-tag">'+esc(h.s)+'</span></div>'}).join(''):'<div class="de-empty">Nothing yet. Approved quotes appear here.</div>'}
+  $('qtypes').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;kind=b.dataset.q;[].forEach.call(this.children,function(c){c.setAttribute('aria-selected',String(c===b))});
+   $('expwrap').hidden=kind!=='proc';$('qwrap').hidden=kind==='proc';doc=null;done=false;if(kind!=='proc'){form();paper();hist()}});
+  $('q-ok').addEventListener('change',function(){$('q-appr').disabled=!this.checked});
+  $('q-appr').addEventListener('click',function(){done=true;QH.unshift({k:doc.k,t:doc.k==='rfq'?'Ask for a quote to '+doc.v:'Quote for '+(doc.c||'customer'),s:'Approved',d:'Today'});saveQ();hist();paper()});
+  $('q-send').addEventListener('click',function(){doc.sent=true;QH[0].s='Sent';saveQ();hist();paper()});
+  $('q-dl').addEventListener('click',function(){var b=this;b.textContent='Prepared (preview only)';setTimeout(function(){b.textContent='Download PDF'},1800)});
+ })();
 })();
 </script>
 <script>document.querySelectorAll(".de-group-head").forEach(function(b){b.addEventListener("click",function(){var g=b.parentNode;var c=g.classList.toggle("is-collapsed");b.setAttribute("aria-expanded",String(!c));});});</script>
