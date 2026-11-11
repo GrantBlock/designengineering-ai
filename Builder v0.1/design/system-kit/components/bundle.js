@@ -11,6 +11,7 @@
     menu: 'M4 7h16M4 12h16M4 17h16',
     'panel-left': 'M4 5h16v14H4zM9 5v14',
     'chevron-left': 'M15 6l-6 6 6 6',
+    'chat-plus': 'M5 5h14a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1h-8l-4 4v-4H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zM12 8v5M9.5 10.5h5',
     chat: 'M5 5h14a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1h-8l-4 4v-4H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1z',
     dashboard: 'M4 5h16v14H4zM4 10h16M10 10v9',
     briefcase: 'M3 8h18v12H3zM9 8V5h6v3M3 13h18',
@@ -180,8 +181,9 @@
         : h('div', { className: 'sbpane' }, h('div', { className: 'sbhead' }, 'Projects'), h('div', { className: 'sbrecs de-scroll' }, row('plus', 'New project', 'sbrow sbnewproj', 'new-project'), projects.map(function (g) {
             var shut = !!closed[g.name];
             return h('div', { key: g.name, className: cx('sbgroup', shut && 'is-closed') },
-              h('button', { type: 'button', className: 'sbgrp', 'aria-expanded': !shut, onClick: function () { var n = Object.assign({}, closed); n[g.name] = !shut; cs[1](n); } },
+              h('div', { className: 'sbgrow' }, h('button', { type: 'button', className: 'sbgrp', 'aria-expanded': !shut, onClick: function () { var n = Object.assign({}, closed); n[g.name] = !shut; cs[1](n); } },
                 h(Icon, { name: 'chevron-right', size: 12, strokeWidth: 2 }), h('span', { className: 'sblab' }, g.name), h('span', { className: 'sbcount' }, g.chats.length)),
+                h('button', { type: 'button', className: 'sbgstart', title: 'Start chat in ' + g.name, 'aria-label': 'Start chat in ' + g.name, onClick: function () { p.onNavigate && p.onNavigate('start-chat', g.name); } }, h(Icon, { name: 'chat-plus', size: 16 }))),
               !shut && h('div', { className: 'sbkids' }, g.chats.map(chat)));
           }))),
       h('div', { className: 'sbfoot' },

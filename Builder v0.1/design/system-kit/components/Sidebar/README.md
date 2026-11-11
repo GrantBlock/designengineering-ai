@@ -9,3 +9,4 @@ The desktop navigation panel, in four regions: top toolbar, primary nav, a scrol
 - **Footer:** gray initial avatar, "Grant · Pro" with a chevron (account switcher), settings gear.
 - 264px wide, `bc-radius-shell`, `bc-shadow-shell`. The old Design, Operations, Vault and Tools groups and Quick search are retired; see DESIGN-SYSTEM.md.
 - General is not a group in the sidebar. It is the default project for chat sessions; it appears only in the mobile "Chat in" selector. `onNavigate` also sends `new-project`.
+- Each project group header has a Start chat icon button (chat bubble with a plus) at the right, dimmed until the row is hovered; it starts a new chat in that project (`onNavigate("start-chat", projectName)`).

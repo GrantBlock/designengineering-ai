@@ -243,3 +243,9 @@ button:focus-visible, textarea:focus-visible, input:focus-visible, [role="button
 @media (max-width:760px){button.sbrec{border:none;background:transparent;font:inherit;font-size:14px}
 button.sbrec:hover{background:var(--bc-surface-raised)}
 .sbkids button.sbrec{font-size:13px}
+.sbgrow{display:flex;align-items:center;gap:2px;border-radius:10px}
+.sbgrow:hover{background:var(--bc-surface-raised)}
+.sbgrow .sbgrp{flex:1;min-width:0;background:transparent!important}
+.sbgstart{display:flex;align-items:center;justify-content:center;width:28px;height:28px;flex-shrink:0;border:none;border-radius:8px;background:transparent;color:var(--bc-muted);opacity:.55;cursor:pointer;text-decoration:none}
+.sbgrow:hover .sbgstart,.sbgstart:focus-visible{opacity:1}
+.sbgstart:hover{background:var(--bc-surface);color:var(--bc-steel-blue-text);opacity:1}
