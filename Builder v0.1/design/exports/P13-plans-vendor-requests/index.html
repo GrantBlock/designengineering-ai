@@ -1,0 +1,456 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Plans and vendor requests — Design Engineering</title>
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+<style>
+
+@font-face{font-family:"Overpass";src:url("../../system-kit/fonts/Overpass.woff2") format("woff2");font-weight:300 800;font-style:normal;font-display:swap}
+@font-face{font-family:"Overpass Mono";src:url("../../system-kit/fonts/OverpassMono.woff2") format("woff2");font-weight:400 500;font-style:normal;font-display:swap}
+:root{--bc-backdrop:#141416;--bc-canvas:#1e1e20;--bc-surface:#29292c;--bc-surface-raised:#353538;--bc-hairline:rgba(255,255,255,0.07);--bc-edge:rgba(255,255,255,0.06);--bc-edge-soft:rgba(255,255,255,0.05);--bc-ink:#ececed;--bc-muted:#9d9da3;--bc-placeholder-text:#7c7c82;--bc-steel-blue:#4682b4;--bc-steel-blue-text:#7faad0;--bc-steel-blue-hover:#3a6f9c;--bc-steel-blue-tint:rgba(70,130,180,0.2);--bc-steel-blue-edge:rgba(127,170,208,0.45);--bc-on-steel-blue:#ffffff;--bc-on-steel-blue-line:rgba(255,255,255,0.35);--bc-on-steel-blue-fill:rgba(255,255,255,0.16);--bc-scroll-thumb:rgba(255,255,255,0.14);--bc-field:#f1f1ef;--bc-field-pressed:#e6e6e3;--bc-field-ink:#1e1e20;--bc-field-muted:#5c5c63;--bc-field-placeholder:#6b6b72;--bc-field-hairline:rgba(0,0,0,0.12);--bc-field-edge:rgba(255,255,255,0.6);--bc-field-edge-soft:rgba(255,255,255,0.5);--bc-field-focus:rgba(127,170,208,0.5);--bc-field-steel-text:#2f5f8a;--bc-field-send-off:#c9c9c6;--bc-space-1:4px;--bc-space-2:8px;--bc-space-3:12px;--bc-space-4:16px;--bc-space-6:24px;--bc-space-8:32px;--bc-space-12:48px;--bc-space-16:64px;--bc-shell-gap:10px;--bc-card-pad:18px;--bc-gutter-mobile:20px;--bc-topbar-height:56px;--bc-control-height:36px;--bc-touch-target:44px;--bc-sidebar-width:264px;--bc-content-width:760px;--bc-radius-bar:2px;--bc-radius-logo:6px;--bc-radius-control:10px;--bc-radius-card:12px;--bc-radius-bubble:14px;--bc-radius-panel:16px;--bc-radius-shell:18px;--bc-radius-composer:20px;--bc-radius-pill:999px;--bc-shadow-shell:inset 0 1px 0 rgba(255,255,255,0.05), 0 10px 30px rgba(0,0,0,0.28);--bc-shadow-panel:inset 0 1px 0 rgba(255,255,255,0.05), 0 8px 24px rgba(0,0,0,0.22);--bc-shadow-field:inset 0 1px 0 rgba(255,255,255,0.9), 0 12px 32px rgba(0,0,0,0.3), 0 2px 6px rgba(0,0,0,0.2);--bc-shadow-search:inset 0 1px 2px rgba(0,0,0,0.08), 0 2px 6px rgba(0,0,0,0.2);--font-sans:"Overpass", "Helvetica Neue", Helvetica, Arial, sans-serif;--font-mono:"Overpass Mono", ui-monospace, Consolas, "Courier New", monospace;}
+/* Design Engineering — component styles. Every value comes from tokens.json; literal values here are the source's own (letter-spacing, line-height, transitions). */
+html, body { margin: 0; }
+body { background: var(--bc-canvas); color: var(--bc-ink); font-family: var(--font-sans); -webkit-font-smoothing: antialiased; }
+*, *::before, *::after { box-sizing: border-box; }
+a { color: var(--bc-steel-blue-text); text-decoration: none; }
+a:hover { color: var(--bc-ink); text-decoration: underline; }
+button:focus-visible, textarea:focus-visible, input:focus-visible, [role="button"]:focus-visible { outline: 2px solid var(--bc-steel-blue-text); outline-offset: 2px; }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+
+/* preview helpers */
+.de-stage { padding: var(--bc-space-6); display: flex; flex-wrap: wrap; gap: var(--bc-space-3); align-items: center; background: var(--bc-canvas); }
+.de-stage-col { padding: var(--bc-space-6); display: flex; flex-direction: column; gap: var(--bc-space-4); background: var(--bc-canvas); }
+
+/* icon */
+.de-icon { flex-shrink: 0; display: block; }
+
+/* scroll */
+.de-scroll { scrollbar-width: thin; scrollbar-color: transparent transparent; scrollbar-gutter: stable; }
+.de-scroll:hover { scrollbar-color: var(--bc-scroll-thumb) transparent; }
+.de-scroll::-webkit-scrollbar { width: 6px; }
+.de-scroll::-webkit-scrollbar-thumb { background: transparent; border-radius: 6px; }
+.de-scroll:hover::-webkit-scrollbar-thumb { background: var(--bc-scroll-thumb); }
+.de-scroll::-webkit-scrollbar-button { display: none; height: 0; }
+
+/* ── Button ── */
+.de-btn { display: inline-flex; align-items: center; gap: var(--bc-space-2); height: var(--bc-control-height); padding: 2px 12px 0; border: none; border-radius: var(--bc-radius-control); background: none; color: var(--bc-ink); font: inherit; font-size: 12px; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; cursor: pointer; white-space: nowrap; }
+.de-btn .de-icon { margin-top: -2px; }
+.de-btn:hover { background: var(--bc-surface-raised); }
+.de-btn-chip { gap: 10px; padding: 2px 14px 0; background: var(--bc-surface-raised); border: 1px solid var(--bc-hairline); font-size: 13px; font-weight: 400; letter-spacing: 0; text-transform: none; }
+.de-btn-chip:hover { background: var(--bc-surface-raised); border-color: var(--bc-steel-blue); }
+.de-btn-chip .de-tag { margin-top: -2px; }
+.de-btn-row { display: flex; align-items: center; gap: var(--bc-space-3); width: 100%; min-height: var(--bc-control-height); padding: 0 10px; border: none; border-radius: var(--bc-radius-control); background: transparent; color: var(--bc-muted); font: inherit; font-size: 14px; text-align: left; cursor: pointer; }
+.de-btn-row:hover { background: var(--bc-surface-raised); color: var(--bc-ink); }
+.de-btn-row > span { flex: 1; padding-top: 2px; }
+
+/* ── IconButton ── */
+.de-iconbtn { display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; width: var(--bc-control-height); height: var(--bc-control-height); padding: 0; border: none; border-radius: var(--bc-radius-control); background: none; color: var(--bc-muted); cursor: pointer; }
+.de-iconbtn:hover { background: var(--bc-surface-raised); color: var(--bc-ink); }
+.de-iconbtn-sm { width: 32px; height: 32px; }
+.de-iconbtn-xs { width: 28px; height: 28px; }
+.de-iconbtn-outline { border: 1px solid var(--bc-field-hairline); color: var(--bc-field-muted); }
+.de-iconbtn-outline:hover { background: none; color: var(--bc-field-ink); border-color: var(--bc-field-muted); }
+.de-iconbtn-send { background: var(--bc-field-send-off); color: var(--bc-field-muted); transition: background 200ms; }
+.de-iconbtn-send.is-armed { background: var(--bc-steel-blue); color: var(--bc-on-steel-blue); }
+.de-iconbtn-send.is-armed:hover { background: var(--bc-steel-blue-hover); color: var(--bc-on-steel-blue); }
+.de-iconbtn-send:disabled { cursor: default; }
+.de-iconbtn-send:not(.is-armed):hover { background: var(--bc-field-send-off); color: var(--bc-field-muted); }
+.de-iconbtn-star.is-on { color: var(--bc-steel-blue-text); }
+.de-iconbtn-star:hover { background: var(--bc-surface); }
+
+/* ── Tag ── */
+.de-tag { display: inline-block; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--bc-steel-blue-text); background: var(--bc-steel-blue-tint); padding: 3px 6px 2px; border-radius: var(--bc-radius-control); white-space: nowrap; }
+.de-tag-plain { background: none; padding: 0; color: var(--bc-muted); }
+.de-kbd { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--bc-field-placeholder); }
+
+/* ── Avatar ── */
+.de-avatar { display: flex; align-items: center; justify-content: center; width: 28px; height: 28px; border-radius: var(--bc-radius-control); background: var(--bc-steel-blue-tint); color: var(--bc-steel-blue-text); font-size: 12px; font-weight: 700; padding-top: 2px; }
+.de-avatar-lg { width: var(--bc-touch-target); height: var(--bc-touch-target); border-radius: var(--bc-radius-card); font-size: 17px; padding-top: 3px; }
+
+/* ── Mono labels ── */
+.de-label { font-family: var(--font-mono); font-size: 11px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--bc-muted); }
+.de-eyebrow { font-family: var(--font-mono); font-size: 12px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--bc-steel-blue-text); }
+
+/* ── Hero ── */
+.de-hero { display: flex; flex-direction: column; align-items: center; gap: clamp(6px, 1.4vh, 12px); text-align: center; }
+.de-hero-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--bc-space-2); }
+.de-hero .de-eyebrow { margin-top: 4px; }
+.de-hero h1 { margin: 0; font-size: clamp(28px, 4.4vh, 40px); font-weight: 800; letter-spacing: -0.01em; line-height: 0.98; text-transform: uppercase; text-wrap: balance; }
+.de-hero-mobile { align-items: flex-start; text-align: left; gap: 10px; }
+.de-hero-mobile .de-eyebrow { font-size: 13px; margin-top: 0; }
+.de-hero-mobile h1 { font-size: 42px; }
+
+/* ── Panel + SectionHeader ── */
+.de-panel { display: flex; flex-direction: column; padding: 2px 12px 12px; border: 1px solid var(--bc-edge); border-radius: var(--bc-radius-panel); background: var(--bc-surface); box-shadow: var(--bc-shadow-panel); }
+.de-section-head { display: flex; align-items: center; justify-content: space-between; gap: var(--bc-space-2); height: 32px; border-bottom: 1px solid var(--bc-hairline); margin-bottom: var(--bc-space-2); }
+.de-section-head .de-label, .de-section-head .de-tag-plain { padding-top: 2px; }
+.de-section-head-mobile { height: var(--bc-touch-target); margin-bottom: 0; }
+.de-section-head-mobile .de-label { font-size: 13px; }
+.de-section-head-mobile a { font-size: 14px; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; padding: 12px 0 10px; }
+.de-grid-3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--bc-space-2); }
+
+/* ── PromptCard ── */
+.de-prompt { display: flex; align-items: center; gap: var(--bc-space-2); min-width: 0; padding: clamp(5px, 0.9vh, 9px) 4px clamp(4px, 0.8vh, 8px) 12px; background: var(--bc-surface-raised); border: 1px solid var(--bc-edge-soft); border-radius: var(--bc-radius-card); color: var(--bc-ink); cursor: pointer; transition: border-color 200ms; }
+.de-prompt:hover { border-color: var(--bc-steel-blue-edge); }
+.de-prompt-text { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 3px; }
+.de-prompt-cat { font-family: var(--font-mono); font-size: 10px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--bc-steel-blue-text); }
+.de-prompt-label { font-size: 13px; line-height: 1.4; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+/* ── EmptyNote ── */
+.de-empty { padding: 14px 12px 12px; border: 1px dashed var(--bc-hairline); border-radius: var(--bc-radius-card); font-size: 13px; color: var(--bc-muted); }
+
+/* ── Message ── */
+.de-msg { display: flex; flex-direction: column; gap: var(--bc-space-2); align-items: flex-start; }
+.de-msg.is-user { align-items: flex-end; }
+.de-msg .de-label { color: var(--bc-steel-blue-text); }
+.de-msg.is-user .de-label { color: var(--bc-muted); }
+.de-msg-body { max-width: 620px; padding: 0; border: 1px solid transparent; border-radius: var(--bc-radius-bubble); font-size: 16px; line-height: 1.6; white-space: pre-wrap; text-wrap: pretty; }
+.de-msg.is-user .de-msg-body { padding: 12px 16px; background: var(--bc-surface-raised); border-color: var(--bc-hairline); }
+
+/* ── SearchField ── */
+.de-search { display: flex; align-items: center; gap: var(--bc-space-2); height: var(--bc-control-height); padding: 0 10px; border: 1px solid var(--bc-field-edge-soft); border-radius: var(--bc-radius-control); background: var(--bc-field); color: var(--bc-field-ink); box-shadow: var(--bc-shadow-search); }
+.de-search .de-icon { color: var(--bc-field-muted); }
+.de-search input { flex: 1; min-width: 0; background: none; border: none; outline: none; color: var(--bc-field-ink); font: inherit; font-size: 13px; padding-top: 2px; }
+.de-search input::placeholder { color: var(--bc-field-placeholder); }
+
+/* ── Composer ── */
+.de-composer { border: 1px solid var(--bc-field-edge); border-radius: var(--bc-radius-composer); background: var(--bc-field); color: var(--bc-field-ink); box-shadow: var(--bc-shadow-field); }
+.de-composer:focus-within { border-color: var(--bc-field-focus); }
+.de-composer textarea { display: block; width: 100%; resize: none; background: none; border: none; outline: none; color: var(--bc-field-ink); font: inherit; font-size: 16px; line-height: 1.6; padding: 14px 18px 2px; min-height: 56px; }
+.de-composer textarea::placeholder, .de-composer input::placeholder { color: var(--bc-field-placeholder); }
+.de-composer-bar { display: flex; align-items: center; gap: 4px; padding: 8px 10px 10px; }
+.de-composer-bar .de-spacer { flex: 1; }
+.de-composer-meta { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--bc-field-muted); padding: 0 10px; }
+.de-composer .de-btn { gap: 6px; padding: 2px 10px 0; color: var(--bc-field-muted); font-size: 13px; font-weight: 400; letter-spacing: 0; text-transform: none; }
+.de-composer .de-btn:hover { color: var(--bc-field-ink); background: var(--bc-field-pressed); }
+.de-composer-mobile { display: flex; align-items: center; gap: var(--bc-space-2); height: 64px; padding: 0 8px 0 20px; }
+.de-composer-mobile input { flex: 1; min-width: 0; height: 100%; background: none; border: none; outline: none; color: var(--bc-field-ink); font: inherit; font-size: 18px; padding-top: 3px; }
+.de-composer-mobile .de-iconbtn-send { width: 48px; height: 48px; border-radius: var(--bc-radius-bubble); background: var(--bc-field-send-off); }
+.de-composer-mobile .de-iconbtn-send.is-armed { background: var(--bc-steel-blue); color: var(--bc-on-steel-blue); }
+
+/* ── NavItem ── */
+.de-nav-group { display: flex; flex-direction: column; gap: 2px; }
+.de-nav-group > .de-label { padding: 18px 10px 8px; }
+.de-nav-item { display: flex; flex-direction: column; }
+.de-nav-row { display: flex; align-items: center; gap: var(--bc-space-3); width: 100%; min-height: var(--bc-control-height); padding: 0 10px; border: none; border-radius: var(--bc-radius-control); background: transparent; color: var(--bc-muted); font: inherit; font-size: 14px; text-align: left; cursor: pointer; }
+.de-nav-row:hover { background: var(--bc-surface-raised); color: var(--bc-ink); }
+.de-nav-row.is-active { background: var(--bc-surface-raised); color: var(--bc-ink); }
+.de-nav-row.is-open { color: var(--bc-ink); }
+.de-nav-row > .de-icon { opacity: 0.85; }
+.de-nav-row > span:not(.de-tag) { flex: 1; padding-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.de-nav-chev { color: var(--bc-muted); transition: transform 250ms; }
+.de-nav-row.is-open .de-nav-chev { transform: rotate(90deg); }
+.de-collapsible { margin-top: 22px; }
+.de-group-head { display: flex; align-items: center; justify-content: space-between; width: 100%; padding: 6px 10px; border: none; border-radius: var(--bc-radius-control); background: transparent; color: var(--bc-muted); cursor: pointer; }
+.de-group-head:hover { background: var(--bc-surface-raised); color: var(--bc-ink); }
+.de-group-head .de-nav-chev { transform: rotate(90deg); }
+.is-collapsed .de-group-head .de-nav-chev { transform: rotate(0deg); }
+.is-collapsed .de-group-body { display: none; }
+.de-group-body { display: flex; flex-direction: column; gap: 2px; margin-top: 4px; }
+.de-nav-empty { padding: 6px 10px; font-size: 13px; color: var(--bc-muted); opacity: .7; }
+.de-nav-children { display: flex; flex-direction: column; gap: 1px; margin: 2px 0 6px 18px; padding-left: 12px; border-left: 1px solid var(--bc-hairline); }
+.de-nav-child { display: flex; align-items: center; min-height: 32px; padding: 2px 10px 0; border: none; border-radius: var(--bc-radius-control); background: transparent; color: var(--bc-muted); font: inherit; font-size: 13px; text-align: left; cursor: pointer; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.de-nav-child:hover { background: var(--bc-surface-raised); color: var(--bc-ink); }
+.de-nav-child.is-active { background: var(--bc-steel-blue-tint); color: var(--bc-steel-blue-text); }
+
+/* ── Sidebar ── */
+.de-sidebar { width: var(--bc-sidebar-width); flex-shrink: 0; display: flex; flex-direction: column; overflow: hidden; border: 1px solid var(--bc-edge); border-radius: var(--bc-radius-shell); background: var(--bc-surface); box-shadow: var(--bc-shadow-shell); }
+.de-sidebar-head { display: flex; align-items: center; gap: 10px; height: var(--bc-topbar-height); padding: 0 16px; border-bottom: 1px solid var(--bc-hairline); }
+.de-sidebar-head img { width: 26px; height: 26px; border-radius: var(--bc-radius-logo); }
+.de-brand { font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; white-space: nowrap; padding-top: 2px; color: var(--bc-ink); }
+.de-sidebar-head .de-iconbtn { margin-left: auto; }
+.de-sidebar-search { padding: 12px 12px 4px; }
+.de-sidebar-nav { flex: 1; overflow-y: auto; padding: 8px 6px 12px 12px; display: flex; flex-direction: column; gap: 2px; }
+.de-sidebar-foot { padding: 8px 12px; border-top: 1px solid var(--bc-hairline); }
+
+/* ── TopBar ── */
+.de-topbar { display: flex; align-items: center; justify-content: space-between; gap: var(--bc-space-6); height: var(--bc-topbar-height); padding: 0 var(--bc-space-6); border-bottom: 1px solid var(--bc-hairline); }
+.de-topbar-actions { display: flex; align-items: center; gap: 4px; }
+.de-topbar-actions .de-iconbtn:last-child { margin-left: 4px; }
+
+/* ── AppShell ── */
+.de-shell { display: flex; gap: var(--bc-shell-gap); padding: var(--bc-shell-gap); height: 100vh; min-height: 560px; background: var(--bc-canvas); color: var(--bc-ink); font-family: var(--font-sans); }
+.de-shell-main { flex: 1; min-width: 0; display: flex; flex-direction: column; background: var(--bc-canvas); }
+.de-shell-scroll { flex: 1; overflow-y: auto; display: flex; flex-direction: column; align-items: center; padding: 0 var(--bc-space-6); }
+.de-shell-column { width: 100%; max-width: var(--bc-content-width); display: flex; flex-direction: column; flex: 1; }
+
+/* ── Mobile: header ── */
+.de-mheader { display: flex; align-items: center; gap: var(--bc-space-3); padding: 8px var(--bc-gutter-mobile) 0; }
+.de-mheader img { width: 36px; height: 36px; border-radius: 8px; }
+.de-mheader .de-brand { flex: 1; font-size: 14px; }
+
+/* ── Mobile: ActionCard ── */
+.de-acard { flex: 0 0 236px; height: 252px; scroll-snap-align: start; display: flex; flex-direction: column; justify-content: space-between; padding: var(--bc-card-pad); border-radius: var(--bc-radius-composer); background: var(--bc-surface); border: 1px solid var(--bc-edge); color: var(--bc-ink); cursor: pointer; }
+.de-acard-top { display: flex; justify-content: space-between; align-items: flex-start; }
+.de-acard-tile { display: flex; align-items: center; justify-content: center; width: 48px; height: 48px; border-radius: var(--bc-radius-bubble); border: 1px solid var(--bc-hairline); color: var(--bc-steel-blue-text); }
+.de-acard-go { display: flex; align-items: center; justify-content: center; width: var(--bc-touch-target); height: var(--bc-touch-target); border-radius: var(--bc-radius-pill); background: var(--bc-surface-raised); }
+.de-acard-cat { font-family: var(--font-mono); font-size: 13px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--bc-steel-blue-text); }
+.de-acard-top > .de-acard-cat { padding-top: 6px; }
+.de-acard-title { font-size: 28px; font-weight: 800; line-height: 1; letter-spacing: -0.01em; text-transform: uppercase; }
+.de-acard-text { font-size: 21px; font-weight: 600; line-height: 1.25; text-wrap: pretty; }
+.de-acard-foot { display: flex; flex-direction: column; gap: var(--bc-space-2); }
+.de-acard-secondary { background: var(--bc-surface-raised); border-color: var(--bc-edge-soft); }
+.de-acard-secondary .de-acard-go { background: var(--bc-surface); }
+.de-acard-primary { background: var(--bc-steel-blue); border-color: transparent; color: var(--bc-on-steel-blue); }
+.de-acard-primary:active { background: var(--bc-steel-blue-hover); }
+.de-acard-primary .de-acard-tile { border-color: var(--bc-on-steel-blue-line); color: var(--bc-on-steel-blue); }
+.de-acard-primary .de-acard-go { background: var(--bc-on-steel-blue-fill); }
+.de-acard-rail { display: flex; gap: var(--bc-space-3); overflow-x: auto; scroll-snap-type: x mandatory; padding: 0 var(--bc-gutter-mobile) 4px; scroll-padding: 0 var(--bc-gutter-mobile); scrollbar-width: none; }
+.de-acard-rail::-webkit-scrollbar { display: none; }
+
+/* ── Mobile: StageProgress + ProjectRow ── */
+.de-stages { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 4px; }
+.de-stages > i { display: block; height: 4px; border-radius: var(--bc-radius-bar); background: var(--bc-surface-raised); }
+.de-stages > i.is-done { background: var(--bc-steel-blue); }
+.de-prow { display: flex; flex-direction: column; gap: 10px; padding: var(--bc-card-pad) 0; border-bottom: 1px solid var(--bc-hairline); cursor: pointer; }
+.de-prow-meta { display: flex; justify-content: space-between; gap: var(--bc-space-3); font-family: var(--font-mono); font-size: 13px; font-weight: 500; letter-spacing: 0.1em; }
+.de-prow-no { color: var(--bc-muted); }
+.de-prow-stage { color: var(--bc-steel-blue-text); text-transform: uppercase; }
+.de-prow-name { font-size: 21px; font-weight: 600; line-height: 1.25; }
+
+/* ── Mobile: TabBar ── */
+.de-tabbar { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); height: 68px; padding: 4px; border-radius: var(--bc-radius-composer); background: var(--bc-surface); border: 1px solid var(--bc-edge); }
+.de-tab { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; border: none; border-radius: var(--bc-radius-panel); background: transparent; color: var(--bc-muted); font: inherit; cursor: pointer; }
+.de-tab.is-active { background: var(--bc-steel-blue-tint); color: var(--bc-steel-blue-text); }
+.de-tab span { font-size: 12px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; }
+.de-mdock { display: flex; flex-direction: column; gap: 10px; padding: 16px 12px 34px; background: linear-gradient(to bottom, rgba(30,30,32,0) 0, var(--bc-canvas) 24px); }
+
+/* sidebar v2 (chat / projects switcher) */
+.sb .sbtool{display:flex;align-items:center;gap:2px;height:48px;padding:0 8px;flex-shrink:0}
+.sbicon{display:flex;align-items:center;justify-content:center;width:32px;height:32px;padding:0;background:none;border:none;border-radius:10px;color:var(--bc-muted);cursor:pointer}
+.sbicon:hover{background:var(--bc-surface-raised);color:var(--bc-ink)}
+.sbdim{opacity:.35;cursor:default;pointer-events:none}
+.sbexpand{position:fixed;left:20px;top:20px;z-index:5;background:var(--bc-surface);border:1px solid var(--bc-edge)}
+.sbexpand[hidden]{display:none}
+.sbseg{display:flex;gap:2px;padding:2px;border-radius:10px;background:var(--bc-canvas);border:1px solid var(--bc-hairline)}
+.sbsegb{display:flex;align-items:center;justify-content:center;width:30px;height:26px;padding:0;border:none;border-radius:8px;background:transparent;color:var(--bc-muted);cursor:pointer}
+.sbsegb:hover,.sbsegb.is-on{color:var(--bc-ink)}
+.sbsegb.is-on{background:var(--bc-surface-raised)}
+.sbnav{display:flex;flex-direction:column;gap:2px;padding:4px 10px 8px;flex-shrink:0}
+.sbrow,.sbnew{display:flex;align-items:center;gap:10px;width:100%;height:34px;padding:0 10px;border:none;border-radius:10px;background:transparent;color:var(--bc-muted);font:inherit;font-size:14px;text-align:left;text-decoration:none;cursor:pointer}
+.sbrow:hover,.sbrow.is-active{background:var(--bc-surface-raised);color:var(--bc-ink);text-decoration:none}
+.sbnew{margin-bottom:4px;border-radius:999px;background:var(--bc-surface-raised);border:1px solid var(--bc-hairline);color:var(--bc-ink);box-shadow:0 2px 6px rgba(0,0,0,.22)}
+.sbnew:hover{border-color:var(--bc-steel-blue-edge);color:var(--bc-ink);text-decoration:none}
+.sblab{flex:1;padding-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sbpane{flex:1;min-height:0;display:flex;flex-direction:column}
+.sbpane[hidden]{display:none}
+.sbhead{padding:14px 20px 6px;font-family:var(--font-mono);font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--bc-muted);flex-shrink:0}
+.sbrecs{flex:1;min-height:0;overflow-y:auto;padding:0 6px 8px 10px;display:flex;flex-direction:column;gap:1px}
+.sbrec{display:block;width:100%;min-height:34px;padding:0 10px;border-radius:10px;color:var(--bc-ink);font-size:14px;text-align:left;text-decoration:none;cursor:pointer}
+.sbrec:hover{background:var(--bc-surface-raised);color:var(--bc-ink);text-decoration:none}
+.sbfade{display:block;padding-top:8px;padding-bottom:6px;white-space:nowrap;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,#000 calc(100% - 28px),transparent);mask-image:linear-gradient(90deg,#000 calc(100% - 28px),transparent)}
+.sbgrp{display:flex;align-items:center;gap:8px;width:100%;height:34px;padding:0 10px;border:none;border-radius:10px;background:transparent;color:var(--bc-ink);font:inherit;font-size:14px;text-align:left;cursor:pointer}
+.sbgrp:hover{background:var(--bc-surface-raised)}
+.sbgrp svg{color:var(--bc-muted);transition:transform 200ms;transform:rotate(90deg)}
+.sbgroup.is-closed .sbgrp svg{transform:rotate(0)}
+.sbgroup.is-closed .sbkids{display:none}
+.sbgrow{display:flex;align-items:center;gap:2px;border-radius:10px}
+.sbgrow:hover{background:var(--bc-surface-raised)}
+.sbgrow .sbgrp{flex:1;min-width:0;background:transparent!important}
+.sbgstart{display:flex;align-items:center;justify-content:center;width:28px;height:28px;flex-shrink:0;border:none;border-radius:8px;background:transparent;color:var(--bc-muted);opacity:.55;cursor:pointer;text-decoration:none}
+.sbgrow:hover .sbgstart,.sbgstart:focus-visible{opacity:1}
+.sbgstart:hover{background:var(--bc-surface);color:var(--bc-steel-blue-text);opacity:1}
+.sbcount{font-family:var(--font-mono);font-size:10px;letter-spacing:.08em;color:var(--bc-muted);padding-top:2px}
+.sbkids{display:flex;flex-direction:column;gap:1px;margin:0 0 6px 16px;padding-left:8px;border-left:1px solid var(--bc-hairline)}
+.sbkids .sbrec{color:var(--bc-muted);font-size:13px;min-height:30px}
+.sbkids .sbrec:hover{color:var(--bc-ink)}
+.sbfoot{display:flex;align-items:center;gap:4px;padding:8px 8px 8px 10px;border-top:1px solid var(--bc-hairline);flex-shrink:0}
+.sbacct{display:flex;align-items:center;gap:10px;flex:1;min-width:0;height:40px;padding:0 8px;border:none;border-radius:10px;background:transparent;color:var(--bc-ink);font:inherit;font-size:14px;text-align:left;cursor:pointer}
+.sbacct:hover{background:var(--bc-surface-raised)}
+.sbacct .sblab{flex:0 1 auto}
+.sbacct svg:last-child{color:var(--bc-muted);margin-left:2px}
+.sbavatar{display:flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:999px;background:var(--bc-surface-raised);color:var(--bc-ink);font-size:12px;font-weight:700;padding-top:2px;flex-shrink:0}
+@media (max-width:760px){.sbexpand{display:none!important}}
+
+/* P07 Upload flow: layout glue only; every value is a token. */
+/* P13 Plans and vendor requests: layout glue only; every value is a token. Paper preview follows the approved drawing-sheet look (P06). */
+[hidden]{display:none!important}
+.de-shell-column{max-width:1120px}
+.r-head{padding:var(--bc-space-8) 0 var(--bc-space-4)}
+.r-head h1{margin:6px 0 0;font-size:clamp(28px,4.4vh,40px);font-weight:800;letter-spacing:-0.01em;line-height:.98;text-transform:uppercase}
+.r-head p{margin:var(--bc-space-3) 0 0;font-size:14px;line-height:1.5;color:var(--bc-muted);max-width:560px}
+.r-bar{display:flex;flex-wrap:wrap;align-items:flex-end;gap:var(--bc-space-4);margin-bottom:var(--bc-space-4)}
+.r-f{display:flex;flex-direction:column;gap:6px;min-width:0}
+.r-sel{position:relative;display:flex;align-items:center;height:44px;min-width:280px;border:1px solid var(--bc-field-edge-soft);border-radius:var(--bc-radius-control);background:var(--bc-field);box-shadow:var(--bc-shadow-search);color:var(--bc-field-ink)}
+.r-sel:focus-within{border-color:var(--bc-field-focus)}
+.r-sel select{appearance:none;-webkit-appearance:none;flex:1;min-width:0;height:100%;padding:2px 40px 0 12px;background:none;border:none;outline:none;color:var(--bc-field-ink);font:inherit;font-size:16px;cursor:pointer}
+.r-sel .de-icon{position:absolute;right:12px;color:var(--bc-field-muted);pointer-events:none}
+.r-seg{display:grid;grid-template-columns:1fr 1fr;gap:4px;padding:4px;width:320px;max-width:100%;border:1px solid var(--bc-hairline);border-radius:var(--bc-radius-card);background:var(--bc-canvas)}
+.r-seg button{height:36px;border:none;border-radius:var(--bc-radius-control);background:transparent;color:var(--bc-muted);font:inherit;font-size:12px;font-weight:500;letter-spacing:.05em;text-transform:uppercase;padding-top:2px;cursor:pointer;transition:background 200ms,color 200ms}
+.r-seg button:hover{color:var(--bc-ink)}
+.r-seg button[aria-selected=true]{background:var(--bc-surface-raised);color:var(--bc-ink)}
+.r-cols{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:var(--bc-space-4);align-items:start}
+.r-form{display:flex;flex-direction:column;gap:var(--bc-space-3);padding-top:var(--bc-space-2)}
+.r-in{display:flex;align-items:center;height:44px;border:1px solid var(--bc-field-edge-soft);border-radius:var(--bc-radius-control);background:var(--bc-field);box-shadow:var(--bc-shadow-search);color:var(--bc-field-ink)}
+.r-in:focus-within{border-color:var(--bc-field-focus)}
+.r-in input,.r-in select{flex:1;min-width:0;height:100%;padding:2px 12px 0;background:none;border:none;outline:none;color:var(--bc-field-ink);font:inherit;font-size:16px}
+.r-in textarea{flex:1;min-width:0;min-height:72px;padding:10px 12px 8px;background:none;border:none;outline:none;resize:vertical;color:var(--bc-field-ink);font:inherit;font-size:15px;line-height:1.45}
+.r-in:has(textarea){height:auto}
+.r-two{display:grid;grid-template-columns:1fr 1fr;gap:var(--bc-space-3)}
+.r-chk{display:flex;flex-direction:column}
+.r-ck{display:grid;grid-template-columns:22px minmax(0,1fr) auto;align-items:center;gap:var(--bc-space-3);padding:10px 4px;border-bottom:1px solid var(--bc-hairline);cursor:pointer;font-size:15px}
+.r-ck:last-child{border-bottom:none}
+.r-ck input[type=checkbox]{position:absolute;opacity:0;pointer-events:none}
+.r-box{display:flex;align-items:center;justify-content:center;width:22px;height:22px;border:1.5px solid var(--bc-muted);border-radius:6px;color:transparent;transition:border-color 200ms,background 200ms}
+.r-ck input[type=checkbox]:checked+.r-box{border-color:var(--bc-steel-blue);background:var(--bc-steel-blue-tint);color:var(--bc-steel-blue-text)}
+.r-ck input[type=checkbox]:focus-visible+.r-box{outline:2px solid var(--bc-steel-blue-text);outline-offset:2px}
+.r-ck small{font-family:var(--font-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--bc-muted)}
+.r-qty{width:64px;height:32px;padding:2px 8px 0;border:1px solid var(--bc-field-edge-soft);border-radius:var(--bc-radius-control);background:var(--bc-field);color:var(--bc-field-ink);font:inherit;font-size:14px;text-align:right}
+.r-gen{border:1px solid var(--bc-steel-blue);color:var(--bc-steel-blue-text);border-radius:var(--bc-radius-control);height:44px;padding:2px 18px 0;font-size:13px;font-weight:600;letter-spacing:.08em;align-self:flex-start}
+.r-gen:hover{background:var(--bc-steel-blue-tint)}
+.r-gen:disabled{border-color:var(--bc-hairline);color:var(--bc-muted);background:none;cursor:default}
+.r-pv{display:flex;flex-direction:column;gap:var(--bc-space-3);padding-top:var(--bc-space-2)}
+.r-paper{position:relative;background:#f4f4f5;color:#1f1f23;border-radius:6px;padding:28px 28px 24px;min-height:420px;box-shadow:0 2px 10px rgba(0,0,0,.35);font-size:13px;line-height:1.55}
+.r-paper h2{margin:0 0 2px;font-family:"Barlow Semi Condensed",var(--font-sans);font-size:22px;font-weight:700;text-transform:uppercase;color:#1a6dbf}
+.r-paper .m{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#6b6b73}
+.r-paper h3{margin:16px 0 4px;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#4a4a52}
+.r-paper table{width:100%;border-collapse:collapse;margin-top:4px}
+.r-paper th,.r-paper td{padding:5px 6px;border-bottom:1px solid #d4d4d8;text-align:left;font-size:12.5px}
+.r-paper th{font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:#6b6b73}
+.r-paper td.n,.r-paper th.n{text-align:right}
+.r-paper p{margin:4px 0}
+.r-stamp{position:absolute;top:22px;right:22px;padding:4px 8px 2px;border:2px solid #c0392b;border-radius:4px;color:#c0392b;font-family:var(--font-mono);font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;transform:rotate(3deg)}
+.r-stamp.ok{border-color:#2e7d52;color:#2e7d52}
+.r-paper.is-empty{display:flex;align-items:center;justify-content:center;color:#6b6b73;text-align:center}
+.r-rev{display:flex;flex-direction:column;gap:var(--bc-space-3);padding:14px;border:1px solid var(--bc-steel-blue-edge);border-radius:var(--bc-radius-card);background:var(--bc-steel-blue-tint)}
+.r-rev label{display:flex;gap:var(--bc-space-3);align-items:flex-start;font-size:14px;line-height:1.45;cursor:pointer}
+.r-rev input{margin-top:3px;width:18px;height:18px;accent-color:var(--bc-steel-blue)}
+.r-acts{display:flex;flex-wrap:wrap;gap:var(--bc-space-2)}
+.r-acts .de-btn{height:40px;border:1px solid var(--bc-hairline);background:var(--bc-surface-raised);font-size:13px;letter-spacing:.04em}
+.r-acts .de-btn:hover:not(:disabled){border-color:var(--bc-steel-blue)}
+.r-acts .de-btn:disabled{opacity:.4;cursor:default}
+.r-acts .is-main{border-color:var(--bc-steel-blue);color:var(--bc-steel-blue-text);background:none;font-weight:600}
+.r-hist{display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:4px var(--bc-space-4);align-items:center;padding:12px 4px;border-bottom:1px solid var(--bc-hairline)}
+.r-hist:last-child{border-bottom:none}
+.r-ht{font-size:15px;font-weight:600}
+.r-hm{font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--bc-muted)}
+.r-flag{color:#dcae62}
+.r-note{margin-top:var(--bc-space-6);padding-bottom:var(--bc-space-8);font-size:13px;color:var(--bc-muted);line-height:1.5}
+.r-mobile{display:none}
+@media (max-width:1000px){.r-cols{grid-template-columns:1fr}}
+@media (max-width:760px){
+ .de-shell{padding:0;gap:0;height:auto;min-height:100vh;display:block}
+ .de-sidebar,.de-topbar{display:none}
+ .de-shell-scroll{padding:0 var(--bc-gutter-mobile);overflow:visible;padding-bottom:140px}
+ .r-mobile{display:block}
+ .r-head h1{font-size:42px}.r-head .de-eyebrow{font-size:13px}.r-head p{font-size:16px}
+ .r-sel{min-width:0;width:100%;height:52px}.r-sel select{font-size:17px}.r-f{width:100%}.r-seg{width:100%}.r-seg button{height:44px}
+ .de-panel{background:none;border:none;box-shadow:none;padding:0}
+ .r-in{height:52px}.r-in input,.r-in select{font-size:17px}.r-two{grid-template-columns:1fr}
+ .r-ck{padding:14px 4px;min-height:var(--bc-touch-target)}.r-box{width:26px;height:26px}.r-ck{grid-template-columns:26px minmax(0,1fr) auto}
+ .r-gen{height:52px;width:100%}.r-acts .de-btn{height:52px;flex:1;justify-content:center}
+ .r-paper{padding:22px 18px 20px}.r-hist{grid-template-columns:1fr auto}.r-hist .r-hm:nth-of-type(2){grid-column:1}
+ .r-dock{position:fixed;left:0;right:0;bottom:0;padding:16px 12px 34px;background:linear-gradient(to bottom,rgba(30,30,32,0) 0,var(--bc-canvas) 24px)}
+}
+@media (min-width:761px){.r-dock,.r-mheader{display:none}}
+</style></head>
+<body>
+<div class="de-shell">
+ <aside class="de-sidebar sb" aria-label="Sidebar" data-mode="projects">
+  <div class="sbtool">
+    <button class="sbicon" type="button" aria-label="Menu"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+    <button class="sbicon" type="button" data-sb="toggle" aria-label="Collapse sidebar"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0"><path d="M4 5h16v14H4zM9 5v14"/></svg></button>
+    <button class="sbicon" type="button" aria-label="Back"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0"><path d="M15 6l-6 6 6 6"/></svg></button>
+    <button class="sbicon sbdim" type="button" tabindex="-1" aria-disabled="true" aria-label="Forward"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0"><path d="M9 6l6 6-6 6"/></svg></button>
+    <span style="flex:1"></span>
+    <div class="sbseg" role="tablist" aria-label="Sidebar mode"><button class="sbsegb " type="button" role="tab" data-sbmode="chat" aria-label="Chat"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0"><path d="M5 5h14a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1h-8l-4 4v-4H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1z"/></svg></button><button class="sbsegb is-on" type="button" role="tab" data-sbmode="projects" aria-label="Projects"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0"><path d="M3 6h6l2 2h10v11H3z"/></svg></button></div>
+  </div>
+  <nav class="sbnav" aria-label="Main">
+    <a class="sbnew" href="../P01-chat-start-desktop/Design_Engineering_App.html"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0"><path d="M12 5v14M5 12h14"/></svg><span class="sblab">New</span></a>
+    <button class="sbrow" type="button"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0"><path d="M11 4a7 7 0 1 0 0 14 7 7 0 0 0 0-14zM21 21l-5-5"/></svg><span class="sblab">Search</span></button>
+    <a class="sbrow" href="../P19-dashboard/index.html"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0"><path d="M4 5h16v14H4zM4 10h16M10 10v9"/></svg><span class="sblab">Dashboard</span></a>
+    <button class="sbrow" type="button"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9zM12 12l8-4.5M12 12v9M12 12L4 7.5"/></svg><span class="sblab">Design</span></button>
+    <button class="sbrow" type="button" title="Artifacts and exports"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0"><path d="M3 7h18v13H3zM3 7l2-3h14l2 3M10 12h4"/></svg><span class="sblab">Vault</span></button>
+    <button class="sbrow" type="button" title="Imports"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0"><path d="M12 16V4M7 9l5-5 5 5M4 20h16"/></svg><span class="sblab">Uploads</span></button>
+    <button class="sbrow" type="button"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0"><path d="M5 12h.01M12 12h.01M19 12h.01"/></svg><span class="sblab">More</span></button>
+  </nav>
+  <div class="sbpane" data-sbpane="chat" hidden><div class="sbhead">Recents</div><div class="sbrecs de-scroll"><a class="sbrec" href="../P03-chat-conversation/index.html" title="GitHub branch organization workflow"><span class="sbfade">GitHub branch organization workflow</span></a><a class="sbrec" href="../P03-chat-conversation/index.html" title="Downtime by cause from stoppage CSV"><span class="sbfade">Downtime by cause from stoppage CSV</span></a><a class="sbrec" href="../P03-chat-conversation/index.html" title="Gear ratio for a hoist drive"><span class="sbfade">Gear ratio for a hoist drive</span></a><a class="sbrec" href="../P03-chat-conversation/index.html" title="Compare 304 and 316 stainless for washdown"><span class="sbfade">Compare 304 and 316 stainless for washdown</span></a><a class="sbrec" href="../P03-chat-conversation/index.html" title="Cable tray fill calculation"><span class="sbfade">Cable tray fill calculation</span></a><a class="sbrec" href="../P03-chat-conversation/index.html" title="Compressed air leak estimate"><span class="sbfade">Compressed air leak estimate</span></a><a class="sbrec" href="../P03-chat-conversation/index.html" title="PLC tag naming convention"><span class="sbfade">PLC tag naming convention</span></a><a class="sbrec" href="../P03-chat-conversation/index.html" title="Quote template wording"><span class="sbfade">Quote template wording</span></a></div></div>
+  <div class="sbpane" data-sbpane="projects"><div class="sbhead">Projects</div><div class="sbrecs de-scroll"><a class="sbrow sbnewproj" href="../P05-projects/index.html"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0"><path d="M12 5v14M5 12h14"/></svg><span class="sblab">New project</span></a><div class="sbgroup"><div class="sbgrow"><button class="sbgrp" type="button" aria-expanded="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0"><path d="M9 6l6 6-6 6"/></svg><span class="sblab">Palletizer retrofit</span><span class="sbcount">3</span></button><a class="sbgstart" href="../P01-chat-start-desktop/Design_Engineering_App.html?project=BC-Q-26041" title="Start chat in Palletizer retrofit" aria-label="Start chat in Palletizer retrofit"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 5h14a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1h-8l-4 4v-4H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zM12 8v5M9.5 10.5h5"/></svg></a></div><div class="sbkids"><a class="sbrec" href="../P06-project-workspace/index.html?project=BC-Q-26041" title="Pneumatic cylinder sizing for palletizer"><span class="sbfade">Pneumatic cylinder sizing for palletizer</span></a><a class="sbrec" href="../P06-project-workspace/index.html?project=BC-Q-26041" title="Layout review for pallet stack"><span class="sbfade">Layout review for pallet stack</span></a><a class="sbrec" href="../P06-project-workspace/index.html?project=BC-Q-26041" title="Safety circuit for guarded cell"><span class="sbfade">Safety circuit for guarded cell</span></a></div></div><div class="sbgroup"><div class="sbgrow"><button class="sbgrp" type="button" aria-expanded="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0"><path d="M9 6l6 6-6 6"/></svg><span class="sblab">Capping station</span><span class="sbcount">3</span></button><a class="sbgstart" href="../P01-chat-start-desktop/Design_Engineering_App.html?project=BC-Q-26038" title="Start chat in Capping station" aria-label="Start chat in Capping station"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 5h14a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1h-8l-4 4v-4H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zM12 8v5M9.5 10.5h5"/></svg></a></div><div class="sbkids"><a class="sbrec" href="../P06-project-workspace/index.html?project=BC-Q-26038" title="Capping station I/O list draft"><span class="sbfade">Capping station I/O list draft</span></a><a class="sbrec" href="../P06-project-workspace/index.html?project=BC-Q-26038" title="FAT checklist for capping station"><span class="sbfade">FAT checklist for capping station</span></a><a class="sbrec" href="../P06-project-workspace/index.html?project=BC-Q-26038" title="Servo axis overcurrent fault"><span class="sbfade">Servo axis overcurrent fault</span></a></div></div><div class="sbgroup"><div class="sbgrow"><button class="sbgrp" type="button" aria-expanded="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0"><path d="M9 6l6 6-6 6"/></svg><span class="sblab">Label applicator</span><span class="sbcount">2</span></button><a class="sbgstart" href="../P01-chat-start-desktop/Design_Engineering_App.html?project=BC-Q-26035" title="Start chat in Label applicator" aria-label="Start chat in Label applicator"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 5h14a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1h-8l-4 4v-4H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zM12 8v5M9.5 10.5h5"/></svg></a></div><div class="sbkids"><a class="sbrec" href="../P06-project-workspace/index.html?project=BC-Q-26035" title="Conveyor VFD and motor selection"><span class="sbfade">Conveyor VFD and motor selection</span></a><a class="sbrec" href="../P06-project-workspace/index.html?project=BC-Q-26035" title="Tolerance stack-up on bracket assembly"><span class="sbfade">Tolerance stack-up on bracket assembly</span></a></div></div></div></div>
+  <div class="sbfoot">
+    <button class="sbacct" type="button" aria-label="Account switcher"><span class="sbavatar">G</span><span class="sblab">Grant&nbsp;·&nbsp;Pro</span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0"><path d="M6 9l6 6 6-6"/></svg></button>
+    <button class="sbicon" type="button" aria-label="Settings"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0"><path d="M12 9a3 3 0 1 0 0 6 3 3 0 0 0 0-6zM19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></button>
+  </div>
+</aside>
+ <button class="sbicon sbexpand" type="button" data-sb="expand" aria-label="Expand sidebar" hidden><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0"><path d="M4 5h16v14H4zM9 5v14"/></svg></button>
+ <main class="de-shell-main">
+  <header class="de-topbar"><div class="de-label">Plans and vendor requests</div>
+   <div class="de-topbar-actions"><button class="de-btn">Ask AI</button><button class="de-btn">Support</button><div class="de-avatar" style="margin-left:8px">G</div></div></header>
+  <div class="r-mobile r-mheader"><div class="de-mheader"><img src="../../assets/favicon.svg" alt=""><span class="de-brand">Design Engineering</span><div class="de-avatar de-avatar-lg">G</div></div></div>
+  <div class="de-shell-scroll de-scroll"><div class="de-shell-column">
+   <div class="r-head"><div class="de-eyebrow">Block Concepts</div><h1>Plans and vendor requests</h1><p>I build a project plan or a vendor request from the project's data. A person checks it before it is released.</p></div>
+   <div class="r-bar"><div class="r-f"><label class="de-label" for="proj">Project</label><div class="r-sel"><select id="proj"><option>BC-Q-26041 · Palletizer retrofit</option><option>BC-Q-26038 · Capping station</option><option>Engineering resources (shared)</option></select><svg class="de-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 10l5 5 5-5"/></svg></div></div>
+    <div class="r-seg" id="seg" role="tablist" aria-label="Document type"><button type="button" role="tab" data-k="vendor" aria-selected="true">Vendor request</button><button type="button" role="tab" data-k="plan" aria-selected="false">Plan</button></div></div>
+   <div class="r-cols">
+    <section class="de-panel" aria-label="Build"><div class="de-section-head"><span class="de-label" id="ft">Vendor request</span><span class="de-tag de-tag-plain">1 Build</span></div>
+     <div class="r-form" id="form"></div></section>
+    <section class="de-panel" aria-label="Preview"><div class="de-section-head"><span class="de-label">Preview</span><span class="de-tag de-tag-plain">2 Review and release</span></div>
+     <div class="r-pv"><div class="r-paper is-empty" id="paper">Choose what to include, then Generate draft.</div>
+      <div class="r-rev" id="rev" hidden><label><input type="checkbox" id="ok"><span>I checked the quantities, part numbers and dates against the project files and data sheets.</span></label></div>
+      <div class="r-acts" id="acts" hidden><button class="de-btn is-main" id="appr" type="button" disabled>Approve for release</button><button class="de-btn" id="dl" type="button">Download PDF</button><button class="de-btn" id="send" type="button" disabled>Send to vendor</button></div>
+      <div class="r-hm" id="stat" aria-live="polite"></div></div></section>
+   </div>
+   <section class="de-panel" aria-label="History" style="margin-top:var(--bc-space-4)"><div class="de-section-head"><span class="de-label">Documents in this project</span><span class="de-tag de-tag-plain" id="hc"></span></div><div id="hist"></div></section>
+   <div class="r-note">Sample vendors, parts, quantities and dates are placeholders (A). Every plan and vendor request is marked for human review and cannot be sent until a person approves it. Vendor lists are regional per organization.</div>
+  </div></div>
+ </main>
+</div>
+<div class="r-dock r-mobile"><div class="de-tabbar"><button class="de-tab"><svg class="de-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg><span>New chat</span></button><button class="de-tab"><svg class="de-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18zM12 7v5l3 2"/></svg><span>Recents</span></button><button class="de-tab"><svg class="de-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16v14H4zM4 10h16M10 10v9"/></svg><span>Dashboard</span></button><button class="de-tab is-active"><svg class="de-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h.01M12 12h.01M19 12h.01"/></svg><span>More</span></button></div></div>
+<script>
+(function(){
+ var $=function(i){return document.getElementById(i)};
+ function esc(x){return String(x).replace(/&/g,'&amp;').replace(/</g,'&lt;')}
+ var CK='<svg class="de-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg>';
+ /* Sample project data (A). */
+ var ITEMS=[['GB-220 gearbox','Gearbox',1],['SM-90 servo motor','Motor',2],['GD-12 guard door interlock','Safety',2],['63 mm pneumatic cylinder','Pneumatic',4]];
+ var VENDORS=['[Vendor A] · Midwest','[Vendor B] · Midwest','[Vendor C] · National'];
+ var SECS=['Scope','Process list','Layout','Schedule','Risks and open items'];
+ var H=[['Vendor request · gearbox and servo','vendor','Sent','Nov 9'],['Project plan, rev 1','plan','Approved','Nov 6']];
+ var st={k:'vendor',doc:null,done:false};
+ function proj(){return $('proj').value}
+ function cb(id,label,sm,extra){return '<label class="r-ck"><input type="checkbox" data-id="'+id+'" checked><span class="r-box">'+CK+'</span><span>'+label+(sm?'':'')+'</span>'+(extra||'<span></span>')+'</label>'}
+ function form(){
+  $('ft').textContent=st.k==='vendor'?'Vendor request':'Plan';
+  if(st.k==='vendor'){
+   $('form').innerHTML='<div class="r-f"><label class="de-label" for="v">Vendor</label><div class="r-in"><select id="v">'+VENDORS.map(function(v){return '<option>'+v+'</option>'}).join('')+'</select></div></div>'
+   +'<div class="r-f"><span class="de-label">Items from the project</span><div class="r-chk" id="items">'+ITEMS.map(function(i,n){return cb(n,i[0],'', '<input class="r-qty" data-q="'+n+'" type="number" min="1" value="'+i[2]+'" aria-label="Quantity of '+i[0]+'">')}).join('')+'</div></div>'
+   +'<div class="r-two"><div class="r-f"><label class="de-label" for="by">Needed by</label><div class="r-in"><input id="by" type="date" value="2026-12-04"></div></div><div class="r-f"><label class="de-label" for="rq">Request</label><div class="r-in"><select id="rq"><option>Quote</option><option>Lead time</option><option>Data sheet and CAD</option></select></div></div></div>'
+   +'<div class="r-f"><label class="de-label" for="nt">Notes to the vendor</label><div class="r-in"><textarea id="nt" placeholder="Ship-to, delivery terms, anything the vendor needs to know"></textarea></div></div>'
+   +'<button class="de-btn r-gen" id="gen" type="button">Generate draft</button>'}
+  else{
+   $('form').innerHTML='<div class="r-f"><span class="de-label">Sections to include</span><div class="r-chk" id="items">'+SECS.map(function(s,n){return cb(n,s,'')}).join('')+'</div></div>'
+   +'<div class="r-f"><label class="de-label" for="ow">Plan owner</label><div class="r-in"><input id="ow" value="Grant Block"></div></div>'
+   +'<div class="r-f"><label class="de-label" for="nt">Notes</label><div class="r-in"><textarea id="nt" placeholder="Anything the plan should say that is not in the project data"></textarea></div></div>'
+   +'<button class="de-btn r-gen" id="gen" type="button">Generate draft</button>'}
+  $('gen').addEventListener('click',gen)}
+ function paper(){var d=st.doc;if(!d){$('paper').className='r-paper is-empty';$('paper').textContent='Choose what to include, then Generate draft.';$('rev').hidden=$('acts').hidden=true;$('stat').textContent='';return}
+  var ok=st.done;$('paper').className='r-paper';
+  var stamp='<span class="r-stamp'+(ok?' ok':'')+'">'+(ok?'Approved by Grant':'Review required')+'</span>';
+  if(d.k==='vendor'){$('paper').innerHTML=stamp+'<div class="m">Block Concepts · Vendor request</div><h2>Request for '+esc(d.rq.toLowerCase())+'</h2><div class="m">'+esc(d.proj)+' · to '+esc(d.v)+' · needed by '+esc(d.by)+'</div><h3>Items</h3><table><tr><th>Item</th><th>Type</th><th class="n">Qty</th></tr>'+d.items.map(function(i){return '<tr><td>'+esc(i[0])+'</td><td>'+esc(i[1])+'</td><td class="n">'+i[2]+'</td></tr>'}).join('')+'</table>'+(d.nt?'<h3>Notes</h3><p>'+esc(d.nt)+'</p>':'')+'<h3>Please send</h3><p>Price, lead time and the current data sheet with CAD for each item. Reply to this request with your quote number.</p>'}
+  else{$('paper').innerHTML=stamp+'<div class="m">Block Concepts · Project plan</div><h2>'+esc(d.proj)+'</h2><div class="m">Owner '+esc(d.ow)+' · draft from project data</div>'+d.secs.map(function(s){return '<h3>'+esc(s)+'</h3><p>'+({'Scope':'Retrofit the palletizer line with new infeed, guarding and controls (A).','Process list':'1 Infeed, 2 Inspect, 3 Pick and place, 4 Wrap, 5 Outfeed (A).','Layout':'Overhead layout from the Layout tab, 2,400 × 1,600 mm frame (A).','Schedule':'Build Nov 16 to Dec 4, FAT Dec 8 (A).','Risks and open items':'Gearbox lead time, guard door side, customer drawings pending (A).'})[s]+'</p>'}).join('')+(d.nt?'<h3>Notes</h3><p>'+esc(d.nt)+'</p>':'')}
+  $('rev').hidden=ok;$('acts').hidden=false;$('ok').checked=ok;$('ok').disabled=ok;$('appr').disabled=!$('ok').checked||ok;$('appr').hidden=ok;$('dl').disabled=!ok&&false;$('send').hidden=d.k!=='vendor';$('send').disabled=!ok||d.sent;$('send').textContent=d.sent?'Sent':'Send to vendor';
+  $('stat').textContent=d.sent?'Sent to '+d.v+'.':ok?'Approved. You can send or download it.':'Draft. Not released: a person has to approve it first.'}
+ function gen(){var chosen=[].map.call(document.querySelectorAll('#items input[type=checkbox]:checked'),function(c){return +c.dataset.id});
+  if(!chosen.length){$('stat').textContent='Choose at least one item or section.';return}
+  var d={k:st.k,proj:proj(),nt:$('nt').value.trim()};
+  if(st.k==='vendor'){d.v=$('v').value;d.by=$('by').value;d.rq=$('rq').value;d.items=chosen.map(function(n){var q=document.querySelector('[data-q="'+n+'"]');return [ITEMS[n][0],ITEMS[n][1],parseInt(q.value,10)||1]})}
+  else{d.ow=$('ow').value||'—';d.secs=chosen.map(function(n){return SECS[n]})}
+  st.doc=d;st.done=false;paper();$('paper').scrollIntoView({block:'nearest'})}
+ function hist(){$('hc').textContent=H.length+' documents';$('hist').innerHTML=H.map(function(h){return '<div class="r-hist"><div><div class="r-ht">'+esc(h[0])+'</div><div class="r-hm">'+(h[1]==='vendor'?'Vendor request':'Plan')+' · '+h[3]+'</div></div><span class="de-tag'+(h[2]==='Draft'||h[2]==='Review required'?' de-tag-plain r-flag':'')+'">'+h[2]+'</span></div>'}).join('')}
+ $('seg').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;st.k=b.dataset.k;[].forEach.call(this.children,function(c){c.setAttribute('aria-selected',String(c===b))});st.doc=null;form();paper()});
+ $('ok').addEventListener('change',function(){$('appr').disabled=!this.checked});
+ $('appr').addEventListener('click',function(){st.done=true;H.unshift([st.k==='vendor'?'Vendor request · '+st.doc.items.length+' items':'Project plan, draft',st.k,'Approved','Today']);hist();paper()});
+ $('send').addEventListener('click',function(){st.doc.sent=true;H[0][2]='Sent';hist();paper()});
+ $('dl').addEventListener('click',function(){var b=this;b.textContent='Prepared (preview only)';setTimeout(function(){b.textContent='Download PDF'},1800)});
+ $('proj').addEventListener('change',function(){st.doc=null;paper()});
+ form();hist();paper();
+})();
+</script>
+<script>
+(function(){var sb=document.querySelector(".sb");if(!sb)return;var ex=document.querySelector(".sbexpand");
+function mode(m){sb.setAttribute("data-mode",m);sb.querySelectorAll("[data-sbmode]").forEach(function(b){b.classList.toggle("is-on",b.dataset.sbmode===m)});sb.querySelectorAll("[data-sbpane]").forEach(function(p){p.hidden=p.dataset.sbpane!==m})}
+sb.addEventListener("click",function(e){var b=e.target.closest("button");if(!b)return;
+if(b.dataset.sbmode)mode(b.dataset.sbmode);
+else if(b.dataset.sb==="toggle"){sb.style.display="none";ex.hidden=false}
+else if(b.classList.contains("sbgrp")){var g=b.closest(".sbgroup"),c=g.classList.toggle("is-closed");b.setAttribute("aria-expanded",String(!c))}});
+ex.addEventListener("click",function(){sb.style.display="";ex.hidden=true})})();
+</script>
+</body></html>

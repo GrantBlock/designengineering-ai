@@ -22,7 +22,7 @@ Page order is a **Draft (not yet approved by Grant)**, built from the App Plan M
 | P10 | Notes and tracking (inside the Dashboard, P19, through the Update assistant button) | Desktop + mobile | ☑ | `exports/P19-dashboard/index.html` | Done 2026-11-11. No separate page: Grant moved it into the Dashboard |
 | P11 | Calculators (custom, built by the user with the assistant) | Desktop + mobile | ☑ | `exports/P11-calculators/index.html` | Done 2026-11-11 (Grant approved). A template for custom calculators; none are prebuilt |
 | P12 | Process flows (the process and each process in detail, like a Xometry part configuration) | Desktop + mobile | ☑ | `exports/P12-process-config/index.html` | Done 2026-11-11. Opened from a P06 process card; saves back to the P06 summary. Added 2026-11-10 |
-| P13 | Plans and vendor requests | Desktop + mobile | ☐ | | |
+| P13 | Plans and vendor requests | Desktop + mobile | ◐ | `exports/P13-plans-vendor-requests/index.html` | Drafted 2026-11-11, awaiting Grant's review |
 | P14 | Wallet and usage (prepaid tokens, auto-refill) | Desktop + mobile | ☐ | | |
 | P15 | Account and settings | Desktop + mobile | ☐ | | |
 | P16 | Lite app window (offline 3D viewer, search, on-device chat) | Desktop app | ☐ | | |
@@ -31,7 +31,7 @@ Page order is a **Draft (not yet approved by Grant)**, built from the App Plan M
 
 ## Next up
 
-First open item: **P13**, unless Grant says otherwise. P08 is done (the 3D designer); its feature spec is waiting for Grant's edits.
+First open item: **P14** (P13 is drafted and awaiting review), unless Grant says otherwise. P08 is done (the 3D designer); its feature spec is waiting for Grant's edits.
 
 ## Log
 
@@ -101,3 +101,6 @@ First open item: **P13**, unless Grant says otherwise. P08 is done (the 3D desig
 - [stated] 2026-11-11: Grant: projects are shared inside an organization and are not limited to sold projects. An example is an engineering resources project for things the company's team has refined. The Dashboard groups (Sold, Quoting, Waiting), the P05 Projects list and the status values do not yet allow a project that is a resource rather than a job. Not changed yet; waiting for Grant on how such a project is shown.
 - [stated] 2026-11-11: Grant: Process flows is already done as the process configuration page, so it keeps the original number P12. The extra ID P18 is removed everywhere and its export moved to `exports/P12-process-config/`. The separate Process flows draft made earlier today was deleted (git history). The straight-chain flow editor idea from that draft is not used.
 - [stated] 2026-11-11: Grant: P12 drops the Supporting files panel and uses the multipage project format. P12 now opens with the same header as P06 (project code, project name, stage bar) and the numbered tabs Import, Specifications, Layout, Schedule, Exports, with Specifications active. The other tabs link to P06 (`?project=...&tab=N`, which P06 now reads to open that tab). The Process picker sits under the tabs.
+- [stated] 2026-11-11: Grant approved P12 (process page, multipage project header, no Supporting files).
+- [stated] 2026-11-11: P13 (Plans and vendor requests) drafted at `exports/P13-plans-vendor-requests/index.html`: one responsive page. Project picker and a Vendor request | Plan toggle. Left: Build (vendor request: vendor, items from the project with quantities, needed by, request type, notes; plan: sections, owner, notes). Right: Preview on a paper sheet with a Review required stamp, a check box ("I checked the quantities, part numbers and dates against the project files and data sheets"), Approve for release, Download PDF and Send to vendor (only after approval). Below: Documents in this project with status tags. Prototype only: sample items and text, nothing is sent.
+- Draft (not yet approved by Grant): P13 patterns: paper preview on a light sheet with a red Review required stamp that turns green after approval (sheet look follows the P06 drawing sheets); review check box in a `bc-steel-blue-tint` card; checklist rows with a custom box and a quantity field; status flow Draft, Review required, Approved, Sent. Vendor names are placeholders and the regional vendor list is not designed.
