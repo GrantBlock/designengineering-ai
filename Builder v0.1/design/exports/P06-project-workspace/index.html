@@ -588,15 +588,6 @@ select.pg-in{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xml
    <div id="s1" role="tabpanel" aria-labelledby="t1">
     <div class="pg-stack">
      <p class="p6-intro">List each process in the line, in the order the product flows. Open a process to configure it in detail. The summary here updates when you save.</p>
-     <div class="p6-ref"><label class="de-search"><input id="ref" value="7332-A" aria-label="Reference number"></label>
-      <div class="dd" id="dd-imp"><button class="de-btn de-btn-chip dd-b" aria-haspopup="menu" aria-expanded="false">Import<svg class="de-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button><div class="dd-m" role="menu" hidden>
-       <button role="menuitem" data-dd="reload">Reload past configuration</button>
-       <button role="menuitem" data-dd="csv">Add processes from CSV</button>
-       <button role="menuitem" data-dd="gotoimp">Drawings and revision files</button></div></div>
-      <div class="dd" id="dd-exp"><button class="de-btn de-btn-chip dd-b" aria-haspopup="menu" aria-expanded="false">Export<svg class="de-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button><div class="dd-m" role="menu" hidden>
-       <button role="menuitem" data-dd="savecsv">Processes as CSV</button>
-       <button role="menuitem" data-dd="gotoexp">Process document</button></div></div>
-      <input type="file" id="csv-file" class="doc-file" accept=".csv,text/csv" aria-label="Choose a CSV of processes"></div>
      <p class="pg-note spec-msg" id="spec-msg" role="status"></p>
      <div id="cards" class="pg-stack"></div>
      <button class="p6-add" id="add"><svg class="de-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>Add process</button>
@@ -1032,21 +1023,6 @@ function drawMap(el,S,cur){
  function csvRows(t){var rows=[],row=[],f='',q=false,i,c;for(i=0;i<t.length;i++){c=t[i];if(q){if(c==='"'&&t[i+1]==='"'){f+='"';i++}else if(c==='"')q=false;else f+=c}else if(c==='"')q=true;else if(c===','){row.push(f);f=''}else if(c==='\n'||c==='\r'){if(c==='\r'&&t[i+1]==='\n')i++;row.push(f);f='';if(row.some(function(x){return x.trim()}))rows.push(row);row=[]}else f+=c}row.push(f);if(row.some(function(x){return x.trim()}))rows.push(row);return rows}
  function csvCell(v){v=String(v==null?'':v);return /[",\n]/.test(v)?'"'+v.replace(/"/g,'""')+'"':v}
  function downloadText(name,text,type){try{var bl=new Blob([text],{type:type}),a=document.createElement('a');a.href=URL.createObjectURL(bl);a.download=name;document.body.appendChild(a);a.click();a.remove();return true}catch(err){return false}}
- document.getElementById('csv-file').addEventListener('change',function(e){
-  var f=e.target.files&&e.target.files[0];if(!f)return;var r=new FileReader();
-  r.onload=function(){var rows=csvRows(String(r.result));if(rows.length<2){specMsg(f.name+' has no rows to add.');return}
-   var head=rows[0].map(function(h){return h.trim().toLowerCase()}),map={};Object.keys(CSVCOLS).forEach(function(k){var ix=-1;CSVCOLS[k].forEach(function(n){if(ix<0)ix=head.indexOf(n)});if(ix>=0)map[k]=ix});
-   if(map.type===undefined){specMsg('Add a "type" column (the process name) to the CSV.');return}
-   var n=0;rows.slice(1).forEach(function(row){var s=JSON.parse(JSON.stringify(BLANK));Object.keys(map).forEach(function(k){s[k]=(row[map[k]]||'').trim()});if(!s.flow||FLOW.indexOf(s.flow)<0)s.flow='Vertical';if(s.type){S.push(s);n++}});
-   save(S);cards();specMsg('Added '+n+(n===1?' process':' processes')+' from '+f.name+'.')};
-  r.readAsText(f);e.target.value=''});
- document.getElementById('dd-imp').addEventListener('click',function(e){var b=e.target.closest('[data-dd]');if(!b)return;ddClose();var a=b.dataset.dd;
-  if(a==='csv')document.getElementById('csv-file').click();
-  else if(a==='gotoimp')step(5);
-  else if(a==='reload'){var h=HIST[0];if(h&&h.S){S.length=0;clone(h.S).forEach(function(s){S.push(s)});save(S);cards();specMsg('Reloaded the processes from Rev '+h.rev+'.')}else specMsg('No past configuration to reload.')}});
- document.getElementById('dd-exp').addEventListener('click',function(e){var b=e.target.closest('[data-dd]');if(!b)return;ddClose();var a=b.dataset.dd;
-  if(a==='gotoexp')step(3);
-  else if(a==='savecsv'){var ks=Object.keys(CSVCOLS),txt=[ks.map(function(k){return CSVCOLS[k][0]}).join(',')].concat(S.map(function(s){return ks.map(function(k){return csvCell(s[k])}).join(',')})).join('\n');specMsg(downloadText((DOC.dwg||'processes')+'-processes.csv',txt,'text/csv')?'Saved '+S.length+' processes as CSV.':'This preview cannot save files. Open the page from the repo to download.')}});
  function step(n){[1,2,3,4,5].forEach(function(i){document.getElementById('s'+i).hidden=i!==n;document.getElementById('t'+i).setAttribute('aria-selected',String(i===n))});ddClose();if(n===2)lvOpen();if(n===3){expMode('export');docOpen()}if(n===5){expMode('import');docOpen()}if(n===4)render()}
  [1,2,3,4,5].forEach(function(i){document.getElementById('t'+i).onclick=function(){step(i)}});
  {var tq=parseInt(Q.get('tab'),10);if(tq>=1&&tq<=5)step(tq)}
@@ -1114,4 +1090,8 @@ else if(b.classList.contains("sbgrp")){var g=b.closest(".sbgroup"),c=g.classList
 ex.addEventListener("click",function(){sb.style.display="";ex.hidden=true})})();
 </script>
 <script src="../shared/ext.js"></script>
+<script>
+(function(){var Q=new URLSearchParams(location.search),PN=Q.get('project')||'BC-Q-26041',N=['Assessment','Design','Build','FAT','SAT'];var v;try{v=JSON.parse(localStorage.getItem('de-stage-'+PN))}catch(e){}if(!(v>=1&&v<=5))return;
+var sp=document.querySelector('.p6-meta span');if(sp)sp.textContent='Stage '+v+' — '+N[v-1];[].forEach.call(document.querySelectorAll('.p6-meta .de-stages i'),function(i,k){i.className=k<v?'is-done':''})})();
+</script>
 </body></html>
