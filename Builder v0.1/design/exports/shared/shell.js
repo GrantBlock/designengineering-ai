@@ -98,8 +98,8 @@
   var openDlg = null;
   function dialog(o) {
     closeMenu(); if (openDlg) openDlg.close();
-    var back = D.createElement('div'); back.className = 'dx-back' + (o.overlay ? ' is-overlay' : '');
-    back.innerHTML = '<div class="dx-dialog' + (o.wide ? ' is-wide' : '') + (o.overlay ? ' is-overlay' : '') + '" role="dialog" aria-modal="true" aria-label="' + esc(o.title) + '">' + (o.noHead ? '' : '<div class="dx-dh"><h2>' + esc(o.title) + '</h2><button class="de-iconbtn" type="button" data-x="1" aria-label="Close">' + ico('x', 20) + '</button></div>') + (o.raw || '<div class="dx-db">' + o.body + '</div>') + '</div>';
+    var back = D.createElement('div'); back.className = 'dx-back';
+    back.innerHTML = '<div class="dx-dialog' + (o.wide ? ' is-wide' : '') + '" role="dialog" aria-modal="true" aria-label="' + esc(o.title) + '">' + (o.noHead ? '' : '<div class="dx-dh"><h2>' + esc(o.title) + '</h2><button class="de-iconbtn" type="button" data-x="1" aria-label="Close">' + ico('x', 20) + '</button></div>') + (o.raw || '<div class="dx-db">' + o.body + '</div>') + '</div>';
     var prev = D.activeElement; D.body.appendChild(back);
     function close() { if (openDlg !== api) return; openDlg = null; back.remove(); if (prev && prev.focus) prev.focus(); }
     var api = { el: back, close: close }; openDlg = api;
@@ -141,8 +141,8 @@
 
   /* ---------- new project ---------- */
   function newProject() {
-    /* Laid out like the Settings overlay. Body is left blank: project type and other settings go here (not yet designed). */
-    dialog({ title: 'New project', overlay: true, body: '' });
+    var d = dialog({ title: 'New project', body: '<form class="dx-form" id="dx-np"><label for="dx-pn">Project name<input id="dx-pn" autocomplete="off" placeholder="For example: Case packer line 2"></label><p style="margin:0;font-size:13px;color:var(--bc-muted)">It gets the next project number and is shared with your organization.</p><div class="dx-err" id="dx-pe" role="alert"></div><div class="dx-row"><button class="dx-btn" type="button" data-x="1">Cancel</button><button class="dx-btn is-main" type="submit">Create project</button></div></form>' });
+    $('#dx-np', d.el).addEventListener('submit', function (e) { e.preventDefault(); var n = $('#dx-pn', d.el).value.trim(); if (n.length < 2) { $('#dx-pe', d.el).textContent = 'Give the project a name.'; return; } var p = DE.addProject(n); location.href = DE.summaryUrl(p.id); });
   }
   function shortcuts() { dialog({ title: 'Keyboard shortcuts', body: '<dl class="dx-keys"><dt>Ctrl K or ⌘ K</dt><dd>Search</dd><dt>Esc</dt><dd>Close a menu, a dialog or Settings</dd><dt>Tab</dt><dd>Move to the next control</dd><dt>Arrow keys</dt><dd>Move inside a menu or the search results</dd></dl>' }); }
   function copyLink() { var u = location.href; function ok() { toast('Link copied.'); } if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(u).then(ok, function () { toast('Copy did not work here. The link is in the address bar.'); }); else toast('Copy is not available here. The link is in the address bar.'); }
