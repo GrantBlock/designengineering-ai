@@ -63,7 +63,7 @@ Grant, 2026-11-11: **Pro gets projects, and Pro then buys the extensions.** Exte
 | Projects and project chat | - | Yes | Yes | Yes |
 | Vault, Uploads, Dashboard, Settings | Settings and Dashboard only | Yes | Yes | Yes |
 | Calculators, process flows, plans and quotes | - | Yes | Yes | Yes |
-| 3D designer (P08) | - | - (view a model in the Vault) | Yes | - |
+| 3D designer (P08) | Tokens, slow queue (about a week) | Tokens, slow queue (about a week) | Yes | - |
 | Builder (P17) and Lite packages | - | - | - | Yes (desktop only) |
 
 Navigation: the Design and Builder rows are hidden in the sidebar until the extension is bought; they are added in Settings, Billing, Extensions (Grant, 2026-11-11).
@@ -80,3 +80,4 @@ Navigation: the Design and Builder rows are hidden in the sidebar until the exte
 - [stated] 2026-11-11: Grant: chat in general is the free tier; chat in projects is in the Pro plan. The Chat by plan section lists the limits as a Draft.
 - [stated] 2026-11-11: Grant: Builder is an extension along with Design. Pro gets projects, then buys the extensions. Added the Plans and extensions table (Draft).
 - [stated] 2026-11-12: Grant: Basic Viewer has no projects of its own; the one-time Starter bundle unlocks 3 projects and a file upload limit; Pro unlocks the remaining storage. Design and Builder are $600 per year extensions, not in the MVP, kept in the prototype. Team settings show only on the Team level. Chat questions 1 and 4 answered; 2 and 3 still open.
+- [stated] 2026-11-12: Grant: Basic Viewer and Starter can use the 3D designer by tokens on a much longer queue than Pro (about a week), to fill usage gaps and sample what a higher level gives.

@@ -81,7 +81,7 @@ The winter build first runs the full suite at Block Concepts as its own Enterpri
 
 | Capability | Notes |
 | --- | --- |
-| Design extension (3D designer) | Chat-only 3D designer added to Pro at $600 / seat / year (A); in the prototype now, ships after the MVP |
+| Design extension (3D designer) | Chat-only 3D designer added to Pro at $600 / seat / year (A). Basic Viewer and Starter users can also use it, paid by wallet tokens, on a much longer queue than Pro (about a week to turn around), which fills usage gaps and lets them sample a higher level; in the prototype now, ships after the MVP |
 | CAD generation | Through the Design extension. First milestone: spacer-class part model and drawing (the defining test); paid by usage from the wallet |
 | Drawings | After CAD generation |
 | Drive SolidWorks / Onshape | Enterprise |
@@ -290,7 +290,7 @@ Prices match SBA Section 5.2.
 | Turbo | After infrastructure upgrades | [$X] / user / month | Much faster than Pro | Everything in Pro; for power users who can't justify Enterprise and don't need Team admin controls | [X] GB included; each additional 20 GB is $10 / month |
 | Team | Built in year 1, live from year 2 | $50 / user / month | As Pro | Everything in Pro plus an admin panel: add and remove people, set roles and permissions on shared projects | 20 GB per user (A); each additional 20 GB is $10 / month |
 | Enterprise | Custom implementation | Flat fee + per-user memberships + custom features and integrations | Dedicated cloud or local deployment | Built on the Builder app; all surfaces, plus Onshape / SolidWorks integration | Customer's own cloud or site |
-| Design (extension) | After the MVP (in the prototype now) | $600 / seat / year, added to Pro (A) | As the Pro level | Chat-only 3D designer; models saved to the Vault; CAD generation paid from the wallet | Pro storage |
+| Design (extension) | After the MVP (in the prototype now) | $600 / seat / year, added to Pro (A) | As the Pro level | Chat-only 3D designer; models saved to the Vault; CAD generation paid from the wallet. Basic Viewer and Starter users can use it by tokens on a slow queue (about a week), without the extension | Pro storage |
 | Builder (extension) | After the MVP (in the prototype now); open sale [timing TBD] | $600 / seat / year, added to Pro (A) | Desktop only | Packages an organization's selected projects into a Lite zip; renewal covers updates, package-format updates, and support; any packaging AI use is paid from the subscriber's wallet | Package built on the subscriber's computer |
 | Lite | With Builder | Free download | On-device AI; no Block Concepts tokens | Opens Builder packages: 3D viewer, document search, local chat, docs library; no login | Package files on the recipient's computer |
 
@@ -324,7 +324,7 @@ Chat and CAD usage is charged at **3.5× the underlying cost**. Rates vary by mo
 
 | Phase | Target timing | Deliverables | Gate to next phase |
 | --- | --- | --- | --- |
-| 0: Winter build (Block Concepts prototype) | Nov 2026 – Mar 2027 | Block Concepts runs the full suite as its own Enterprise account. Built first: only the functions that prototype needs to run like a true Enterprise account [list to confirm]. Includes Design and Builder for Block Concepts use, Lite with package format v1 and on-device chat, a Lite demo package, and per-request cost logging. The MVP subset (Section 2) is designed on the same system so it integrates later | Grant Block runs Block Concepts on the prototype daily; Lite demo package ready |
+| 0: Winter build (Block Concepts prototype) | Nov 2026 – Mar 2027 | Block Concepts runs the full suite as its own Enterprise account. Built first: only the functions that prototype needs to run like a true Enterprise account, defined by Grant Block during the build from testing on his own projects; the MVP definition and the Enterprise program evolve from that work. Includes Design and Builder for Block Concepts use, Lite with package format v1 and on-device chat, a Lite demo package, and per-request cost logging. The MVP subset (Section 2) is designed on the same system so it integrates later | Grant Block runs Block Concepts on the prototype daily; Lite demo package ready |
 | 1: Public launch (MVP) | Apr 2027 | Public MVP released as the Section 2 subset, without extensions; Basic Viewer, Starter, and Pro live; prepaid wallet; Cloudflare paid plan; per-model rates and Basic Viewer cap set from cost logs; Builder and Lite at Block Concepts and its customers; Team built during year 1; first customers from Block Concepts and rep channels | 10–12 Pro users cover running costs |
 | 2: First hire | When reached | Team live (year 2); senior software engineer hired; desktop app with extensions; Design extension with the first CAD milestone (spacer-class part model and drawing); Builder extension open sale [timing TBD] | 380–415 Pro users |
 | 3: Full staffing | When reached | Team of 5; API and CLI; Enterprise (built on the Builder app) with Onshape / SolidWorks integration; Turbo level | 1,850–1,955 Pro users |
