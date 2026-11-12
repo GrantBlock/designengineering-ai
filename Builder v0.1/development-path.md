@@ -114,3 +114,6 @@ Claude sets these up in Phase 1 so they run without Grant:
 - [stated] 2026-11-09: No temporary shortcuts that need rebuilding later.
 - [stated] 2026-11-09: D1 and D2 approved. The VS Code starter prompt is not stored yet.
 - Draft (not yet approved by Grant): O1 to O3 above.
+- [stated] 2026-11-12: Feature notes live in `design/specs/`, one file per page, like the P08 spec (Grant).
+- [stated] 2026-11-12: Coder sessions run on a schedule, to stay within usage limits and leave Grant's normal business hours free for his own work (Grant).
+- [stated] 2026-11-12: Grant wants four roles: Planner, Coder, Reviewer and Tester. The coder CLAUDE.md and issue template wait until Grant finishes the prototype review.
