@@ -1,0 +1,14 @@
+{
+  // Cloudflare Workers, static assets only: the click-through sample of the app.
+  // Cloudflare builds this from the repository root on every push to the connected branch.
+  // The build step copies only the prototype pages into "Builder v0.1/design/site" (see build-site.sh);
+  // planning documents are never published.
+  "name": "designengineering-ai",
+  "compatibility_date": "2026-11-01",
+  "workers_dev": true,
+  "build": { "command": "bash \"Builder v0.1/design/build-site.sh\"" },
+  "assets": {
+    "directory": "./Builder v0.1/design/site",
+    "not_found_handling": "none"
+  }
+}

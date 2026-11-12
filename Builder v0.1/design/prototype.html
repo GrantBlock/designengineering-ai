@@ -1,0 +1,76 @@
+<title>Design Engineering Prototype</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="robots" content="noindex">
+<style>
+/* Concept: a thin sample bar above the real app. The bar says what the app is and what the current page is for, and switches Desktop and Phone. Single dark look by choice. */
+:root{--canvas:#1e1e20;--surface:#29292c;--raised:#353538;--ink:#ececed;--muted:#a3a3a9;--blue:#4682b4;--blue-text:#7faad0;--hair:rgba(255,255,255,.09);--backdrop:#141416;color-scheme:dark}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:var(--backdrop);color:var(--ink);font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;font-size:14px;-webkit-font-smoothing:antialiased}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:2px solid var(--blue-text);outline-offset:2px}
+.wrap{display:flex;flex-direction:column;height:100vh}
+.bar{display:flex;align-items:center;gap:16px 24px;flex-wrap:wrap;padding:10px max(16px,env(safe-area-inset-right,0px)) 10px max(16px,env(safe-area-inset-left,0px));border-bottom:1px solid var(--hair);background:var(--surface)}
+.app{min-width:0;flex:1 1 260px}
+.app b{display:block;font-size:14px;letter-spacing:.01em}
+.app span{display:block;margin-top:2px;font-size:12.5px;line-height:1.45;color:var(--muted);max-width:62ch}
+.page{min-width:0;flex:2 1 320px}
+.page b{display:block;font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--blue-text)}
+.page span{display:block;margin-top:3px;font-size:13px;line-height:1.45;color:var(--ink);max-width:70ch}
+.seg{display:inline-grid;grid-auto-flow:column;gap:3px;padding:3px;border:1px solid var(--hair);border-radius:10px;background:var(--canvas);flex-shrink:0}
+.seg button{height:32px;padding:2px 14px 0;border:0;border-radius:7px;background:none;font-size:12px;font-weight:500;letter-spacing:.05em;text-transform:uppercase;color:var(--muted)}
+.seg button:hover{color:var(--ink)}
+.seg button[aria-pressed=true]{background:var(--raised);color:var(--ink)}
+.stage{position:relative;flex:1;min-height:0;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.frame{border:0;background:var(--canvas);width:100%;height:100%;display:block}
+.phone{display:none;flex-shrink:0;border:10px solid #0d0d0f;border-radius:44px;overflow:hidden;background:var(--canvas);box-shadow:0 0 0 1px var(--hair),0 20px 60px rgba(0,0,0,.5);transform-origin:center center}
+.phone iframe{width:390px;height:844px;border:0;display:block}
+.stage.is-phone .frame{display:none}.stage.is-phone .phone{display:block}
+@media (max-width:700px){.app span{display:none}.bar{gap:8px 16px}}
+</style>
+<div class="wrap">
+ <header class="bar">
+  <div class="app"><b>Design Engineering</b><span>A workspace for automation design: chat with an assistant that knows your projects, files, models and process data. This is a sample with placeholder data; nothing is sent to a server.</span></div>
+  <div class="page" aria-live="polite"><b id="pn">New chat</b><span id="pd"></span></div>
+  <div class="seg" role="group" aria-label="Screen"><button type="button" id="dsk" aria-pressed="true">Desktop</button><button type="button" id="mob" aria-pressed="false">Phone</button></div>
+ </header>
+ <main class="stage" id="stage"><iframe class="frame" id="fr" name="de-desktop" title="Design Engineering app, desktop view"></iframe><div class="phone" id="ph"><iframe id="pf" name="de-mobile" title="Design Engineering app, phone view"></iframe></div></main>
+</div>
+<script>
+(function(){
+ var $=function(i){return document.getElementById(i)};
+ /* key (folder prefix), hash id, name, description, path */
+ var PG=[
+  ['P04','sign-in','Sign in','Sign in or create an account. Any email and password work in this sample; any code except 000000 passes.','exports/P04-sign-in/index.html'],
+  ['P01','new-chat','New chat','Start a chat. General chats are open to everyone; the Projects tab starts a chat inside a project.','exports/P01-chat-start-desktop/Design_Engineering_App.html'],
+  ['P02','new-chat-phone','New chat (phone)','The phone version of the new chat page.','exports/P02-chat-start-mobile/Design_Engineering_Mobile.html'],
+  ['P03','chat','Conversation','A chat with cited sources. The files it used are listed in Uploads.','exports/P03-chat-conversation/index.html'],
+  ['P19','dashboard','Dashboard','The week at a glance. Update assistant logs a status or note against a project.','exports/P19-dashboard/index.html'],
+  ['P05A','project','Project summary','One project: start a chat, recent tasks, the stage slider, scheduled tasks and a 3D overview. Edit project opens the full workspace.','exports/P05A-project-summary/index.html'],
+  ['P05','projects','Projects','Every project in the organization. Open one, start a chat in it, or add a new project.','exports/P05-projects/index.html'],
+  ['P06','workspace','Project workspace','Import, Specifications, Layout, Schedule and Exports for a project. Exports builds the process document and quotes.','exports/P06-project-workspace/index.html'],
+  ['P12','process','Process configuration','One process in detail. The numbered row moves between processes.','exports/P12-process-config/index.html'],
+  ['P09','vault','Vault','Everything made or added: documents, models, calculators, uploads, schedules and chats. A calculator opens ready to use.','exports/P09-vault/index.html'],
+  ['P07','uploads','Uploads','Add files to a project. Files that chats used as sources are listed here too.','exports/P07-upload-flow/index.html'],
+  ['P08','design','3D designer','An extension. Build and change parts by chatting.','exports/P08-3d-viewer/index.html'],
+  ['P17','builder','Builder','An extension, desktop only. Packages an organization\'s Vault into a Lite package.','exports/P17-builder/index.html'],
+  ['P15','settings-page','Settings','Account, billing, usage, extensions, team, preferences and privacy.','exports/P15-account-settings/index.html'],
+  ['P16','lite','Lite','The local app that opens a Builder package offline, with an on-device assistant.','exports/P16-lite/index.html']];
+ var st={k:'P01',phone:false};
+ function byKey(k){return PG.filter(function(p){return p[0]===k})[0]}
+ function label(p){$('pn').textContent=p[2];$('pd').textContent=p[3]}
+ function fit(){var s=$('stage'),ph=$('ph');if(!st.phone)return;var w=s.clientWidth-24,h=s.clientHeight-24,full=[410,864],k=Math.min(1,w/full[0],h/full[1]);ph.style.transform='scale('+k+')';ph.style.margin=(-(full[1]*(1-k))/2)+'px '+(-(full[0]*(1-k))/2)+'px'}
+ function show(src){var p=byKey(st.k)||PG[1];label(p);
+  var f=st.phone?$('pf'):$('fr'),o=st.phone?$('fr'):$('pf');
+  f.setAttribute('src',src||p[4]);if(o.getAttribute('src'))o.removeAttribute('src');
+  $('dsk').setAttribute('aria-pressed',String(!st.phone));$('mob').setAttribute('aria-pressed',String(st.phone));$('stage').classList.toggle('is-phone',st.phone);fit()}
+ /* keep the description in step with where the person goes inside the app */
+ function follow(fr){try{var u=fr.contentWindow.location,m=/\/(P\d+[A-Z]?)-/.exec(u.pathname);if(!m)return;var p=byKey(m[1]);if(!p)return;st.k=p[0];st.src=u.pathname.slice(u.pathname.indexOf('exports/'))+u.search+u.hash;label(p);try{history.replaceState(null,'','#'+p[1])}catch(e){}}catch(e){}}
+ $('fr').addEventListener('load',function(){if(!st.phone)follow(this)});$('pf').addEventListener('load',function(){if(st.phone)follow(this)});
+ /* switching the screen keeps the page you are on */
+ $('dsk').onclick=function(){if(!st.phone)return;st.phone=false;show(st.src)};
+ $('mob').onclick=function(){if(st.phone)return;st.phone=true;show(st.src)};
+ window.addEventListener('resize',fit);
+ var h=(location.hash||'').slice(1),hp=PG.filter(function(p){return p[1]===h})[0];if(hp)st.k=hp[0];
+ show();
+})();
+</script>

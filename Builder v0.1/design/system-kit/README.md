@@ -66,7 +66,7 @@ Design Engineering is Block Concepts' workspace for automation design: mechanica
 
 - Graphite is the only app theme. The older Block Concepts token set (light theme, 2px and 4px corners, Word-document colors, Aptos) is for Block Concepts Word documents only and is not part of this system.
 - Wordmark: "Design Engineering" (formal, in the UI) and "designengineering.ai" (slug, URLs and domains).
-- Mobile navigation mirrors the desktop sidebar: New chat, Recents, Dashboard, More (More holds Projects, Design, Search and Customize; no Chat | Projects switcher on mobile).
+- Mobile navigation mirrors the desktop sidebar: New chat, Recents, Dashboard, More (More holds Projects, Design, Search and Settings (Builder is desktop only); no Chat | Projects switcher on mobile).
 - The disarmed send button is `bc-field-send-off` with a `bc-field-muted` arrow on desktop and mobile.
 - Text size: mobile offers Large (1) and Extra large (1.12 scale) as a user setting.
 - Project numbers (BC-Q-YYNNN) are configurable per organization.

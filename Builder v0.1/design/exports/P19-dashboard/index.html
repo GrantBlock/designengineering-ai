@@ -332,8 +332,52 @@ button:focus-visible, textarea:focus-visible, input:focus-visible, [role="button
 .sbacct svg:last-child{color:var(--bc-muted);margin-left:2px}
 .sbavatar{display:flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:999px;background:var(--bc-surface-raised);color:var(--bc-ink);font-size:12px;font-weight:700;padding-top:2px;flex-shrink:0}
 @media (max-width:760px){.sbexpand{display:none!important}}
-</style></head>
+
+/* Update assistant (notes and tracking inside the dashboard) */
+.p19-fold{display:inline-flex;align-items:center;gap:8px;height:100%;padding:0;background:none;border:none;color:var(--bc-muted);cursor:pointer;font:inherit}
+.p19-fold .de-label{color:var(--bc-ink);padding-top:2px}
+.p19-fold .de-icon{transition:transform 200ms}
+.p19-fold[aria-expanded=false] .de-icon{transform:rotate(-90deg)}
+.p19-fold:hover{color:var(--bc-ink)}
+.p19-up.is-folded .de-section-head{margin-bottom:0;border-bottom:none}
+.p19-up.is-folded #upbody{display:none}
+.p19-range{margin-left:auto;margin-right:var(--bc-space-4)}
+.p19-upbtn{border:1px solid var(--bc-steel-blue);color:var(--bc-steel-blue-text);border-radius:var(--bc-radius-control);height:44px;padding:2px 18px 0;font-size:13px;font-weight:600;letter-spacing:.08em;flex-shrink:0}
+.p19-upbtn:hover,.p19-upbtn[aria-expanded=true]{background:var(--bc-steel-blue-tint)}
+.p19-up{margin-bottom:var(--bc-space-4)}
+[hidden]{display:none!important}
+.p19-upform{display:grid;grid-template-columns:minmax(0,1fr) 220px;gap:var(--bc-space-3) var(--bc-space-4);padding:var(--bc-space-2) 0 var(--bc-space-2)}
+.p19-f{display:flex;flex-direction:column;gap:6px;min-width:0}
+.p19-f.is-wide{grid-column:1/-1}
+.p19-sel{position:relative;display:flex;align-items:center;height:44px;border:1px solid var(--bc-field-edge-soft);border-radius:var(--bc-radius-control);background:var(--bc-field);box-shadow:var(--bc-shadow-search);color:var(--bc-field-ink)}
+.p19-sel:focus-within,.p19-ta:focus-within{border-color:var(--bc-field-focus)}
+.p19-sel select{appearance:none;-webkit-appearance:none;flex:1;min-width:0;height:100%;padding:2px 40px 0 12px;background:none;border:none;outline:none;color:var(--bc-field-ink);font:inherit;font-size:16px;cursor:pointer}
+.p19-sel .de-icon{position:absolute;right:12px;color:var(--bc-field-muted);pointer-events:none}
+.p19-ta{display:flex;border:1px solid var(--bc-field-edge-soft);border-radius:var(--bc-radius-control);background:var(--bc-field);box-shadow:var(--bc-shadow-search)}
+.p19-ta textarea{flex:1;min-width:0;min-height:84px;padding:10px 12px 8px;background:none;border:none;outline:none;resize:vertical;color:var(--bc-field-ink);font:inherit;font-size:15px;line-height:1.45}
+.p19-ta textarea::placeholder{color:var(--bc-field-placeholder)}
+.p19-upact{display:flex;align-items:center;justify-content:flex-end;gap:var(--bc-space-2);grid-column:1/-1}
+.p19-upact .de-btn{height:44px}
+.p19-save{border:1px solid var(--bc-steel-blue);color:var(--bc-steel-blue-text);border-radius:var(--bc-radius-control);padding:2px 18px 0;font-size:13px;font-weight:600;letter-spacing:.08em}
+.p19-save:hover{background:var(--bc-steel-blue-tint)}
+.p19-save:disabled{border-color:var(--bc-hairline);color:var(--bc-muted);background:none;cursor:default}
+.p19-upn{margin:0 4px var(--bc-space-2);font-size:13px;color:var(--bc-muted)}
+.p19-log{margin-top:var(--bc-space-4)}
+.p19-ent{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px var(--bc-space-4);padding:14px 4px;border-bottom:1px solid var(--bc-hairline)}
+.p19-ent:last-child{border-bottom:none}
+.p19-entm{display:flex;flex-wrap:wrap;align-items:center;gap:var(--bc-space-2) var(--bc-space-3);font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--bc-muted)}
+.p19-entt{grid-column:1;font-size:15px;line-height:1.5;white-space:pre-wrap}
+.p19-ent .de-iconbtn{grid-row:1/3;grid-column:2;align-self:start}
+@media (max-width:760px){
+ .p19-head{flex-wrap:wrap}.p19-upbtn{width:100%;height:52px;margin-top:var(--bc-space-3)}
+ .p19-upform{grid-template-columns:1fr}.p19-sel{height:52px}.p19-sel select{font-size:17px}.p19-ta textarea{font-size:17px}
+ .p19-upact .de-btn{height:52px;flex:1}.p19-entt{font-size:16px}.p19-entm{font-size:12px}
+}
+</style><link rel="stylesheet" href="../shared/shell.css" data-dx-css="1">
+</head>
 <body>
+<script src="../shared/data.js"></script><script src="../shared/shell.js"></script>
+
 <div class="de-shell">
  <aside class="de-sidebar sb" aria-label="Sidebar" data-mode="chat">
   <div class="sbtool">
@@ -351,13 +395,14 @@ button:focus-visible, textarea:focus-visible, input:focus-visible, [role="button
     <button class="sbrow" type="button"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9zM12 12l8-4.5M12 12v9M12 12L4 7.5"/></svg><span class="sblab">Design</span></button>
     <button class="sbrow" type="button" title="Artifacts and exports"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0"><path d="M3 7h18v13H3zM3 7l2-3h14l2 3M10 12h4"/></svg><span class="sblab">Vault</span></button>
     <button class="sbrow" type="button" title="Imports"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0"><path d="M12 16V4M7 9l5-5 5 5M4 20h16"/></svg><span class="sblab">Uploads</span></button>
+    <a class="sbrow" href="../P17-builder/index.html" title="Builder extension"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0"><path d="M3 8l9-5 9 5v8l-9 5-9-5zM3 8l9 5 9-5M12 13v8"/></svg><span class="sblab">Builder</span></a>
     <button class="sbrow" type="button"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0"><path d="M5 12h.01M12 12h.01M19 12h.01"/></svg><span class="sblab">More</span></button>
   </nav>
   <div class="sbpane" data-sbpane="chat"><div class="sbhead">Recents</div><div class="sbrecs de-scroll"><a class="sbrec" href="../P03-chat-conversation/index.html" title="GitHub branch organization workflow"><span class="sbfade">GitHub branch organization workflow</span></a><a class="sbrec" href="../P03-chat-conversation/index.html" title="Downtime by cause from stoppage CSV"><span class="sbfade">Downtime by cause from stoppage CSV</span></a><a class="sbrec" href="../P03-chat-conversation/index.html" title="Gear ratio for a hoist drive"><span class="sbfade">Gear ratio for a hoist drive</span></a><a class="sbrec" href="../P03-chat-conversation/index.html" title="Compare 304 and 316 stainless for washdown"><span class="sbfade">Compare 304 and 316 stainless for washdown</span></a><a class="sbrec" href="../P03-chat-conversation/index.html" title="Cable tray fill calculation"><span class="sbfade">Cable tray fill calculation</span></a><a class="sbrec" href="../P03-chat-conversation/index.html" title="Compressed air leak estimate"><span class="sbfade">Compressed air leak estimate</span></a><a class="sbrec" href="../P03-chat-conversation/index.html" title="PLC tag naming convention"><span class="sbfade">PLC tag naming convention</span></a><a class="sbrec" href="../P03-chat-conversation/index.html" title="Quote template wording"><span class="sbfade">Quote template wording</span></a></div></div>
   <div class="sbpane" data-sbpane="projects" hidden><div class="sbhead">Projects</div><div class="sbrecs de-scroll"><a class="sbrow sbnewproj" href="../P05-projects/index.html"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0"><path d="M12 5v14M5 12h14"/></svg><span class="sblab">New project</span></a><div class="sbgroup"><div class="sbgrow"><button class="sbgrp" type="button" aria-expanded="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0"><path d="M9 6l6 6-6 6"/></svg><span class="sblab">Palletizer retrofit</span><span class="sbcount">3</span></button><a class="sbgstart" href="../P01-chat-start-desktop/Design_Engineering_App.html?project=BC-Q-26041" title="Start chat in Palletizer retrofit" aria-label="Start chat in Palletizer retrofit"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 5h14a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1h-8l-4 4v-4H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zM12 8v5M9.5 10.5h5"/></svg></a></div><div class="sbkids"><a class="sbrec" href="../P06-project-workspace/index.html?project=BC-Q-26041" title="Pneumatic cylinder sizing for palletizer"><span class="sbfade">Pneumatic cylinder sizing for palletizer</span></a><a class="sbrec" href="../P06-project-workspace/index.html?project=BC-Q-26041" title="Layout review for pallet stack"><span class="sbfade">Layout review for pallet stack</span></a><a class="sbrec" href="../P06-project-workspace/index.html?project=BC-Q-26041" title="Safety circuit for guarded cell"><span class="sbfade">Safety circuit for guarded cell</span></a></div></div><div class="sbgroup"><div class="sbgrow"><button class="sbgrp" type="button" aria-expanded="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0"><path d="M9 6l6 6-6 6"/></svg><span class="sblab">Capping station</span><span class="sbcount">3</span></button><a class="sbgstart" href="../P01-chat-start-desktop/Design_Engineering_App.html?project=BC-Q-26038" title="Start chat in Capping station" aria-label="Start chat in Capping station"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 5h14a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1h-8l-4 4v-4H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zM12 8v5M9.5 10.5h5"/></svg></a></div><div class="sbkids"><a class="sbrec" href="../P06-project-workspace/index.html?project=BC-Q-26038" title="Capping station I/O list draft"><span class="sbfade">Capping station I/O list draft</span></a><a class="sbrec" href="../P06-project-workspace/index.html?project=BC-Q-26038" title="FAT checklist for capping station"><span class="sbfade">FAT checklist for capping station</span></a><a class="sbrec" href="../P06-project-workspace/index.html?project=BC-Q-26038" title="Servo axis overcurrent fault"><span class="sbfade">Servo axis overcurrent fault</span></a></div></div><div class="sbgroup"><div class="sbgrow"><button class="sbgrp" type="button" aria-expanded="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0"><path d="M9 6l6 6-6 6"/></svg><span class="sblab">Label applicator</span><span class="sbcount">2</span></button><a class="sbgstart" href="../P01-chat-start-desktop/Design_Engineering_App.html?project=BC-Q-26035" title="Start chat in Label applicator" aria-label="Start chat in Label applicator"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 5h14a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1h-8l-4 4v-4H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zM12 8v5M9.5 10.5h5"/></svg></a></div><div class="sbkids"><a class="sbrec" href="../P06-project-workspace/index.html?project=BC-Q-26035" title="Conveyor VFD and motor selection"><span class="sbfade">Conveyor VFD and motor selection</span></a><a class="sbrec" href="../P06-project-workspace/index.html?project=BC-Q-26035" title="Tolerance stack-up on bracket assembly"><span class="sbfade">Tolerance stack-up on bracket assembly</span></a></div></div></div></div>
   <div class="sbfoot">
     <button class="sbacct" type="button" aria-label="Account switcher"><span class="sbavatar">G</span><span class="sblab">Grant&nbsp;·&nbsp;Pro</span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0"><path d="M6 9l6 6 6-6"/></svg></button>
-    <button class="sbicon" type="button" aria-label="Settings"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0"><path d="M12 9a3 3 0 1 0 0 6 3 3 0 0 0 0-6zM19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></button>
+    <a class="sbicon" href="../P15-account-settings/index.html" aria-label="Settings"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0"><path d="M12 9a3 3 0 1 0 0 6 3 3 0 0 0 0-6zM19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></a>
   </div>
 </aside>
 <button class="sbicon sbexpand" type="button" data-sb="expand" aria-label="Expand sidebar" hidden><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0"><path d="M4 5h16v14H4zM9 5v14"/></svg></button>
@@ -366,7 +411,11 @@ button:focus-visible, textarea:focus-visible, input:focus-visible, [role="button
    <div class="de-topbar-actions"><button class="de-btn"><svg class="de-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>New project</button><button class="de-btn">Ask AI</button><button class="de-btn">Support</button><div class="de-avatar" style="margin-left:8px">G</div></div></header>
   <div class="p19-mheader p19-mobile"><div class="de-mheader"><img src="../../assets/favicon.svg" alt=""><span class="de-brand">Design Engineering</span><div class="de-avatar de-avatar-lg">G</div></div></div>
   <div class="de-shell-scroll de-scroll"><div class="de-shell-column p19-col">
-   <div class="p19-head"><div><div class="de-eyebrow">Weekly view</div><h1>Week 46</h1></div><div class="p19-range">Nov 9 – Nov 13, 2026</div></div>
+   <div class="p19-head"><div><div class="de-eyebrow">Weekly view</div><h1>Week 46</h1></div><div class="p19-range">Nov 9 – Nov 13, 2026</div><button class="de-btn p19-upbtn" id="upbtn" type="button" aria-expanded="false" aria-controls="upp">Update assistant</button></div>
+   <section class="de-panel p19-up" id="upp" aria-label="Update assistant" hidden><div class="de-section-head"><button class="p19-fold" id="upfold" type="button" aria-expanded="true" aria-controls="upbody"><svg class="de-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg><span class="de-label">Update assistant</span></button><span class="de-tag de-tag-plain">Notes and status</span></div>
+    <div id="upbody"><p class="p19-upn">Tell me what changed on a project. I log it and use it the next time you ask about that project.</p>
+    <form class="p19-upform" id="upf"><div class="p19-f"><label class="de-label" for="up-proj">Project</label><div class="p19-sel"><select id="up-proj"><option>BC-Q-26041 · Palletizer retrofit</option><option>BC-Q-26038 · Capping station</option><option>BC-Q-26035 · Label applicator</option></select><svg class="de-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 10l5 5 5-5"/></svg></div></div><div class="p19-f"><label class="de-label" for="up-stat">Status</label><div class="p19-sel"><select id="up-stat"><option>No change</option><option>Quoting</option><option>Sold</option><option>In progress</option><option>Waiting</option><option>Done</option></select><svg class="de-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 10l5 5 5-5"/></svg></div></div><div class="p19-f is-wide"><label class="de-label" for="up-note">Update</label><div class="p19-ta"><textarea id="up-note" placeholder="For example: vendor confirmed lead time, waiting on customer drawings"></textarea></div></div>
+     <div class="p19-upact"><button class="de-btn" id="upx" type="button">Cancel</button><button class="de-btn p19-save" id="ups" type="submit" disabled>Save update</button></div></form></div></section>
    <div class="p19-tiles" role="list" aria-label="This week at a glance">
     <div class="p19-tile" role="listitem"><span class="p19-num">8</span><span class="de-label">Open items</span><span class="p19-hint">4 of 12 done this week</span></div>
     <div class="p19-tile is-accent" role="listitem"><span class="p19-num">3</span><span class="de-label">Sold projects</span><span class="p19-hint">In build or delivery</span></div>
@@ -421,6 +470,7 @@ button:focus-visible, textarea:focus-visible, input:focus-visible, [role="button
      </section>
     </div>
    </div>
+   <section class="de-panel p19-log" aria-label="Updates"><div class="de-section-head"><span class="de-label">Updates</span><span class="de-tag de-tag-plain" id="upc"></span></div><div id="upl"></div></section>
    <p class="p19-foot">Sample data. Layout draft for integration; counts and rows are placeholders.</p>
   </div></div>
  </main>
@@ -435,5 +485,31 @@ if(b.dataset.sbmode)mode(b.dataset.sbmode);
 else if(b.dataset.sb==="toggle"){sb.style.display="none";ex.hidden=false}
 else if(b.classList.contains("sbgrp")){var g=b.closest(".sbgroup"),c=g.classList.toggle("is-closed");b.setAttribute("aria-expanded",String(!c))}});
 ex.addEventListener("click",function(){sb.style.display="";ex.hidden=true})})();
+</script>
+<script>
+(function(){
+ var $=function(i){return document.getElementById(i)};
+ function esc(x){return x.replace(/&/g,'&amp;').replace(/</g,'&lt;')}
+ /* Sample log (A). */
+ var L0=[['BC-Q-26041','Palletizer retrofit','In progress','Today 9:40','Vendor confirmed the GB-220 gearbox lead time. Order goes out once the drive sizing is approved.',''],['BC-Q-26041','Palletizer retrofit','','Yesterday','Cylinder bore sized at 63 mm (A), check against the 6 bar supply.','From chat'],['BC-Q-26038','Capping station','Sold','Nov 9','Kickoff held. Customer sends the I/O list by Friday.','']];
+ var L;try{L=JSON.parse(localStorage.getItem('de-updates'))}catch(e){}if(!Array.isArray(L))L=L0;
+ function persist(){try{localStorage.setItem('de-updates',JSON.stringify(L))}catch(e){}}
+ function fresh(){try{var v=JSON.parse(localStorage.getItem('de-updates'));if(Array.isArray(v))L=v}catch(e){}}
+ window.addEventListener('storage',function(e){if(e.key==='de-updates'){fresh();draw()}});
+ function draw(){$('upc').textContent=L.length+(L.length===1?' update':' updates');
+  $('upl').innerHTML=L.length?L.map(function(x,i){return '<div class="p19-ent"><div class="p19-entm"><span>'+x[0]+' · '+x[1]+'</span>'+(x[2]?'<span class="de-tag">'+x[2]+'</span>':'')+(x[5]?'<span class="de-tag de-tag-plain">'+x[5]+'</span>':'')+'<span>'+x[3]+'</span></div><button class="de-iconbtn de-iconbtn-sm" data-d="'+i+'" type="button" aria-label="Delete update"><svg class="de-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button><div class="p19-entt">'+esc(x[4])+'</div></div>'}).join(''):'<div class="de-empty">No updates yet. Use Update assistant to add one.</div>'}
+ function chk(){$('ups').disabled=!($('up-note').value.trim()||$('up-stat').value!=='No change')}
+ function fold(f){$('upp').classList.toggle('is-folded',f);$('upfold').setAttribute('aria-expanded',String(!f))}
+ function open(o){$('upp').hidden=!o;$('upbtn').setAttribute('aria-expanded',String(o));if(o){fold(false);$('up-note').focus()}}
+ $('upfold').addEventListener('click',function(){fold(!$('upp').classList.contains('is-folded'))});
+ $('upbtn').addEventListener('click',function(){if(!$('upp').hidden&&$('upp').classList.contains('is-folded'))fold(false);else open($('upp').hidden)});
+ $('upx').addEventListener('click',function(){open(false)});
+ $('up-note').addEventListener('input',chk);$('up-stat').addEventListener('change',chk);
+ $('upf').addEventListener('submit',function(e){e.preventDefault();var pr=$('up-proj').value.split(' · '),sv=$('up-stat').value;
+  fresh();L.unshift([pr[0],pr[1],sv==='No change'?'':sv,'Just now',$('up-note').value.trim()||'Status changed to '+sv+'.','']);
+  persist();$('up-note').value='';$('up-stat').value='No change';chk();draw();open(false)});
+ $('upl').addEventListener('click',function(e){var b=e.target.closest('[data-d]');if(b){var gone=JSON.stringify(L[+b.dataset.d]);fresh();var gi=L.map(function(x){return JSON.stringify(x)}).indexOf(gone);if(gi>-1)L.splice(gi,1);persist();draw()}});
+ draw();
+})();
 </script>
 </body></html>
