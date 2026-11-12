@@ -114,11 +114,12 @@ Each person uses one license. A collaborator mode lets users work together on sh
 | Who can join | Anyone with a Basic Viewer account (or higher), invited by the project owner |
 | Where the data lives | With the owner; shared projects count against the owner's storage, not the guest's |
 | Access levels | Owner sets view, comment, or edit per project |
-| AI | Basic Viewers get general chat with a small daily AI cap paid by Block Concepts; beyond it, they use their own wallet |
+| AI | Invited viewers ask chat questions on the shared project, charged to the owner's wallet within a per-viewer monthly limit the owner sets. Open sign-up Basic Viewers get general chat with a very small daily cap from the shared free pool (6.3); beyond it, they use their own wallet |
+| Viewer limit | Pro: up to 10 viewers per project. Team: more per project [X] |
 | Project limit | A Basic Viewer has no projects of their own; a Starter bundle ($20 per year) unlocks up to 3. Shared projects do not count |
 | Sharing and roles | Pro shares per project. The Team settings section (Admin, plus the view, comment and edit levels) shows only on the Team level |
 
-*Example team: one engineer on Pro owns the projects; six maintenance staff collaborate on Basic Viewer accounts and fund their own wallets when they need more than the daily cap; one who needs projects of their own buys a Starter bundle.*
+*Example team: one engineer on Pro owns the projects; six maintenance staff join as invited viewers, and their questions on the shared projects are paid from the engineer's wallet within limits the engineer sets; one who needs projects of their own buys a Starter bundle.*
 
 **Data storage approach**
 
@@ -284,9 +285,9 @@ Prices match SBA Section 5.2.
 
 | Level | Available | Price | Performance | Features | Storage |
 | --- | --- | --- | --- | --- | --- |
-| Basic Viewer | Launch | $0 | Standard speed and models; small daily AI cap paid by Block Concepts | Web app; general chat; view and comment on shared projects; collaborator mode; no projects of their own | None |
-| Starter bundle | Launch | $20 / year | As Basic Viewer | Yearly add-on for Basic Viewer, the loss leader for hobbyists and technicians to try the project tools without Pro: up to 3 projects of their own (shared projects do not count) and uploads. Tokens are bought separately from the wallet, with no spending limit, for chat (troubleshooting, vendor requests) beyond the daily cap | File upload limit [X GB] (A); Pro unlocks the full storage |
-| Pro | Launch | $30 / user / month | Faster responses, priority access, premium models | Web app with projects and project chat, plus desktop app; can add the Design and Builder extensions; collaborator mode with per-project sharing | 20 GB included; each additional 20 GB is $10 / month |
+| Basic Viewer | Launch | $0 | Lowest-cost model on the slow queue; very small daily general-chat cap from the shared free pool | Web app; general chat (design-engineering topics only); view, comment and ask questions on projects shared with them (paid by the owner's wallet); collaborator mode; no projects of their own | None |
+| Starter bundle | Launch | $20 / year | As Basic Viewer | Yearly add-on for Basic Viewer, the loss leader for hobbyists and technicians to try the project tools without Pro: up to 3 projects of their own (shared projects do not count), uploads, and a one-time $5 starter token credit (A). Further tokens are bought separately from the wallet, with no spending limit, for chat (troubleshooting, vendor requests) beyond the daily cap | 5 GB total, 100 MB per file (A); Pro unlocks the full storage |
+| Pro | Launch | $30 / user / month | Faster responses, priority access, premium models | Web app with projects and project chat, plus desktop app; can add the Design and Builder extensions; collaborator mode with up to 10 viewers per project, whose chat is paid from the owner's wallet | 20 GB included, 500 MB per file (A); each additional 20 GB is $10 / month |
 | Turbo | After infrastructure upgrades | [$X] / user / month | Much faster than Pro | Everything in Pro; for power users who can't justify Enterprise and don't need Team admin controls | [X] GB included; each additional 20 GB is $10 / month |
 | Team | Built in year 1, live from year 2 | $50 / user / month | As Pro | Everything in Pro plus an admin panel: add and remove people, set roles and permissions on shared projects | 20 GB per user (A); each additional 20 GB is $10 / month |
 | Enterprise | Custom implementation | Flat fee + per-user memberships + custom features and integrations | Dedicated cloud or local deployment | Built on the Builder app; all surfaces, plus Onshape / SolidWorks integration | Customer's own cloud or site |
@@ -306,17 +307,33 @@ Chat and CAD usage is charged at **3.5× the underlying cost**. Rates vary by mo
 | CAD generation | Per generation | AI and compute cost × 3.5, by complexity and speed |
 | Storage add-on blocks | Per 20 GB per month | Flat block price: Pro, Turbo, and Team $10 (not the 3.5× multiplier); Basic Viewer: Starter upload limit only, no blocks |
 
-*Per-model and per-task rates are set after MVP cost testing. During the winter build, every request is logged with its model, task type (chat, document search, CAD generation), token count, and cost. Rates are then priced at 3.5× the measured averages.*
+*Usage is charged by the tokens actually used, so heavy requests pay more. The minimum wallet top-up is $10 (A). Per-model and per-task rates are set after MVP cost testing. During the winter build, every request is logged with its model, task type (chat, document search, CAD generation), token count, and cost. Rates are then priced at 3.5× the measured averages.*
 
 ### 6.3 Wallet Rules
 
 - Prepaid: usage stops when the balance runs out; optional auto-refill.
-- Basic Viewer accounts have a small daily AI cap paid by Block Concepts, sized from measured costs so total Basic Viewer usage stays within [X%] of Pro revenue (SBA 8.4).
-- The Starter bundle is $20 per year for projects and uploads only; tokens are a separate wallet purchase with no spending limit. Basic Viewer usage beyond the daily cap is paid from the wallet.
+- All free usage draws from one shared monthly pool capped at 5% of Pro membership revenue (A). When the pool runs out, free chat waits until the next month; paid users are never affected (SBA 8.4).
+- The Starter bundle is $20 per year for projects and uploads, with a one-time $5 starter token credit (A); further tokens are a separate wallet purchase with no spending limit. Basic Viewer usage beyond the daily cap is paid from the wallet.
 - Lite uses no Block Concepts tokens.
 - Users see a running usage and balance display.
 - Block Concepts keeps a hard monthly spending limit with the AI provider.
 - Enterprise may be invoiced (postpaid) through Block Concepts.
+
+### 6.4 Abuse and Loss Controls
+
+*Marketing cost is fine; an abuser must not be able to take money. Block Concepts' worst case is the free pool (5% of Pro revenue) plus card fraud screened by Stripe.*
+
+| # | Abuse | Control |
+| --- | --- | --- |
+| 1 | Many free accounts to multiply the daily cap | Free AI needs a verified email; disposable email domains blocked; limits per device and network, not only per account; any upgrade needs a card check ($0 hold) |
+| 2 | Free chat used as a general-purpose AI | Free chat answers design-engineering topics only, on the lowest-cost model, with short answers, short conversation memory, no attachments, and the slow queue |
+| 3 | Oversized requests | Maximum size per free request; paid usage charged by tokens actually used |
+| 4 | Stolen cards and chargebacks | Stripe fraud screening; $10 minimum top-up; a chargeback freezes the account and pulls back its unused balance; auto-refill needs a verified card |
+| 5 | Paid jobs that cost more than expected (Design, Builder packaging) | The estimated cost is held from the wallet before the job runs; the job runs only if the balance covers it; failed jobs are refunded automatically |
+| 6 | Storage used as a free file host | Engineering file types only; per-file limits; no public download links (viewers need an account); lapsed plans go read-only for 90 days (A), then files are deleted with notice |
+| 7 | Invited viewers running up AI cost | Viewer chat charged to the owner's wallet with a per-viewer monthly limit; 10 viewers per project on Pro |
+
+Spending spikes suspend an account automatically, so no one watches logs; the AI provider's hard monthly cap stays as the last backstop.
 
 ## 7. Roadmap & Winter Milestones
 
@@ -341,7 +358,7 @@ Ranked by owner priority (1 = highest concern).
 | Rank | Risk | Type | Likelihood | Mitigation |
 | --- | --- | --- | --- | --- |
 | 1 | Inaccurate AI output (wrong dimension, part number, or vendor detail) | Product / liability | Medium | See 8.1 below |
-| 2 | AI costs run over (bugs, abuse, Basic Viewer usage growth) | Financial | Medium | Hard monthly spend cap with the AI provider; Basic Viewer daily cap; prepaid wallet and Starter bundles; per-request cost logging; Lite runs on-device |
+| 2 | AI costs run over (bugs, abuse, Basic Viewer usage growth) | Financial | Medium | Hard monthly spend cap with the AI provider; free pool capped at 5% of Pro revenue; abuse and loss controls (6.4); prepaid wallet; invited viewers paid by the owner; per-request cost logging; Lite runs on-device |
 | 3 | Growth slower than the target pace (+12 Pro / month) | Market | Medium | Focused channels (SBA 6), Lite packages and demo, founding-customer offer as a lever; Block Concepts funds the gap |
 | 4 | Owner capacity: two owners covering every role alongside an active automation sales business | Operations | High | Phase gates; AI tools; first hire at the Phase 2 trigger |
 | 5 | Competitors add similar features (AI CAD tools, CMMS vendors, industrial copilots) | Market | High | Speed, turnkey setup, technician-first focus, Block Concepts relationships |

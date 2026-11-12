@@ -98,7 +98,7 @@ The first turnkey app purpose-built for multi-disciplinary design engineering: t
 | **3 Apr 2029 – Mar 2030** | \$50,000                       | \$125,000                         | \$5,000      | \$90,000       | −\$45,000      | +\$30,000      |
 | **3-year total**          | **\$90,000**                   | **\$220,000**                     | **\$15,000** | **\$180,000**  | **−\$105,000** | **+\$25,000**  |
 
-*Add-ons not in the table (Section 8.2.1): about \$68,000 over three years, mostly Pro wallet margin and Team (\$50 / user) from year 2. Design and Builder, Enterprise, and services not counted.*
+*Add-ons not in the table (Section 8.2.1): about \$61,300 over three years, mostly Pro wallet margin and Team (\$50 / user) from year 2. Design and Builder, Enterprise, and services not counted.*
 
 <table>
 <colgroup>
@@ -106,7 +106,7 @@ The first turnkey app purpose-built for multi-disciplinary design engineering: t
 </colgroup>
 <tbody>
 <tr class="odd">
-<td><p><strong>Key unknown: AI usage (token) cost.</strong> Cost per AI task has not been measured yet. Pro usage is prepaid through the wallet at 3.5× cost, so it is covered. Basic Viewer usage is paid by Block Concepts within a daily cap and grows with viewers: at Phase 2 scale, $1 per viewer per month is about $5,200–14,000 per month. Detail in Section 8.4.</p>
+<td><p><strong>Key unknown: AI usage (token) cost.</strong> Cost per AI task has not been measured yet. Pro usage is prepaid through the wallet at 3.5× cost, so it is covered. Free usage is paid by Block Concepts from a pool capped at 5% of Pro revenue, so it cannot grow past that budget; invited viewers are paid by the project owner. Detail in Section 8.4.</p>
 <p>Every task is logged during the MVP build (tokens, model, cost) to set the Basic Viewer cap and wallet pricing before launch.</p></td>
 </tr>
 </tbody>

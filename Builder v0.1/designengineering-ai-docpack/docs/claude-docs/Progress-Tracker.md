@@ -81,11 +81,11 @@ Completed in order: system questions; SBA 2, 4, 7, 9 (running); App 3, 6, 2; SBA
 | 2 | Review the Lite package format draft v0.1 | App 3.2 |
 | 3 | Choose the on-device model and minimum PC spec; Windows only or also macOS; can Lite users add notes | App 3.2, App 4 (D11–D12) |
 | 4 | Set Turbo price and included storage | SBA 5.2, App 6.1 |
-| 5 | Set Starter bundle contents: price set 2026-11-12 at $20 / year with 3 projects and no token limit; upload limit still [X GB] | SBA 5.2, App 6.1 |
+| 5 | Set Starter bundle contents: price set 2026-11-12 at $20 / year with 3 projects and no token limit; 5 GB total, 100 MB per file, one-time $5 token credit (A), set 2026-11-12 | SBA 5.2, App 6.1 |
 | 6 | Confirm Team storage per user (assumed 20 GB) | App 6.1 |
 | 7 | Set Builder open-sale timing | SBA 6.2, App 7 |
-| 8 | Choose the founder-built paid feature that closes the $37,000 base-case gap (Team or Builder are candidates) | SBA 8.2.1 |
-| 9 | Calibrate wallet rates, the Basic Viewer daily cap, and its [X%] of Pro revenue limit from MVP cost testing | App 6, SBA 8.4 |
+| 8 | Choose the founder-built paid feature that closes the $43,700 base-case gap (Team or Builder are candidates) | SBA 8.2.1 |
+| 9 | Calibrate wallet rates and the free daily cap from MVP cost testing (the free pool is set at 5% of Pro membership revenue) | App 6, SBA 8.4 |
 | 10 | Pick the final stack during the winter build and fill the Decision Log | App 4 (D1–D12) |
 | 11 | Confirm Anthropic Claude API data terms | App 4.1, SBA 9.2 |
 | 12 | Security decisions: file retention after cancellation, U.S.-only hosting, multi-factor sign-in timing, package signing | App 5 |
