@@ -141,14 +141,8 @@
 
   /* ---------- new project ---------- */
   function newProject() {
-    /* Laid out like the Settings overlay (P15). Type pane is left blank: project type and other settings go there (not yet designed). */
-    var nb = function (k, ic, lab, on) { return '<button class="dx-nb" type="button" data-np="' + k + '" aria-current="' + on + '">' + ico(ic, 18) + lab + '</button>'; };
-    var d = dialog({ title: 'New project', overlay: true, raw: '<div class="dx-obody"><nav class="dx-onav" aria-label="New project sections">' + nb('general', 'gear', 'General', true) + nb('type', 'cube', 'Type', false) + '</nav>' +
-      '<div class="dx-opane de-scroll"><form id="dx-np" data-np-pane="general"><h3>General</h3><div class="dx-orow"><label class="dx-ot" for="dx-pn">Project name</label><p class="dx-od">It gets the next project number and is shared with your organization.</p><input class="dx-oin" id="dx-pn" autocomplete="off" placeholder="For example: Case packer line 2"></div><div class="dx-err" id="dx-pe" role="alert"></div><div class="dx-row"><button class="dx-btn is-main" type="submit">Create project</button></div></form>' +
-      '<section data-np-pane="type" hidden><h3>Type</h3></section></div></div>' });
-    $$('.dx-nb', d.el).forEach(function (b) { b.addEventListener('click', function () { $$('.dx-nb', d.el).forEach(function (x) { x.setAttribute('aria-current', String(x === b)); }); $$('[data-np-pane]', d.el).forEach(function (p) { p.hidden = p.getAttribute('data-np-pane') !== b.dataset.np; }); }); });
-    $('#dx-pn', d.el).focus();
-    $('#dx-np', d.el).addEventListener('submit', function (e) { e.preventDefault(); var n = $('#dx-pn', d.el).value.trim(); if (n.length < 2) { $('#dx-pe', d.el).textContent = 'Give the project a name.'; return; } var p = DE.addProject(n); location.href = DE.summaryUrl(p.id); });
+    /* Laid out like the Settings overlay. Body is left blank: project type and other settings go here (not yet designed). */
+    dialog({ title: 'New project', overlay: true, body: '' });
   }
   function shortcuts() { dialog({ title: 'Keyboard shortcuts', body: '<dl class="dx-keys"><dt>Ctrl K or ⌘ K</dt><dd>Search</dd><dt>Esc</dt><dd>Close a menu, a dialog or Settings</dd><dt>Tab</dt><dd>Move to the next control</dd><dt>Arrow keys</dt><dd>Move inside a menu or the search results</dd></dl>' }); }
   function copyLink() { var u = location.href; function ok() { toast('Link copied.'); } if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(u).then(ok, function () { toast('Copy did not work here. The link is in the address bar.'); }); else toast('Copy is not available here. The link is in the address bar.'); }
