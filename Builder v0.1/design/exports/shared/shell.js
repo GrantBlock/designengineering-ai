@@ -63,7 +63,7 @@
     share: 'M12 15V4M8 8l4-4 4 4M5 12v7h14v-7', help: 'M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18zM9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.7.3-1 .9-1 1.7M12 17h.01',
     rail: 'M4 5h16v14H4zM15 5v14', x: 'M6 6l12 12M18 6L6 18', clock: 'M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18zM12 7v5l3 2',
     user: 'M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM4 21a8 8 0 0 1 16 0', out: 'M10 5H5v14h5M14 8l4 4-4 4M18 12H9', link: 'M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1',
-    keys: 'M3 7h18v10H3zM7 11h.01M11 11h.01M15 11h.01M8 14h8', doc: 'M7 3h7l5 5v13H7zM14 3v5h5M10 13h6M10 17h6', calc: 'M6 3h12v18H6zM9 7h6M9 12h.01M12 12h.01M15 12h.01M9 16h.01M12 16h.01M15 16h.01', card: 'M3 6h18v12H3zM3 10h18'
+    keys: 'M3 7h18v10H3zM7 11h.01M11 11h.01M15 11h.01M8 14h8', doc: 'M7 3h7l5 5v13H7zM14 3v5h5M10 13h6M10 17h6', calc: 'M6 3h12v18H6zM9 7h6M9 12h.01M12 12h.01M15 12h.01M9 16h.01M12 16h.01M15 16h.01', card: 'M3 6h18v12H3zM3 10h18', enter: 'M20 5v7a3 3 0 0 1-3 3H5M9 11l-4 4 4 4'
   };
   function ico(n, s, w) { return '<svg width="' + (s || 16) + '" height="' + (s || 16) + '" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="' + (w || 1.6) + '" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" style="flex-shrink:0"><path d="' + IC[n] + '"/></svg>'; }
 
@@ -126,16 +126,86 @@
     DE.vault.forEach(function (v) { if (v.t !== 'Chat') a.push([v.n, v.calc ? U.vault + '?calc=' + v.calc : v.h, v.t]); });
     return a;
   }
+  /* Search overlay: type tabs, Needs attention, Recents and Actions when empty; grouped results when typing.
+     Keys: arrows move, Enter opens, Left/Right change type (empty box), / filters by project, Alt+Enter row actions, Esc closes. */
+  var SX_TYPES = [['all', 'All'], ['chat', 'Chats'], ['project', 'Projects'], ['vault', 'Vault'], ['upload', 'Uploads'], ['page', 'Pages']];
+  var SX_ICON = { chat: 'chat', project: 'folder', vault: 'doc', upload: 'upload', page: 'dash', action: 'plus', attn: 'clock' };
+  var SX_GROUP = { chat: 'Chats', project: 'Projects', vault: 'Vault', upload: 'Uploads', page: 'Pages' };
+  function sxItems() {
+    var a = [], x = extGet(), seen = {};
+    function add(o) { var k = o.k + '|' + o.n + '|' + (o.p || ''); if (seen[k]) return; seen[k] = 1; a.push(o); }
+    DE.projects.forEach(function (p) { add({ k: 'project', n: p.name, h: DE.summaryUrl(p.id), m: p.id, p: p.id }); (p.chats || []).forEach(function (c) { add({ k: 'chat', n: c, h: DE.chatUrl(c, p.id), m: p.id, p: p.id }); }); });
+    DE.recents.forEach(function (c) { add({ k: 'chat', n: c, h: DE.chatUrl(c), m: 'Chat' }); });
+    DE.vault.forEach(function (v) { if (v.t === 'Chat') return; add({ k: v.t === 'Upload' ? 'upload' : 'vault', n: v.n, h: v.calc ? U.vault + '?calc=' + v.calc : v.h, m: v.t + (v.p ? ' · ' + v.p : ''), p: v.p }); });
+    PAGES.forEach(function (g) { add({ k: 'page', n: g[0], h: g[1], m: g[2] }); });
+    add({ k: 'page', n: 'Preferences', h: U.prefs, m: 'Factory context' });
+    if (x.design) add({ k: 'page', n: '3D designer', h: U.design, m: 'Extension' });
+    if (x.builder && !MOBILE) add({ k: 'page', n: 'Builder', h: U.builder, m: 'Extension' });
+    return a;
+  }
+  function sxAttention() {
+    var r = [], pr = ls('de-prefs', null), n = pr && pr.sug ? pr.sug.length : 2;
+    if (n) r.push({ k: 'attn', n: n + (n > 1 ? ' changes from chats wait in Preferences' : ' change from a chat waits in Preferences'), h: U.prefs + '#overview', m: 'Preferences', e: 1 });
+    r.push({ k: 'attn', n: 'Quote for Capping station waits for your approval', h: DE.summaryUrl('BC-Q-26038'), m: 'BC-Q-26038', p: 'BC-Q-26038', e: 1 });
+    return r;
+  }
+  function sxActions() {
+    return [{ k: 'action', n: 'New chat', h: MOBILE ? U.newM : U['new'], m: '' }, { k: 'action', n: 'New project', act: newProject, m: '' }, { k: 'action', n: 'Upload files', h: U.uploads, m: '' }, { k: 'action', n: 'Open preferences', h: U.prefs, m: '', ic: 'prefs' }];
+  }
   function search() {
-    var all = searchItems();
-    var d = dialog({ title: 'Search', noHead: true, raw: '<label class="dx-search">' + ico('search', 18) + '<span class="dx-sr">Search</span><input id="dx-q" type="search" placeholder="Search projects, chats, the Vault and pages" autocomplete="off"><button class="de-iconbtn" type="button" data-x="1" aria-label="Close search">' + ico('x', 18) + '</button></label><div class="dx-res" id="dx-r" role="listbox" aria-label="Results"></div>' });
-    function draw() {
-      var q = $('#dx-q', d.el).value.trim().toLowerCase();
-      var hit = all.filter(function (x) { return !q || (x[0] + ' ' + x[2]).toLowerCase().indexOf(q) > -1; }).slice(0, q ? 24 : 9);
-      $('#dx-r', d.el).innerHTML = hit.length ? hit.map(function (x) { return '<a class="dx-item" role="option" href="' + esc(x[1]) + '"><span>' + esc(x[0]) + '</span><small>' + esc(x[2]) + '</small></a>'; }).join('') : '<div class="dx-none">Nothing matches. Try a project number, a chat title or a file name.</div>';
+    var all = sxItems(), st = { t: 0, i: 0, proj: '', filt: false }, rows = [];
+    var d = dialog({ title: 'Search', noHead: true, raw:
+      '<div class="sx-head"><label class="sx-q"><span class="dx-sr">Search</span><input id="sx-q" type="search" placeholder="Search" autocomplete="off" role="combobox" aria-expanded="true" aria-controls="sx-r" aria-autocomplete="list"></label><button class="de-iconbtn" type="button" data-x="1" aria-label="Close search">' + ico('x', 20) + '</button></div>' +
+      '<div class="sx-tabs" role="tablist" aria-label="Type">' + SX_TYPES.map(function (t, i) { return '<button type="button" role="tab" data-t="' + i + '">' + t[1] + '</button>'; }).join('') + '</div>' +
+      '<div class="sx-filt" id="sx-f" hidden></div>' +
+      '<div class="sx-res" id="sx-r" role="listbox" aria-label="Results"></div>' +
+      '<div class="sx-foot" aria-hidden="true"><span>Close <kbd>Esc</kbd></span><span>Change type <kbd>←</kbd><kbd>→</kbd></span><span>Filters <kbd>/</kbd></span><span>Actions <kbd>Alt</kbd><kbd>↵</kbd></span><span class="sx-sp"></span><span>Open <kbd>↵</kbd></span></div>' });
+    d.el.firstChild.classList.add('is-search');
+    var q = $('#sx-q', d.el), box = $('#sx-r', d.el);
+    function hl(t, k) { var e = esc(t); if (!k) return e; var i = t.toLowerCase().indexOf(k); if (i < 0) return e; return esc(t.slice(0, i)) + '<mark>' + esc(t.slice(i, i + k.length)) + '</mark>' + esc(t.slice(i + k.length)); }
+    function rowH(o, n, k) { return '<a class="sx-row' + (n === st.i ? ' is-on' : '') + '" role="option" id="sx-o' + n + '" data-n="' + n + '" href="' + esc(o.h || '#') + '" aria-selected="' + (n === st.i) + '">' + ico(o.ic || SX_ICON[o.k], 18) + '<span class="sx-n">' + hl(o.n, k) + '</span>' + (o.m ? '<small>' + (o.m.indexOf(' · ') > 0 ? '<span class="sx-ty">' + esc(o.m.split(' · ')[0]) + ' · </span>' + esc(o.m.split(' · ')[1]) : esc(o.m)) + '</small>' : '') + '<span class="sx-hint"><button class="sx-more" type="button" data-more="' + n + '" tabindex="-1" aria-label="Actions for ' + esc(o.n) + '">' + ico('more', 16, 2.2) + '</button>' + ico('enter', 16) + '</span></a>'; }
+    function sec(title, list, k) { if (!list.length) return ''; var h = '<div class="sx-sec" role="presentation">' + esc(title) + '</div>'; list.forEach(function (o) { h += rowH(o, rows.length, k); rows.push(o); }); return h; }
+    function draw(keepI) {
+      var k = q.value.trim().toLowerCase(), type = SX_TYPES[st.t][0], h = '';
+      if (!keepI) st.i = 0; rows = [];
+      $$('[data-t]', d.el).forEach(function (b) { var on = +b.dataset.t === st.t; b.setAttribute('aria-selected', String(on)); b.classList.toggle('is-on', on); });
+      var f = $('#sx-f', d.el); f.hidden = !st.filt;
+      if (st.filt) f.innerHTML = '<span class="de-label">Project</span>' + [['', 'Any project']].concat(DE.projects.map(function (p) { return [p.id, p.name]; })).map(function (p) { return '<button type="button" class="sx-chip' + (st.proj === p[0] ? ' is-on' : '') + '" data-p="' + esc(p[0]) + '" aria-pressed="' + (st.proj === p[0]) + '">' + esc(p[1]) + '</button>'; }).join('');
+      var pool = all.filter(function (o) { return (type === 'all' || o.k === type) && (!st.proj || o.p === st.proj) && (!k || (o.n + ' ' + o.m).toLowerCase().indexOf(k) > -1); });
+      if (!k && type === 'all' && !st.proj) {
+        h += sec('Needs attention', sxAttention(), '');
+        var rec = DE.recents.slice(0, 3).map(function (c) { return { k: 'chat', n: c, h: DE.chatUrl(c), m: 'Chat' }; }).concat(DE.vault.filter(function (v) { return v.t !== 'Chat'; }).slice(0, 3).map(function (v) { return { k: v.t === 'Upload' ? 'upload' : 'vault', n: v.n, h: v.calc ? U.vault + '?calc=' + v.calc : v.h, m: v.t + (v.p ? ' · ' + v.p : '') }; }));
+        h += sec('Recents', rec, '') + sec('Actions', sxActions(), '');
+      } else if (type === 'all') {
+        ['project', 'chat', 'vault', 'upload', 'page'].forEach(function (g) { h += sec(SX_GROUP[g], pool.filter(function (o) { return o.k === g; }).slice(0, k ? 6 : 4), k); });
+        if (k) h += sec('Actions', sxActions().filter(function (o) { return o.n.toLowerCase().indexOf(k) > -1; }), k);
+      } else h += sec(k ? SX_GROUP[type] : 'Recent ' + SX_GROUP[type].toLowerCase(), pool.slice(0, 40), k);
+      box.innerHTML = h || '<div class="dx-none">Nothing matches' + (st.proj ? ' in this project' : '') + '. Try a project number, a chat title or a file name.</div>';
+      q.setAttribute('aria-activedescendant', rows.length ? 'sx-o' + st.i : '');
     }
-    $('#dx-q', d.el).addEventListener('input', draw);
-    d.el.addEventListener('keydown', function (e) { var f = $$('.dx-item', d.el), i = f.indexOf(D.activeElement); if (e.key === 'ArrowDown') { e.preventDefault(); (f[i + 1] || f[0]).focus(); } else if (e.key === 'ArrowUp') { e.preventDefault(); (i > 0 ? f[i - 1] : $('#dx-q', d.el)).focus(); } else if (e.key === 'Enter' && D.activeElement.id === 'dx-q' && f[0]) { location.href = f[0].href; } });
+    function move(n) { if (!rows.length) return; st.i = (st.i + n + rows.length) % rows.length; $$('.sx-row', box).forEach(function (r) { var on = +r.dataset.n === st.i; r.classList.toggle('is-on', on); r.setAttribute('aria-selected', String(on)); if (on) r.scrollIntoView({ block: 'nearest' }); }); q.setAttribute('aria-activedescendant', 'sx-o' + st.i); }
+    function open(o) { if (!o) return; if (o.act) { d.close(); o.act(); } else location.href = o.h; }
+    function more(n, anchor) { var o = rows[n]; if (!o) return; var it = [{ label: 'Open', icon: 'fwd', action: function () { open(o); } }];
+      if (o.p && o.k !== 'project') it.push({ label: 'Open the project', icon: 'folder', href: DE.summaryUrl(o.p) });
+      if (o.h) it.push({ label: 'Copy link', icon: 'link', action: function () { var u = new URL(o.h, location.href).href; if (navigator.clipboard) navigator.clipboard.writeText(u).then(function () { toast('Link copied.'); }, function () { toast('Copy did not work here.'); }); } });
+      if (o.k === 'chat') it.push({ label: 'Start a chat like this', icon: 'chatplus', href: (MOBILE ? U.newM : U['new']) + (o.p ? '?project=' + o.p : '') });
+      menu(anchor || $('#sx-o' + n, box), it, { label: 'Actions' }); }
+    q.addEventListener('input', function () { draw(); });
+    d.el.addEventListener('click', function (e) {
+      var t = e.target.closest('[data-t]'); if (t) { st.t = +t.dataset.t; draw(); q.focus(); return; }
+      var p = e.target.closest('[data-p]'); if (p) { st.proj = st.proj === p.dataset.p ? '' : p.dataset.p; draw(); q.focus(); return; }
+      var m = e.target.closest('[data-more]'); if (m) { e.preventDefault(); e.stopPropagation(); st.i = +m.dataset.more; move(0); more(st.i, m); return; }
+      var r = e.target.closest('.sx-row'); if (r) { var o = rows[+r.dataset.n]; if (o && o.act) { e.preventDefault(); open(o); } }
+    });
+    box.addEventListener('mousemove', function (e) { var r = e.target.closest('.sx-row'); if (r && +r.dataset.n !== st.i) { st.i = +r.dataset.n; move(0); } });
+    q.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowDown') { e.preventDefault(); move(1); }
+      else if (e.key === 'ArrowUp') { e.preventDefault(); move(-1); }
+      else if (e.key === 'Enter' && e.altKey) { e.preventDefault(); more(st.i); }
+      else if (e.key === 'Enter') { e.preventDefault(); open(rows[st.i]); }
+      else if ((e.key === 'ArrowLeft' || e.key === 'ArrowRight') && !q.value) { e.preventDefault(); st.t = (st.t + (e.key === 'ArrowRight' ? 1 : -1) + SX_TYPES.length) % SX_TYPES.length; draw(); }
+      else if (e.key === '/' && !q.value) { e.preventDefault(); st.filt = !st.filt; if (!st.filt) st.proj = ''; draw(); }
+    });
     draw();
   }
 
