@@ -12,3 +12,4 @@ Parked ideas, numbered I01, I02, and so on. Nothing here is approved. Use the sh
 - I05 Draft (not yet approved by Grant): 2026-11-11: Derive the project Stage bars (Assessment to SAT) from the Schedule, for example stage 4 when the Build schedule is Complete.
 - I06 Draft (not yet approved by Grant): 2026-11-11: Link a schedule task to a process from Specifications, such as Panel Assembling to Process 2.
 - I07 Draft (not yet approved by Grant): 2026-11-11: Render PDF drawings on a document sheet (the concept assembly drawing) instead of asking for an image.
+- I08 Draft (not yet approved by Grant): 2026-11-12: Lite offline on phones, for plant floors with no signal (a phone app that opens a Lite package with no connection). Parked; phones use the online copy in the main app for now.

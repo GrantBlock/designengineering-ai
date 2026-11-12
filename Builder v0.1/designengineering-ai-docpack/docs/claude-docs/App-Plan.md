@@ -140,7 +140,7 @@ One application at designengineering.ai, reached through several surfaces. The h
 | Surface | Purpose | Levels | Ship order |
 | --- | --- | --- | --- |
 | Web app | Main interface: chat, uploads (STEP, OBJ, photos), 3D viewer, project notes and tracking; responsive on phones, with what is on phone or desktop set in `design/PLATFORM-MATRIX.md` | All | 1 (MVP) |
-| Builder (web app extension, desktop only) and Lite (desktop download) | Builder writes packages; Lite opens them offline with on-device chat | Lite: anyone. Builder: Pro plus the extension | After the MVP (in the prototype now); open sale [timing TBD] |
+| Builder (web app extension, desktop only) and Lite (desktop download) | Builder writes packages; Lite opens them offline with on-device chat. On phones, recipients use the main app as free viewers of the package's online copy (3.2); there is no Lite phone app | Lite: anyone. Builder: Pro plus the extension | After the MVP (in the prototype now); open sale [timing TBD] |
 | Docs library | How-to guides, reference material, general use; also bundled inside Lite | Public | 2 |
 | Desktop app | Local file access and extensions; required to connect SolidWorks | Pro, Turbo, Team, Enterprise | 3 |
 | API | Programmatic access from customer systems | Pro, Turbo, Team, Enterprise | 4 |
@@ -172,7 +172,7 @@ Other modes are revisited once Grant Block uses the app more than his current to
 | Path in the zip | Contents | Required |
 | --- | --- | --- |
 | `manifest.json` | Format version, package ID, title, organization, the projects included, built-by organization, build date, Builder version, and a SHA-256 hash for every file | Yes |
-| `cover.pdf` | Human-readable cover sheet: what the package covers, who built it, contact, revision | Yes |
+| `cover.pdf` | Human-readable cover sheet: what the package covers, who built it, contact, revision, and a QR code to the online copy when the package is shared online | Yes |
 | `models/` | Source CAD (STEP, OBJ) plus viewer-ready GLB files Builder converts for fast loading | If models exist |
 | `docs/` | Manuals, data sheets, drawings, procedures (PDF) | Yes |
 | `notes/` | Project notes and handoff logs (Markdown) | Optional |
@@ -185,6 +185,7 @@ Other modes are revisited once Grant Block uses the app more than his current to
 - Lite opens packages read-only; it never uploads package content.
 - The on-device AI model ships with the Lite installer or downloads on first run, never inside each package.
 - A lapsed Builder subscription does not stop existing packages from opening.
+- **Also share online** (a switch in Builder's Build step, off by default): Builder also publishes the package as a Resource project in the builder's organization. The customer's people are invited as viewers (unlimited with Builder, view and chat only) and open it on a phone or browser in the main app, signed in free. Viewer chat is paid from the builder's wallet and storage counts against the builder's plan. Each rebuild updates the zip and the online copy with the same revision. The recipient's Lite never uploads anything; the builder publishes the copy.
 - Renewing Builder includes package-format updates; Lite reads every older format version.
 
 **Open questions:** on-device model choice and minimum PC spec; Windows only or also macOS; whether Lite users can add their own notes back into a package.

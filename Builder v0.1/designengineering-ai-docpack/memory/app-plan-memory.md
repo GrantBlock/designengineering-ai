@@ -154,3 +154,4 @@ Log for [[designengineering-ai]]; companion to [[designengineering-ai-sba-memory
 - [stated] 2026-11-12: Team gets 10 viewers per user count (Grant): a Team shares with up to 10 viewers for each Team user, pooled across its projects. Replaces the Team [X] placeholder.
 - [stated] 2026-11-12: Pro is also 10 viewers per user, not per project; owners activate and deactivate viewers to manage the allowance (Grant). Replaces the 10-per-project line.
 - [stated] 2026-11-12: The Builder extension gives unlimited viewers, fair use, view and chat only (Grant). Draft (not yet approved by Grant): fair-use review threshold 500 active viewers per Builder seat (A).
+- [stated] 2026-11-12: Lite on phones: no Lite phone app. Builder's Build step gets an Also share online switch, off by default, that publishes the package as a Resource project; customers open it in the main app as free viewers; cover.pdf carries a QR code to it. Offline Lite on phones parked as I08 (Grant).

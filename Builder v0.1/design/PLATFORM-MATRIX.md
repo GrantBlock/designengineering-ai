@@ -86,3 +86,4 @@ Navigation: the Design and Builder rows are hidden in the sidebar until the exte
 - [stated] 2026-11-12: Grant: Team gets 10 viewers per Team user.
 - [stated] 2026-11-12: Grant: Pro is also 10 viewers per user; owners activate and deactivate viewers to manage them.
 - [stated] 2026-11-12: Grant: Builder gives unlimited viewers, fair use, view and chat only.
+- [stated] 2026-11-12: Grant: Lite has no phone app; phones open a package's online copy (Builder, Also share online, off by default) in the main app as viewers.
