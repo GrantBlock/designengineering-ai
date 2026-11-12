@@ -1,6 +1,6 @@
 # Development Path
 
-Updated 2026-11-09 · Grant Block. Status: **Draft (not yet approved by Grant)** except where a line says `[stated]`. This is the plan for taking designengineering.ai from designs to a running app. It replaces nothing in the App Plan; it adds the build and deployment path.
+Updated 2026-11-12 · Grant Block. Status: **Draft (not yet approved by Grant)** except where a line says `[stated]`. This is the plan for taking designengineering.ai from designs to a running app. It replaces nothing in the App Plan; it adds the build and deployment path.
 
 ## How we build (working agreement)
 
@@ -25,9 +25,42 @@ Updated 2026-11-09 · Grant Block. Status: **Draft (not yet approved by Grant)**
 | 1. Skeleton | App and `ui` package, Cloudflare config, scripts, CI | Empty app deploys to a preview URL; checks pass on every push |
 | 2. Design system as code | Tokens and 22 components from `design/system-kit/` | Components render and match `DESIGN-SYSTEM.md` |
 | 3. First pages | P01 and P02 as real routes, data behind interfaces | Grant opens them on desktop and phone from a preview URL |
-| 4. Tracker pages | P03 to P15 in tracker order, design first then build | Each page approved in design, then built |
+| 4. Tracker pages | Every page is designed and in the clickable prototype (2026-11-12); Grant reviews it and writes feature changes as md files; then pages are built in the order the Block Concepts prototype needs | Each page built to its approved design and feature notes |
 | 5. Services, one at a time | Database (D3), sign-in (D4), AI adapter (D7), files (D9), payments (D10), then the rest | One decision, one service, one working feature at a time |
-| 6. Desktop apps | Lite and Builder (P16, P17; D11, D12) | Separate plan; after the web app |
+| 6. Lite desktop app | Lite (P16; D11, D12). Builder (P17) is part of the web app | Needed for Block Concepts' own use and the Lite demo before the MVP release |
+
+Roadmap note ([stated] 2026-11-12): the winter build runs the full suite at Block Concepts as its own Enterprise account, built from the functions Grant needs on his own projects. The public MVP is a subset without extensions, designed on the same system so it integrates later.
+
+## Build automation (Draft (not yet approved by Grant), 2026-11-12)
+
+Roles: **Grant is the planner** (owns the plan, the feature notes and every merge), helped by planning chats like this one. **Claude Fable 5.2 (`claude-fable-5-2`) is the coder**, run in Claude Code cloud sessions on this repository. **CI and a review pass are the checker.** The coder never merges and never touches `main`.
+
+### What Grant does once
+
+1. **Freeze the inputs.** Finish the prototype review and write one feature note per page in `design/specs/` (what changes, what must work, what is out). These become the coder's acceptance criteria.
+2. **Answer the build-gating decisions:** D3 to D12 (RQ11), O1 to O3 (RQ15), and preview access (RQ14).
+3. **Open the service accounts, in test mode first:** Cloudflare (Workers paid plan, Access, R2), a managed PostgreSQL host, Clerk, Stripe, Liveblocks, Trigger.dev, and an Anthropic API key for the app itself (separate from the Claude Code plan). Keys go into Cloudflare secrets, GitHub Actions secrets and the cloud environment's credentials, never into the repository.
+4. **Set up one cloud environment for the repository:** allowed hosts for those services, a setup script that installs dependencies, and the coder model set to Fable 5.2 at high effort (raise to `xhigh` only where a gain is measured).
+5. **Protect the branches:** `development` and `main` require passing checks and Grant's approval to merge.
+6. **Set spending limits:** a monthly cap for Claude Code usage and a separate hard cap on the app's API key. Fable 5.2 costs $8 per million input tokens and $40 per million output tokens (twice Opus 5.5), so keep it for the build and pick the app's runtime model under D7.
+
+### What the coder builds first (one pull request each)
+
+1. App skeleton on Workers (D1, D2) with CI: type-check, lint, unit tests, a Workers build, and Playwright tests that replay the prototype's flows.
+2. A preview URL for every pull request, behind Cloudflare Access.
+3. A coder `CLAUDE.md`: rules, the definition of done, and "one feature per pull request into `development`".
+4. Design system as code from `design/system-kit/`.
+
+### The loop (runs without Grant except at review)
+
+1. The planner turns each feature note into a GitHub issue with acceptance tests.
+2. A coder session (started by hand, on a schedule, or by mentioning Claude on the issue) takes the next issue, builds it on its own branch, and opens a pull request into `development`.
+3. CI and a review pass run; the coder fixes failures on its own pull request.
+4. Grant opens the preview URL, tries it, and merges or comments.
+
+### Suggested build order (Block Concepts prototype first)
+
+Skeleton and CI; design system; sign-in, organizations and projects with the database; chat through the AI adapter; Vault and uploads (R2); project workspace (Specifications, Layout, Schedule, Exports); Dashboard and updates; wallet and Stripe; Builder; Lite (D11, D12); Design. The public MVP subset is cut from this once Block Concepts runs on it.
 
 ## Environments and access
 

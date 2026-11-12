@@ -11,6 +11,8 @@ Read `CLAUDE.md` and `designengineering-ai-docpack/README.md` first. Same workin
 | Architect | Drafts and critiques architecture and the D1–D12 decision log |
 | Doc sync | Keeps Word files, markdown mirrors, tracker and memory logs consistent |
 | Reviewer | Checks changes against the plan: numbers, levels, source-of-truth order |
+| Planner (Grant, with planning chats) | Owns the plan, feature notes in `design/specs/`, issues and every merge |
+| Coder (Claude Fable 5.2 in Claude Code cloud sessions) | Builds one issue per pull request into `development`, with tests; never merges, never touches `main`. See `development-path.md`, Build automation |
 
 ## Rules for all agents
 - Do not edit `docs/word/*.docx` without Grant's approval.

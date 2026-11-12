@@ -1,6 +1,6 @@
 # designengineering.ai — Plan Doc Pack
 
-Updated 2026-11-05. Business and product plans for designengineering.ai (Design Engineering AI), a software product developed for and funded by Block Concepts LLC, plus the decision logs behind them. All documents were reconciled on this date.
+Updated 2026-11-12. Business and product plans for designengineering.ai (Design Engineering AI), a software product developed for and funded by Block Concepts LLC, plus the decision logs behind them. All documents were reconciled on this date.
 
 ## Layout
 
@@ -28,16 +28,25 @@ Live Claude Docs (same content as `docs/claude-docs/`): [SBA Plan](https://claud
 
 | Level / product | Price | Key points |
 | --- | --- | --- |
-| Basic Viewer | $0 | View and comment; small daily AI cap paid by Block Concepts; up to 3 projects of their own; no storage |
-| Starter bundle | [$20] per bundle (A) | Basic Viewer add-on: 20 GB plus [$10] of tokens |
-| Pro | $30 / user / month | 20 GB; faster, premium models; desktop app |
+| Basic Viewer | $0 | View, comment and ask questions on shared projects (paid by the owner's wallet); very small general-chat cap from a free pool capped at 5% of Pro revenue; no projects of their own; no storage |
+| Starter bundle | $20 / year | Basic Viewer add-on and loss leader: 3 projects, 5 GB (100 MB per file) (A), one-time $5 token credit (A); tokens otherwise from the wallet, no limit |
+| Pro | $30 / user / month | Projects and project chat; 20 GB; faster, premium models; 10 active viewers per user; can add extensions |
 | Turbo | [$X] / user / month | After infrastructure upgrades; power users who can't justify Enterprise and don't need Team admin |
-| Team | $50 / user / month | Pro plus an admin panel; built in year 1, live from year 2 |
+| Team | $50 / user / month | Pro plus an admin panel and Team settings; 10 active viewers per user; built in year 1, live from year 2 |
 | Enterprise | Flat fee + memberships + integrations | Custom implementation by Block Concepts, built on the Builder app; cloud or local |
-| Builder | $600 / seat / year | Packages documentation into Lite zips, one per client or site; year 1 at Block Concepts, open sale [TBD] |
-| Lite | Free | Opens Builder packages offline; on-device AI; no login; no Block Concepts tokens |
+| Design (extension) | $600 / seat / year | Chat-only 3D designer added to Pro; after the MVP; Basic Viewer and Starter can use it by tokens on a slow queue |
+| Builder (extension) | $600 / seat / year | Added to Pro, desktop only; packages an organization's selected projects into a Lite zip; unlimited view-and-chat viewers (fair use); Also share online, off by default; used at Block Concepts in year 1, open sale [TBD] |
+| Lite | Free | Opens Builder packages offline; on-device AI; no login; no Block Concepts tokens; phones use the online copy in the main app |
 
-Usage is paid from a prepaid wallet at 3.5× cost. Financials: owner draw is $30k / $60k / $90k. The base case (+5 Pro / month) nets −$105k over three years, and the target case (+12 Pro / month) nets +$25k. Add-ons (SBA 8.2.1) shrink the base-case gap to $37k. Token cost is the main unknown (SBA 8.4).
+Usage is paid from a prepaid wallet at 3.5× cost. Financials: owner draw is $30k / $60k / $90k. The base case (+5 Pro / month) nets −$105k over three years, and the target case (+12 Pro / month) nets +$25k. Add-ons (SBA 8.2.1, $61.3k) shrink the base-case gap to $43.7k. Token cost is the main unknown (SBA 8.4).
+
+## Changes on 2026-11-12 (page designs reconciled)
+
+- **Levels:** Basic Viewer has no projects of its own; Starter is $20 per year (3 projects, 5 GB, $5 credit); Design and Builder are $600 per year extensions to Pro that ship after the MVP.
+- **Loss control:** free usage draws from one pool capped at 5% of Pro revenue; abuse and loss controls in App Plan 6.4; invited viewers are paid by the owner (10 per user on Pro and Team, unlimited with Builder).
+- **Roadmap:** the winter build runs the full suite at Block Concepts as its own Enterprise account; the public MVP is a subset without extensions, designed to integrate.
+- **App Plan:** MVP rows match the designed pages (Vault, Dashboard, schedules, custom calculators, process configuration, Exports with customer quotes); Organization and project type (Job or Resource) in the data model; Lite on phones through Builder's Also share online.
+- **SBA 8.2.1:** total add-ons $61,300; remaining base-case gap $43,700. Summary still one page.
 
 ## Changes on 2026-11-05 (reconciliation)
 
