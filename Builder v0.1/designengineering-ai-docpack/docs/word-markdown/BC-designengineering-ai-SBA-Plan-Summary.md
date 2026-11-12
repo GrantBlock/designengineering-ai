@@ -60,7 +60,7 @@ The first turnkey app purpose-built for multi-disciplinary design engineering: t
 <td><ul>
 <li><p>One AI workspace per project, answering from its own files and data sheets</p></li>
 <li><p>Search, 3D viewer, calculators, plans, and vendor requests; drawings next</p></li>
-<li><p>Levels: Basic Viewer, Starter, Pro, Turbo (later), Team, Enterprise; Builder ($600 / seat / yr), free Lite</p></li>
+<li><p>Levels: Basic Viewer, Starter, Pro, Turbo (later), Team, Enterprise; Design, Builder ($600 / yr), free Lite</p></li>
 </ul></td>
 <td><ul>
 <li><p>Maintenance technicians first, then design engineers and managers</p></li>
@@ -98,7 +98,7 @@ The first turnkey app purpose-built for multi-disciplinary design engineering: t
 | **3 Apr 2029 – Mar 2030** | \$50,000                       | \$125,000                         | \$5,000      | \$90,000       | −\$45,000      | +\$30,000      |
 | **3-year total**          | **\$90,000**                   | **\$220,000**                     | **\$15,000** | **\$180,000**  | **−\$105,000** | **+\$25,000**  |
 
-*Add-ons not in the table (Section 8.2.1): about \$68,000 over three years, mostly Pro wallet margin and Team (\$50 / user) from year 2. Builder (\$600 / seat / yr), Enterprise, and services not counted.*
+*Add-ons not in the table (Section 8.2.1): about \$68,000 over three years, mostly Pro wallet margin and Team (\$50 / user) from year 2. Design and Builder, Enterprise, and services not counted.*
 
 <table>
 <colgroup>

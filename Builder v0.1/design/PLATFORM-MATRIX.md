@@ -48,16 +48,16 @@ Grant, 2026-11-11: **chat in general** is the free tier; **chat in projects** is
 
 ### Chat questions
 
-1. The App Plan (6.1) gives Basic Viewer up to 3 projects of their own, plus view and comment on shared projects, and a Starter bundle for tokens. If projects are Pro only, does Basic Viewer keep the 3 projects, or only view and comment on shared ones? The App Plan and memory log would then change (Word files win on levels).
+1. Answered 2026-11-12: Basic Viewer keeps view and comment on shared projects but has no projects of its own; a one-time Starter bundle unlocks 3 projects and a file upload limit. (Was: The App Plan (6.1) gives Basic Viewer up to 3 projects of their own, plus view and comment on shared projects, and a Starter bundle for tokens. If projects are Pro only, does Basic Viewer keep the 3 projects, or only view and comment on shared ones? The App Plan and memory log would then change (Word files win on levels).)
 2. Can a free person open a project that was shared with them and chat in it, or only view and comment?
 3. May a free person attach files to a general chat, or does anything with a file need a project?
-4. Does the Starter bundle unlock project chat, or only more general chat?
+4. Answered 2026-11-12: the Starter bundle unlocks projects (3) and uploads, so project chat. (Was: Does the Starter bundle unlock project chat, or only more general chat?)
 
 ## Plans and extensions
 
 Grant, 2026-11-11: **Pro gets projects, and Pro then buys the extensions.** Extensions are Design (the 3D designer, P08) and Builder (P17). Draft (not yet approved by Grant): everything below is a proposal.
 
-| | Free (general chat) | Pro | Pro plus Design | Pro plus Builder |
+| | Free (general chat) | Pro | Pro plus Design ($600 / yr, after MVP) | Pro plus Builder ($600 / yr, after MVP) |
 | --- | --- | --- | --- | --- |
 | Chat in general | Yes, with a daily cap | Yes | Yes | Yes |
 | Projects and project chat | - | Yes | Yes | Yes |
@@ -79,3 +79,4 @@ Navigation: the Design and Builder rows are hidden in the sidebar until the exte
 - [stated] 2026-11-11: Grant: Builder is desktop only; a decision matrix is wanted because not everything needs to be on the mobile app. Matrix created as a Draft.
 - [stated] 2026-11-11: Grant: chat in general is the free tier; chat in projects is in the Pro plan. The Chat by plan section lists the limits as a Draft.
 - [stated] 2026-11-11: Grant: Builder is an extension along with Design. Pro gets projects, then buys the extensions. Added the Plans and extensions table (Draft).
+- [stated] 2026-11-12: Grant: Basic Viewer has no projects of its own; the one-time Starter bundle unlocks 3 projects and a file upload limit; Pro unlocks the remaining storage. Design and Builder are $600 per year extensions, not in the MVP, kept in the prototype. Team settings show only on the Team level. Chat questions 1 and 4 answered; 2 and 3 still open.

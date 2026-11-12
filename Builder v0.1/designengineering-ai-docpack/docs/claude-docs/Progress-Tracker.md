@@ -17,6 +17,8 @@ All documents were reconciled on Nov 5, 2026, using the Word SBA plan and summar
 - Basic Viewer gets a small daily AI cap and up to 3 projects of its own.
 - Turbo stays as a power-user level after infrastructure upgrades.
 
+On 2026-11-12 the App Plan, SBA plan and summary were reconciled with the page designs: Starter is a one-time bundle that unlocks 3 projects, and Design and Builder are $600 per year extensions that ship after the MVP.
+
 Next: continue in the GitHub repo with Claude Code, starting with a review of the Lite package format draft (App 3.2) and the Executive Summary.
 
 ## System Questions

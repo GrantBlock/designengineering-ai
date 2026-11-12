@@ -28,11 +28,12 @@ Page order is a **Draft (not yet approved by Grant)**, built from the App Plan M
 | P15 | Account and settings (overlay window) | Desktop + mobile | ☑ | `exports/P15-account-settings/index.html` | Done 2026-11-11 (Grant approved) as a Settings overlay |
 | P16 | Lite app window (a local app that opens the package Builder made from the Vault: file tree, viewer, AI chat) | Desktop app | ☑ | `exports/P16-lite/index.html` | Done 2026-11-11 (Grant approved) |
 | P17 | Builder (extension in the primary navigation: organization, then projects, then the Vault, packaged into a Lite zip) | Desktop only | ☑ | `exports/P17-builder/index.html` | Done 2026-11-11 (Grant approved) |
+| P20 | Preferences, help and support (PLC and manufacturer standards, Help center, support contact) | Desktop + mobile | ☐ | | Added 2026-11-12 (Grant). Page name is a Draft (not yet approved by Grant) |
 | P19 | Dashboard (weekly view: this week, this month, last week) | Desktop + mobile | ☑ | `exports/P19-dashboard/index.html` | Layout only; sample data. Added 2026-11-10 from Grant's weekly tracker zip. Approved 2026-11-11 |
 
 ## Next up
 
-First open item: none; all pages are done; unless Grant says otherwise. P08 is done (the 3D designer); its feature spec is waiting for Grant's edits.
+First open item: P20 (Preferences, help and support). P05A and P13 still await review. P08 is done (the 3D designer); its feature spec is waiting for Grant's edits.
 
 ## Log
 
@@ -151,3 +152,4 @@ First open item: none; all pages are done; unless Grant says otherwise. P08 is d
   - Deploy: `build-site.sh` copies only the prototype pages, shared scripts, fonts and icon into `site/` (no planning documents); `wrangler.jsonc` serves `site/` as static assets. `npx wrangler deploy --dry-run` passes.
 - Draft (not yet approved by Grant): the Help menu, the session panel contents, the More menu contents and the Share popover are my proposals. Preferences (PLC and manufacturer standards) has no page yet and opens Settings, Preferences. The phone new chat page (P02) is still the older design. Help center and support contact are placeholders.
 
+- [stated] 2026-11-12: Page designs reconciled with the App Plan (Grant approved). Prototype follow-ups, not yet done: Settings Team section only on the Team level; a project type Job or Resource (resource projects without stage or status) on P05, P05A and P19; Design and Builder shown as $600 per year extensions in Settings, Billing. P20 added for Preferences, Help center and support contact.

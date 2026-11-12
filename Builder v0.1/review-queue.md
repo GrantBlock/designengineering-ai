@@ -25,6 +25,7 @@ Everything waiting on Grant, tagged by where it is best handled. The shortcut "w
 | RQ15 | Decide where the app lives, styling approach (O2) and package manager (O3) | vscode | ☐ | `development-path.md` |
 | RQ16 | Confirm the design-system patterns introduced in P05, P06 and P12 (1120px detail column, numbered page tabs, steel-blue progress fills, chip Next/Generate button, dropdown menus, two-step Delete, white drawing sheets for documents, to-scale Layout view) | vscode | ☐ | `design/DESIGN-SYSTEM.md` decision log |
 | RQ17 | Answer the open projects questions: what Import should accept (CSV columns, PDF drawings, past configurations), whether archived schedules can be exported, whether stage bars come from the schedule, drag-to-place blocks in Layout, and which page is next (P07 upload flow or P08 3D viewer) | mobile | ☐ | `design/UI-Progress-Tracker.md`, `ideas.md` I03 to I07 |
+| RQ18 | After the App Plan reconcile: (1) Starter bundle price and upload limit, and does it still include any tokens; (2) SBA 8.2.1 Starter revenue now that it is one-time; (3) Lite demo gate and Builder year 1 at Block Concepts, now that Builder ships after the MVP | mobile | ☐ | App Plan 6.1 and 7, SBA 8.2.1 |
 
 ## Closed
 
@@ -47,3 +48,4 @@ Everything waiting on Grant, tagged by where it is best handled. The shortcut "w
 - [stated] 2026-11-09: RQ15 added for the open development-path decisions.
 - [stated] 2026-11-11: RQ16 and RQ17 added after the projects section (P05, P06, P12) was marked complete.
 - [stated] 2026-11-09: RQ13 closed with Grant's answer (option C).
+- [stated] 2026-11-12: RQ18 added after the page designs were reconciled with the App Plan.

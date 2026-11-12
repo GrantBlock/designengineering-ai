@@ -17,7 +17,7 @@ Nov 5, 2026 · @Grant · Block Concepts LLC
 | **Unique value proposition** | The first turnkey app purpose-built for multi-disciplinary design engineering: the setup is already done |
 | **Solution** | AI chat on project files, document search, 3D viewer, project document storage, notes and tracking, calculators, process flows, plans and vendor requests; spacer-class CAD next |
 | **Channels** | Block Concepts customers and suppliers, rep partners (pending approval), docs library, founder content, free Lite app carried by Builder packages |
-| **Revenue streams** | Pro at $30 / user / month; Turbo (after launch) for power users; wallet usage at 3.5× cost; Starter bundles (storage and tokens) for Basic Viewer accounts; Team at $50 / user / month; storage blocks; Enterprise flat fee plus memberships and integrations; Builder annual subscription ($600 / seat / year) with free Lite; Block Concepts implementation services |
+| **Revenue streams** | Pro at $30 / user / month; Turbo (after launch) for power users; wallet usage at 3.5× cost; one-time Starter bundles (3 projects and uploads) for Basic Viewer accounts; Team at $50 / user / month; storage blocks; Enterprise flat fee plus memberships and integrations; Design and Builder extensions ($600 / seat / year each) with free Lite; Block Concepts implementation services |
 | **Cost structure** | AI usage (passed through the wallet), Cloudflare hosting, software tools, owner draw; senior engineer as first hire |
 | **Key metrics** | New Pro users per month; wallet spend per user; Basic Viewer AI cost per month; Builder seats |
 | **Unfair advantage** | The Design Engineering AI name; Grant Block's affiliations (Block Concepts customers and rep partners); real Block Concepts projects; a feedback-first architecture shaped by Grant Block's integration experience |
@@ -34,7 +34,7 @@ Nov 5, 2026 · @Grant · Block Concepts LLC
 
 **Customers.** Maintenance technicians first, then design engineers and engineering managers, on technical teams of typically 12 or fewer. That team may support a small operation or a large one that runs a small technical staff. First industries are food and beverage, packaging, and material handling, starting in the Midwest. The U.S. has about 538,000 industrial maintenance workers and 293,000 mechanical engineers.
 
-**Business model.** Five levels: Basic Viewer (free), Starter bundles that add storage and tokens to a Basic Viewer account, Pro ($30 per user per month), Team ($50 per user per month: Pro plus an admin panel to control access), and Enterprise. Usage runs on a prepaid wallet, with storage add-ons; Enterprise contracts (flat fee plus memberships and integrations) are delivered through Block Concepts. A Turbo level for power users who need more speed than Pro, without Team admin controls or Enterprise cost, follows after launch. Builder is an annual subscription ($600 per seat per year) that lets an organization package technical documentation for each of its clients into zip files opened in Lite, a free downloadable app that runs locally on an on-device AI model, with no login and no token cost. Enterprise is a custom implementation built on the Builder app.
+**Business model.** Five levels: Basic Viewer (free), one-time Starter bundles that unlock up to 3 projects for a Basic Viewer account, Pro ($30 per user per month), Team ($50 per user per month: Pro plus an admin panel to control access), and Enterprise. Usage runs on a prepaid wallet, with storage add-ons; Enterprise contracts (flat fee plus memberships and integrations) are delivered through Block Concepts. A Turbo level for power users who need more speed than Pro, without Team admin controls or Enterprise cost, follows after launch. Two extensions are added to Pro after the MVP at $600 per seat per year each: Design, a chat-based 3D designer, and Builder, which lets an organization package technical documentation for each of its clients into zip files opened in Lite, a free downloadable app that runs locally on an on-device AI model, with no login and no token cost. Enterprise is a custom implementation built on the Builder app.
 
 **Position.** Existing tools split into AI for engineers inside CAD and AI for maintenance teams. Design Engineering AI brings both together for teams that include non-CAD staff.
 
@@ -206,22 +206,23 @@ designengineering.ai is an AI design workspace for industrial projects. Teams ke
 
 | **Level** | **Price** | **Best for** |
 | --- | --- | --- |
-| **Basic Viewer** | $0 | Viewing and commenting on shared projects; minimal tools; small daily AI cap; up to 3 projects of their own (shared projects do not count); no included storage |
-| **Starter bundle (Basic Viewer add-on)** | [$20] per bundle (A) | Basic Viewer users who need tools without a Pro membership: 20 GB storage plus [$10] of wallet tokens |
+| **Basic Viewer** | $0 | Viewing and commenting on shared projects; general chat with a small daily AI cap; no projects of their own (a Starter bundle unlocks 3); no included storage |
+| **Starter bundle (Basic Viewer add-on)** | [$20] one-time purchase (A) | Basic Viewer users who need a few projects without a Pro membership: up to 3 projects of their own (shared projects do not count) and a file upload limit of [X GB] (A); Pro unlocks the full storage |
 | **Pro** | $30 / user / month | Individuals and small teams; CAD users already paying $100–300 / month for CAD packages; non-CAD managers and maintenance staff |
 | **Turbo (after launch)** | [$X] / user / month (A) | Power users who need more speed than Pro but not Team admin controls or Enterprise cost: much faster responses and premium models; everything in Pro |
 | **Team** | $50 / user / month | Pro plus an admin panel to control access: add and remove people, set roles and permissions on shared projects |
 | **Enterprise** | Flat fee + per-user memberships + custom features and integrations | Larger teams; custom implementation built on the Builder app; dedicated cloud or on-site deployment; Onshape / SolidWorks integration |
 | **Lite** | $0 (free download) | Anyone receiving a Builder package: opens packaged technical documentation on their own computer with a 3D viewer, document search, and local chat on an on-device AI model; no login, no token cost |
-| **Builder** | $600 / seat / year, annual subscription (A) | Suppliers, OEMs, integrators, and plant teams packaging technical documentation into Lite zip files, one package per client or site, for their own staff and customers; downloaded from designengineering.ai |
+| **Builder** | $600 / seat / year, extension (A) | Extension added to Pro after the MVP, desktop only: suppliers, OEMs, integrators, and plant teams packaging an organization's selected projects into Lite zip files for their own staff and customers |
+| **Design (3D designer)** | $600 / seat / year, extension (A) | Extension added to Pro after the MVP: build and change 3D parts by chat, with models saved to the Vault |
 
-Usage (chat and CAD) is paid from a prepaid wallet at 3.5× cost. Pro includes 20 GB of storage. Basic Viewer includes no storage and mainly supports viewing, with a small daily AI cap and up to 3 projects of its own; Starter bundles give Basic Viewer users the storage and tokens to use the tools. Additional Pro storage is sold in 20 GB blocks ($10). Each user has one license; collaborator mode lets users work together on shared projects.
+Usage (chat and CAD) is paid from a prepaid wallet at 3.5× cost. Pro includes 20 GB of storage. Basic Viewer includes no storage and mainly supports viewing and general chat, with a small daily AI cap; a one-time Starter bundle unlocks up to 3 projects of its own with a file upload limit, and Pro unlocks the full storage. Additional Pro storage is sold in 20 GB blocks ($10). Each user has one license; collaborator mode lets users work together on shared projects.
 
-Builder is licensed per seat on an annual subscription; renewal includes software updates, package-format updates, and support. Packages already built still open in Lite if a subscription lapses; building new packages requires an active seat.
+Builder and Design (the 3D designer) are extensions added to Pro, each licensed per seat at $600 per year (A); both ship after the MVP. Builder renewal includes software updates, package-format updates, and support. Packages already built still open in Lite if a subscription lapses; building new packages requires an active seat.
 
 ### 5.3 MVP Capabilities
 
-AI chat, file uploads (STEP, OBJ, photos, data sheets), document search, 3D viewer, project document storage, project notes and tracking, chat-enabled calculators, process flows, plans and vendor requests, and outside tool recommendations.
+AI chat, file uploads (STEP, OBJ, photos, data sheets), document search, 3D viewer, project document storage, project notes and tracking with a weekly dashboard, schedules, custom calculators, process flows, plans, vendor requests and customer quotes, and outside tool recommendations.
 
 ### 5.4 Block Concepts Services
 
@@ -231,13 +232,13 @@ AI chat, file uploads (STEP, OBJ, photos, data sheets), document search, 3D view
 
 ### 5.5 Future Add-Ons
 
-Turbo level, CAD generation, drawings, SolidWorks / Onshape driving (Enterprise), and FDA-compliant / cGMP documentation add-ons.
+Turbo level, Design and Builder extensions, CAD generation, drawings, SolidWorks / Onshape driving (Enterprise), and FDA-compliant / cGMP documentation add-ons.
 
 ## 6. Marketing & Sales
 
 ### 6.1 Sales Approach
 
-Bottom-up and technician-first. A maintenance technician joins as a Basic Viewer to see a shared project, adds a Starter bundle to get answers for their own equipment, and shows the design engineers. An engineer moves to Pro and owns the projects; the rest of the team joins through collaborator mode. Teams that need to control who can access projects move to Team; larger or custom deployments move to Enterprise.
+Bottom-up and technician-first. A maintenance technician joins as a Basic Viewer to see a shared project, adds a Starter bundle to set up projects for their own equipment, and shows the design engineers. An engineer moves to Pro and owns the projects; the rest of the team joins through collaborator mode. Teams that need to control who can access projects move to Team; larger or custom deployments move to Enterprise.
 
 ### 6.2 Channels
 
@@ -255,7 +256,7 @@ Bottom-up and technician-first. A maintenance technician joins as a Basic Viewer
 | **Level** | **Process** |
 | --- | --- |
 | **Basic Viewer / Starter / Pro / Team** | Self-serve: sign up, buy a Starter bundle or fund a wallet, upgrade in the app; Team admins add and remove people |
-| **Lite / Builder** | Lite: free download from designengineering.ai. Builder: download from designengineering.ai and buy annual seats online, or by purchase order and invoice; renews yearly |
+| **Lite / Builder** | Lite: free download from designengineering.ai. Builder: add the extension in the app and buy annual seats online, or by purchase order and invoice; renews yearly |
 | **Enterprise** | Discovery call → Block Concepts proposal → contract → custom implementation by Block Concepts |
 
 ### 6.4 Messaging
@@ -268,7 +269,7 @@ Bottom-up and technician-first. A maintenance technician joins as a Basic Viewer
 
 ### 6.5 Pricing
 
-See Section 5.2. Pro is $30 / user / month; usage is paid from a prepaid wallet. Builder is $600 / seat / year; Lite is free.
+See Section 5.2. Pro is $30 / user / month; usage is paid from a prepaid wallet. Design and Builder extensions are $600 / seat / year each; Lite is free.
 
 ### 6.6 Launch Offer (optional, for aggressive marketing)
 
