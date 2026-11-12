@@ -79,3 +79,4 @@ Log for [[designengineering-ai]]. Not shown to Grant; used by future sessions to
 - [stated] 2026-11-12: SBA 8.2.1 token assumption for Starter: 10% of Starter users spend $10 a month on tokens, not every Starter user (Grant). 8.2.1 figures not yet changed.
 - [stated] 2026-11-12: SBA 5.2, 8.2.1, 8.4 and the summary updated (Grant approved): free AI pool capped at 5% of Pro membership revenue (−$4,900 over three years), Starter $20 per year held by 2% of Basic Viewers with 10% of them spending $10 a month on tokens ($3,100), net from free and Starter accounts −$1,800, total add-on upside $61,300, remaining base-case gap $43,700 (about 76 Builder seat-years). Invited viewers' chat is paid from the owner's wallet (not counted).
 - [stated] 2026-11-12: Team includes 10 viewers per Team user (Grant). SBA 5.2 Team row updated.
+- [stated] 2026-11-12: Pro and Team both get 10 active viewers per user; owners activate and deactivate viewers (Grant). SBA 5.2 text updated.

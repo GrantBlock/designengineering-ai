@@ -152,3 +152,4 @@ Log for [[designengineering-ai]]; companion to [[designengineering-ai-sba-memory
 - [stated] 2026-11-12: Invited viewers' chat on a shared project is charged to the owner's wallet within a per-viewer monthly limit the owner sets; Pro shares each project with up to 10 viewers; Team gets more [X] (Grant approved).
 - [stated] 2026-11-12: Starter storage is 5 GB total and 100 MB per file, with a one-time $5 starter token credit (A); Pro is 20 GB and 500 MB per file (Grant approved).
 - [stated] 2026-11-12: Team gets 10 viewers per user count (Grant): a Team shares with up to 10 viewers for each Team user, pooled across its projects. Replaces the Team [X] placeholder.
+- [stated] 2026-11-12: Pro is also 10 viewers per user, not per project; owners activate and deactivate viewers to manage the allowance (Grant). Replaces the 10-per-project line.
