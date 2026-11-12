@@ -40,7 +40,7 @@
   var U = {
     'new': '../P01-chat-start-desktop/Design_Engineering_App.html', newM: '../P02-chat-start-mobile/Design_Engineering_Mobile.html',
     dash: '../P19-dashboard/index.html', design: '../P08-3d-viewer/index.html', vault: '../P09-vault/index.html', uploads: '../P07-upload-flow/index.html',
-    builder: '../P17-builder/index.html', projects: '../P05-projects/index.html', settings: '../P15-account-settings/index.html', signin: '../P04-sign-in/index.html', lite: '../P16-lite/index.html'
+    builder: '../P17-builder/index.html', projects: '../P05-projects/index.html', settings: '../P15-account-settings/index.html', prefs: '../P20-preferences/index.html', signin: '../P04-sign-in/index.html', lite: '../P16-lite/index.html'
   };
   /* the new chat page has a desktop and a phone version */
   if (PAGE === 'P01' && MOBILE) { location.replace(U.newM + location.search); return; }
@@ -171,7 +171,7 @@
     if (x.design) r.push(['design', 'Design', 'cube', U.design]);
     r.push(['vault', 'Vault', 'vault', U.vault], ['uploads', 'Uploads', 'upload', U.uploads]);
     if (x.builder) r.push(['builder', 'Builder', 'box', U.builder]);
-    if (sbMode === 'projects') r.push(['prefs', 'Preferences', 'prefs', U.settings + '#prefs']);
+    if (sbMode === 'projects') r.push(['prefs', 'Preferences', 'prefs', U.prefs]);
     r.push(['more', 'More', 'more', null]);
     return r;
   }
@@ -254,7 +254,7 @@
     if (b.classList.contains('sbsegb')) { var pm = /Projects/i.test(b.getAttribute('aria-label') || b.title || '') ? 'projects' : 'chat'; ss('de-sbmode', pm); return; }
     var lab = ($('.sblab', b) ? $('.sblab', b).textContent : b.textContent).trim(), inNav = !!b.closest('.sbnav');
     if (inNav) {
-      var go = { Dashboard: U.dash, Design: U.design, Vault: U.vault, Uploads: U.uploads, Builder: U.builder, Preferences: U.settings + '#prefs' }[lab];
+      var go = { Dashboard: U.dash, Design: U.design, Vault: U.vault, Uploads: U.uploads, Builder: U.builder, Preferences: U.prefs }[lab];
       if (lab === 'Search') { stop(); search(); } else if (lab === 'More') { stop(); menu(b, moreItems(), { left: true }); } else if (go) { stop(); location.href = go; }
       return;
     }

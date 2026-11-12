@@ -28,12 +28,12 @@ Page order is a **Draft (not yet approved by Grant)**, built from the App Plan M
 | P15 | Account and settings (overlay window) | Desktop + mobile | ☑ | `exports/P15-account-settings/index.html` | Done 2026-11-11 (Grant approved) as a Settings overlay |
 | P16 | Lite app window (a local app that opens the package Builder made from the Vault: file tree, viewer, AI chat) | Desktop app | ☑ | `exports/P16-lite/index.html` | Done 2026-11-11 (Grant approved) |
 | P17 | Builder (extension in the primary navigation: organization, then projects, then the Vault, packaged into a Lite zip) | Desktop only | ☑ | `exports/P17-builder/index.html` | Done 2026-11-11 (Grant approved) |
-| P20 | Preferences, help and support (PLC and manufacturer standards, Help center, support contact) | Desktop + mobile | ☐ | | Added 2026-11-12 (Grant). Page name is a Draft (not yet approved by Grant) |
+| P20 | Preferences, help and support (PLC and manufacturer standards, Help center, support contact) | Desktop + mobile | ◐ | `exports/P20-preferences/index.html` | Preferences overlay drafted 2026-11-12, awaiting Grant's review: edits the factory context file the assistant reads (PLC, CAD, sensors, safety, data acquisition, hardware standard, conveyors, environmental conditions), locked here or updated through chat. Help center and support contact still to design. Page name is a Draft (not yet approved by Grant) |
 | P19 | Dashboard (weekly view: this week, this month, last week) | Desktop + mobile | ☑ | `exports/P19-dashboard/index.html` | Layout only; sample data. Added 2026-11-10 from Grant's weekly tracker zip. Approved 2026-11-11 |
 
 ## Next up
 
-First open item: P20 (Preferences, help and support). P05A and P13 still await review. P08 is done (the 3D designer); its feature spec is waiting for Grant's edits.
+First open item: P20 (Preferences drafted, awaiting review; Help center and support contact still open). P05A and P13 still await review. P08 is done (the 3D designer); its feature spec is waiting for Grant's edits.
 
 ## Log
 
@@ -153,3 +153,5 @@ First open item: P20 (Preferences, help and support). P05A and P13 still await r
 - Draft (not yet approved by Grant): the Help menu, the session panel contents, the More menu contents and the Share popover are my proposals. Preferences (PLC and manufacturer standards) has no page yet and opens Settings, Preferences. The phone new chat page (P02) is still the older design. Help center and support contact are placeholders.
 
 - [stated] 2026-11-12: Page designs reconciled with the App Plan (Grant approved). Prototype follow-ups, not yet done: Settings Team section only on the Team level; a project type Job or Resource (resource projects without stage or status) on P05, P05A and P19; Design and Builder shown as $600 per year extensions in Settings, Billing. P20 added for Preferences, Help center and support contact.
+- [stated] 2026-11-12: P20 Preferences is an overlay like Settings that edits a context file to inform answers based on what is on the factory floor. Starting sections: PLC, CAD, sensors, safety, data acquisition, hardware standard or metric, conveyor belts, environmental conditions. It updates itself through chat or is locked on this page (Grant).
+- Draft (not yet approved by Grant): 2026-11-12: P20 layout: Overview (Chat can update this file: Ask me first, Update on its own, Off; Waiting for you suggestions from chats with Accept and Dismiss; a Tell me about your floor box; section tiles), one pane per section (lock switch, Primary brand chips, Also in use chips, Add brand, notes field, change history) and a Context file pane showing `factory-context.md` with Copy and Download. Brand lists are starting suggestions. The sidebar Preferences row now opens P20 instead of Settings, Preferences. Prototype stores state in localStorage `de-prefs`.
