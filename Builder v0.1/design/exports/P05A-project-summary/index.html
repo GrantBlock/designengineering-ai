@@ -405,6 +405,7 @@ button:focus-visible, textarea:focus-visible, input:focus-visible, [role="button
  return {pos:pos,minx:minx,miny:miny,W:Math.max(maxx-minx,1),H:Math.max(maxy-miny,1)}}
 
  function rd(k,def){try{var v=JSON.parse(localStorage.getItem(k));if(v!=null)return v}catch(e){}return def}
+ var NEWP=!!(window.DE&&DE.project(PN)&&DE.project(PN).added);
  var stage=rd('de-stage-'+PN,STEP0[PN]||((window.DE&&DE.project(PN)||{}).step)||1);
  $('no').textContent=PN;$('nm').textContent=PROJ[PN];document.title=PROJ[PN]+' summary — Design Engineering';
  $('crumb').innerHTML='<a href="../P05-projects/index.html" style="color:inherit">Projects</a>&nbsp;&nbsp;/&nbsp;&nbsp;'+PN;
@@ -419,11 +420,11 @@ button:focus-visible, textarea:focus-visible, input:focus-visible, [role="button
  $('tk').addEventListener('click',function(e){var b=e.target.closest('button');if(b){setStage(+b.dataset.s);$('rg').dispatchEvent(new Event('change'))}});
  /* recent tasks (updates) */
  function recent(){var all=rd('de-updates',[]),L=all.filter(function(x){return x[0]===PN}).slice(0,5);
-  if(!all.length)L=[['','','In progress','Today 9:40','Vendor confirmed the GB-220 gearbox lead time. Order goes out once the drive sizing is approved.',''],['','','','Yesterday','Cylinder bore sized at 63 mm (A), check against the 6 bar supply.','From chat']];
+  if(!all.length&&!NEWP)L=[['','','In progress','Today 9:40','Vendor confirmed the GB-220 gearbox lead time. Order goes out once the drive sizing is approved.',''],['','','','Yesterday','Cylinder bore sized at 63 mm (A), check against the 6 bar supply.','From chat']];
   $('rn').textContent=L.length+(L.length===1?' update':' updates');
   $('rl').innerHTML=L.length?L.map(function(x){return '<div class="sm-ent"><div class="sm-em">'+(x[2]?'<span class="de-tag">'+esc(x[2])+'</span>':'')+(x[5]?'<span>'+esc(x[5])+'</span>':'')+'<span>'+esc(x[3])+'</span></div><div class="sm-et">'+esc(x[4])+'</div></div>'}).join(''):'<div class="de-empty">No updates for this project yet. Use Update assistant on the Dashboard to add one.</div>'}
  /* scheduled tasks */
- function gantt(){var sc=rd('de-scheds-'+PN,DSCH),T=[];sc.forEach(function(g){g.tasks.forEach(function(t){T.push({g:g.name,n:t.name,s:new Date(t.start+'T00:00:00'),e:new Date(t.end+'T00:00:00'),st:t.status})})});
+ function gantt(){var sc=rd('de-scheds-'+PN,NEWP?[]:DSCH),T=[];sc.forEach(function(g){g.tasks.forEach(function(t){T.push({g:g.name,n:t.name,s:new Date(t.start+'T00:00:00'),e:new Date(t.end+'T00:00:00'),st:t.status})})});
   var live=T.filter(function(t){return t.st!=='Done'}).sort(function(a,b){return a.s-b.s}),done=T.filter(function(t){return t.st==='Done'}).sort(function(a,b){return b.e-a.e}),show=live.slice(0,7);
   if(show.length<7)show=show.concat(done.slice(0,7-show.length));show.sort(function(a,b){return a.s-b.s});
   $('gn').textContent=T.filter(function(t){return t.st!=='Done'}).length+' open of '+T.length;
@@ -436,7 +437,7 @@ button:focus-visible, textarea:focus-visible, input:focus-visible, [role="button
     return '<div class="sm-gr"><div class="sm-gn" title="'+esc(t.g+': '+t.n)+'">'+esc(t.n)+'</div><div class="sm-gt"><div class="sm-gb '+cls+'" style="left:'+l+'%;width:'+w+'%">'+(cls==='prog'?'<i style="width:'+Math.round(el*100)+'%"></i>':'')+'</div><span class="sm-today" style="left:'+pc(TODAY)+'%"></span></div></div>'}).join('');
   $('gleg').textContent='Red line is today, Nov 11. Showing the next '+show.length+' tasks.'}
  /* overview */
- function iso(){var S=rd('de-proc-'+PN,DEFAULTS),c=layoutPos(S),k=0.42,cs=0.866,sn=0.5,pts=[];
+ function iso(){var S=rd('de-proc-'+PN,NEWP?[]:DEFAULTS);if(!S.length){$('iso').innerHTML='<text x="280" y="170">No processes yet. Choose Edit project to add the first one.</text>';$('ovn').textContent='0 processes';return}var c=layoutPos(S),k=0.42,cs=0.866,sn=0.5,pts=[];
   function P(x,y,z){return [(x-y)*cs,(x+y)*sn-z]}
   var boxes=S.map(function(s,i){var p=c.pos[i],h=(parseFloat(s.hgt)||60)*k*0.9,x=(p.x-c.minx)*k,y=(p.y-c.miny)*k,w=p.w*k,d=p.h*k;return {i:i,x:x,y:y,w:w,d:d,h:h}}).sort(function(a,b){return (a.x+a.y+a.w+a.d)-(b.x+b.y+b.w+b.d)});
   var all=[];boxes.forEach(function(b){[[b.x,b.y,0],[b.x+b.w,b.y,0],[b.x,b.y+b.d,0],[b.x+b.w,b.y+b.d,b.h],[b.x,b.y,b.h]].forEach(function(q){all.push(P(q[0],q[1],q[2]))})});

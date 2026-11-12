@@ -10,7 +10,8 @@
     { id: 'BC-Q-26019', name: 'Case erector controls upgrade', step: 5, chats: ['Controls upgrade scope', 'SAT punch list'] }
   ];
   var added = [];
-  try { var v = JSON.parse(localStorage.getItem('de-projects')); if (Array.isArray(v)) added = v; } catch (e) {}
+  try { var v = JSON.parse(localStorage.getItem('de-projects')); if (Array.isArray(v)) added = v.filter(function (p) { return p && /^BC-Q-\d+$/.test(p.id) && typeof p.name === 'string'; }); } catch (e) {}
+  added.forEach(function (p) { p.added = true; p.chats = Array.isArray(p.chats) ? p.chats : []; });
   var projects = base.concat(added);
 
   var recents = ['GitHub branch organization workflow', 'Downtime by cause from stoppage CSV', 'Gear ratio for a hoist drive', 'Compare 304 and 316 stainless for washdown', 'Cable tray fill calculation', 'Compressed air leak estimate', 'PLC tag naming convention', 'Quote template wording'];
@@ -69,7 +70,7 @@
   function project(id) { for (var i = 0; i < projects.length; i++) if (projects[i].id === id) return projects[i]; return null; }
   function addProject(name) {
     var max = 26041; projects.forEach(function (p) { var m = /(\d+)$/.exec(p.id); if (m) max = Math.max(max, +m[1]); });
-    var p = { id: 'BC-Q-' + (max + 1), name: name, step: 1, chats: [] };
+    var p = { id: 'BC-Q-' + (max + 1), name: name, step: 1, chats: [], added: true };
     added.push(p); projects.push(p);
     try { localStorage.setItem('de-projects', JSON.stringify(added)); } catch (e) {}
     return p;

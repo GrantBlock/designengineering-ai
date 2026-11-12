@@ -66,7 +66,7 @@ Grant, 2026-11-11: **Pro gets projects, and Pro then buys the extensions.** Exte
 | 3D designer (P08) | - | - (view a model in the Vault) | Yes | - |
 | Builder (P17) and Lite packages | - | - | - | Yes (desktop only) |
 
-Navigation: the Design and Builder rows stay in the sidebar for everyone. Without the extension they open a short page that says what it is and how to add it (Settings, Billing, Extensions). Draft (not yet approved by Grant).
+Navigation: the Design and Builder rows are hidden in the sidebar until the extension is bought; they are added in Settings, Billing, Extensions (Grant, 2026-11-11).
 
 ## Open questions
 

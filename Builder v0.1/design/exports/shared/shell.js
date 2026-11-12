@@ -5,6 +5,7 @@
   var D = document, W = window, DE = W.DE || { projects: [], recents: [], uploads: [], vault: [], calcs: [] };
   var PAGE = (/\/(P\d+[A-Z]?)-/.exec(location.pathname) || [])[1] || '';
   var Q = new URLSearchParams(location.search), PID = Q.get('project') || '';
+  if (!(DE.project && DE.project(PID))) PID = '';   /* only a known project id is ever written into the page */
   function ls(k, d) { try { var v = JSON.parse(localStorage.getItem(k)); return v == null ? d : v; } catch (e) { return d; } }
   function ss(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }
   function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }

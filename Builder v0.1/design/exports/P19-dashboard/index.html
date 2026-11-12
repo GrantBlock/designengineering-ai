@@ -494,6 +494,8 @@ ex.addEventListener("click",function(){sb.style.display="";ex.hidden=true})})();
  var L0=[['BC-Q-26041','Palletizer retrofit','In progress','Today 9:40','Vendor confirmed the GB-220 gearbox lead time. Order goes out once the drive sizing is approved.',''],['BC-Q-26041','Palletizer retrofit','','Yesterday','Cylinder bore sized at 63 mm (A), check against the 6 bar supply.','From chat'],['BC-Q-26038','Capping station','Sold','Nov 9','Kickoff held. Customer sends the I/O list by Friday.','']];
  var L;try{L=JSON.parse(localStorage.getItem('de-updates'))}catch(e){}if(!Array.isArray(L))L=L0;
  function persist(){try{localStorage.setItem('de-updates',JSON.stringify(L))}catch(e){}}
+ function fresh(){try{var v=JSON.parse(localStorage.getItem('de-updates'));if(Array.isArray(v))L=v}catch(e){}}
+ window.addEventListener('storage',function(e){if(e.key==='de-updates'){fresh();draw()}});
  function draw(){$('upc').textContent=L.length+(L.length===1?' update':' updates');
   $('upl').innerHTML=L.length?L.map(function(x,i){return '<div class="p19-ent"><div class="p19-entm"><span>'+x[0]+' · '+x[1]+'</span>'+(x[2]?'<span class="de-tag">'+x[2]+'</span>':'')+(x[5]?'<span class="de-tag de-tag-plain">'+x[5]+'</span>':'')+'<span>'+x[3]+'</span></div><button class="de-iconbtn de-iconbtn-sm" data-d="'+i+'" type="button" aria-label="Delete update"><svg class="de-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button><div class="p19-entt">'+esc(x[4])+'</div></div>'}).join(''):'<div class="de-empty">No updates yet. Use Update assistant to add one.</div>'}
  function chk(){$('ups').disabled=!($('up-note').value.trim()||$('up-stat').value!=='No change')}
@@ -504,9 +506,9 @@ ex.addEventListener("click",function(){sb.style.display="";ex.hidden=true})})();
  $('upx').addEventListener('click',function(){open(false)});
  $('up-note').addEventListener('input',chk);$('up-stat').addEventListener('change',chk);
  $('upf').addEventListener('submit',function(e){e.preventDefault();var pr=$('up-proj').value.split(' · '),sv=$('up-stat').value;
-  L.unshift([pr[0],pr[1],sv==='No change'?'':sv,'Just now',$('up-note').value.trim()||'Status changed to '+sv+'.','']);
+  fresh();L.unshift([pr[0],pr[1],sv==='No change'?'':sv,'Just now',$('up-note').value.trim()||'Status changed to '+sv+'.','']);
   persist();$('up-note').value='';$('up-stat').value='No change';chk();draw();open(false)});
- $('upl').addEventListener('click',function(e){var b=e.target.closest('[data-d]');if(b){L.splice(+b.dataset.d,1);persist();draw()}});
+ $('upl').addEventListener('click',function(e){var b=e.target.closest('[data-d]');if(b){var gone=JSON.stringify(L[+b.dataset.d]);fresh();var gi=L.map(function(x){return JSON.stringify(x)}).indexOf(gone);if(gi>-1)L.splice(gi,1);persist();draw()}});
  draw();
 })();
 </script>

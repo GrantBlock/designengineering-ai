@@ -9,7 +9,6 @@
   "build": { "command": "bash \"Builder v0.1/design/build-site.sh\"" },
   "assets": {
     "directory": "./Builder v0.1/design/site",
-    "html_handling": "none",
     "not_found_handling": "none"
   }
 }
