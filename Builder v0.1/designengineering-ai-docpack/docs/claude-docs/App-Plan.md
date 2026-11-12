@@ -59,7 +59,9 @@ Grant Block built this after setting up general AI tools himself, on his own tim
 
 A place for design to live: project files, data sheets, and dimensions in one workspace, with an AI assistant that turns them into models, plans, drawings, and vendor requests. It is Block Concepts' own design process, automated and made widely available.
 
-**MVP (winter build)**
+**MVP (public release, April 2027)**
+
+The winter build first runs the full suite at Block Concepts as its own Enterprise account (the Block Concepts prototype, Section 7). The released MVP is the subset below, designed on the same system so that it integrates with the larger suite as functions are added.
 
 | Capability | What it does |
 | --- | --- |
@@ -283,7 +285,7 @@ Prices match SBA Section 5.2.
 | Level | Available | Price | Performance | Features | Storage |
 | --- | --- | --- | --- | --- | --- |
 | Basic Viewer | Launch | $0 | Standard speed and models; small daily AI cap paid by Block Concepts | Web app; general chat; view and comment on shared projects; collaborator mode; no projects of their own | None |
-| Starter bundle | Launch | [$20] one-time purchase (A) | As Basic Viewer | One-time add-on for Basic Viewer: up to 3 projects of their own (shared projects do not count), to use the project tools without Pro | File upload limit [X GB] (A); Pro unlocks the full storage |
+| Starter bundle | Launch | [$20] one-time purchase (A) | As Basic Viewer | One-time add-on for Basic Viewer, for hobbyists and technicians to try the project tools without Pro: up to 3 projects of their own (shared projects do not count) and uploads. Tokens are bought separately from the wallet, for chat (troubleshooting, vendor requests) beyond the daily cap | File upload limit [X GB] (A); Pro unlocks the full storage |
 | Pro | Launch | $30 / user / month | Faster responses, priority access, premium models | Web app with projects and project chat, plus desktop app; can add the Design and Builder extensions; collaborator mode with per-project sharing | 20 GB included; each additional 20 GB is $10 / month |
 | Turbo | After infrastructure upgrades | [$X] / user / month | Much faster than Pro | Everything in Pro; for power users who can't justify Enterprise and don't need Team admin controls | [X] GB included; each additional 20 GB is $10 / month |
 | Team | Built in year 1, live from year 2 | $50 / user / month | As Pro | Everything in Pro plus an admin panel: add and remove people, set roles and permissions on shared projects | 20 GB per user (A); each additional 20 GB is $10 / month |
@@ -310,7 +312,7 @@ Chat and CAD usage is charged at **3.5× the underlying cost**. Rates vary by mo
 
 - Prepaid: usage stops when the balance runs out; optional auto-refill.
 - Basic Viewer accounts have a small daily AI cap paid by Block Concepts, sized from measured costs so total Basic Viewer usage stays within [X%] of Pro revenue (SBA 8.4).
-- The Starter bundle is a one-time purchase with no tokens (A); Basic Viewer usage beyond the daily cap is paid from the wallet.
+- The Starter bundle is a one-time purchase for projects and uploads only; tokens are a separate wallet purchase. Basic Viewer usage beyond the daily cap is paid from the wallet.
 - Lite uses no Block Concepts tokens.
 - Users see a running usage and balance display.
 - Block Concepts keeps a hard monthly spending limit with the AI provider.
@@ -322,8 +324,8 @@ Chat and CAD usage is charged at **3.5× the underlying cost**. Rates vary by mo
 
 | Phase | Target timing | Deliverables | Gate to next phase |
 | --- | --- | --- | --- |
-| 0: Winter build | Nov 2026 – Mar 2027 | Chat MVP: AI chat, uploads, document search, 3D viewer, project document storage, notes and tracking, calculators, process flows, plans and vendor requests; dashboard, schedules and customer quotes; per-request cost logging. Design and Builder extensions and Lite in the prototype only (ship after the MVP) | Grant Block uses the MVP daily on real Block Concepts work; Lite demo package ready [open: Lite needs Builder, which now ships after the MVP] |
-| 1: Public launch | Apr 2027 | Basic Viewer, Starter, and Pro live; prepaid wallet; Cloudflare paid plan; per-model rates and Basic Viewer cap set from cost logs; Builder and Lite at Block Concepts and its customers; Team built during year 1; first customers from Block Concepts and rep channels | 10–12 Pro users cover running costs |
+| 0: Winter build (Block Concepts prototype) | Nov 2026 – Mar 2027 | Block Concepts runs the full suite as its own Enterprise account. Built first: only the functions that prototype needs to run like a true Enterprise account [list to confirm]. Includes Design and Builder for Block Concepts use, Lite with package format v1 and on-device chat, a Lite demo package, and per-request cost logging. The MVP subset (Section 2) is designed on the same system so it integrates later | Grant Block runs Block Concepts on the prototype daily; Lite demo package ready |
+| 1: Public launch (MVP) | Apr 2027 | Public MVP released as the Section 2 subset, without extensions; Basic Viewer, Starter, and Pro live; prepaid wallet; Cloudflare paid plan; per-model rates and Basic Viewer cap set from cost logs; Builder and Lite at Block Concepts and its customers; Team built during year 1; first customers from Block Concepts and rep channels | 10–12 Pro users cover running costs |
 | 2: First hire | When reached | Team live (year 2); senior software engineer hired; desktop app with extensions; Design extension with the first CAD milestone (spacer-class part model and drawing); Builder extension open sale [timing TBD] | 380–415 Pro users |
 | 3: Full staffing | When reached | Team of 5; API and CLI; Enterprise (built on the Builder app) with Onshape / SolidWorks integration; Turbo level | 1,850–1,955 Pro users |
 | Later | — | Mobile apps, PLC coding, electrical schematics, operations escalations, facility scan links, FDA / cGMP add-ons | — |
