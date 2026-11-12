@@ -26,12 +26,12 @@ Everything waiting on Grant, tagged by where it is best handled. The shortcut "w
 | RQ16 | Confirm the design-system patterns introduced in P05, P06 and P12 (1120px detail column, numbered page tabs, steel-blue progress fills, chip Next/Generate button, dropdown menus, two-step Delete, white drawing sheets for documents, to-scale Layout view) | vscode | ☐ | `design/DESIGN-SYSTEM.md` decision log |
 | RQ17 | Answer the open projects questions: what Import should accept (CSV columns, PDF drawings, past configurations), whether archived schedules can be exported, whether stage bars come from the schedule, drag-to-place blocks in Layout, and which page is next (P07 upload flow or P08 3D viewer) | mobile | ☐ | `design/UI-Progress-Tracker.md`, `ideas.md` I03 to I07 |
 | RQ18 | ◐ 2026-11-12: (1) tokens are separate, (3) Block Concepts runs the full suite in year 1 and the Lite demo gate stays, (2) 2% buy once then buy tokens; 8.2.1 figures and price, upload limit and prototype function list still to confirm. After the App Plan reconcile: (1) Starter bundle price and upload limit, and does it still include any tokens; (2) SBA 8.2.1 Starter revenue now that it is one-time; (3) Lite demo gate and Builder year 1 at Block Concepts, now that Builder ships after the MVP | mobile | ☐ | App Plan 6.1 and 7, SBA 8.2.1 |
-| RQ19 | Review the P20 Preferences overlay: factory context file, Lock or chat updates (Ask me first, Update on its own, Off), the starting sections and brand lists; and say whether Help and support stay in P20 or get their own page | code | ☐ | `design/exports/P20-preferences/index.html` |
 
 ## Closed
 
 | ID | Item | Closed | Answer |
 | --- | --- | --- | --- |
+| RQ19 | Review the P20 Preferences overlay | 2026-11-12 | Approved (Grant). Settings stays for UI and non-chat preferences. Projects get their own context, read first, set when a project is created. Help and support placement still open |
 | RQ09 | Run "design the next page" once in a fresh session to confirm the shortcut loads | 2026-11-06 | [stated] Grant ran "design the next page" and "where were we" in one message on mobile and got both |
 | RQ13 | Decision brief I01: e-sign, approvals, PO and invoice tracking (draft D13) | 2026-11-09 | Option C: trusted e-sign platform from the start, behind a thin adapter. Logged in the App Plan memory log. |
 
@@ -51,3 +51,4 @@ Everything waiting on Grant, tagged by where it is best handled. The shortcut "w
 - [stated] 2026-11-09: RQ13 closed with Grant's answer (option C).
 - [stated] 2026-11-12: RQ18 added after the page designs were reconciled with the App Plan.
 - [stated] 2026-11-12: RQ19 added for the P20 Preferences draft.
+- [stated] 2026-11-12: RQ19 closed: P20 approved.

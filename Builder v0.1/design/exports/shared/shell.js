@@ -141,8 +141,8 @@
 
   /* ---------- new project ---------- */
   function newProject() {
-    var d = dialog({ title: 'New project', body: '<form class="dx-form" id="dx-np"><label for="dx-pn">Project name<input id="dx-pn" autocomplete="off" placeholder="For example: Case packer line 2"></label><p style="margin:0;font-size:13px;color:var(--bc-muted)">It gets the next project number and is shared with your organization.</p><div class="dx-err" id="dx-pe" role="alert"></div><div class="dx-row"><button class="dx-btn" type="button" data-x="1">Cancel</button><button class="dx-btn is-main" type="submit">Create project</button></div></form>' });
-    $('#dx-np', d.el).addEventListener('submit', function (e) { e.preventDefault(); var n = $('#dx-pn', d.el).value.trim(); if (n.length < 2) { $('#dx-pe', d.el).textContent = 'Give the project a name.'; return; } var p = DE.addProject(n); location.href = DE.summaryUrl(p.id); });
+    /* Opens the Preferences overlay in new-project mode: name, then project context (read first), then the facility context. */
+    location.href = U.prefs + '?new=1';
   }
   function shortcuts() { dialog({ title: 'Keyboard shortcuts', body: '<dl class="dx-keys"><dt>Ctrl K or ⌘ K</dt><dd>Search</dd><dt>Esc</dt><dd>Close a menu, a dialog or Settings</dd><dt>Tab</dt><dd>Move to the next control</dd><dt>Arrow keys</dt><dd>Move inside a menu or the search results</dd></dl>' }); }
   function copyLink() { var u = location.href; function ok() { toast('Link copied.'); } if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(u).then(ok, function () { toast('Copy did not work here. The link is in the address bar.'); }); else toast('Copy is not available here. The link is in the address bar.'); }
@@ -171,7 +171,7 @@
     if (x.design) r.push(['design', 'Design', 'cube', U.design]);
     r.push(['vault', 'Vault', 'vault', U.vault], ['uploads', 'Uploads', 'upload', U.uploads]);
     if (x.builder) r.push(['builder', 'Builder', 'box', U.builder]);
-    if (sbMode === 'projects') r.push(['prefs', 'Preferences', 'prefs', U.prefs]);
+    if (sbMode === 'projects') r.push(['prefs', PID ? 'Project preferences' : 'Preferences', 'prefs', PID ? U.prefs + '?project=' + PID : U.prefs]);
     r.push(['more', 'More', 'more', null]);
     return r;
   }
@@ -254,7 +254,7 @@
     if (b.classList.contains('sbsegb')) { var pm = /Projects/i.test(b.getAttribute('aria-label') || b.title || '') ? 'projects' : 'chat'; ss('de-sbmode', pm); return; }
     var lab = ($('.sblab', b) ? $('.sblab', b).textContent : b.textContent).trim(), inNav = !!b.closest('.sbnav');
     if (inNav) {
-      var go = { Dashboard: U.dash, Design: U.design, Vault: U.vault, Uploads: U.uploads, Builder: U.builder, Preferences: U.prefs }[lab];
+      var go = { Dashboard: U.dash, Design: U.design, Vault: U.vault, Uploads: U.uploads, Builder: U.builder, Preferences: U.prefs, 'Project preferences': U.prefs + '?project=' + PID }[lab];
       if (lab === 'Search') { stop(); search(); } else if (lab === 'More') { stop(); menu(b, moreItems(), { left: true }); } else if (go) { stop(); location.href = go; }
       return;
     }
