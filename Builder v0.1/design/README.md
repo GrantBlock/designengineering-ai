@@ -12,3 +12,14 @@ UI design work for designengineering.ai. Owner: Grant Block (Block Concepts LLC)
 | `exports/` | Finished page exports (HTML), one folder per page, named by tracker ID. |
 
 Rules: design from the first open page in the tracker; follow the design system; export to `exports/`; update the tracker; log new design-system decisions with a dated line. Draft items are not approved until Grant says so.
+
+## Sample site (Cloudflare Workers)
+
+`prototype.html` is the sample frame: the app description, the page description and a Desktop and Phone selector around the live pages. To deploy it as a static site:
+
+1. From this folder run `npx wrangler deploy`. The build step (`build-site.sh`) copies only the pages, shared scripts, fonts and icon into `site/`. Planning documents are never copied.
+2. `site/` is built output and is not committed.
+3. The pages carry `noindex`, but the site is public unless Cloudflare Access is put in front of it.
+
+Shared code is in `exports/shared/`: `data.js` (sample projects, chats, Vault items, uploads, calculators), `shell.js` and `shell.css` (sidebar, top bar, phone bar, search, menus, session panel).
+

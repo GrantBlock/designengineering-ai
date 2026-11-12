@@ -1,0 +1,13 @@
+{
+  // Cloudflare Workers, static assets only: the click-through sample of the app.
+  // Deploy from this folder:  npx wrangler deploy
+  // The build step copies only the prototype pages into ./site (see build-site.sh).
+  "name": "designengineering-prototype",
+  "compatibility_date": "2026-11-01",
+  "build": { "command": "bash build-site.sh" },
+  "assets": {
+    "directory": "./site",
+    "html_handling": "none",
+    "not_found_handling": "none"
+  }
+}

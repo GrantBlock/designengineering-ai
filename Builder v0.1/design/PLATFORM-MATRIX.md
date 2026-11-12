@@ -22,7 +22,7 @@ Surfaces: **Web desktop** (browser, wide), **Web mobile** (browser or phone app,
 | P07 | Uploads | Full | Full (camera) | - | Take a pic is mobile |
 | P08 | 3D designer (extension) | Full | View (orbit, ask) | - | Purchased extension; chat-only building could work on mobile later |
 | P09 | Vault | Full | Full (browse, open) | - | |
-| P11 | Calculators (custom, built from a template) | Full (build) | Use | - | Build on desktop, run anywhere |
+| P11 | Calculators (in the Vault; built in a chat) | Full (build) | Use | - | Build on desktop, run anywhere. No page of their own |
 | P15 | Settings: Account, Billing, Usage, Preferences, Privacy | Full | Full | - | |
 | P15 | Settings: Team (roles, invite) | Full | - | - | Admin work |
 | P17 | Builder (extension) | Full | - | Not a separate app | Desktop only, purchased extension |
