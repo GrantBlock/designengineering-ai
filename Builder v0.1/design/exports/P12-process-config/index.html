@@ -385,8 +385,11 @@ select.pg-in{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xml
 .p12-bar .sp{flex:1}
 @media (max-width:1000px){.p18-grid{grid-template-columns:1fr}}
 @media (max-width:760px){.xm-two{grid-template-columns:1fr}.p12-numrow{flex-wrap:wrap;gap:8px}.p12-n{width:44px;height:44px}.p12-bar{padding-bottom:calc(14px + 84px)}.p12-bar .de-btn{height:48px}}
-</style></head>
+</style><link rel="stylesheet" href="../shared/shell.css" data-dx-css="1">
+</head>
 <body>
+<script src="../shared/data.js"></script><script src="../shared/shell.js"></script>
+
 <div class="de-shell">
  <aside class="de-sidebar sb" aria-label="Sidebar" data-mode="projects">
   <div class="sbtool">
@@ -463,7 +466,7 @@ select.pg-in{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xml
 <script>
 (function(){
 
-var PROJ={'BC-Q-26041':'Palletizer retrofit','BC-Q-26038':'Capping station','BC-Q-26035':'Dispensing cell guarding','BC-Q-26031':'Conveyor transfer bracket','BC-Q-26027':'Washdown motor VFD sizing','BC-Q-26019':'Case erector controls upgrade'};
+var PROJ={'BC-Q-26041':'Palletizer retrofit','BC-Q-26038':'Capping station','BC-Q-26035':'Label applicator','BC-Q-26031':'Conveyor transfer bracket','BC-Q-26027':'Washdown motor VFD sizing','BC-Q-26019':'Case erector controls upgrade'};if(window.DE&&DE.projects)DE.projects.forEach(function(p){PROJ[p.id]=p.name});
 var FLOW=['Vertical','Horizontal','Right to left','Left to right'];
 var BLANK={ptype:'',tech:'',material:'',color:'',fin:null,guard:'',safe:'',mark:'',insp:'',certs:null,anchor:'',side:'',align:'',type:'',speed:'',ppc:'',len:'',wid:'',hgt:'',wt:'',psi:'',cfm:'',volt:'',phase:'',amp:'',flow:'Vertical',notes:''};
 var DEFAULTS=[{"type": "Sand Mixer + Hopper", "speed": "", "ppc": "", "len": "144", "wid": "120", "hgt": "", "wt": "", "psi": "80", "cfm": "4", "volt": "480", "phase": "3", "amp": "30", "flow": "Vertical", "notes": "", "anchor": "", "side": "", "align": ""}, {"type": "Incline Sand Conveyor", "speed": "", "ppc": "", "len": "216", "wid": "18", "hgt": "", "wt": "", "psi": "", "cfm": "", "volt": "480", "phase": "3", "amp": "10", "flow": "Vertical", "notes": "", "anchor": "1", "side": "above", "align": "center"}, {"type": "Horizontal Sand Conveyor", "speed": "", "ppc": "", "len": "240", "wid": "24", "hgt": "", "wt": "", "psi": "", "cfm": "", "volt": "480", "phase": "3", "amp": "10", "flow": "Right to left", "notes": "", "anchor": "2", "side": "left", "align": "start"}, {"type": "Molding Hopper", "speed": "", "ppc": "", "len": "114", "wid": "112", "hgt": "", "wt": "", "psi": "80", "cfm": "3", "volt": "480", "phase": "3", "amp": "15", "flow": "Vertical", "notes": "", "anchor": "5", "side": "left", "align": "start"}, {"type": "Molding Press", "speed": "", "ppc": "", "len": "240", "wid": "112", "hgt": "", "wt": "", "psi": "80", "cfm": "8", "volt": "480", "phase": "3", "amp": "60", "flow": "Left to right", "notes": "", "anchor": "3", "side": "above", "align": "start"}, {"type": "Transfer Conveyor", "speed": "", "ppc": "", "len": "414", "wid": "24", "hgt": "", "wt": "", "psi": "", "cfm": "", "volt": "480", "phase": "3", "amp": "12", "flow": "Left to right", "notes": "", "anchor": "5", "side": "right", "align": "start"}, {"type": "Transfer Conveyor", "speed": "", "ppc": "", "len": "624", "wid": "24", "hgt": "", "wt": "", "psi": "", "cfm": "", "volt": "480", "phase": "3", "amp": "15", "flow": "Vertical", "notes": "", "anchor": "6", "side": "below", "align": "end"}, {"type": "Transfer Conveyor", "speed": "", "ppc": "", "len": "408", "wid": "24", "hgt": "", "wt": "", "psi": "", "cfm": "", "volt": "480", "phase": "3", "amp": "12", "flow": "Right to left", "notes": "", "anchor": "7", "side": "below", "align": "end"}, {"type": "Sand Reclamation", "speed": "", "ppc": "", "len": "108", "wid": "96", "hgt": "", "wt": "", "psi": "80", "cfm": "6", "volt": "480", "phase": "3", "amp": "25", "flow": "Vertical", "notes": "", "anchor": "1", "side": "below", "align": "center"}];
@@ -572,7 +575,6 @@ else if(b.dataset.sb==="toggle"){sb.style.display="none";ex.hidden=false}
 else if(b.classList.contains("sbgrp")){var g=b.closest(".sbgroup"),c=g.classList.toggle("is-closed");b.setAttribute("aria-expanded",String(!c))}});
 ex.addEventListener("click",function(){sb.style.display="";ex.hidden=true})})();
 </script>
-<script src="../shared/ext.js"></script>
 <script>
 (function(){var Q=new URLSearchParams(location.search),PN=Q.get('project')||'BC-Q-26041',N=['Assessment','Design','Build','FAT','SAT'];var v;try{v=JSON.parse(localStorage.getItem('de-stage-'+PN))}catch(e){}if(!(v>=1&&v<=5))return;
 var sp=document.querySelector('.p6-meta span');if(sp)sp.textContent='Stage '+v+' — '+N[v-1];[].forEach.call(document.querySelectorAll('.p6-meta .de-stages i'),function(i,k){i.className=k<v?'is-done':''})})();

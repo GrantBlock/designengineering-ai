@@ -345,8 +345,23 @@ button:focus-visible, textarea:focus-visible, input:focus-visible, [role="button
  .v-dock{position:fixed;left:0;right:0;bottom:0;padding:16px 12px 34px;background:linear-gradient(to bottom,rgba(30,30,32,0) 0,var(--bc-canvas) 24px)}
 }
 @media (min-width:761px){.v-dock,.v-mheader{display:none}}
-</style></head>
+
+.v-projw{position:relative;display:flex;min-width:0}
+.v-projw .v-proj{flex:1;padding-right:44px}
+.v-projw .v-star{position:absolute;top:8px;right:8px;margin:0;border:none;background:none;cursor:pointer}
+a.v-card{color:inherit;text-decoration:none}a.v-card:hover{text-decoration:none;color:inherit}
+.v-calc{display:grid;grid-template-columns:repeat(3,22px);gap:6px;padding:14px;border-radius:10px;background:var(--bc-surface);border:1px solid var(--bc-hairline)}
+.v-calc b{grid-column:1/-1;height:22px;border-radius:5px;background:var(--bc-steel-blue-tint);color:var(--bc-steel-blue-text);font-family:var(--font-mono);font-size:13px;text-align:right;padding:2px 8px 0}
+.v-calc i{height:14px;border-radius:4px;background:var(--bc-surface-raised)}
+.v-tabs{overflow-x:auto;max-width:100%}
+.v-tabs button{white-space:nowrap}
+.v-newcalc{border-style:dashed}
+@media (max-width:760px){.v-projw{flex:0 0 72%;scroll-snap-align:start}.v-projw .v-proj{flex:1}}
+</style><link rel="stylesheet" href="../shared/shell.css" data-dx-css="1">
+</head>
 <body>
+<script src="../shared/data.js"></script><script src="../shared/shell.js"></script>
+
 <div class="de-shell">
  <aside class="de-sidebar sb" aria-label="Sidebar" data-mode="projects">
   <div class="sbtool">
@@ -380,60 +395,65 @@ button:focus-visible, textarea:focus-visible, input:focus-visible, [role="button
    <div class="de-topbar-actions"><a class="de-btn" href="../P07-upload-flow/index.html"><svg class="de-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4M7 9l5-5 5 5M4 20h16"/></svg>Upload</a><button class="de-btn">Ask AI</button><button class="de-btn">Support</button><div class="de-avatar" style="margin-left:8px">G</div></div></header>
   <div class="v-mobile v-mheader"><div class="de-mheader"><img src="../../assets/favicon.svg" alt=""><span class="de-brand">Design Engineering</span><div class="de-avatar de-avatar-lg">G</div></div></div>
   <div class="de-shell-scroll de-scroll"><div class="de-shell-column">
-   <div class="v-head"><div class="de-eyebrow">Block Concepts</div><h1>Vault</h1><p>Everything I and you have made, kept by project: process documents, schedules, 3D models and chat exports. Pick a project to see what is in it.</p></div>
+   <div class="v-head"><div class="de-eyebrow">Block Concepts</div><h1>Vault</h1><p>Everything made or added, kept by project: documents, 3D models, calculators, uploads, schedules and chats. Pick a project to see what is in it.</p></div>
    <section class="de-panel" aria-label="Projects"><div class="de-section-head"><span class="de-label">Projects</span><span class="de-tag de-tag-plain" id="pc"></span></div><div class="v-grid3" id="projs" role="group" aria-label="Project"></div></section>
-   <div class="v-bar"><div class="v-tabs" id="tabs" role="tablist" aria-label="Type"><button type="button" role="tab" data-t="all" aria-selected="true">All</button><button type="button" role="tab" data-t="Document" aria-selected="false">Documents</button><button type="button" role="tab" data-t="Schedule" aria-selected="false">Schedules</button><button type="button" role="tab" data-t="Model" aria-selected="false">Models</button><button type="button" role="tab" data-t="Chat" aria-selected="false">Chats</button></div>
-    <div class="v-tools"><label class="v-find" id="find"><span style="position:absolute;left:-9999px">Search the Vault</span><input id="q" type="search" placeholder="Search the Vault" autocomplete="off"></label><button class="de-iconbtn" id="sbtn" type="button" aria-label="Search the Vault"><svg class="de-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 4a7 7 0 1 0 0 14 7 7 0 0 0 0-14zM21 21l-5-5"/></svg></button><button class="de-iconbtn" id="lbtn" type="button" aria-pressed="false" aria-label="List view"><svg class="de-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h.01M4 12h.01M4 18h.01M9 6h11M9 12h11M9 18h11"/></svg></button></div></div>
-   <div class="v-gal" id="gal"></div><div class="de-empty v-empty" id="none" hidden>Nothing here yet. Documents, schedules and models you save from a project appear in this list.</div>
-   <div class="v-note">Sample items are placeholders (A). Each card opens its project page on the matching tab.</div>
+   <div class="v-bar"><div class="v-tabs" id="tabs" role="tablist" aria-label="Type"></div>
+    <div class="v-tools"><label class="v-find" id="find"><span style="position:absolute;left:-9999px">Search the Vault</span><input id="q" type="search" placeholder="Search the Vault" autocomplete="off"></label><button class="de-iconbtn" id="sbtn" type="button" aria-label="Search the Vault" aria-expanded="false"><svg class="de-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 4a7 7 0 1 0 0 14 7 7 0 0 0 0-14zM21 21l-5-5"/></svg></button><button class="de-iconbtn" id="lbtn" type="button" aria-pressed="false" aria-label="List view"><svg class="de-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h.01M4 12h.01M4 18h.01M9 6h11M9 12h11M9 18h11"/></svg></button></div></div>
+   <div class="v-gal" id="gal"></div><div class="de-empty v-empty" id="none" hidden>Nothing here yet. Documents, models, calculators and uploads from a project appear in this list.</div>
+   <div class="v-note">Sample items are placeholders (A). A card opens the item where it lives; a calculator opens here, ready to use.</div>
   </div></div>
  </main>
 </div>
 <div class="v-dock v-mobile"><div class="de-tabbar"><button class="de-tab"><svg class="de-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg><span>New chat</span></button><button class="de-tab"><svg class="de-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18zM12 7v5l3 2"/></svg><span>Recents</span></button><button class="de-tab"><svg class="de-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16v14H4zM4 10h16M10 10v9"/></svg><span>Dashboard</span></button><button class="de-tab is-active"><svg class="de-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h.01M12 12h.01M19 12h.01"/></svg><span>More</span></button></div></div>
 <script>
 (function(){
- var $=function(i){return document.getElementById(i)};
- function ico(p,n){return '<svg class="de-icon" width="'+(n||16)+'" height="'+(n||16)+'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+p+'</svg>'}
+ var $=function(i){return document.getElementById(i)},DE=window.DE,SH=window.DEShell;
+ function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+ function ico(p,n){return '<svg class="de-icon" width="'+(n||16)+'" height="'+(n||16)+'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">'+p+'</svg>'}
  var STAR='<path d="M12 4l2.5 5.2 5.7.8-4.1 4 1 5.7-5.1-2.7-5.1 2.7 1-5.7-4.1-4 5.7-.8z"/>';
- var P=[['BC-Q-26041','Palletizer retrofit'],['BC-Q-26038','Capping station'],['BC-Q-26035','Dispensing cell guarding'],['BC-Q-26031','Conveyor transfer bracket'],['BC-Q-26027','Washdown motor VFD sizing'],['BC-Q-26019','Case erector controls upgrade']];
- /* Sample items (A). */
- var I=[
-  ['Process document, rev 3','Document','BC-Q-26041','2h ago','../P06-project-workspace/index.html?project=BC-Q-26041'],
-  ['Palletizer schedule','Schedule','BC-Q-26041','15h ago','../P06-project-workspace/index.html?project=BC-Q-26041'],
-  ['Palletizer frame v4','Model','BC-Q-26041','yesterday','../P08-3d-viewer/index.html'],
-  ['Pneumatic cylinder sizing','Chat','BC-Q-26041','Nov 9','../P03-chat-conversation/index.html'],
-  ['Capping station process document','Document','BC-Q-26038','Nov 9','../P06-project-workspace/index.html?project=BC-Q-26038'],
-  ['Capping station schedule','Schedule','BC-Q-26038','Nov 5','../P06-project-workspace/index.html?project=BC-Q-26038'],
-  ['Guard layout, option B','Model','BC-Q-26035','Nov 4','../P08-3d-viewer/index.html'],
-  ['Guard door interlock chat','Chat','BC-Q-26035','Nov 4','../P03-chat-conversation/index.html'],
-  ['Transfer bracket, spacer','Model','BC-Q-26031','Oct 30','../P08-3d-viewer/index.html'],
-  ['VFD sizing summary','Document','BC-Q-26027','Oct 29','../P06-project-workspace/index.html?project=BC-Q-26027'],
-  ['Case erector schedule','Schedule','BC-Q-26019','Oct 29','../P06-project-workspace/index.html?project=BC-Q-26019'],
-  ['Case erector I/O list','Document','BC-Q-26019','Oct 28','../P06-project-workspace/index.html?project=BC-Q-26019']];
- var st={proj:'all',type:'all',q:'',list:false,pins:{'BC-Q-26041':1,'BC-Q-26038':1}};
+ var Q=new URLSearchParams(location.search);
+ var TYPES=[['all','All'],['Document','Documents'],['Model','Models'],['Calculator','Calculators'],['Upload','Uploads'],['Schedule','Schedules'],['Chat','Chats']];
+ var P=DE.projects,I=DE.vault;
+ var st={proj:DE.project(Q.get('project'))?Q.get('project'):'all',type:TYPES.some(function(t){return t[0]===Q.get('type')})?Q.get('type'):'all',q:'',list:false,pins:{'BC-Q-26041':1,'BC-Q-26038':1}};
+ try{var pv=JSON.parse(localStorage.getItem('de-vault-pins'));if(pv)st.pins=pv}catch(e){}
  function thumb(t){
   if(t==='Document')return '<div class="v-paper"><b></b><i style="width:90%"></i><i style="width:78%"></i><u></u><i style="width:84%"></i><i style="width:55%"></i></div>';
   if(t==='Schedule')return '<div class="v-gantt"><i style="width:46%"></i><i style="width:60%;margin-left:18%"></i><i class="o" style="width:52%;margin-left:34%"></i><i style="width:38%;margin-left:12%"></i><i class="o" style="width:30%;margin-left:56%"></i></div>';
   if(t==='Model')return '<div class="v-model">'+ico('<path d="M12 3l8 4.5v9L12 21l-8-4.5v-9zM12 12l8-4.5M12 12v9M12 12L4 7.5"/>',56)+'</div>';
+  if(t==='Calculator')return '<div class="v-calc"><b>=</b><i></i><i></i><i></i><i></i><i></i><i></i></div>';
+  if(t==='Upload')return '<div class="v-model" style="color:var(--bc-muted)">'+ico('<path d="M12 16V4M7 9l5-5 5 5M5 20h14"/>',48)+'</div>';
   return '<div class="v-chat"><i class="r" style="width:60%"></i><i style="width:84%"></i><i style="width:70%"></i><i class="r" style="width:44%"></i></div>'}
- function pname(n){return P.filter(function(p){return p[0]===n})[0][1]}
- function cnt(n){return I.filter(function(i){return n==='all'||i[2]===n}).length}
+ function pname(n){var p=DE.project(n);return p?p.name:'General'}
+ function cnt(n){return I.filter(function(i){return n==='all'||i.p===n}).length}
+ function drawTabs(){$('tabs').innerHTML=TYPES.map(function(t){return '<button type="button" role="tab" data-t="'+t[0]+'" aria-selected="'+(t[0]===st.type)+'">'+t[1]+'</button>'}).join('')}
  function drawProj(){var h='<button class="v-proj'+(st.proj==='all'?' is-on':'')+'" type="button" data-p="all" aria-pressed="'+(st.proj==='all')+'"><span class="v-proj-b"><span class="v-proj-c">All projects</span><span class="v-proj-t">Everything in the Vault</span><span class="v-proj-n">'+cnt('all')+' items</span></span></button>';
-  P.slice().sort(function(a,b){return (st.pins[b[0]]||0)-(st.pins[a[0]]||0)}).forEach(function(p){var on=st.proj===p[0],pin=st.pins[p[0]];
-   h+='<button class="v-proj'+(on?' is-on':'')+'" type="button" data-p="'+p[0]+'" aria-pressed="'+on+'"><span class="v-proj-b"><span class="v-proj-c">'+p[0]+'</span><span class="v-proj-t">'+p[1]+'</span><span class="v-proj-n">'+cnt(p[0])+(cnt(p[0])===1?' item':' items')+'</span></span><span class="v-star'+(pin?' is-on':'')+'" data-pin="'+p[0]+'" role="button" aria-label="'+(pin?'Unpin ':'Pin ')+p[1]+'">'+ico(pin?STAR.replace('<path','<path fill="currentColor"'):STAR,16)+'</span></button>'});
+  P.slice().sort(function(a,b){return (st.pins[b.id]||0)-(st.pins[a.id]||0)}).forEach(function(p){var on=st.proj===p.id,pin=st.pins[p.id],n=cnt(p.id);
+   h+='<div class="v-projw"><button class="v-proj'+(on?' is-on':'')+'" type="button" data-p="'+p.id+'" aria-pressed="'+on+'"><span class="v-proj-b"><span class="v-proj-c">'+p.id+'</span><span class="v-proj-t">'+esc(p.name)+'</span><span class="v-proj-n">'+n+(n===1?' item':' items')+'</span></span></button><button class="v-star'+(pin?' is-on':'')+'" type="button" data-pin="'+p.id+'" aria-pressed="'+!!pin+'" aria-label="Pin '+esc(p.name)+'">'+ico(pin?STAR.replace('<path','<path fill="currentColor"'):STAR,16)+'</button></div>'});
   $('projs').innerHTML=h;$('pc').textContent=P.length+' projects'}
- function drawGal(){var q=st.q.toLowerCase();var L=I.filter(function(i){return (st.proj==='all'||i[2]===st.proj)&&(st.type==='all'||i[1]===st.type)&&(!q||(i[0]+' '+pname(i[2])).toLowerCase().indexOf(q)>-1)});
-  $('none').hidden=L.length>0;$('gal').classList.toggle('is-list',st.list);
-  $('gal').innerHTML=L.map(function(i){return '<div class="v-card" tabindex="0" role="link" data-go="'+i[4]+'" aria-label="Open '+i[0]+'"><div class="v-thumb">'+thumb(i[1])+'<div class="v-hov"><button type="button" aria-label="More">'+ico('<path d="M5 12h.01M12 12h.01M19 12h.01"/>',16)+'</button></div></div><div class="v-card-m"><div class="v-card-t">'+i[0]+'</div><div class="v-card-s"><span class="de-tag">'+i[1]+'</span><span>'+(st.proj==='all'?pname(i[2])+' · ':'')+i[3]+'</span></div></div></div>'}).join('')}
- function draw(){drawProj();drawGal()}
- $('projs').addEventListener('click',function(e){var s=e.target.closest('[data-pin]');if(s){e.stopPropagation();st.pins[s.dataset.pin]=st.pins[s.dataset.pin]?0:1;draw();return}var b=e.target.closest('[data-p]');if(b){st.proj=b.dataset.p;draw()}});
- $('tabs').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;st.type=b.dataset.t;[].forEach.call(this.children,function(c){c.setAttribute('aria-selected',String(c===b))});drawGal()});
- $('sbtn').addEventListener('click',function(){var f=$('find'),o=f.classList.toggle('is-open');if(o)$('q').focus();else{$('q').value='';st.q='';drawGal()}});
+ function drawGal(){var q=st.q.toLowerCase();var L=I.filter(function(i){return (st.proj==='all'||i.p===st.proj)&&(st.type==='all'||i.t===st.type)&&(!q||(i.n+' '+pname(i.p)+' '+i.t).toLowerCase().indexOf(q)>-1)});
+  $('gal').classList.toggle('is-list',st.list);
+  var h=L.map(function(i){var k=I.indexOf(i);return '<a class="v-card" href="'+esc(i.calc?'#':i.h)+'" data-k="'+k+'"'+(i.calc?' data-calc="'+i.calc+'" role="button"':'')+' aria-label="Open '+esc(i.n)+', '+i.t+'"><div class="v-thumb">'+thumb(i.t)+'</div><div class="v-card-m"><div class="v-card-t">'+esc(i.n)+'</div><div class="v-card-s"><span class="de-tag">'+i.t+'</span><span>'+(st.proj==='all'?esc(pname(i.p))+' · ':'')+esc(i.d)+'</span></div></div></a>'}).join('');
+  if(st.type==='Calculator'||(st.type==='all'&&!q&&st.proj==='all'&&false))h='<a class="v-card v-newcalc" href="../P01-chat-start-desktop/Design_Engineering_App.html" aria-label="New calculator: build one in a chat"><div class="v-thumb"><div class="v-model">'+ico('<path d="M12 5v14M5 12h14"/>',48)+'</div></div><div class="v-card-m"><div class="v-card-t">New calculator</div><div class="v-card-s"><span>Describe it in a chat and I build it with you.</span></div></div></a>'+h;
+  $('gal').innerHTML=h;$('none').hidden=!!h}
+ function draw(){drawTabs();drawProj();drawGal()}
+ /* a calculator opens formatted, in place */
+ function fmt(n,d){return (Math.round(n*Math.pow(10,d))/Math.pow(10,d)).toLocaleString('en-US',{minimumFractionDigits:d,maximumFractionDigits:d})}
+ function openCalc(id){var c=DE.calcs.filter(function(x){return x.id===id})[0];if(!c)return;var vals={};c.inp.forEach(function(i){vals[i[0]]=i[3]});
+  var d=SH.dialog({title:c.name,wide:true,body:'<p style="margin:0 0 14px;font-size:14px;color:var(--bc-muted)">'+esc(c.about)+' <span class="de-tag" style="margin-left:6px">'+esc(pname(c.p))+'</span></p><div class="dx-calc"><div id="c-in">'+c.inp.map(function(i){return '<div class="f"><label for="c-'+i[0]+'">'+esc(i[1])+'</label><div class="num"><input id="c-'+i[0]+'" data-k="'+i[0]+'" type="number" inputmode="decimal" step="any" min="0" value="'+i[3]+'"><span>'+esc(i[2])+'</span></div></div>'}).join('')+'</div><div><div id="c-out" aria-live="polite"></div><div class="formula" id="c-form"></div></div></div><div class="dx-row" style="margin-top:14px"><a class="dx-btn" href="../P03-chat-conversation/index.html?chat='+encodeURIComponent('Explain '+c.name)+(c.p?'&project='+c.p:'')+'">Explain in chat</a><button class="dx-btn" type="button" id="c-reset">Reset</button><button class="dx-btn is-main" type="button" data-x="1">Done</button></div>'});
+  function res(){var v={},bad=false;c.inp.forEach(function(i){v[i[0]]=parseFloat(vals[i[0]]);if(!isFinite(v[i[0]])||v[i[0]]<0)bad=true});if(c.id==='pneu'&&v.rod>=v.bore)bad=true;
+   d.el.querySelector('#c-out').innerHTML=c.out.map(function(o){return '<div class="res'+(o[4]?' is-main':'')+'"><span class="de-label">'+esc(o[0])+'</span><b>'+(bad?'—':fmt(o[1](v),o[3]))+'<small>'+(bad?'':esc(o[2]))+'</small></b></div>'}).join('');
+   d.el.querySelector('#c-form').textContent=(bad?'Enter a number of zero or more in every field.\n\n':'')+c.form}
+  d.el.querySelector('#c-in').addEventListener('input',function(e){var k=e.target.dataset.k;if(k){vals[k]=e.target.value;res()}});
+  d.el.querySelector('#c-reset').addEventListener('click',function(){c.inp.forEach(function(i){vals[i[0]]=i[3];d.el.querySelector('#c-'+i[0]).value=i[3]});res()});
+  res()}
+ $('projs').addEventListener('click',function(e){var s=e.target.closest('[data-pin]');if(s){st.pins[s.dataset.pin]=st.pins[s.dataset.pin]?0:1;try{localStorage.setItem('de-vault-pins',JSON.stringify(st.pins))}catch(x){}drawProj();var nb=document.querySelector('[data-pin="'+s.dataset.pin+'"]');if(nb)nb.focus();return}var b=e.target.closest('[data-p]');if(b){st.proj=b.dataset.p;drawProj();drawGal();var f=document.querySelector('.v-proj[data-p="'+st.proj+'"]');if(f)f.focus()}});
+ $('tabs').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;st.type=b.dataset.t;drawTabs();drawGal();var f=document.querySelector('#tabs [data-t="'+st.type+'"]');if(f)f.focus()});
+ $('sbtn').addEventListener('click',function(){var f=$('find'),o=f.classList.toggle('is-open');this.setAttribute('aria-expanded',String(o));if(o)$('q').focus();else{$('q').value='';st.q='';drawGal()}});
  $('q').addEventListener('input',function(){st.q=this.value;drawGal()});
  $('lbtn').addEventListener('click',function(){st.list=!st.list;this.setAttribute('aria-pressed',String(st.list));drawGal()});
- $('gal').addEventListener('click',function(e){if(e.target.closest('.v-hov'))return;var c=e.target.closest('[data-go]');if(c)location.href=c.dataset.go});
- $('gal').addEventListener('keydown',function(e){if(e.key==='Enter'){var c=e.target.closest('[data-go]');if(c)location.href=c.dataset.go}});
+ $('gal').addEventListener('click',function(e){var c=e.target.closest('[data-calc]');if(c){e.preventDefault();openCalc(c.dataset.calc)}});
  draw();
+ if(Q.get('calc'))openCalc(Q.get('calc'));
 })();
 </script>
 <script>
@@ -445,5 +465,4 @@ else if(b.dataset.sb==="toggle"){sb.style.display="none";ex.hidden=false}
 else if(b.classList.contains("sbgrp")){var g=b.closest(".sbgroup"),c=g.classList.toggle("is-closed");b.setAttribute("aria-expanded",String(!c))}});
 ex.addEventListener("click",function(){sb.style.display="";ex.hidden=true})})();
 </script>
-<script src="../shared/ext.js"></script>
 </body></html>

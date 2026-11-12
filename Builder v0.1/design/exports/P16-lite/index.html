@@ -364,19 +364,22 @@ body{background:var(--bc-backdrop)}
  .l-view{padding:16px}.l-paper{padding:20px 18px}.l-find{height:44px}.l-it,.l-gh,.l-top{min-height:44px}.l-cf input{font-size:16px}
  #chatbtn{display:none}
 }
-</style></head>
+</style><link rel="stylesheet" href="../shared/shell.css" data-dx-css="1">
+</head>
 <body>
+<script src="../shared/data.js"></script><script src="../shared/shell.js"></script>
+
 <div class="l-win"><div class="l-frame">
- <div class="l-title"><img src="../../assets/favicon.svg" alt=""><span class="l-tn">Lite</span><span class="l-tp" id="tp">Site 7332 maintenance package</span><span class="l-sp"></span>
+ <header class="l-title"><img src="../../assets/favicon.svg" alt=""><span class="l-tn">Lite</span><span class="l-tp" id="tp">Site 7332 maintenance package</span><span class="l-sp"></span>
   <button class="de-btn" id="chatbtn" type="button" aria-pressed="true" style="height:32px"><svg class="de-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 5h14a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1h-8l-4 4v-4H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1z"/></svg>Assistant</button>
-  <div class="l-wc" aria-hidden="true"><span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 12h14"/></svg></span><span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 6h12v12H6z"/></svg></span><span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 6l12 12M18 6L6 18"/></svg></span></div></div>
- <div class="l-tabs" id="tabs" role="tablist" aria-label="Panes"><button role="tab" data-p="files" aria-selected="true">Files</button><button role="tab" data-p="view" aria-selected="false">View</button><button role="tab" data-p="chat" aria-selected="false">Assistant</button></div>
+  <div class="l-wc" aria-hidden="true"><span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 12h14"/></svg></span><span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 6h12v12H6z"/></svg></span><span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 6l12 12M18 6L6 18"/></svg></span></div></header>
+ <nav aria-label="Panes"><div class="l-tabs" id="tabs" role="tablist" aria-label="Panes"><button role="tab" data-p="files" aria-selected="true">Files</button><button role="tab" data-p="view" aria-selected="false">View</button><button role="tab" data-p="chat" aria-selected="false">Assistant</button></div></nav>
  <div class="l-body" id="body" data-p="files">
   <aside class="l-left" aria-label="Package files"><div class="l-pk"><b id="pkt">Site 7332 maintenance package</b><span>[Client or site] · Rev A · built by Block Concepts</span></div>
    <label class="l-find"><svg class="de-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 4a7 7 0 1 0 0 14 7 7 0 0 0 0-14zM21 21l-5-5"/></svg><input id="q" placeholder="Search this package" autocomplete="off" aria-label="Search this package"></label>
    <div class="l-tree" id="tree"></div>
    <div class="l-foot"><span class="l-dot"></span><span>Offline. Nothing leaves this computer.</span></div></aside>
-  <section class="l-mid" aria-label="Viewer"><div class="l-bar"><span class="l-crumb" id="crumb"></span><span class="sp"></span><span class="de-tag">Read only</span></div><div class="l-view de-scroll" id="view"></div></section>
+  <main class="l-mid" aria-label="Viewer"><div class="l-bar"><span class="l-crumb" id="crumb"></span><span class="sp"></span><span class="de-tag">Read only</span></div><div class="l-view de-scroll" id="view" tabindex="0"></div></main>
   <aside class="l-right" id="right" aria-label="Assistant"><div class="l-ch"><span class="de-label">Assistant</span><span class="de-tag" style="margin-left:6px">On this computer</span></div><div class="l-msgs de-scroll" id="msgs"></div>
    <div class="l-comp"><form class="l-cf" id="cf"><input id="ci" placeholder="Ask about this package" autocomplete="off" aria-label="Ask about this package"><button class="de-iconbtn de-iconbtn-send" id="cs" type="submit" disabled aria-label="Send"><svg class="de-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6"/></svg></button></form><div class="l-cn">I answer only from this package and cite the page.</div></div></aside>
  </div></div></div>
@@ -435,5 +438,4 @@ body{background:var(--bc-backdrop)}
  tree();view();
 })();
 </script>
-<script src="../shared/ext.js"></script>
 </body></html>

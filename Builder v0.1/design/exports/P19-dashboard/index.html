@@ -373,8 +373,11 @@ button:focus-visible, textarea:focus-visible, input:focus-visible, [role="button
  .p19-upform{grid-template-columns:1fr}.p19-sel{height:52px}.p19-sel select{font-size:17px}.p19-ta textarea{font-size:17px}
  .p19-upact .de-btn{height:52px;flex:1}.p19-entt{font-size:16px}.p19-entm{font-size:12px}
 }
-</style></head>
+</style><link rel="stylesheet" href="../shared/shell.css" data-dx-css="1">
+</head>
 <body>
+<script src="../shared/data.js"></script><script src="../shared/shell.js"></script>
+
 <div class="de-shell">
  <aside class="de-sidebar sb" aria-label="Sidebar" data-mode="chat">
   <div class="sbtool">
@@ -411,7 +414,7 @@ button:focus-visible, textarea:focus-visible, input:focus-visible, [role="button
    <div class="p19-head"><div><div class="de-eyebrow">Weekly view</div><h1>Week 46</h1></div><div class="p19-range">Nov 9 – Nov 13, 2026</div><button class="de-btn p19-upbtn" id="upbtn" type="button" aria-expanded="false" aria-controls="upp">Update assistant</button></div>
    <section class="de-panel p19-up" id="upp" aria-label="Update assistant" hidden><div class="de-section-head"><button class="p19-fold" id="upfold" type="button" aria-expanded="true" aria-controls="upbody"><svg class="de-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg><span class="de-label">Update assistant</span></button><span class="de-tag de-tag-plain">Notes and status</span></div>
     <div id="upbody"><p class="p19-upn">Tell me what changed on a project. I log it and use it the next time you ask about that project.</p>
-    <form class="p19-upform" id="upf"><div class="p19-f"><label class="de-label" for="up-proj">Project</label><div class="p19-sel"><select id="up-proj"><option>BC-Q-26041 · Palletizer retrofit</option><option>BC-Q-26038 · Capping station</option><option>BC-Q-26035 · Dispensing cell guarding</option></select><svg class="de-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 10l5 5 5-5"/></svg></div></div><div class="p19-f"><label class="de-label" for="up-stat">Status</label><div class="p19-sel"><select id="up-stat"><option>No change</option><option>Quoting</option><option>Sold</option><option>In progress</option><option>Waiting</option><option>Done</option></select><svg class="de-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 10l5 5 5-5"/></svg></div></div><div class="p19-f is-wide"><label class="de-label" for="up-note">Update</label><div class="p19-ta"><textarea id="up-note" placeholder="For example: vendor confirmed lead time, waiting on customer drawings"></textarea></div></div>
+    <form class="p19-upform" id="upf"><div class="p19-f"><label class="de-label" for="up-proj">Project</label><div class="p19-sel"><select id="up-proj"><option>BC-Q-26041 · Palletizer retrofit</option><option>BC-Q-26038 · Capping station</option><option>BC-Q-26035 · Label applicator</option></select><svg class="de-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 10l5 5 5-5"/></svg></div></div><div class="p19-f"><label class="de-label" for="up-stat">Status</label><div class="p19-sel"><select id="up-stat"><option>No change</option><option>Quoting</option><option>Sold</option><option>In progress</option><option>Waiting</option><option>Done</option></select><svg class="de-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 10l5 5 5-5"/></svg></div></div><div class="p19-f is-wide"><label class="de-label" for="up-note">Update</label><div class="p19-ta"><textarea id="up-note" placeholder="For example: vendor confirmed lead time, waiting on customer drawings"></textarea></div></div>
      <div class="p19-upact"><button class="de-btn" id="upx" type="button">Cancel</button><button class="de-btn p19-save" id="ups" type="submit" disabled>Save update</button></div></form></div></section>
    <div class="p19-tiles" role="list" aria-label="This week at a glance">
     <div class="p19-tile" role="listitem"><span class="p19-num">8</span><span class="de-label">Open items</span><span class="p19-hint">4 of 12 done this week</span></div>
@@ -507,5 +510,4 @@ ex.addEventListener("click",function(){sb.style.display="";ex.hidden=true})})();
  draw();
 })();
 </script>
-<script src="../shared/ext.js"></script>
 </body></html>

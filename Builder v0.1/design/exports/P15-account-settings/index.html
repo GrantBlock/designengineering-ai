@@ -277,7 +277,7 @@ button:focus-visible, textarea:focus-visible, input:focus-visible, [role="button
 .o-nb{all:unset;box-sizing:border-box;cursor:pointer;display:flex;align-items:center;gap:12px;height:36px;padding:2px 10px 0;border-radius:var(--bc-radius-control);color:var(--bc-muted);font-size:14px}
 .o-nb:hover{background:var(--bc-surface);color:var(--bc-ink)}
 .o-nb:focus-visible{outline:2px solid var(--bc-steel-blue-text);outline-offset:2px}
-.o-nb[aria-selected=true]{background:var(--bc-surface-raised);color:var(--bc-ink)}
+.o-nb[aria-current=true]{background:var(--bc-surface-raised);color:var(--bc-ink)}
 .o-sep{height:1px;margin:8px 4px;background:var(--bc-hairline)}
 .o-pane{overflow-y:auto;padding:20px 24px 28px;min-width:0}
 .o-pane h3{margin:0 0 4px;font-size:16px;font-weight:600}
@@ -347,8 +347,11 @@ button:focus-visible, textarea:focus-visible, input:focus-visible, [role="button
  .o-inv{flex-direction:column}
  .de-sidebar,.de-topbar{display:none}.de-shell{padding:0;display:block;height:auto}
 }
-</style></head>
+</style><link rel="stylesheet" href="../shared/shell.css" data-dx-css="1">
+</head>
 <body>
+<script src="../shared/data.js"></script><script src="../shared/shell.js"></script>
+
 <div class="de-shell">
  <aside class="de-sidebar sb" aria-label="Sidebar" data-mode="projects">
   <div class="sbtool">
@@ -385,20 +388,19 @@ button:focus-visible, textarea:focus-visible, input:focus-visible, [role="button
 <div class="o-back" id="back"><div class="o-modal" role="dialog" aria-modal="true" aria-labelledby="otitle">
  <div class="o-top"><h2 id="otitle">Settings</h2><button class="de-iconbtn" id="close" type="button" aria-label="Close settings"><svg class="de-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
  <div class="o-body">
-  <nav class="o-nav" id="nav" role="tablist" aria-label="Settings sections">
+  <nav class="o-nav" id="nav" aria-label="Settings sections">
    <label class="o-find"><svg class="de-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 4a7 7 0 1 0 0 14 7 7 0 0 0 0-14zM21 21l-5-5"/></svg><input id="sq" placeholder="Search" autocomplete="off" aria-label="Search settings"></label>
-   <button class="o-nb" role="tab" data-s="account" aria-selected="true"><svg class="de-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM4 21a8 8 0 0 1 16 0"/></svg>Account</button>
-   <button class="o-nb" role="tab" data-s="billing" aria-selected="false"><svg class="de-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18v12H3zM3 10h18"/></svg>Billing</button>
-   <button class="o-nb" role="tab" data-s="usage" aria-selected="false"><svg class="de-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 20V10M12 20V4M19 20v-7"/></svg>Usage</button>
+   <button class="o-nb" type="button" data-s="account" aria-current="true"><svg class="de-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM4 21a8 8 0 0 1 16 0"/></svg>Account</button>
+   <button class="o-nb" type="button" data-s="billing" aria-current="false"><svg class="de-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18v12H3zM3 10h18"/></svg>Billing</button>
+   <button class="o-nb" type="button" data-s="usage" aria-current="false"><svg class="de-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 20V10M12 20V4M19 20v-7"/></svg>Usage</button>
    <div class="o-sep"></div>
-   <button class="o-nb" role="tab" data-s="team" aria-selected="false"><svg class="de-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM3 20a6 6 0 0 1 12 0M16 11a3 3 0 1 0 0-6M17 14a6 6 0 0 1 4 6"/></svg>Team</button>
-   <button class="o-nb" role="tab" data-s="prefs" aria-selected="false"><svg class="de-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h10M18 7h2M4 17h2M10 17h10M14 4v6M6 14v6"/></svg>Preferences</button>
-   <button class="o-nb" role="tab" data-s="privacy" aria-selected="false"><svg class="de-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/></svg>Privacy</button>
+   <button class="o-nb" type="button" data-s="team" aria-current="false"><svg class="de-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM3 20a6 6 0 0 1 12 0M16 11a3 3 0 1 0 0-6M17 14a6 6 0 0 1 4 6"/></svg>Team</button>
+   <button class="o-nb" type="button" data-s="prefs" aria-current="false"><svg class="de-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h10M18 7h2M4 17h2M10 17h10M14 4v6M6 14v6"/></svg>Preferences</button>
+   <button class="o-nb" type="button" data-s="privacy" aria-current="false"><svg class="de-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/></svg>Privacy</button>
    <div class="o-nores" id="nores" hidden>No settings match.</div>
   </nav>
   <div class="o-pane" id="pane"></div>
  </div></div></div>
-<script src="../shared/ext.js"></script>
 <script>
 (function(){
  var $=function(i){return document.getElementById(i)};
@@ -453,7 +455,7 @@ button:focus-visible, textarea:focus-visible, input:focus-visible, [role="button
   +row('Delete account','Removes your account and wallet. Projects you own move to an admin of your organization first.','<button class="o-btn" data-act="del" type="button">'+(st.armDel?'Confirm delete':'Delete account')+'</button>')
   +'<div class="o-ok" style="color:var(--bc-muted)">'+st.msg+'</div></div>'}
  var P={account:pAccount,billing:pBilling,usage:pUsage,team:pTeam,prefs:pPrefs,privacy:pPrivacy};
- function draw(keep){var pane=$('pane'),y=pane.scrollTop;pane.innerHTML=P[st.s]();pane.scrollTop=keep?y:0;[].forEach.call($('nav').querySelectorAll('[data-s]'),function(b){b.setAttribute('aria-selected',String(b.dataset.s===st.s))})}
+ function draw(keep){var pane=$('pane'),y=pane.scrollTop;pane.innerHTML=P[st.s]();pane.scrollTop=keep?y:0;[].forEach.call($('nav').querySelectorAll('[data-s]'),function(b){b.setAttribute('aria-current',String(b.dataset.s===st.s))})}
  $('nav').addEventListener('click',function(e){var b=e.target.closest('[data-s]');if(!b)return;st.s=b.dataset.s;st.msg='';st.armRm=-1;st.armDel=0;st.armOut=0;draw()});
  $('sq').addEventListener('input',function(){var q=this.value.trim().toLowerCase(),n=0;[].forEach.call($('nav').querySelectorAll('[data-s]'),function(b){var hit=!q||b.textContent.toLowerCase().indexOf(q)>-1||({account:'profile name email organization devices',billing:'plan wallet funds refill card storage',usage:'spent chat cad storage',team:'members roles invite',prefs:'units text size notifications',privacy:'files export delete data'})[b.dataset.s].indexOf(q)>-1;b.hidden=!hit;if(hit)n++});$('nores').hidden=n>0});
  var pane=$('pane');
@@ -489,5 +491,4 @@ else if(b.dataset.sb==="toggle"){sb.style.display="none";ex.hidden=false}
 else if(b.classList.contains("sbgrp")){var g=b.closest(".sbgroup"),c=g.classList.toggle("is-closed");b.setAttribute("aria-expanded",String(!c))}});
 ex.addEventListener("click",function(){sb.style.display="";ex.hidden=true})})();
 </script>
-<script src="../shared/ext.js"></script>
 </body></html>

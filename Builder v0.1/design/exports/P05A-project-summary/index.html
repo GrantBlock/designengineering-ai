@@ -324,8 +324,11 @@ button:focus-visible, textarea:focus-visible, input:focus-visible, [role="button
  .sm-dock{position:fixed;left:0;right:0;bottom:0;padding:16px 12px 34px;background:linear-gradient(to bottom,rgba(30,30,32,0) 0,var(--bc-canvas) 24px)}
 }
 @media (min-width:761px){.sm-dock,.sm-mheader{display:none}}
-</style></head>
+</style><link rel="stylesheet" href="../shared/shell.css" data-dx-css="1">
+</head>
 <body>
+<script src="../shared/data.js"></script><script src="../shared/shell.js"></script>
+
 <div class="de-shell">
  <aside class="de-sidebar sb" aria-label="Sidebar" data-mode="projects">
   <div class="sbtool">
@@ -377,7 +380,7 @@ button:focus-visible, textarea:focus-visible, input:focus-visible, [role="button
 (function(){
  var $=function(i){return document.getElementById(i)};
  function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
- var PROJ={'BC-Q-26041':'Palletizer retrofit','BC-Q-26038':'Capping station','BC-Q-26035':'Dispensing cell guarding','BC-Q-26031':'Conveyor transfer bracket','BC-Q-26027':'Washdown motor VFD sizing','BC-Q-26019':'Case erector controls upgrade'};
+ var PROJ={'BC-Q-26041':'Palletizer retrofit','BC-Q-26038':'Capping station','BC-Q-26035':'Label applicator','BC-Q-26031':'Conveyor transfer bracket','BC-Q-26027':'Washdown motor VFD sizing','BC-Q-26019':'Case erector controls upgrade'};if(window.DE&&DE.projects)DE.projects.forEach(function(p){PROJ[p.id]=p.name});
  var STEP0={'BC-Q-26041':3,'BC-Q-26038':2,'BC-Q-26035':1,'BC-Q-26031':4,'BC-Q-26027':2,'BC-Q-26019':5};
  var STAGES=['Assessment','Design','Build','FAT','SAT'];
  var Q=new URLSearchParams(location.search),PN=PROJ[Q.get('project')]?Q.get('project'):'BC-Q-26041';
@@ -402,7 +405,7 @@ button:focus-visible, textarea:focus-visible, input:focus-visible, [role="button
  return {pos:pos,minx:minx,miny:miny,W:Math.max(maxx-minx,1),H:Math.max(maxy-miny,1)}}
 
  function rd(k,def){try{var v=JSON.parse(localStorage.getItem(k));if(v!=null)return v}catch(e){}return def}
- var stage=rd('de-stage-'+PN,STEP0[PN]||1);
+ var stage=rd('de-stage-'+PN,STEP0[PN]||((window.DE&&DE.project(PN)||{}).step)||1);
  $('no').textContent=PN;$('nm').textContent=PROJ[PN];document.title=PROJ[PN]+' summary — Design Engineering';
  $('crumb').innerHTML='<a href="../P05-projects/index.html" style="color:inherit">Projects</a>&nbsp;&nbsp;/&nbsp;&nbsp;'+PN;
  $('chat').href='../P01-chat-start-desktop/Design_Engineering_App.html?project='+PN;
@@ -457,5 +460,4 @@ else if(b.dataset.sb==="toggle"){sb.style.display="none";ex.hidden=false}
 else if(b.classList.contains("sbgrp")){var g=b.closest(".sbgroup"),c=g.classList.toggle("is-closed");b.setAttribute("aria-expanded",String(!c))}});
 ex.addEventListener("click",function(){sb.style.display="";ex.hidden=true})})();
 </script>
-<script src="../shared/ext.js"></script>
 </body></html>

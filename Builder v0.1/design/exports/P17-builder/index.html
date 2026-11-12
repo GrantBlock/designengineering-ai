@@ -346,8 +346,11 @@ button:focus-visible, textarea:focus-visible, input:focus-visible, [role="button
  .b-dock{position:fixed;left:0;right:0;bottom:0;padding:16px 12px 34px;background:linear-gradient(to bottom,rgba(30,30,32,0) 0,var(--bc-canvas) 24px)}
 }
 @media (min-width:761px){.b-dock,.b-mheader{display:none}}
-</style></head>
+</style><link rel="stylesheet" href="../shared/shell.css" data-dx-css="1">
+</head>
 <body>
+<script src="../shared/data.js"></script><script src="../shared/shell.js"></script>
+
 <div class="de-shell">
  <aside class="de-sidebar sb" aria-label="Sidebar" data-mode="projects">
   <div class="sbtool">
@@ -473,5 +476,4 @@ else if(b.dataset.sb==="toggle"){sb.style.display="none";ex.hidden=false}
 else if(b.classList.contains("sbgrp")){var g=b.closest(".sbgroup"),c=g.classList.toggle("is-closed");b.setAttribute("aria-expanded",String(!c))}});
 ex.addEventListener("click",function(){sb.style.display="";ex.hidden=true})})();
 </script>
-<script src="../shared/ext.js"></script>
 </body></html>

@@ -1,104 +1,76 @@
 <title>Design Engineering Prototype</title>
 <meta name="claude:viewport-fit-sides" content="cover">
+<meta name="robots" content="noindex">
 <style>
-/* Concept: a console that frames the real pages. Graphite look, one steel-blue accent. Single dark theme by choice. */
-:root{--canvas:#1e1e20;--surface:#29292c;--raised:#353538;--ink:#ececed;--muted:#9d9da3;--blue:#4682b4;--blue-text:#7faad0;--blue-tint:rgba(70,130,180,.2);--blue-edge:rgba(127,170,208,.45);--hair:rgba(255,255,255,.08);--backdrop:#141416;color-scheme:dark}
+/* Concept: a thin sample bar above the real app. The bar says what the app is and what the current page is for, and switches Desktop and Phone. Single dark look by choice. */
+:root{--canvas:#1e1e20;--surface:#29292c;--raised:#353538;--ink:#ececed;--muted:#a3a3a9;--blue:#4682b4;--blue-text:#7faad0;--hair:rgba(255,255,255,.09);--backdrop:#141416;color-scheme:dark}
 *{box-sizing:border-box}
-html,body{margin:0;height:100%;background:var(--canvas);color:var(--ink);font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;font-size:14px;-webkit-font-smoothing:antialiased}
-body{padding-left:max(0px,env(safe-area-inset-left,0px));padding-right:max(0px,env(safe-area-inset-right,0px))}
+html,body{margin:0;height:100%;background:var(--backdrop);color:var(--ink);font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;font-size:14px;-webkit-font-smoothing:antialiased}
 button{font:inherit;color:inherit;cursor:pointer}
-a{color:var(--blue-text);text-decoration:none}a:hover{text-decoration:underline}
 :focus-visible{outline:2px solid var(--blue-text);outline-offset:2px}
-.app{display:grid;grid-template-columns:300px minmax(0,1fr);height:100vh}
-.side{display:flex;flex-direction:column;min-height:0;background:var(--surface);border-right:1px solid var(--hair)}
-.brand{padding:18px 18px 14px;border-bottom:1px solid var(--hair)}
-.brand b{display:block;font-size:15px;letter-spacing:.01em}
-.brand span{display:block;margin-top:4px;font-size:12px;line-height:1.45;color:var(--muted)}
-.scroll{flex:1;min-height:0;overflow-y:auto;padding:8px 10px 16px}
-.grp{margin:14px 8px 4px;font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
-.pg{display:flex;align-items:center;gap:10px;width:100%;min-height:40px;padding:6px 10px;border:0;border-radius:8px;background:none;text-align:left;color:var(--muted)}
-.pg:hover{background:var(--raised);color:var(--ink)}
-.pg.on{background:var(--raised);color:var(--ink);box-shadow:inset 3px 0 0 var(--blue)}
-.pg i{font-style:normal;flex-shrink:0;min-width:30px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11px;letter-spacing:.06em;color:var(--blue-text)}
-.pg span{flex:1;min-width:0;font-size:13.5px}
-.pg em{font-style:normal;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);border:1px solid var(--hair);border-radius:4px;padding:2px 5px 1px}
-.tour{margin:8px 8px 0;padding:12px 12px 10px;border:1px solid var(--hair);border-radius:10px;background:var(--canvas)}
-.tour h3{margin:0 0 8px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:500}
-.tour ol{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:2px}
-.tour li button{display:grid;grid-template-columns:22px minmax(0,1fr);gap:8px;width:100%;padding:7px 6px 6px;border:0;border-radius:6px;background:none;text-align:left;font-size:12.5px;line-height:1.4;color:var(--muted)}
-.tour li button:hover{background:var(--raised);color:var(--ink)}
-.tour li b{display:flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:999px;background:var(--blue-tint);color:var(--blue-text);font-family:ui-monospace,Menlo,Consolas,monospace;font-size:10.5px;font-weight:500}
-.main{display:flex;flex-direction:column;min-width:0;min-height:0;background:var(--backdrop)}
-.bar{display:flex;align-items:center;gap:12px;flex-wrap:wrap;min-height:52px;padding:8px 16px;border-bottom:1px solid var(--hair);background:var(--surface)}
-.now{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.now b{color:var(--ink);font-weight:500}
-.sp{flex:1}
-.seg{display:inline-grid;grid-auto-flow:column;gap:3px;padding:3px;border:1px solid var(--hair);border-radius:10px;background:var(--canvas)}
-.seg button{height:30px;padding:2px 14px 0;border:0;border-radius:7px;background:none;font-size:12px;font-weight:500;letter-spacing:.05em;text-transform:uppercase;color:var(--muted)}
+.wrap{display:flex;flex-direction:column;height:100vh}
+.bar{display:flex;align-items:center;gap:16px 24px;flex-wrap:wrap;padding:10px max(16px,env(safe-area-inset-right,0px)) 10px max(16px,env(safe-area-inset-left,0px));border-bottom:1px solid var(--hair);background:var(--surface)}
+.app{min-width:0;flex:1 1 260px}
+.app b{display:block;font-size:14px;letter-spacing:.01em}
+.app span{display:block;margin-top:2px;font-size:12.5px;line-height:1.45;color:var(--muted);max-width:62ch}
+.page{min-width:0;flex:2 1 320px}
+.page b{display:block;font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--blue-text)}
+.page span{display:block;margin-top:3px;font-size:13px;line-height:1.45;color:var(--ink);max-width:70ch}
+.seg{display:inline-grid;grid-auto-flow:column;gap:3px;padding:3px;border:1px solid var(--hair);border-radius:10px;background:var(--canvas);flex-shrink:0}
+.seg button{height:32px;padding:2px 14px 0;border:0;border-radius:7px;background:none;font-size:12px;font-weight:500;letter-spacing:.05em;text-transform:uppercase;color:var(--muted)}
 .seg button:hover{color:var(--ink)}
 .seg button[aria-pressed=true]{background:var(--raised);color:var(--ink)}
-.btn{height:34px;padding:2px 14px 0;border:1px solid var(--hair);border-radius:8px;background:var(--raised);font-size:12.5px;white-space:nowrap}
-.btn:hover{border-color:var(--blue)}
 .stage{position:relative;flex:1;min-height:0;overflow:hidden;display:flex;align-items:center;justify-content:center}
 .frame{border:0;background:var(--canvas);width:100%;height:100%;display:block}
 .phone{display:none;flex-shrink:0;border:10px solid #0d0d0f;border-radius:44px;overflow:hidden;background:var(--canvas);box-shadow:0 0 0 1px var(--hair),0 20px 60px rgba(0,0,0,.5);transform-origin:center center}
 .phone iframe{width:390px;height:844px;border:0;display:block}
 .stage.is-phone .frame{display:none}.stage.is-phone .phone{display:block}
-.note{position:absolute;left:50%;bottom:14px;transform:translateX(-50%);max-width:calc(100% - 32px);padding:8px 14px 7px;border:1px solid var(--blue-edge);border-radius:8px;background:var(--surface);font-size:12.5px;color:var(--ink);box-shadow:0 8px 24px rgba(0,0,0,.4)}
-.menu{display:none}
-@media (max-width:860px){
- .app{grid-template-columns:1fr;grid-template-rows:auto minmax(0,1fr)}
- .side{max-height:46vh;border-right:0;border-bottom:1px solid var(--hair)}
- .side.is-shut .scroll{display:none}.side.is-shut{max-height:none}
- .menu{display:inline-flex;align-items:center}
- .brand{display:flex;align-items:center;justify-content:space-between;gap:12px}
- .brand span{display:none}
-}
+@media (max-width:700px){.app span{display:none}.bar{gap:8px 16px}}
 </style>
-<div class="app">
- <aside class="side" id="side" aria-label="Pages">
-  <div class="brand"><div><b>Design Engineering</b><span>A click-through prototype of the pages designed so far. Sample data only; nothing is saved to a server.</span></div><button class="btn menu" id="menu" type="button" aria-expanded="true">Pages</button></div>
-  <div class="scroll" id="list"></div>
- </aside>
- <main class="main">
-  <div class="bar"><span class="now" id="now"></span><span class="sp"></span>
-   <div class="seg" role="group" aria-label="Screen"><button type="button" id="dsk" aria-pressed="true">Desktop</button><button type="button" id="mob" aria-pressed="false">Phone</button></div>
-   <a class="btn" id="open" href="#" target="_blank" rel="noopener" style="display:inline-flex;align-items:center">Open in a tab</a></div>
-  <div class="stage" id="stage"><iframe class="frame" id="fr" title="Prototype page"></iframe><div class="phone" id="ph"><iframe id="pf" title="Prototype page, phone"></iframe></div><div class="note" id="note" hidden></div></div>
- </main>
+<div class="wrap">
+ <header class="bar">
+  <div class="app"><b>Design Engineering</b><span>A workspace for automation design: chat with an assistant that knows your projects, files, models and process data. This is a sample with placeholder data; nothing is sent to a server.</span></div>
+  <div class="page" aria-live="polite"><b id="pn">New chat</b><span id="pd"></span></div>
+  <div class="seg" role="group" aria-label="Screen"><button type="button" id="dsk" aria-pressed="true">Desktop</button><button type="button" id="mob" aria-pressed="false">Phone</button></div>
+ </header>
+ <main class="stage" id="stage"><iframe class="frame" id="fr" name="de-desktop" title="Design Engineering app, desktop view"></iframe><div class="phone" id="ph"><iframe id="pf" name="de-mobile" title="Design Engineering app, phone view"></iframe></div></main>
 </div>
 <script>
 (function(){
  var $=function(i){return document.getElementById(i)};
- /* id, number, name, desktop path, phone path (null: same page), tag */
- var G=[['Start',[['p04','P04','Sign in and sign up','exports/P04-sign-in/index.html'],]],
-  ['Chat',[['p01','P01','Start a chat','exports/P01-chat-start-desktop/Design_Engineering_App.html','exports/P02-chat-start-mobile/Design_Engineering_Mobile.html'],['p03','P03','Conversation with sources','exports/P03-chat-conversation/index.html']]],
-  ['Work',[['p19','P19','Dashboard and Update assistant','exports/P19-dashboard/index.html'],['p05','P05','Projects','exports/P05-projects/index.html'],['p05a','P05A','Project summary','exports/P05A-project-summary/index.html?project=BC-Q-26041'],['p06','P06','Project: Import, Specifications, Layout, Schedule, Exports','exports/P06-project-workspace/index.html?project=BC-Q-26041'],['p12','P12','Process configuration','exports/P12-process-config/index.html?project=BC-Q-26041&station=0']]],
-  ['Files',[['p09','P09','Vault','exports/P09-vault/index.html'],['p07','P07','Uploads','exports/P07-upload-flow/index.html']]],
-  ['Create',[['p08','P08','3D designer','exports/P08-3d-viewer/index.html','','Extension'],['p11','P11','Custom calculators','exports/P11-calculators/index.html']]],
-  ['Account',[['p15','P15','Settings: account, billing, usage, extensions','exports/P15-account-settings/index.html']]],
-  ['Desktop only',[['p17','P17','Builder','exports/P17-builder/index.html','','Extension'],['p16','P16','Lite, the local package viewer','exports/P16-lite/index.html','','App']]]];
- var ALL=[];G.forEach(function(g){g[1].forEach(function(p){ALL.push({id:p[0],no:p[1],n:p[2],d:p[3],m:p[4]||p[3],tag:p[5]||'',desk:g[0]==='Desktop only'})})});
- var TOUR=[['p04','Sign in with any email and password. Any code but 000000 passes.'],['p19','Open Update assistant, pick a project and status, then Save update.'],['p05a','Open a project from Projects. Drag the stage slider; see it update the project list.'],['p06','Choose Edit project. Open a process, then use the numbers to move between processes. In Exports, choose Produce a quote.'],['p03','Ask a question. Open a source from the side panel.'],['p09','Pick a project card to filter the Vault gallery.'],['p15','Click the gear in the sidebar. Billing, then remove Builder and watch its row leave the sidebar.'],['p17','Package a Vault for Lite. Then open Lite.']];
- var st={id:'p04',phone:false};
- function find(id){return ALL.filter(function(p){return p.id===id})[0]||ALL[0]}
- function list(){var h='';G.forEach(function(g){h+='<div class="grp">'+g[0]+'</div>';g[1].forEach(function(p){h+='<button class="pg'+(p[0]===st.id?' on':'')+'" type="button" data-id="'+p[0]+'"><i>'+p[1]+'</i><span>'+p[2]+'</span>'+(p[5]?'<em>'+p[5]+'</em>':'')+'</button>'})});
-  h+='<div class="tour"><h3>Try this</h3><ol>'+TOUR.map(function(t,i){return '<li><button type="button" data-id="'+t[0]+'"><b>'+(i+1)+'</b><span>'+t[1]+'</span></button></li>'}).join('')+'</ol></div>';$('list').innerHTML=h}
- function show(){var p=find(st.id),src=st.phone?p.m:p.d;
-  $('now').innerHTML='<b>'+p.no+'</b> · '+p.n;$('open').href=src;
-  var f=st.phone?$('pf'):$('fr'),o=st.phone?$('fr'):$('pf');if(f.getAttribute('src')!==src)f.setAttribute('src',src);if(o.getAttribute('src'))o.removeAttribute('src');
-  $('dsk').setAttribute('aria-pressed',String(!st.phone));$('mob').setAttribute('aria-pressed',String(st.phone));$('stage').classList.toggle('is-phone',st.phone);
-  var n=$('note');if(st.phone&&p.desk){n.hidden=false;n.textContent=p.no+' is a desktop app. On a phone it is not offered; this is how it looks narrow.'}else n.hidden=true;
-  list();fit();try{history.replaceState(null,'','#'+st.id)}catch(e){location.hash=st.id}}
+ /* key (folder prefix), hash id, name, description, path */
+ var PG=[
+  ['P04','sign-in','Sign in','Sign in or create an account. Any email and password work in this sample; any code except 000000 passes.','exports/P04-sign-in/index.html'],
+  ['P01','new-chat','New chat','Start a chat. General chats are open to everyone; the Projects tab starts a chat inside a project.','exports/P01-chat-start-desktop/Design_Engineering_App.html'],
+  ['P02','new-chat-phone','New chat (phone)','The phone version of the new chat page.','exports/P02-chat-start-mobile/Design_Engineering_Mobile.html'],
+  ['P03','chat','Conversation','A chat with cited sources. The files it used are listed in Uploads.','exports/P03-chat-conversation/index.html'],
+  ['P19','dashboard','Dashboard','The week at a glance. Update assistant logs a status or note against a project.','exports/P19-dashboard/index.html'],
+  ['P05A','project','Project summary','One project: start a chat, recent tasks, the stage slider, scheduled tasks and a 3D overview. Edit project opens the full workspace.','exports/P05A-project-summary/index.html'],
+  ['P05','projects','Projects','Every project in the organization. Open one, start a chat in it, or add a new project.','exports/P05-projects/index.html'],
+  ['P06','workspace','Project workspace','Import, Specifications, Layout, Schedule and Exports for a project. Exports builds the process document and quotes.','exports/P06-project-workspace/index.html'],
+  ['P12','process','Process configuration','One process in detail. The numbered row moves between processes.','exports/P12-process-config/index.html'],
+  ['P09','vault','Vault','Everything made or added: documents, models, calculators, uploads, schedules and chats. A calculator opens ready to use.','exports/P09-vault/index.html'],
+  ['P07','uploads','Uploads','Add files to a project. Files that chats used as sources are listed here too.','exports/P07-upload-flow/index.html'],
+  ['P08','design','3D designer','An extension. Build and change parts by chatting.','exports/P08-3d-viewer/index.html'],
+  ['P17','builder','Builder','An extension, desktop only. Packages an organization\'s Vault into a Lite package.','exports/P17-builder/index.html'],
+  ['P15','settings-page','Settings','Account, billing, usage, extensions, team, preferences and privacy.','exports/P15-account-settings/index.html'],
+  ['P16','lite','Lite','The local app that opens a Builder package offline, with an on-device assistant.','exports/P16-lite/index.html']];
+ var st={k:'P01',phone:false};
+ function byKey(k){return PG.filter(function(p){return p[0]===k})[0]}
+ function label(p){$('pn').textContent=p[2];$('pd').textContent=p[3]}
  function fit(){var s=$('stage'),ph=$('ph');if(!st.phone)return;var w=s.clientWidth-24,h=s.clientHeight-24,full=[410,864],k=Math.min(1,w/full[0],h/full[1]);ph.style.transform='scale('+k+')';ph.style.margin=(-(full[1]*(1-k))/2)+'px '+(-(full[0]*(1-k))/2)+'px'}
- $('list').addEventListener('click',function(e){var b=e.target.closest('[data-id]');if(b){st.id=b.dataset.id;show();if(window.innerWidth<=860)$('side').classList.add('is-shut')}});
- $('dsk').onclick=function(){st.phone=false;show()};$('mob').onclick=function(){st.phone=true;show()};
- $('menu').onclick=function(){var s=$('side').classList.toggle('is-shut');this.setAttribute('aria-expanded',String(!s))};
- window.addEventListener('resize',fit);
- /* follow the page the person navigates to inside the frame */
- function follow(fr){try{var u=fr.contentWindow.location.pathname;ALL.forEach(function(p){var base=p.d.split('?')[0],mb=p.m.split('?')[0];if(u.indexOf(base)>-1||u.indexOf(mb)>-1){if(st.id!==p.id){st.id=p.id;$('now').innerHTML='<b>'+p.no+'</b> · '+p.n;$('open').href=fr.contentWindow.location.href;list();try{history.replaceState(null,'','#'+p.id)}catch(e){}}}})}catch(e){}}
+ function show(src){var p=byKey(st.k)||PG[1];label(p);
+  var f=st.phone?$('pf'):$('fr'),o=st.phone?$('fr'):$('pf');
+  f.setAttribute('src',src||p[4]);if(o.getAttribute('src'))o.removeAttribute('src');
+  $('dsk').setAttribute('aria-pressed',String(!st.phone));$('mob').setAttribute('aria-pressed',String(st.phone));$('stage').classList.toggle('is-phone',st.phone);fit()}
+ /* keep the description in step with where the person goes inside the app */
+ function follow(fr){try{var u=fr.contentWindow.location,m=/\/(P\d+[A-Z]?)-/.exec(u.pathname);if(!m)return;var p=byKey(m[1]);if(!p)return;st.k=p[0];st.src=u.pathname.slice(u.pathname.indexOf('exports/'))+u.search+u.hash;label(p);try{history.replaceState(null,'','#'+p[1])}catch(e){}}catch(e){}}
  $('fr').addEventListener('load',function(){if(!st.phone)follow(this)});$('pf').addEventListener('load',function(){if(st.phone)follow(this)});
- var h=(location.hash||'').slice(1);if(ALL.some(function(p){return p.id===h}))st.id=h;
+ /* switching the screen keeps the page you are on */
+ $('dsk').onclick=function(){if(!st.phone)return;st.phone=false;show(st.src)};
+ $('mob').onclick=function(){if(st.phone)return;st.phone=true;show(st.src)};
+ window.addEventListener('resize',fit);
+ var h=(location.hash||'').slice(1),hp=PG.filter(function(p){return p[1]===h})[0];if(hp)st.k=hp[0];
  show();
 })();
 </script>

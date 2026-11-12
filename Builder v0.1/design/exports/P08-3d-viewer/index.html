@@ -361,8 +361,11 @@ button:focus-visible, textarea:focus-visible, input:focus-visible, [role="button
 @media (min-width:761px){.p8-dock,.p8-mheader{display:none}}
 .p8-mhead{display:none}
 @media (max-width:760px){.p8-mhead{display:flex;align-items:center;gap:var(--bc-space-3);height:60px;padding:0 var(--bc-gutter-mobile);border-bottom:1px solid var(--bc-hairline)}.p8-mhead .de-iconbtn{width:var(--bc-touch-target);height:var(--bc-touch-target);margin-left:-10px}.p8-mhead-t{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}.p8-mhead-t .de-label{font-size:11px;color:var(--bc-steel-blue-text)}.p8-mhead-t b{font-size:16px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;padding-top:2px}.p8-mhead-t b{font-size:16px}}
-</style></head>
+</style><link rel="stylesheet" href="../shared/shell.css" data-dx-css="1">
+</head>
 <body>
+<script src="../shared/data.js"></script><script src="../shared/shell.js"></script>
+
 <div class="de-shell">
  <aside class="de-sidebar sb" aria-label="Sidebar" data-mode="projects">
   <div class="sbtool">
@@ -406,7 +409,7 @@ button:focus-visible, textarea:focus-visible, input:focus-visible, [role="button
     <div class="p8-panel">
      <div class="p8-panel-head"><div class="p8-file" style="margin-bottom:10px"><div class="de-eyebrow">3D design <span class="de-tag" style="margin-left:8px;vertical-align:1px">Extension</span></div><h1>Palletizer frame</h1><div class="row"><span class="de-tag">In Vault</span><span id="fname">Original</span></div></div>
       <div class="p8-tabs"><div class="p8-seg" role="group" aria-label="Panel"><button data-tab="chat" aria-pressed="true">Chat</button><button data-tab="parts" aria-pressed="false">Parts</button><button data-tab="details" aria-pressed="false">Details</button></div></div></div>
-     <div class="p8-pane de-scroll" id="pane-chat"><div class="p8-chat" id="chat" aria-live="polite"></div></div>
+     <div class="p8-pane de-scroll" id="pane-chat" tabindex="0" role="log" aria-label="Design chat"><div class="p8-chat" id="chat" aria-live="polite"></div></div>
      <div class="p8-pane de-scroll" id="pane-parts" hidden><div class="de-section-head"><span class="de-label">Parts</span><span class="de-tag de-tag-plain" id="pcount"></span></div><ul class="p8-parts" id="parts"></ul></div>
      <div class="p8-pane de-scroll" id="pane-details" hidden><div class="de-section-head"><span class="de-label">Details</span><span class="de-tag de-tag-plain" id="ptitle"></span></div><dl class="p8-props" id="props"></dl></div>
      <div class="p8-compose" id="compose"><div class="de-composer"><textarea id="ask" rows="1" placeholder="Describe a change or an alternative" aria-label="Describe a change"></textarea><div class="de-composer-bar"><button class="de-iconbtn de-iconbtn-sm de-iconbtn-outline" aria-label="Reference a model from Vault" title="Reference a model from Vault"><svg class="de-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h16v12H4zM4 8l2-4h12l2 4M10 13h4"/></svg></button><span class="de-composer-meta" id="ctx"></span><span class="de-spacer"></span><button class="de-iconbtn de-iconbtn-send" id="send" disabled aria-label="Send"><svg class="de-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6"/></svg></button></div></div></div>
@@ -542,5 +545,4 @@ else if(b.dataset.sb==="toggle"){sb.style.display="none";ex.hidden=false}
 else if(b.classList.contains("sbgrp")){var g=b.closest(".sbgroup"),c=g.classList.toggle("is-closed");b.setAttribute("aria-expanded",String(!c))}});
 ex.addEventListener("click",function(){sb.style.display="";ex.hidden=true})})();
 </script>
-<script src="../shared/ext.js"></script>
 </body></html>
