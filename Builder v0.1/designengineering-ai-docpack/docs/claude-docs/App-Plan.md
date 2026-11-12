@@ -115,7 +115,7 @@ Each person uses one license. A collaborator mode lets users work together on sh
 | Where the data lives | With the owner; shared projects count against the owner's storage, not the guest's |
 | Access levels | Owner sets view, comment, or edit per project |
 | AI | Invited viewers ask chat questions on the shared project, charged to the owner's wallet within a per-viewer monthly limit the owner sets. Open sign-up Basic Viewers get general chat with a very small daily cap from the shared free pool (6.3); beyond it, they use their own wallet |
-| Viewer limit | 10 active viewers per paid user (Pro or Team), across all of that user's shared projects; a 3-user Team can have up to 30. Owners activate and deactivate viewers to manage the allowance |
+| Viewer limit | 10 active viewers per paid user (Pro or Team), across all of that user's shared projects; a 3-user Team can have up to 30. Owners activate and deactivate viewers to manage the allowance. The Builder extension makes viewers unlimited (fair use: automatic review above 500 active viewers per Builder seat (A)); these viewers can view and chat only, and editing needs a Pro or Team seat |
 | Project limit | A Basic Viewer has no projects of their own; a Starter bundle ($20 per year) unlocks up to 3. Shared projects do not count |
 | Sharing and roles | Pro shares per project. The Team settings section (Admin, plus the view, comment and edit levels) shows only on the Team level |
 
@@ -292,7 +292,7 @@ Prices match SBA Section 5.2.
 | Team | Built in year 1, live from year 2 | $50 / user / month | As Pro | Everything in Pro plus an admin panel: add and remove people, set roles and permissions on shared projects; 10 viewers per Team user | 20 GB per user (A); each additional 20 GB is $10 / month |
 | Enterprise | Custom implementation | Flat fee + per-user memberships + custom features and integrations | Dedicated cloud or local deployment | Built on the Builder app; all surfaces, plus Onshape / SolidWorks integration | Customer's own cloud or site |
 | Design (extension) | After the MVP (in the prototype now) | $600 / seat / year, added to Pro (A) | As the Pro level | Chat-only 3D designer; models saved to the Vault; CAD generation paid from the wallet. Basic Viewer and Starter users can use it by tokens on a slow queue (about a week), without the extension | Pro storage |
-| Builder (extension) | After the MVP (in the prototype now); open sale [timing TBD] | $600 / seat / year, added to Pro (A) | Desktop only | Packages an organization's selected projects into a Lite zip; renewal covers updates, package-format updates, and support; any packaging AI use is paid from the subscriber's wallet | Package built on the subscriber's computer |
+| Builder (extension) | After the MVP (in the prototype now); open sale [timing TBD] | $600 / seat / year, added to Pro (A) | Desktop only | Packages an organization's selected projects into a Lite zip; unlimited view-and-chat viewers (fair use, review above 500 active per seat (A)); renewal covers updates, package-format updates, and support; any packaging AI use is paid from the subscriber's wallet | Package built on the subscriber's computer |
 | Lite | With Builder | Free download | On-device AI; no Block Concepts tokens | Opens Builder packages: 3D viewer, document search, local chat, docs library; no login | Package files on the recipient's computer |
 
 *Storage is sold in 20 GB blocks. Raw object storage (Cloudflare R2) costs about $0.015 per GB per month, so a 20 GB block costs about $0.30 per month to provide. Basic Viewer accounts get only the Starter bundle's file upload limit; Pro ($30 with 20 GB included) unlocks full storage and is the better value for anyone storing work regularly. Turbo pricing is set in SBA Plan Section 5.2 when infrastructure allows.*
@@ -331,7 +331,7 @@ Chat and CAD usage is charged at **3.5× the underlying cost**. Rates vary by mo
 | 4 | Stolen cards and chargebacks | Stripe fraud screening; $10 minimum top-up; a chargeback freezes the account and pulls back its unused balance; auto-refill needs a verified card |
 | 5 | Paid jobs that cost more than expected (Design, Builder packaging) | The estimated cost is held from the wallet before the job runs; the job runs only if the balance covers it; failed jobs are refunded automatically |
 | 6 | Storage used as a free file host | Engineering file types only; per-file limits; no public download links (viewers need an account); lapsed plans go read-only for 90 days (A), then files are deleted with notice |
-| 7 | Invited viewers running up AI cost | Viewer chat charged to the owner's wallet with a per-viewer monthly limit; 10 active viewers per paid user; owners activate and deactivate them |
+| 7 | Invited viewers running up AI cost | Viewer chat charged to the owner's wallet with a per-viewer monthly limit; 10 active viewers per paid user, unlimited with Builder (fair use, view and chat only); owners activate and deactivate them |
 
 Spending spikes suspend an account automatically, so no one watches logs; the AI provider's hard monthly cap stays as the last backstop.
 

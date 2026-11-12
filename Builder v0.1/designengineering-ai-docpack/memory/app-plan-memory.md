@@ -153,3 +153,4 @@ Log for [[designengineering-ai]]; companion to [[designengineering-ai-sba-memory
 - [stated] 2026-11-12: Starter storage is 5 GB total and 100 MB per file, with a one-time $5 starter token credit (A); Pro is 20 GB and 500 MB per file (Grant approved).
 - [stated] 2026-11-12: Team gets 10 viewers per user count (Grant): a Team shares with up to 10 viewers for each Team user, pooled across its projects. Replaces the Team [X] placeholder.
 - [stated] 2026-11-12: Pro is also 10 viewers per user, not per project; owners activate and deactivate viewers to manage the allowance (Grant). Replaces the 10-per-project line.
+- [stated] 2026-11-12: The Builder extension gives unlimited viewers, fair use, view and chat only (Grant). Draft (not yet approved by Grant): fair-use review threshold 500 active viewers per Builder seat (A).

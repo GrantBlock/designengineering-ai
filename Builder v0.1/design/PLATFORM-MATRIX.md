@@ -85,3 +85,4 @@ Navigation: the Design and Builder rows are hidden in the sidebar until the exte
 - [stated] 2026-11-12: Grant: invited viewers on a shared project can ask chat questions, charged to the owner's wallet; Pro shares up to 10 viewers per project. Free general chat stays with a very small cap from a pool capped at 5% of Pro revenue. Chat question 2 answered.
 - [stated] 2026-11-12: Grant: Team gets 10 viewers per Team user.
 - [stated] 2026-11-12: Grant: Pro is also 10 viewers per user; owners activate and deactivate viewers to manage them.
+- [stated] 2026-11-12: Grant: Builder gives unlimited viewers, fair use, view and chat only.
