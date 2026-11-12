@@ -115,7 +115,7 @@ Each person uses one license. A collaborator mode lets users work together on sh
 | Where the data lives | With the owner; shared projects count against the owner's storage, not the guest's |
 | Access levels | Owner sets view, comment, or edit per project |
 | AI | Invited viewers ask chat questions on the shared project, charged to the owner's wallet within a per-viewer monthly limit the owner sets. Open sign-up Basic Viewers get general chat with a very small daily cap from the shared free pool (6.3); beyond it, they use their own wallet |
-| Viewer limit | Pro: up to 10 viewers per project. Team: more per project [X] |
+| Viewer limit | Pro: up to 10 viewers per project. Team: 10 viewers per Team user, pooled across the team's projects (for example, a 3-user Team can share with up to 30 viewers) |
 | Project limit | A Basic Viewer has no projects of their own; a Starter bundle ($20 per year) unlocks up to 3. Shared projects do not count |
 | Sharing and roles | Pro shares per project. The Team settings section (Admin, plus the view, comment and edit levels) shows only on the Team level |
 
@@ -289,7 +289,7 @@ Prices match SBA Section 5.2.
 | Starter bundle | Launch | $20 / year | As Basic Viewer | Yearly add-on for Basic Viewer, the loss leader for hobbyists and technicians to try the project tools without Pro: up to 3 projects of their own (shared projects do not count), uploads, and a one-time $5 starter token credit (A). Further tokens are bought separately from the wallet, with no spending limit, for chat (troubleshooting, vendor requests) beyond the daily cap | 5 GB total, 100 MB per file (A); Pro unlocks the full storage |
 | Pro | Launch | $30 / user / month | Faster responses, priority access, premium models | Web app with projects and project chat, plus desktop app; can add the Design and Builder extensions; collaborator mode with up to 10 viewers per project, whose chat is paid from the owner's wallet | 20 GB included, 500 MB per file (A); each additional 20 GB is $10 / month |
 | Turbo | After infrastructure upgrades | [$X] / user / month | Much faster than Pro | Everything in Pro; for power users who can't justify Enterprise and don't need Team admin controls | [X] GB included; each additional 20 GB is $10 / month |
-| Team | Built in year 1, live from year 2 | $50 / user / month | As Pro | Everything in Pro plus an admin panel: add and remove people, set roles and permissions on shared projects | 20 GB per user (A); each additional 20 GB is $10 / month |
+| Team | Built in year 1, live from year 2 | $50 / user / month | As Pro | Everything in Pro plus an admin panel: add and remove people, set roles and permissions on shared projects; 10 viewers per Team user | 20 GB per user (A); each additional 20 GB is $10 / month |
 | Enterprise | Custom implementation | Flat fee + per-user memberships + custom features and integrations | Dedicated cloud or local deployment | Built on the Builder app; all surfaces, plus Onshape / SolidWorks integration | Customer's own cloud or site |
 | Design (extension) | After the MVP (in the prototype now) | $600 / seat / year, added to Pro (A) | As the Pro level | Chat-only 3D designer; models saved to the Vault; CAD generation paid from the wallet. Basic Viewer and Starter users can use it by tokens on a slow queue (about a week), without the extension | Pro storage |
 | Builder (extension) | After the MVP (in the prototype now); open sale [timing TBD] | $600 / seat / year, added to Pro (A) | Desktop only | Packages an organization's selected projects into a Lite zip; renewal covers updates, package-format updates, and support; any packaging AI use is paid from the subscriber's wallet | Package built on the subscriber's computer |
@@ -331,7 +331,7 @@ Chat and CAD usage is charged at **3.5× the underlying cost**. Rates vary by mo
 | 4 | Stolen cards and chargebacks | Stripe fraud screening; $10 minimum top-up; a chargeback freezes the account and pulls back its unused balance; auto-refill needs a verified card |
 | 5 | Paid jobs that cost more than expected (Design, Builder packaging) | The estimated cost is held from the wallet before the job runs; the job runs only if the balance covers it; failed jobs are refunded automatically |
 | 6 | Storage used as a free file host | Engineering file types only; per-file limits; no public download links (viewers need an account); lapsed plans go read-only for 90 days (A), then files are deleted with notice |
-| 7 | Invited viewers running up AI cost | Viewer chat charged to the owner's wallet with a per-viewer monthly limit; 10 viewers per project on Pro |
+| 7 | Invited viewers running up AI cost | Viewer chat charged to the owner's wallet with a per-viewer monthly limit; 10 viewers per project on Pro, 10 per user on Team |
 
 Spending spikes suspend an account automatically, so no one watches logs; the AI provider's hard monthly cap stays as the last backstop.
 
