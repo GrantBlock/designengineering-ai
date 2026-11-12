@@ -17,7 +17,7 @@ Rules: design from the first open page in the tracker; follow the design system;
 
 `prototype.html` is the sample frame: the app description, the page description and a Desktop and Phone selector around the live pages. To deploy it as a static site:
 
-1. From this folder run `npx wrangler deploy`. The build step (`build-site.sh`) copies only the pages, shared scripts, fonts and icon into `site/`. Planning documents are never copied.
+1. Cloudflare builds it from the repository root: `wrangler.jsonc` at the root names the Worker `designengineering-ai` and runs `build-site.sh`, which copies only the pages, shared scripts, fonts and icon into `site/`. Planning documents are never copied. To deploy by hand, run `npx wrangler deploy` from the repository root.
 2. `site/` is built output and is not committed.
 3. The pages carry `noindex`, but the site is public unless Cloudflare Access is put in front of it.
 
