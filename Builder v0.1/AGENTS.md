@@ -12,7 +12,7 @@ Read `CLAUDE.md` and `designengineering-ai-docpack/README.md` first. Same workin
 | Doc sync | Keeps Word files, markdown mirrors, tracker and memory logs consistent |
 | Reviewer | Checks changes against the plan: numbers, levels, source-of-truth order |
 | Planner: Irileth (Grant, with planning chats) | Owns the plan, feature notes in `design/specs/`, issues and every merge |
-| Coder: Hrongar (Claude Fable 5.2 in Claude Code cloud sessions) | Builds one issue per pull request into `development`, with tests; never merges, never touches `main`. See `agentic-dev-plan.md` (Project Iron) |
+| Coder: Hrongar (Claude Fable 5.2 in Claude Code cloud sessions) | Builds one issue per pull request into `development`, with tests; never merges, never touches `main`. See `GrantBlock/Project_Iron`, `docs/agentic-dev-plan.md` |
 | Reviewer: Farengar (Claude Opus 5.5, scheduled) | Reviews each pull request against the spec, design system and plan rules |
 | Tester: Lydia (Claude Sonnet 5.5, scheduled) | Writes acceptance tests before code; checks previews; sends the morning report |
 
