@@ -44,17 +44,17 @@ November 2026 · Draft
 
 # **00** Lean Canvas Snapshot
 
-| **Box**                      | **Design Engineering AI**                                                                                                                                                                                                                                                                                                                                                 |
-|------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Problem**                  | Project and equipment knowledge is scattered across a dozen tools, causing miscommunication, non-value-add searching, key-person dependence, interruptions, and an access gap for non-CAD staff                                                                                                                                                                           |
-| **Customer segments**        | Maintenance technicians first, then design engineers and engineering managers, on technical teams of 12 or fewer at small or large operations; manufacturers in food and beverage, packaging, and material handling; Midwest first                                                                                                                                        |
-| **Unique value proposition** | The first turnkey app purpose-built for multi-disciplinary design engineering: the setup is already done                                                                                                                                                                                                                                                                  |
-| **Solution**                 | AI chat on project files, document search, 3D viewer, project document storage, notes and tracking, calculators, process flows, plans and vendor requests; spacer-class CAD next                                                                                                                                                                                          |
-| **Channels**                 | Block Concepts customers and suppliers, rep partners (pending approval), docs library, founder content, free Lite app carried by Builder packages                                                                                                                                                                                                                         |
-| **Revenue streams**          | Pro at \$30 / user / month; Turbo (after launch) for power users; wallet usage at 3.5× cost; Starter bundles (storage and tokens) for Basic Viewer accounts; Team at \$50 / user / month; storage blocks; Enterprise flat fee plus memberships and integrations; Builder annual subscription (\$600 / seat / year) with free Lite; Block Concepts implementation services |
-| **Cost structure**           | AI usage (passed through the wallet), Cloudflare hosting, software tools, owner draw; senior engineer as first hire                                                                                                                                                                                                                                                       |
-| **Key metrics**              | New Pro users per month; wallet spend per user; Basic Viewer AI cost per month; Builder seats                                                                                                                                                                                                                                                                             |
-| **Unfair advantage**         | The Design Engineering AI name; Grant Block's affiliations (Block Concepts customers and rep partners); real Block Concepts projects; a feedback-first architecture shaped by Grant Block's integration experience                                                                                                                                                        |
+| **Box**                      | **Design Engineering AI**                                                                                                                                                                                                                                                                                                                                                                         |
+|------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Problem**                  | Project and equipment knowledge is scattered across a dozen tools, causing miscommunication, non-value-add searching, key-person dependence, interruptions, and an access gap for non-CAD staff                                                                                                                                                                                                   |
+| **Customer segments**        | Maintenance technicians first, then design engineers and engineering managers, on technical teams of 12 or fewer at small or large operations; manufacturers in food and beverage, packaging, and material handling; Midwest first                                                                                                                                                                |
+| **Unique value proposition** | The first turnkey app purpose-built for multi-disciplinary design engineering: the setup is already done                                                                                                                                                                                                                                                                                          |
+| **Solution**                 | AI chat on project files, document search, 3D viewer, project document storage, notes and tracking, calculators, process flows, plans and vendor requests; spacer-class CAD next                                                                                                                                                                                                                  |
+| **Channels**                 | Block Concepts customers and suppliers, rep partners (pending approval), docs library, founder content, free Lite app carried by Builder packages                                                                                                                                                                                                                                                 |
+| **Revenue streams**          | Pro at \$30 / user / month; Turbo (after launch) for power users; wallet usage at 3.5× cost; Starter bundles (\$20 / year: 3 projects and uploads) for Basic Viewer accounts; Team at \$50 / user / month; storage blocks; Enterprise flat fee plus memberships and integrations; Design and Builder extensions (\$600 / seat / year each) with free Lite; Block Concepts implementation services |
+| **Cost structure**           | AI usage (passed through the wallet), Cloudflare hosting, software tools, owner draw; senior engineer as first hire                                                                                                                                                                                                                                                                               |
+| **Key metrics**              | New Pro users per month; wallet spend per user; Basic Viewer AI cost per month; Builder seats                                                                                                                                                                                                                                                                                                     |
+| **Unfair advantage**         | The Design Engineering AI name; Grant Block's affiliations (Block Concepts customers and rep partners); real Block Concepts projects; a feedback-first architecture shaped by Grant Block's integration experience                                                                                                                                                                                |
 
 # **01** Executive Summary
 
@@ -68,7 +68,7 @@ November 2026 · Draft
 
 **Customers.** Maintenance technicians first, then design engineers and engineering managers, on technical teams of typically 12 or fewer. That team may support a small operation or a large one that runs a small technical staff. First industries are food and beverage, packaging, and material handling, starting in the Midwest. The U.S. has about 538,000 industrial maintenance workers and 293,000 mechanical engineers.
 
-**Business model.** Five levels: Basic Viewer (free), Starter bundles that add storage and tokens to a Basic Viewer account, Pro (\$30 per user per month), Team (\$50 per user per month: Pro plus an admin panel to control access), and Enterprise. Usage runs on a prepaid wallet, with storage add-ons; Enterprise contracts (flat fee plus memberships and integrations) are delivered through Block Concepts. A Turbo level for power users who need more speed than Pro, without Team admin controls or Enterprise cost, follows after launch. Builder is an annual subscription (\$600 per seat per year) that lets an organization package technical documentation for each of its clients into zip files opened in Lite, a free downloadable app that runs locally on an on-device AI model, with no login and no token cost. Enterprise is a custom implementation built on the Builder app.
+**Business model.** Five levels: Basic Viewer (free), Starter bundles (\$20 per year) that unlock up to 3 projects for a Basic Viewer account, Pro (\$30 per user per month), Team (\$50 per user per month: Pro plus an admin panel to control access), and Enterprise. Usage runs on a prepaid wallet, with storage add-ons; Enterprise contracts (flat fee plus memberships and integrations) are delivered through Block Concepts. A Turbo level for power users who need more speed than Pro, without Team admin controls or Enterprise cost, follows after launch. Two extensions are added to Pro after the MVP at \$600 per seat per year each: Design, a chat-based 3D designer, and Builder, which lets an organization package technical documentation for each of its clients into zip files opened in Lite, a free downloadable app that runs locally on an on-device AI model, with no login and no token cost. Enterprise is a custom implementation built on the Builder app.
 
 **Position.** Existing tools split into AI for engineers inside CAD and AI for maintenance teams. Design Engineering AI brings both together for teams that include non-CAD staff.
 
@@ -238,24 +238,25 @@ designengineering.ai is an AI design workspace for industrial projects. Teams ke
 
 ## 5.2 Memberships and Pricing
 
-| **Level**                                | **Price**                                                          | **Best for**                                                                                                                                                                                                 |
-|------------------------------------------|--------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Basic Viewer**                         | \$0                                                                | Viewing and commenting on shared projects; minimal tools; small daily AI cap; up to 3 projects of their own (shared projects do not count); no included storage                                              |
-| **Starter bundle (Basic Viewer add-on)** | \[\$20\] per bundle (A)                                            | Basic Viewer users who need tools without a Pro membership: 20 GB storage plus \[\$10\] of wallet tokens                                                                                                     |
-| **Pro**                                  | \$30 / user / month                                                | Individuals and small teams; CAD users already paying \$100–300 / month for CAD packages; non-CAD managers and maintenance staff                                                                             |
-| **Turbo (after launch)**                 | \[\$X\] / user / month (A)                                         | Power users who need more speed than Pro but not Team admin controls or Enterprise cost: much faster responses and premium models; everything in Pro                                                         |
-| **Team**                                 | \$50 / user / month                                                | Pro plus an admin panel to control access: add and remove people, set roles and permissions on shared projects                                                                                               |
-| **Enterprise**                           | Flat fee + per-user memberships + custom features and integrations | Larger teams; custom implementation built on the Builder app; dedicated cloud or on-site deployment; Onshape / SolidWorks integration                                                                        |
-| **Lite**                                 | \$0 (free download)                                                | Anyone receiving a Builder package: opens packaged technical documentation on their own computer with a 3D viewer, document search, and local chat on an on-device AI model; no login, no token cost         |
-| **Builder**                              | \$600 / seat / year, annual subscription (A)                       | Suppliers, OEMs, integrators, and plant teams packaging technical documentation into Lite zip files, one package per client or site, for their own staff and customers; downloaded from designengineering.ai |
+| **Level**                                | **Price**                                                          | **Best for**                                                                                                                                                                                                                                      |
+|------------------------------------------|--------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Basic Viewer**                         | \$0                                                                | Viewing, commenting and asking chat questions on projects shared with them (paid by the owner's wallet); general chat with a very small daily cap from a free pool; no projects of their own (a Starter bundle unlocks 3); no included storage    |
+| **Starter bundle (Basic Viewer add-on)** | \$20 / year                                                        | Basic Viewer users who need a few projects without a Pro membership: up to 3 projects of their own (shared projects do not count), 5 GB of uploads (100 MB per file) and a one-time \$5 starter token credit (A); Pro unlocks the full storage    |
+| **Pro**                                  | \$30 / user / month                                                | Individuals and small teams; CAD users already paying \$100–300 / month for CAD packages; non-CAD managers and maintenance staff                                                                                                                  |
+| **Turbo (after launch)**                 | \[\$X\] / user / month (A)                                         | Power users who need more speed than Pro but not Team admin controls or Enterprise cost: much faster responses and premium models; everything in Pro                                                                                              |
+| **Team**                                 | \$50 / user / month                                                | Pro plus an admin panel to control access: add and remove people, set roles and permissions on shared projects; 10 viewers per Team user                                                                                                          |
+| **Enterprise**                           | Flat fee + per-user memberships + custom features and integrations | Larger teams; custom implementation built on the Builder app; dedicated cloud or on-site deployment; Onshape / SolidWorks integration                                                                                                             |
+| **Lite**                                 | \$0 (free download)                                                | Anyone receiving a Builder package: opens packaged technical documentation on their own computer with a 3D viewer, document search, and local chat on an on-device AI model; no login, no token cost                                              |
+| **Builder**                              | \$600 / seat / year, extension (A)                                 | Extension added to Pro after the MVP, desktop only: suppliers, OEMs, integrators, and plant teams packaging an organization's selected projects into Lite zip files for their own staff and customers; unlimited view-and-chat viewers (fair use) |
+| **Design (3D designer)**                 | \$600 / seat / year, extension (A)                                 | Extension added to Pro after the MVP: build and change 3D parts by chat, with models saved to the Vault; Basic Viewer and Starter users can use it by tokens on a slow queue (about a week)                                                       |
 
-Usage (chat and CAD) is paid from a prepaid wallet at 3.5× cost. Pro includes 20 GB of storage. Basic Viewer includes no storage and mainly supports viewing, with a small daily AI cap and up to 3 projects of its own; Starter bundles give Basic Viewer users the storage and tokens to use the tools. Additional Pro storage is sold in 20 GB blocks (\$10). Each user has one license; collaborator mode lets users work together on shared projects.
+Usage (chat and CAD) is paid from a prepaid wallet at 3.5× cost. Pro includes 20 GB of storage. Basic Viewer includes no storage and mainly supports viewing and general chat, with a very small daily AI cap drawn from a free pool capped at 5% of Pro membership revenue (A); a Starter bundle (\$20 per year) unlocks up to 3 projects of its own with a file upload limit, and Pro unlocks the full storage. Tokens are a separate wallet purchase with no spending limit, used for chat such as troubleshooting and vendor requests beyond the daily cap. Each Pro or Team user can have up to 10 active viewers across their shared projects (activated and deactivated by the owner), whose chat questions are paid from the owner's wallet. Additional Pro storage is sold in 20 GB blocks (\$10). Each user has one license; collaborator mode lets users work together on shared projects.
 
-Builder is licensed per seat on an annual subscription; renewal includes software updates, package-format updates, and support. Packages already built still open in Lite if a subscription lapses; building new packages requires an active seat.
+Builder and Design (the 3D designer) are extensions added to Pro, each licensed per seat at \$600 per year (A); both ship after the MVP. Builder renewal includes software updates, package-format updates, and support. Packages already built still open in Lite if a subscription lapses; building new packages requires an active seat.
 
 ## 5.3 MVP Capabilities
 
-AI chat, file uploads (STEP, OBJ, photos, data sheets), document search, 3D viewer, project document storage, project notes and tracking, chat-enabled calculators, process flows, plans and vendor requests, and outside tool recommendations.
+AI chat, file uploads (STEP, OBJ, photos, data sheets), document search, 3D viewer, project document storage, project notes and tracking with a weekly dashboard, schedules, custom calculators, process flows, plans, vendor requests and customer quotes, and outside tool recommendations.
 
 ## 5.4 Block Concepts Services
 
@@ -265,13 +266,13 @@ AI chat, file uploads (STEP, OBJ, photos, data sheets), document search, 3D view
 
 ## 5.5 Future Add-Ons
 
-Turbo level, CAD generation, drawings, SolidWorks / Onshape driving (Enterprise), and FDA-compliant / cGMP documentation add-ons.
+Turbo level, Design and Builder extensions, CAD generation, drawings, SolidWorks / Onshape driving (Enterprise), and FDA-compliant / cGMP documentation add-ons.
 
 # **06** Marketing & Sales
 
 ## 6.1 Sales Approach
 
-Bottom-up and technician-first. A maintenance technician joins as a Basic Viewer to see a shared project, adds a Starter bundle to get answers for their own equipment, and shows the design engineers. An engineer moves to Pro and owns the projects; the rest of the team joins through collaborator mode. Teams that need to control who can access projects move to Team; larger or custom deployments move to Enterprise.
+Bottom-up and technician-first. A maintenance technician joins as a Basic Viewer to see a shared project, adds a Starter bundle to set up projects for their own equipment, and shows the design engineers. An engineer moves to Pro and owns the projects; the rest of the team joins through collaborator mode. Teams that need to control who can access projects move to Team; larger or custom deployments move to Enterprise.
 
 ## 6.2 Channels
 
@@ -286,11 +287,11 @@ Bottom-up and technician-first. A maintenance technician joins as a Basic Viewer
 
 ## 6.3 Sales Process
 
-| **Level**                               | **Process**                                                                                                                                                             |
-|-----------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Basic Viewer / Starter / Pro / Team** | Self-serve: sign up, buy a Starter bundle or fund a wallet, upgrade in the app; Team admins add and remove people                                                       |
-| **Lite / Builder**                      | Lite: free download from designengineering.ai. Builder: download from designengineering.ai and buy annual seats online, or by purchase order and invoice; renews yearly |
-| **Enterprise**                          | Discovery call → Block Concepts proposal → contract → custom implementation by Block Concepts                                                                           |
+| **Level**                               | **Process**                                                                                                                                                       |
+|-----------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Basic Viewer / Starter / Pro / Team** | Self-serve: sign up, buy a Starter bundle or fund a wallet, upgrade in the app; Team admins add and remove people                                                 |
+| **Lite / Builder**                      | Lite: free download from designengineering.ai. Builder: add the extension in the app and buy annual seats online, or by purchase order and invoice; renews yearly |
+| **Enterprise**                          | Discovery call → Block Concepts proposal → contract → custom implementation by Block Concepts                                                                     |
 
 ## 6.4 Messaging
 
@@ -302,7 +303,7 @@ Bottom-up and technician-first. A maintenance technician joins as a Basic Viewer
 
 ## 6.5 Pricing
 
-See Section 5.2. Pro is \$30 / user / month; usage is paid from a prepaid wallet. Builder is \$600 / seat / year; Lite is free.
+See Section 5.2. Pro is \$30 / user / month; usage is paid from a prepaid wallet. Design and Builder extensions are \$600 / seat / year each; Lite is free.
 
 ## 6.6 Launch Offer (optional, for aggressive marketing)
 
@@ -476,38 +477,38 @@ Not currently seeking outside funding. This section records the current funding 
 
 Estimated on the base case (+5 Pro users per month) without changing it. Figures are after 3% payment fees and, for wallet purchases, after AI cost. All rates are assumptions (A) to be replaced with measured values after launch.
 
-| **Assumption**           | **Value (A)**                                                                                         |
-|--------------------------|-------------------------------------------------------------------------------------------------------|
-| **Included storage**     | Pro 20 GB; Basic Viewer 0 GB                                                                          |
-| **Pro storage**          | 10% of Pro users buy one 20 GB block (\$10)                                                           |
-| **Basic Viewer users**   | 20 per Pro user (5% conversion, the low end of Basic Viewer users)                                    |
-| **Starter bundles**      | 2% of Basic Viewer users buy one \$20 bundle per month (20 GB + \$10 of tokens)                       |
-| **Basic Viewer AI cost** | \$0.25 per Basic Viewer user per month (low end of Section 8.4)                                       |
-| **Pro wallet spend**     | \$20 per Pro user per month                                                                           |
-| **Team**                 | 25% of Pro seats move to Team at \$50 from year 2 (built in year 1); adds \$19.40 per seat after fees |
+| **Assumption**         | **Value (A)**                                                                                         |
+|------------------------|-------------------------------------------------------------------------------------------------------|
+| **Included storage**   | Pro 20 GB; Basic Viewer 0 GB                                                                          |
+| **Pro storage**        | 10% of Pro users buy one 20 GB block (\$10)                                                           |
+| **Basic Viewer users** | 20 per Pro user (5% conversion, the low end of Basic Viewer users)                                    |
+| **Starter bundles**    | 2% of Basic Viewer users hold a \$20 / year Starter; 10% of those spend \$10 / month on tokens        |
+| **Free AI pool**       | Capped at 5% of Pro membership revenue (Section 8.4)                                                  |
+| **Pro wallet spend**   | \$20 per Pro user per month                                                                           |
+| **Team**               | 25% of Pro seats move to Team at \$50 from year 2 (built in year 1); adds \$19.40 per seat after fees |
 
-| **Line**                           | **Year 1**  | **Year 2**   | **Year 3**   | **3-year total** |
-|------------------------------------|-------------|--------------|--------------|------------------|
-| **Average Basic Viewer users**     | 650         | 1,850        | 3,050        |                  |
-| **Pro storage**                    | \$400       | \$1,100      | \$1,800      | \$3,200          |
-| **Starter bundles**                | \$2,600     | \$7,300      | \$12,100     | \$22,000         |
-| **Basic Viewer AI cost (offset)**  | −\$2,000    | −\$5,600     | −\$9,200     | −\$16,700        |
-| **Net from Basic Viewer accounts** | \$600       | \$1,800      | \$3,000      | \$5,400          |
-| **Pro wallet margin**              | \$5,300     | \$15,200     | \$25,000     | \$45,600         |
-| **Team uplift (+\$20 per seat)**   | —           | \$5,400      | \$8,900      | \$14,300         |
-| **Total add-on upside**            | **\$6,300** | **\$23,500** | **\$38,700** | **\$68,000**     |
+| **Line**                               | **Year 1**  | **Year 2**   | **Year 3**   | **3-year total** |
+|----------------------------------------|-------------|--------------|--------------|------------------|
+| **Average Basic Viewer users**         | 650         | 1,850        | 3,050        |                  |
+| **Pro storage**                        | \$400       | \$1,100      | \$1,800      | \$3,200          |
+| **Starter (incl. token margin)**       | \$400       | \$1,000      | \$1,700      | \$3,100          |
+| **Free AI pool (offset)**              | −\$600      | −\$1,600     | −\$2,700     | −\$4,900         |
+| **Net from free and Starter accounts** | −\$200      | −\$600       | −\$1,000     | −\$1,800         |
+| **Pro wallet margin**                  | \$5,300     | \$15,200     | \$25,000     | \$45,600         |
+| **Team uplift (+\$20 per seat)**       | —           | \$5,400      | \$8,900      | \$14,300         |
+| **Total add-on upside**                | **\$5,500** | **\$21,100** | **\$34,700** | **\$61,300**     |
 
 - **Storage** is a small line (about \$3,200 from Pro over three years).
 
-- **Starter bundles offset Basic Viewer AI cost** and add a small margin. Because Basic Viewer is mainly for viewing, Basic Viewer AI cost should stay near the low end; at \$1 per Basic Viewer user per month instead of \$0.25, Basic Viewer accounts would run about \$45,000 behind over three years.
+- **Free usage is a fixed budget**: all free AI use draws from one pool capped at 5% of Pro membership revenue, and free chat waits for the next month when it runs out. Starter (\$20 per year) and its token margin recover most of it; together the free tier and Starter cost about \$1,800 over three years, the marketing cost of the funnel. Invited viewers' chat is paid from the owner's wallet and is not counted here.
 
 - **Pro wallet margin** is the meaningful add-on and depends on the \$20 spend assumption measured in MVP testing (Section 8.4).
 
-- **Remaining gap:** add-ons reduce the base-case three-year gap from about \$105,000 to about \$37,000. The remainder is the target for a founder-built paid feature, developed on owner-draw time with no added development cost.
+- **Remaining gap:** add-ons reduce the base-case three-year gap from about \$105,000 to about \$43,700. The remainder is the target for a founder-built paid feature, developed on owner-draw time with no added development cost.
 
 - **Team** at \$50 adds about \$14,300 if a quarter of Pro seats move to it from year 2 (about \$22,800 at 40%). It is a candidate for the founder-built feature: mostly admin, billing, and permissions rather than new AI capability.
 
-- **Builder** at \$600 per seat per year adds about \$580 per seat after fees, with no AI cost to Block Concepts because Lite runs locally. Closing the remaining \$37,000 gap would take about 64 seat-years over three years (for example, 10, 20, then 35 seats). Builder is also a candidate for the founder-built feature. Not counted here until open-sale timing is set.
+- **Builder** at \$600 per seat per year adds about \$580 per seat after fees, with no AI cost to Block Concepts because Lite runs locally. Closing the remaining \$43,700 gap would take about 76 seat-years over three years (for example, 11, 25, then 40 seats). Builder is also a candidate for the founder-built feature. Not counted here until open-sale timing is set.
 
 *Basic Viewer count here (20 per Pro user) is higher than the 30 Basic Viewer accounts assumed at the start of year one in Section 8.2; the ratio is used because Basic Viewer cost and purchases both scale with it.*
 
@@ -530,9 +531,9 @@ Supporting services start on free plans. Final vendors are chosen during the bui
 
 ## 8.4 AI Usage (Token) Expectations: Key Unknown
 
-|                                                                                                                                                                                                                                                                                                                              |
-|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Token cost is the largest unknown in this plan.** The cost of each AI task has not been measured yet. Paid usage is protected because users prepay a wallet at 3.5× cost, but Basic Viewer usage and the wallet spend assumption are not. These figures are set in MVP testing before launch (November 2026 – March 2027). |
+|                                                                                                                                                                                                                                                                                                                                                            |
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Token cost is the largest unknown in this plan.** The cost of each AI task has not been measured yet. Paid usage is protected because users prepay a wallet at 3.5× cost, and free usage is capped at 5% of Pro membership revenue; the wallet spend assumption is not. These figures are set in MVP testing before launch (November 2026 – March 2027). |
 
 **What a token is.** AI providers bill by the token, a small piece of text (roughly three-quarters of a word). Every question, uploaded document the AI reads, and answer it writes uses tokens. Price per token varies by AI model, so the same task can cost several times more on a larger model.
 
@@ -548,14 +549,14 @@ Supporting services start on free plans. Final vendors are chosen during the bui
 
 **Who carries the cost**
 
-| **User**                          | **Who pays for tokens**                                                                               | **Exposure to Block Concepts**                                        |
-|-----------------------------------|-------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------|
-| **Pro**                           | User, from a prepaid wallet at 3.5× cost                                                              | Low: usage is paid before it is used                                  |
-| **Basic Viewer**                  | Block Concepts, within a small daily cap                                                              | Medium: low per user, but grows with the number of Basic Viewer users |
-| **Basic Viewer + Starter bundle** | User, from the bundle's prepaid tokens                                                                | Low: usage is paid before it is used                                  |
-| **Lite / Builder**                | Lite runs on an on-device AI model; any Builder packaging AI use is paid from the subscriber's wallet | None: Lite uses no Block Concepts tokens                              |
-| **Enterprise**                    | Set per contract                                                                                      | Priced in the contract                                                |
-| **Development testing**           | Block Concepts                                                                                        | Capped at \$50–100 per month (Phase 0)                                |
+| **User**                          | **Who pays for tokens**                                                                               | **Exposure to Block Concepts**                              |
+|-----------------------------------|-------------------------------------------------------------------------------------------------------|-------------------------------------------------------------|
+| **Pro**                           | User, from a prepaid wallet at 3.5× cost                                                              | Low: usage is paid before it is used                        |
+| **Basic Viewer**                  | Block Concepts, from a free pool capped at 5% of Pro membership revenue                               | Low: a fixed budget; free chat waits when the pool runs out |
+| **Basic Viewer + Starter bundle** | User, from the wallet after a one-time \$5 credit                                                     | Low: usage is paid before it is used                        |
+| **Lite / Builder**                | Lite runs on an on-device AI model; any Builder packaging AI use is paid from the subscriber's wallet | None: Lite uses no Block Concepts tokens                    |
+| **Enterprise**                    | Set per contract                                                                                      | Priced in the contract                                      |
+| **Development testing**           | Block Concepts                                                                                        | Capped at \$50–100 per month (Phase 0)                      |
 
 **Sensitivity: average wallet spend per Pro user per month**
 
@@ -577,7 +578,7 @@ Assumed cost per Basic Viewer user at the daily cap (A), across the Basic Viewer
 | \$1.00                         | \$30                    | \$150–600                     | \$5,200–14,000                     |
 | \$2.00                         | \$60                    | \$300–1,200                   | \$10,400–28,000                    |
 
-*At Phase 2 scale, Basic Viewer usage at \$1 or more per user could cost as much as the first hire. The Basic Viewer daily cap is sized from measured costs so total Basic Viewer usage stays within \[X%\] of Pro revenue.*
+*At Phase 2 scale, Basic Viewer usage at \$1 or more per user would cost as much as the first hire without a cap. All free usage draws from one pool capped at 5% of Pro membership revenue (A), so these figures are a ceiling the pool prevents; invited viewers' chat is paid by the project owner.*
 
 **How it gets measured and controlled**
 
