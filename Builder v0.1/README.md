@@ -9,6 +9,7 @@ Workspace for designing the system architecture of **designengineering.ai** (Blo
 | `designengineering-ai-docpack/` | Plan doc pack (SBA business plan, App Plan, tracker, decision logs) |
 | `design/` | UI tracker, design system, platform matrix, and the clickable prototype (`design/prototype.html`, pages in `design/exports/`) |
 | `snapshot-YYYY-MM-DD.md` | Read-only snapshots of decisions and open items; the newest is the current view |
+| `agentic-dev-plan.md` | Draft plan for agentic development (Planner, Tester, Coder, Reviewer); open it in VS Code with Claude |
 | `development-path.md` | Plan for building and deploying the app (stack, phases, environments, Cloudflare setup) |
 | `shortcuts.md` | Phrases that start workflows (where were we, decision brief, design the next page, ...) |
 | `review-queue.md` | Items waiting on Grant, tagged mobile, code or vscode |
