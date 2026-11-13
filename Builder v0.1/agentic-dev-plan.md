@@ -14,6 +14,9 @@ Related: `development-path.md` (Build automation section), `AGENTS.md` (roles), 
 - [stated] 2026-11-13: Agent names: Planner **Irileth**, Coder **Hrongar**, Reviewer **Farengar**, Tester **Lydia** (Grant). Agents sign their issue and pull request comments with their name and role, for example "Hrongar (Coder)".
 - [stated] 2026-11-13: Iron's process starts with six steps: 1 Project Setup, 2 Design System, 3 Editor Layout Shell, 4 Sidebar UI, 5 Auth Setup, 6 Database Schema (Grant).
 - [stated] 2026-11-13: Iron step 3 (Editor Layout Shell) means the content panels inside the common UI: Projects, Designer, Builder and the rest. Each panel needs a feature spec built from its prototype (Grant).
+- [stated] 2026-11-13: Time zone is Central (Grant). Business hours 7am to 6pm are assumed (A).
+- [stated] 2026-11-13: Agents keep taking work each night until usage reaches 75%, leaving 25% for Grant's own work (Grant). How usage is measured is a Draft below (Usage limit).
+- [stated] 2026-11-13: Role files live in `agents/`, and GitHub labels are the hand-off between agents (Grant).
 - [stated] 2026-11-13: Do not draft the feature specs yet; Grant reviews the dev plan first (Grant).
 - [stated] 2026-11-09: Claude builds; Grant decides and reviews results, not code. No throwaway work.
 
@@ -66,7 +69,7 @@ Draft (not yet approved by Grant), 2026-11-13. Each identity becomes the top of 
   1. Runs at 8pm (build) and 3am (fixes), Fable 5.2 at high effort.
   2. 8pm: take the highest-ordered `ready` issue, label it `in-progress`, branch `coder/<issue number>-<short name>` from `development`.
   3. Build it to the spec and the design system, with unit tests, until the acceptance tests and CI pass.
-  4. Open a pull request into `development` that links the issue and says what changed and how to try it; label `needs-review`. Take the next issue, up to [2] a night.
+  4. Open a pull request into `development` that links the issue and says what changed and how to try it; label `needs-review`. Take the next issue, until the night's usage reaches 75% (see Usage limit).
   5. 3am: for each `changes-requested` pull request, fix every review comment on the same branch and label it `needs-review` again.
   6. Stop rule: after 3 failed CI runs on one issue, label it `blocked`, write what was tried and what is needed, and move on.
 - **Never:** merges; pushes to `development` or `main`; edits acceptance tests; adds a service, key or paid plan; changes a decision.
@@ -115,17 +118,27 @@ How a spec gets made: Irileth drafts it from the prototype page and the logs (tr
 
 `spec` → `ready-for-tests` → `ready` → `in-progress` → `needs-review` → `changes-requested` or `review-passed` → Grant merges. `blocked` means an agent stopped and left a note.
 
-## Nightly schedule (example: Central time, business hours 7am to 6pm; to confirm)
+## Nightly schedule (Central time; business hours 7am to 6pm (A))
 
 | Time | Role | Does |
 | --- | --- | --- |
 | 7am to 6pm | Grant with Irileth | Grant's hours: prototype review, planning chats, merges |
 | 6pm | Lydia (Tester) | Writes tests for new `ready-for-tests` issues |
-| 8pm | Hrongar (Coder) | Builds up to [2] `ready` issues, one at a time |
+| 8pm | Hrongar (Coder) | Builds `ready` issues one at a time until usage reaches 75% |
 | 1am | Farengar (Reviewer) | Reviews every `needs-review` pull request |
 | 3am | Hrongar (Coder) | Fixes `changes-requested` pull requests |
 | 5am | Lydia (Tester) | Checks preview URLs, posts screenshots and test results |
 | 6:30am | Lydia's report | One message: ready to merge, blocked, cost of the night |
+
+## Usage limit (Draft (not yet approved by Grant))
+
+Goal ([stated]): stop each night at 75% of usage, so 25% is left for Grant's business hours.
+
+An agent cannot reliably read the plan's usage meter from inside a session (A, to verify when the environment is set up). How it is enforced:
+1. **Calibrate on the dry run:** record what one issue costs for each agent.
+2. **Nightly cap:** set the number of issues per night so the total stays under 75%; Lydia's report shows the night's usage so the cap can be raised or lowered.
+3. **Hard backstop:** if the agents run on an Anthropic API key, a workspace spend limit in the Console set to 75% of the daily budget; on a subscription plan, agents stop at the first usage warning.
+4. Every agent checks before taking new work: if the cap is reached, it stops and notes it in the report.
 
 ## Rules for every agent
 
@@ -185,10 +198,20 @@ Gates: step 5 needs D4; step 6 needs D3; step 1 needs O1 to O3 and RQ14.
 
 ## Open questions for Grant
 
-1. Business hours and time zone (Central, 7am to 6pm?).
-2. Issues per night for the coder (start with 2?).
-3. Morning report by phone notification, email, or a comment on a "Nightly report" issue?
-4. Approve role files in `agents/` and labels as the hand-off?
+1. Morning report: which option (see Report options)?
+2. Confirm business hours 7am to 6pm.
+3. Are Claude Code sessions billed to a subscription plan or an Anthropic API key? This decides the usage backstop.
+
+## Report options (Draft (not yet approved by Grant))
+
+| Option | What Grant gets | Good | Weak |
+| --- | --- | --- | --- |
+| A. Phone notification | A short push message from the Claude app at 6:30am | Seen first thing | Short; no history |
+| B. Email | A full summary in the inbox | Easy to read and keep | Another inbox item |
+| C. "Nightly report" GitHub issue | One comment per night with links to each pull request and issue | Full history next to the work; links work in VS Code | Must open GitHub |
+| D. Report file in the repository (`reports/YYYY-MM-DD.md`) | A file per night | History in VS Code | Adds commits; needs a pull request or its own branch |
+
+Recommendation: **C plus A.** Lydia posts the full report as a comment on the "Nightly report" issue and sends a short phone notification with the counts (ready to merge, blocked, usage) and the link.
 
 ## Starter prompt for Claude in VS Code
 
