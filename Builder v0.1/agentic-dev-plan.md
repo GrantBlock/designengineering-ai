@@ -13,6 +13,7 @@ Related: `development-path.md` (Build automation section), `AGENTS.md` (roles), 
 - [stated] 2026-11-13: The build project is named **Iron** (Grant).
 - [stated] 2026-11-13: Agent names: Planner **Irileth**, Coder **Hrongar**, Reviewer **Farengar**, Tester **Lydia** (Grant). Agents sign their issue and pull request comments with their name and role, for example "Hrongar (Coder)".
 - [stated] 2026-11-13: Iron's process starts with six steps: 1 Project Setup, 2 Design System, 3 Editor Layout Shell, 4 Sidebar UI, 5 Auth Setup, 6 Database Schema (Grant).
+- [stated] 2026-11-13: Iron step 3 (Editor Layout Shell) means the content panels inside the common UI: Projects, Designer, Builder and the rest. Each panel needs a feature spec built from its prototype (Grant).
 - [stated] 2026-11-09: Claude builds; Grant decides and reviews results, not code. No throwaway work.
 
 ## Roles
@@ -81,6 +82,34 @@ Draft (not yet approved by Grant), 2026-11-13. Each identity becomes the top of 
   5. Label `review-passed` when nothing is left, or `changes-requested` with a short summary.
 - **Never:** pushes code; approves its own suggestions; merges.
 
+## Feature specs (one per content panel)
+
+[stated] 2026-11-13: every content panel needs a feature spec built from its prototype, in `design/specs/`, one file per page, using the layout of `P08-3D-Designer-Spec.md`. Draft (not yet approved by Grant): the list, file names and grouping below. Folded pages (P10, P11, P13, P14) are covered inside the page that holds them.
+
+Spec layout: 1 Purpose · 2 Decisions stated by Grant · 3 Where it appears · 4 Desktop layout · 5 Phone layout · 6 States · 7 Data it reads and writes · 8 Plan rules that apply (levels, extensions, viewers, limits) · 9 Out of scope · 10 Placeholder content in the prototype · 11 Grant's notes · Log.
+
+| Iron step | Panel | Prototype | Spec file | Status |
+| --- | --- | --- | --- | --- |
+| 3 | New chat (desktop and phone) | P01, P02 | `P01-New-Chat-Spec.md` | ☐ |
+| 3 | Chat conversation and sources | P03 | `P03-Conversation-Spec.md` | ☐ |
+| 3 | Projects list | P05 | `P05-Projects-Spec.md` | ☐ |
+| 3 | Project summary | P05A | `P05A-Project-Summary-Spec.md` | ☐ |
+| 3 | Project workspace (Import, Specifications, Layout, Schedule, Exports with plans and quotes, P13) | P06 | `P06-Project-Workspace-Spec.md` | ☐ |
+| 3 | Process configuration | P12 | `P12-Process-Config-Spec.md` | ☐ |
+| 3 | Uploads | P07 | `P07-Uploads-Spec.md` | ☐ |
+| 3 | Vault (with calculators, P11) | P09 | `P09-Vault-Spec.md` | ☐ |
+| 3 | Dashboard (with Update assistant, P10) | P19 | `P19-Dashboard-Spec.md` | ☐ |
+| 3 | Designer (extension) | P08 | `P08-3D-Designer-Spec.md` | ◐ exists; update for tokens and slow queue |
+| 3 | Builder (extension) | P17 | `P17-Builder-Spec.md` | ☐ |
+| 3 | Settings (with wallet and usage, P14) | P15 | `P15-Settings-Spec.md` | ☐ |
+| 3 | Preferences | P20 | `P20-Preferences-Spec.md` | ☐ |
+| 3 | Help and support | P22 | `P22-Help-Spec.md` | ☐ |
+| 4 | Common UI: sidebar, top bar, session panel, Search overlay, phone tab bar | shared shell | `Common-UI-Spec.md` | ☐ |
+| 5 | Sign in and account recovery | P04 | `P04-Sign-In-Spec.md` | ☐ |
+| Later | Lite (desktop app) | P16 | `P16-Lite-Spec.md` | ☐ |
+
+How a spec gets made: Irileth drafts it from the prototype page and the logs (tracker, memory logs, platform matrix); Grant edits it during the prototype review; when Grant marks it approved, Irileth splits it into issues.
+
 ## Hand-off labels (the state machine)
 
 `spec` → `ready-for-tests` → `ready` → `in-progress` → `needs-review` → `changes-requested` or `review-passed` → Grant merges. `blocked` means an agent stopped and left a note.
@@ -122,7 +151,7 @@ Each scheduled task's prompt is one line, for example "Read `Builder v0.1/agents
 
 ## Setup steps for Grant (in order)
 
-1. [ ] Finish the prototype review; write feature notes in `design/specs/`, one file per page.
+1. [ ] Finish the prototype review; approve one feature spec per content panel in `design/specs/` (see Feature specs).
 2. [ ] Answer the build-gating decisions: RQ11 (D3 to D12), RQ15 (O1 app location, O2 styling, O3 package manager), RQ14 (preview access).
 3. [ ] Open service accounts in test mode: Cloudflare (Workers paid plan, Access, R2), managed PostgreSQL, Clerk, Stripe, Liveblocks, Trigger.dev, Anthropic API key for the app.
 4. [ ] Set spending caps (Claude Code usage; the app's API key).
@@ -140,8 +169,8 @@ Steps 1 to 6 are Grant's ([stated] 2026-11-13). Each step becomes one or more is
 | --- | --- | --- | --- |
 | 1 | Project Setup | App skeleton on Cloudflare Workers (D1, D2), CI (type-check, lint, unit tests, Workers build, Playwright), preview URL per pull request behind Cloudflare Access, coder `CLAUDE.md` | - |
 | 2 | Design System | Tokens, fonts and the components from `design/system-kit/` as code, each matching `DESIGN-SYSTEM.md` | `design/system-kit/` |
-| 3 | Editor Layout Shell | The app frame: top bar, main column, session panel, Settings overlay frame, desktop and phone layouts | `exports/shared/shell.js`, `shell.css` |
-| 4 | Sidebar UI | Sidebar with Chat and Projects modes, navigation rows (extensions hidden until bought), Recents, account footer, phone tab bar | `exports/shared/shell.js`, P01 |
+| 3 | Editor Layout Shell | The content panels inside the common UI ([stated] 2026-11-13): Projects, Designer, Builder, Vault, Dashboard and the other pages. Each panel is built from its feature spec (below), one or more issues per panel | Each page's prototype in `design/exports/` |
+| 4 | Sidebar UI | The common UI around the panels: sidebar with Chat and Projects modes, navigation rows (extensions hidden until bought), Recents, account footer, top bar, session panel, Search overlay, phone tab bar | `exports/shared/shell.js`, `shell.css`, P01 |
 | 5 | Auth Setup | Sign in, create account, verification code, forgot password (D4, Clerk preferred) | P04 |
 | 6 | Database Schema | Organization, User, Project (Job or Resource), Process, Document, Model, Schedule and Task, Note and Update, Calculator, Chat, Plan, Vendor Request, Customer Quote, Wallet transaction, Extension, Builder package (App Plan 4.2; D3) | App Plan 4.2 |
 | 7 | Draft: chat through the AI adapter (D7) | | P01 to P03 |
