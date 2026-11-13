@@ -40,7 +40,7 @@
   var U = {
     'new': '../P01-chat-start-desktop/Design_Engineering_App.html', newM: '../P02-chat-start-mobile/Design_Engineering_Mobile.html',
     dash: '../P19-dashboard/index.html', design: '../P08-3d-viewer/index.html', vault: '../P09-vault/index.html', uploads: '../P07-upload-flow/index.html',
-    builder: '../P17-builder/index.html', projects: '../P05-projects/index.html', settings: '../P15-account-settings/index.html', signin: '../P04-sign-in/index.html', lite: '../P16-lite/index.html'
+    builder: '../P17-builder/index.html', projects: '../P05-projects/index.html', settings: '../P15-account-settings/index.html', prefs: '../P20-preferences/index.html', help: '../P22-help/index.html', signin: '../P04-sign-in/index.html', lite: '../P16-lite/index.html'
   };
   /* the new chat page has a desktop and a phone version */
   if (PAGE === 'P01' && MOBILE) { location.replace(U.newM + location.search); return; }
@@ -63,7 +63,7 @@
     share: 'M12 15V4M8 8l4-4 4 4M5 12v7h14v-7', help: 'M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18zM9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.7.3-1 .9-1 1.7M12 17h.01',
     rail: 'M4 5h16v14H4zM15 5v14', x: 'M6 6l12 12M18 6L6 18', clock: 'M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18zM12 7v5l3 2',
     user: 'M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM4 21a8 8 0 0 1 16 0', out: 'M10 5H5v14h5M14 8l4 4-4 4M18 12H9', link: 'M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1',
-    keys: 'M3 7h18v10H3zM7 11h.01M11 11h.01M15 11h.01M8 14h8', doc: 'M7 3h7l5 5v13H7zM14 3v5h5M10 13h6M10 17h6', calc: 'M6 3h12v18H6zM9 7h6M9 12h.01M12 12h.01M15 12h.01M9 16h.01M12 16h.01M15 16h.01', card: 'M3 6h18v12H3zM3 10h18'
+    keys: 'M3 7h18v10H3zM7 11h.01M11 11h.01M15 11h.01M8 14h8', doc: 'M7 3h7l5 5v13H7zM14 3v5h5M10 13h6M10 17h6', calc: 'M6 3h12v18H6zM9 7h6M9 12h.01M12 12h.01M15 12h.01M9 16h.01M12 16h.01M15 16h.01', card: 'M3 6h18v12H3zM3 10h18', enter: 'M20 5v7a3 3 0 0 1-3 3H5M9 11l-4 4 4 4'
   };
   function ico(n, s, w) { return '<svg width="' + (s || 16) + '" height="' + (s || 16) + '" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="' + (w || 1.6) + '" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" style="flex-shrink:0"><path d="' + IC[n] + '"/></svg>'; }
 
@@ -116,7 +116,7 @@
   D.addEventListener('mousedown', function (e) { if (openMenu && !openMenu.el.contains(e.target) && !openMenu.anchor.contains(e.target)) closeMenu(); }, true);
 
   /* ---------- search ---------- */
-  var PAGES = [['New chat', U['new'], 'Page'], ['Dashboard', U.dash, 'Page'], ['Projects', U.projects, 'Page'], ['Vault', U.vault, 'Page'], ['Uploads', U.uploads, 'Page'], ['Settings', U.settings, 'Page'], ['Billing and extensions', U.settings + '#billing', 'Settings'], ['Usage', U.settings + '#usage', 'Settings'], ['Team', U.settings + '#team', 'Settings']];
+  var PAGES = [['New chat', U['new'], 'Page'], ['Dashboard', U.dash, 'Page'], ['Projects', U.projects, 'Page'], ['Vault', U.vault, 'Page'], ['Uploads', U.uploads, 'Page'], ['Settings', U.settings, 'Page'], ['Billing and extensions', U.settings + '#billing', 'Settings'], ['Usage', U.settings + '#usage', 'Settings'], ['Team', U.settings + '#team', 'Settings'], ['Help center', U.help, 'Help'], ['Contact support', U.help + '#contact', 'Help'], ['Your support requests', U.help + '#reqs', 'Help']];
   function searchItems() {
     var a = PAGES.slice(), x = extGet();
     if (x.design) a.push(['3D designer', U.design, 'Extension']);
@@ -126,23 +126,93 @@
     DE.vault.forEach(function (v) { if (v.t !== 'Chat') a.push([v.n, v.calc ? U.vault + '?calc=' + v.calc : v.h, v.t]); });
     return a;
   }
+  /* Search overlay: type tabs, Needs attention, Recents and Actions when empty; grouped results when typing.
+     Keys: arrows move, Enter opens, Left/Right change type (empty box), / filters by project, Alt+Enter row actions, Esc closes. */
+  var SX_TYPES = [['all', 'All'], ['chat', 'Chats'], ['project', 'Projects'], ['vault', 'Vault'], ['upload', 'Uploads'], ['page', 'Pages']];
+  var SX_ICON = { chat: 'chat', project: 'folder', vault: 'doc', upload: 'upload', page: 'dash', action: 'plus', attn: 'clock' };
+  var SX_GROUP = { chat: 'Chats', project: 'Projects', vault: 'Vault', upload: 'Uploads', page: 'Pages' };
+  function sxItems() {
+    var a = [], x = extGet(), seen = {};
+    function add(o) { var k = o.k + '|' + o.n + '|' + (o.p || ''); if (seen[k]) return; seen[k] = 1; a.push(o); }
+    DE.projects.forEach(function (p) { add({ k: 'project', n: p.name, h: DE.summaryUrl(p.id), m: p.id, p: p.id }); (p.chats || []).forEach(function (c) { add({ k: 'chat', n: c, h: DE.chatUrl(c, p.id), m: p.id, p: p.id }); }); });
+    DE.recents.forEach(function (c) { add({ k: 'chat', n: c, h: DE.chatUrl(c), m: 'Chat' }); });
+    DE.vault.forEach(function (v) { if (v.t === 'Chat') return; add({ k: v.t === 'Upload' ? 'upload' : 'vault', n: v.n, h: v.calc ? U.vault + '?calc=' + v.calc : v.h, m: v.t + (v.p ? ' · ' + v.p : ''), p: v.p }); });
+    PAGES.forEach(function (g) { add({ k: 'page', n: g[0], h: g[1], m: g[2] }); });
+    add({ k: 'page', n: 'Preferences', h: U.prefs, m: 'Factory context' });
+    if (x.design) add({ k: 'page', n: '3D designer', h: U.design, m: 'Extension' });
+    if (x.builder && !MOBILE) add({ k: 'page', n: 'Builder', h: U.builder, m: 'Extension' });
+    return a;
+  }
+  function sxAttention() {
+    var r = [], pr = ls('de-prefs', null), n = pr && pr.sug ? pr.sug.length : 2;
+    if (n) r.push({ k: 'attn', n: n + (n > 1 ? ' changes from chats wait in Preferences' : ' change from a chat waits in Preferences'), h: U.prefs + '#overview', m: 'Preferences', e: 1 });
+    r.push({ k: 'attn', n: 'Quote for Capping station waits for your approval', h: DE.summaryUrl('BC-Q-26038'), m: 'BC-Q-26038', p: 'BC-Q-26038', e: 1 });
+    return r;
+  }
+  function sxActions() {
+    return [{ k: 'action', n: 'New chat', h: MOBILE ? U.newM : U['new'], m: '' }, { k: 'action', n: 'New project', act: newProject, m: '' }, { k: 'action', n: 'Upload files', h: U.uploads, m: '' }, { k: 'action', n: 'Open preferences', h: U.prefs, m: '', ic: 'prefs' }];
+  }
   function search() {
-    var all = searchItems();
-    var d = dialog({ title: 'Search', noHead: true, raw: '<label class="dx-search">' + ico('search', 18) + '<span class="dx-sr">Search</span><input id="dx-q" type="search" placeholder="Search projects, chats, the Vault and pages" autocomplete="off"><button class="de-iconbtn" type="button" data-x="1" aria-label="Close search">' + ico('x', 18) + '</button></label><div class="dx-res" id="dx-r" role="listbox" aria-label="Results"></div>' });
-    function draw() {
-      var q = $('#dx-q', d.el).value.trim().toLowerCase();
-      var hit = all.filter(function (x) { return !q || (x[0] + ' ' + x[2]).toLowerCase().indexOf(q) > -1; }).slice(0, q ? 24 : 9);
-      $('#dx-r', d.el).innerHTML = hit.length ? hit.map(function (x) { return '<a class="dx-item" role="option" href="' + esc(x[1]) + '"><span>' + esc(x[0]) + '</span><small>' + esc(x[2]) + '</small></a>'; }).join('') : '<div class="dx-none">Nothing matches. Try a project number, a chat title or a file name.</div>';
+    var all = sxItems(), st = { t: 0, i: 0, proj: '', filt: false }, rows = [];
+    var d = dialog({ title: 'Search', noHead: true, raw:
+      '<div class="sx-head"><label class="sx-q"><span class="dx-sr">Search</span><input id="sx-q" type="search" placeholder="Search" autocomplete="off" role="combobox" aria-expanded="true" aria-controls="sx-r" aria-autocomplete="list"></label><button class="de-iconbtn" type="button" data-x="1" aria-label="Close search">' + ico('x', 20) + '</button></div>' +
+      '<div class="sx-tabs" role="tablist" aria-label="Type">' + SX_TYPES.map(function (t, i) { return '<button type="button" role="tab" data-t="' + i + '">' + t[1] + '</button>'; }).join('') + '</div>' +
+      '<div class="sx-filt" id="sx-f" hidden></div>' +
+      '<div class="sx-res" id="sx-r" role="listbox" aria-label="Results"></div>' +
+      '<div class="sx-foot" aria-hidden="true"><span>Close <kbd>Esc</kbd></span><span>Change type <kbd>←</kbd><kbd>→</kbd></span><span>Filters <kbd>/</kbd></span><span>Actions <kbd>Alt</kbd><kbd>↵</kbd></span><span class="sx-sp"></span><span>Open <kbd>↵</kbd></span></div>' });
+    d.el.firstChild.classList.add('is-search');
+    var q = $('#sx-q', d.el), box = $('#sx-r', d.el);
+    function hl(t, k) { var e = esc(t); if (!k) return e; var i = t.toLowerCase().indexOf(k); if (i < 0) return e; return esc(t.slice(0, i)) + '<mark>' + esc(t.slice(i, i + k.length)) + '</mark>' + esc(t.slice(i + k.length)); }
+    function rowH(o, n, k) { return '<a class="sx-row' + (n === st.i ? ' is-on' : '') + '" role="option" id="sx-o' + n + '" data-n="' + n + '" href="' + esc(o.h || '#') + '" aria-selected="' + (n === st.i) + '">' + ico(o.ic || SX_ICON[o.k], 18) + '<span class="sx-n">' + hl(o.n, k) + '</span>' + (o.m ? '<small>' + (o.m.indexOf(' · ') > 0 ? '<span class="sx-ty">' + esc(o.m.split(' · ')[0]) + ' · </span>' + esc(o.m.split(' · ')[1]) : esc(o.m)) + '</small>' : '') + '<span class="sx-hint"><button class="sx-more" type="button" data-more="' + n + '" tabindex="-1" aria-label="Actions for ' + esc(o.n) + '">' + ico('more', 16, 2.2) + '</button>' + ico('enter', 16) + '</span></a>'; }
+    function sec(title, list, k) { if (!list.length) return ''; var h = '<div class="sx-sec" role="presentation">' + esc(title) + '</div>'; list.forEach(function (o) { h += rowH(o, rows.length, k); rows.push(o); }); return h; }
+    function draw(keepI) {
+      var k = q.value.trim().toLowerCase(), type = SX_TYPES[st.t][0], h = '';
+      if (!keepI) st.i = 0; rows = [];
+      $$('[data-t]', d.el).forEach(function (b) { var on = +b.dataset.t === st.t; b.setAttribute('aria-selected', String(on)); b.classList.toggle('is-on', on); });
+      var f = $('#sx-f', d.el); f.hidden = !st.filt;
+      if (st.filt) f.innerHTML = '<span class="de-label">Project</span>' + [['', 'Any project']].concat(DE.projects.map(function (p) { return [p.id, p.name]; })).map(function (p) { return '<button type="button" class="sx-chip' + (st.proj === p[0] ? ' is-on' : '') + '" data-p="' + esc(p[0]) + '" aria-pressed="' + (st.proj === p[0]) + '">' + esc(p[1]) + '</button>'; }).join('');
+      var pool = all.filter(function (o) { return (type === 'all' || o.k === type) && (!st.proj || o.p === st.proj) && (!k || (o.n + ' ' + o.m).toLowerCase().indexOf(k) > -1); });
+      if (!k && type === 'all' && !st.proj) {
+        h += sec('Needs attention', sxAttention(), '');
+        var rec = DE.recents.slice(0, 3).map(function (c) { return { k: 'chat', n: c, h: DE.chatUrl(c), m: 'Chat' }; }).concat(DE.vault.filter(function (v) { return v.t !== 'Chat'; }).slice(0, 3).map(function (v) { return { k: v.t === 'Upload' ? 'upload' : 'vault', n: v.n, h: v.calc ? U.vault + '?calc=' + v.calc : v.h, m: v.t + (v.p ? ' · ' + v.p : '') }; }));
+        h += sec('Recents', rec, '') + sec('Actions', sxActions(), '');
+      } else if (type === 'all') {
+        ['project', 'chat', 'vault', 'upload', 'page'].forEach(function (g) { h += sec(SX_GROUP[g], pool.filter(function (o) { return o.k === g; }).slice(0, k ? 6 : 4), k); });
+        if (k) h += sec('Actions', sxActions().filter(function (o) { return o.n.toLowerCase().indexOf(k) > -1; }), k);
+      } else h += sec(k ? SX_GROUP[type] : 'Recent ' + SX_GROUP[type].toLowerCase(), pool.slice(0, 40), k);
+      box.innerHTML = h || '<div class="dx-none">Nothing matches' + (st.proj ? ' in this project' : '') + '. Try a project number, a chat title or a file name.</div>';
+      q.setAttribute('aria-activedescendant', rows.length ? 'sx-o' + st.i : '');
     }
-    $('#dx-q', d.el).addEventListener('input', draw);
-    d.el.addEventListener('keydown', function (e) { var f = $$('.dx-item', d.el), i = f.indexOf(D.activeElement); if (e.key === 'ArrowDown') { e.preventDefault(); (f[i + 1] || f[0]).focus(); } else if (e.key === 'ArrowUp') { e.preventDefault(); (i > 0 ? f[i - 1] : $('#dx-q', d.el)).focus(); } else if (e.key === 'Enter' && D.activeElement.id === 'dx-q' && f[0]) { location.href = f[0].href; } });
+    function move(n) { if (!rows.length) return; st.i = (st.i + n + rows.length) % rows.length; $$('.sx-row', box).forEach(function (r) { var on = +r.dataset.n === st.i; r.classList.toggle('is-on', on); r.setAttribute('aria-selected', String(on)); if (on) r.scrollIntoView({ block: 'nearest' }); }); q.setAttribute('aria-activedescendant', 'sx-o' + st.i); }
+    function open(o) { if (!o) return; if (o.act) { d.close(); o.act(); } else location.href = o.h; }
+    function more(n, anchor) { var o = rows[n]; if (!o) return; var it = [{ label: 'Open', icon: 'fwd', action: function () { open(o); } }];
+      if (o.p && o.k !== 'project') it.push({ label: 'Open the project', icon: 'folder', href: DE.summaryUrl(o.p) });
+      if (o.h) it.push({ label: 'Copy link', icon: 'link', action: function () { var u = new URL(o.h, location.href).href; if (navigator.clipboard) navigator.clipboard.writeText(u).then(function () { toast('Link copied.'); }, function () { toast('Copy did not work here.'); }); } });
+      if (o.k === 'chat') it.push({ label: 'Start a chat like this', icon: 'chatplus', href: (MOBILE ? U.newM : U['new']) + (o.p ? '?project=' + o.p : '') });
+      menu(anchor || $('#sx-o' + n, box), it, { label: 'Actions' }); }
+    q.addEventListener('input', function () { draw(); });
+    d.el.addEventListener('click', function (e) {
+      var t = e.target.closest('[data-t]'); if (t) { st.t = +t.dataset.t; draw(); q.focus(); return; }
+      var p = e.target.closest('[data-p]'); if (p) { st.proj = st.proj === p.dataset.p ? '' : p.dataset.p; draw(); q.focus(); return; }
+      var m = e.target.closest('[data-more]'); if (m) { e.preventDefault(); e.stopPropagation(); st.i = +m.dataset.more; move(0); more(st.i, m); return; }
+      var r = e.target.closest('.sx-row'); if (r) { var o = rows[+r.dataset.n]; if (o && o.act) { e.preventDefault(); open(o); } }
+    });
+    box.addEventListener('mousemove', function (e) { var r = e.target.closest('.sx-row'); if (r && +r.dataset.n !== st.i) { st.i = +r.dataset.n; move(0); } });
+    q.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowDown') { e.preventDefault(); move(1); }
+      else if (e.key === 'ArrowUp') { e.preventDefault(); move(-1); }
+      else if (e.key === 'Enter' && e.altKey) { e.preventDefault(); more(st.i); }
+      else if (e.key === 'Enter') { e.preventDefault(); open(rows[st.i]); }
+      else if ((e.key === 'ArrowLeft' || e.key === 'ArrowRight') && !q.value) { e.preventDefault(); st.t = (st.t + (e.key === 'ArrowRight' ? 1 : -1) + SX_TYPES.length) % SX_TYPES.length; draw(); }
+      else if (e.key === '/' && !q.value) { e.preventDefault(); st.filt = !st.filt; if (!st.filt) st.proj = ''; draw(); }
+    });
     draw();
   }
 
   /* ---------- new project ---------- */
   function newProject() {
-    var d = dialog({ title: 'New project', body: '<form class="dx-form" id="dx-np"><label for="dx-pn">Project name<input id="dx-pn" autocomplete="off" placeholder="For example: Case packer line 2"></label><p style="margin:0;font-size:13px;color:var(--bc-muted)">It gets the next project number and is shared with your organization.</p><div class="dx-err" id="dx-pe" role="alert"></div><div class="dx-row"><button class="dx-btn" type="button" data-x="1">Cancel</button><button class="dx-btn is-main" type="submit">Create project</button></div></form>' });
-    $('#dx-np', d.el).addEventListener('submit', function (e) { e.preventDefault(); var n = $('#dx-pn', d.el).value.trim(); if (n.length < 2) { $('#dx-pe', d.el).textContent = 'Give the project a name.'; return; } var p = DE.addProject(n); location.href = DE.summaryUrl(p.id); });
+    /* Opens the Preferences overlay in new-project mode: name, then project context (read first), then the facility context. */
+    location.href = U.prefs + '?new=1';
   }
   function shortcuts() { dialog({ title: 'Keyboard shortcuts', body: '<dl class="dx-keys"><dt>Ctrl K or ⌘ K</dt><dd>Search</dd><dt>Esc</dt><dd>Close a menu, a dialog or Settings</dd><dt>Tab</dt><dd>Move to the next control</dd><dt>Arrow keys</dt><dd>Move inside a menu or the search results</dd></dl>' }); }
   function copyLink() { var u = location.href; function ok() { toast('Link copied.'); } if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(u).then(ok, function () { toast('Copy did not work here. The link is in the address bar.'); }); else toast('Copy is not available here. The link is in the address bar.'); }
@@ -153,7 +223,7 @@
     a.push('-', { label: 'Sign out', icon: 'out', href: U.signin });
     return a;
   };
-  function helpMenu(b) { menu(b, [{ head: 'Help' }, { label: 'Ask the assistant', icon: 'chat', href: MOBILE ? U.newM : U['new'] }, { label: 'Keyboard shortcuts', icon: 'keys', action: shortcuts }, '-', { html: '<p>Help center: docs.designengineering.ai (planned).<br>Support: [support contact].</p>' }]); }
+  function helpMenu(b) { menu(b, [{ head: 'Help' }, { label: 'Ask the assistant', icon: 'chat', href: MOBILE ? U.newM : U['new'] }, { label: 'Help center', icon: 'help', href: U.help }, { label: 'Contact support', icon: 'out', href: U.help + '#contact' }, { label: 'System status', icon: 'clock', href: U.help + '#status' }, '-', { label: 'Keyboard shortcuts', icon: 'keys', action: shortcuts }]); }
   function shareMenu(b) {
     var el = menu(b, [{ head: 'Share this page' }, { html: '<p>People in your organization who can see this project can open the link.</p><div class="dx-field"><label class="dx-sr" for="dx-url">Link</label><input id="dx-url" readonly value="' + esc(location.href) + '"><button class="dx-btn" type="button" id="dx-copy">Copy</button></div>' }, '-', { label: 'Invite people', icon: 'user', href: U.settings + '#team' }], { plain: true, label: 'Share' });
     if (el) $('#dx-copy', el).addEventListener('click', function () { $('#dx-url', el).select(); copyLink(); });
@@ -171,7 +241,7 @@
     if (x.design) r.push(['design', 'Design', 'cube', U.design]);
     r.push(['vault', 'Vault', 'vault', U.vault], ['uploads', 'Uploads', 'upload', U.uploads]);
     if (x.builder) r.push(['builder', 'Builder', 'box', U.builder]);
-    if (sbMode === 'projects') r.push(['prefs', 'Preferences', 'prefs', U.settings + '#prefs']);
+    if (sbMode === 'projects') r.push(['prefs', PID ? 'Project preferences' : 'Preferences', 'prefs', PID ? U.prefs + '?project=' + PID : U.prefs]);
     r.push(['more', 'More', 'more', null]);
     return r;
   }
@@ -254,7 +324,7 @@
     if (b.classList.contains('sbsegb')) { var pm = /Projects/i.test(b.getAttribute('aria-label') || b.title || '') ? 'projects' : 'chat'; ss('de-sbmode', pm); return; }
     var lab = ($('.sblab', b) ? $('.sblab', b).textContent : b.textContent).trim(), inNav = !!b.closest('.sbnav');
     if (inNav) {
-      var go = { Dashboard: U.dash, Design: U.design, Vault: U.vault, Uploads: U.uploads, Builder: U.builder, Preferences: U.settings + '#prefs' }[lab];
+      var go = { Dashboard: U.dash, Design: U.design, Vault: U.vault, Uploads: U.uploads, Builder: U.builder, Preferences: U.prefs, 'Project preferences': U.prefs + '?project=' + PID }[lab];
       if (lab === 'Search') { stop(); search(); } else if (lab === 'More') { stop(); menu(b, moreItems(), { left: true }); } else if (go) { stop(); location.href = go; }
       return;
     }
@@ -311,7 +381,7 @@
     el.addEventListener('click', function (e) { if (e.target.closest('[data-x]')) { closeSheet(); return; } var b = e.target.closest('[data-i]'); if (b) { var it = items[+b.dataset.i]; closeSheet(); if (it.action) it.action(); } });
     $('[data-x]', el).focus();
   }
-  function moreSheet(a) { var x = extGet(), it = [{ label: 'Projects', icon: 'folder', href: U.projects }, { label: 'Vault', icon: 'vault', href: U.vault }, { label: 'Uploads', icon: 'upload', href: U.uploads }]; if (x.design) it.push({ label: '3D designer', icon: 'cube', href: U.design, hint: 'View' }); it.push({ label: 'Search', icon: 'search', action: search }, '-', { label: 'Settings', icon: 'gear', href: U.settings }, { label: 'Sign out', icon: 'out', href: U.signin }); sheet(a, 'More', it); }
+  function moreSheet(a) { var x = extGet(), it = [{ label: 'Projects', icon: 'folder', href: U.projects }, { label: 'Vault', icon: 'vault', href: U.vault }, { label: 'Uploads', icon: 'upload', href: U.uploads }]; if (x.design) it.push({ label: '3D designer', icon: 'cube', href: U.design, hint: 'View' }); it.push({ label: 'Search', icon: 'search', action: search }, '-', { label: 'Settings', icon: 'gear', href: U.settings }, { label: 'Help and support', icon: 'help', href: U.help }, { label: 'Sign out', icon: 'out', href: U.signin }); sheet(a, 'More', it); }
   function recentsSheet(a) { var it = [{ head: 'General' }]; DE.recents.slice(0, 6).forEach(function (c) { it.push({ label: c, href: DE.chatUrl(c) }); }); DE.projects.forEach(function (p) { if (!(p.chats || []).length) return; it.push({ head: p.name }); p.chats.forEach(function (c) { it.push({ label: c, href: DE.chatUrl(c, p.id) }); }); }); sheet(a, 'Recents', it); }
   var TABKEY = { P02: 'new', P03: 'recents', P19: 'dash' }[PAGE] || 'more';
   function buildTabs() {

@@ -17,6 +17,8 @@ All documents were reconciled on Nov 5, 2026, using the Word SBA plan and summar
 - Basic Viewer gets a small daily AI cap and up to 3 projects of its own.
 - Turbo stays as a power-user level after infrastructure upgrades.
 
+On 2026-11-12 the App Plan, SBA plan and summary were reconciled with the page designs: Starter is $20 per year and unlocks 3 projects (tokens separate, no spending limit), and Design and Builder are $600 per year extensions that ship after the MVP.
+
 Next: continue in the GitHub repo with Claude Code, starting with a review of the Lite package format draft (App 3.2) and the Executive Summary.
 
 ## System Questions
@@ -63,7 +65,7 @@ Next: continue in the GitHub repo with Claude Code, starting with a review of th
 | 3 | Platform & Delivery Surfaces | ◐ (3.2 Lite package format draft v0.1 awaiting review) |
 | 4 | Technology Architecture & Decision Log (final picks D1–D12 during build) | ◐ |
 | 5 | Data Security & Customer IP (deferred; data use policy added; sign-in = Clerk) | ◐ |
-| 6 | Usage Metering & Token Model (rates set after MVP cost testing) | ◐ (Turbo, Starter, Team storage open) |
+| 6 | Usage Metering & Token Model (rates set after MVP cost testing; 6.4 abuse and loss controls added 2026-11-12) | ◐ (Turbo price and Team storage open) |
 | 7 | Roadmap & Winter Milestones | ☑ |
 | 8 | Risks & Mitigations | ☑ |
 
@@ -77,13 +79,13 @@ Completed in order: system questions; SBA 2, 4, 7, 9 (running); App 3, 6, 2; SBA
 | --- | --- | --- |
 | 1 | Review the Executive Summary | SBA 1 |
 | 2 | Review the Lite package format draft v0.1 | App 3.2 |
-| 3 | Choose the on-device model and minimum PC spec; Windows only or also macOS; can Lite users add notes | App 3.2, App 4 (D11–D12) |
+| 3 | Choose the on-device model and minimum PC spec; Windows only or also macOS; can Lite users add notes (D11 now covers Lite only; Builder runs in the web app) | App 3.2, App 4 (D11–D12) |
 | 4 | Set Turbo price and included storage | SBA 5.2, App 6.1 |
-| 5 | Set Starter bundle price and contents (now [$20] with [$10] of tokens and 20 GB) | SBA 5.2, App 6.1 |
+| 5 | Set Starter bundle contents: price set 2026-11-12 at $20 / year with 3 projects and no token limit; 5 GB total, 100 MB per file, one-time $5 token credit (A), set 2026-11-12 | SBA 5.2, App 6.1 |
 | 6 | Confirm Team storage per user (assumed 20 GB) | App 6.1 |
-| 7 | Set Builder open-sale timing | SBA 6.2, App 7 |
-| 8 | Choose the founder-built paid feature that closes the $37,000 base-case gap (Team or Builder are candidates) | SBA 8.2.1 |
-| 9 | Calibrate wallet rates, the Basic Viewer daily cap, and its [X%] of Pro revenue limit from MVP cost testing | App 6, SBA 8.4 |
+| 7 | Set Design and Builder extension open-sale timing (both after the MVP; Builder used at Block Concepts in year 1) | SBA 6.2, App 7 |
+| 8 | Choose the founder-built paid feature that closes the $43,700 base-case gap (Team or Builder are candidates) | SBA 8.2.1 |
+| 9 | Calibrate wallet rates and the free daily cap from MVP cost testing (the free pool is set at 5% of Pro membership revenue) | App 6, SBA 8.4 |
 | 10 | Pick the final stack during the winter build and fill the Decision Log | App 4 (D1–D12) |
 | 11 | Confirm Anthropic Claude API data terms | App 4.1, SBA 9.2 |
 | 12 | Security decisions: file retention after cancellation, U.S.-only hosting, multi-factor sign-in timing, package signing | App 5 |
