@@ -40,7 +40,7 @@
   var U = {
     'new': '../P01-chat-start-desktop/Design_Engineering_App.html', newM: '../P02-chat-start-mobile/Design_Engineering_Mobile.html',
     dash: '../P19-dashboard/index.html', design: '../P08-3d-viewer/index.html', vault: '../P09-vault/index.html', uploads: '../P07-upload-flow/index.html',
-    builder: '../P17-builder/index.html', projects: '../P05-projects/index.html', settings: '../P15-account-settings/index.html', prefs: '../P20-preferences/index.html', signin: '../P04-sign-in/index.html', lite: '../P16-lite/index.html'
+    builder: '../P17-builder/index.html', projects: '../P05-projects/index.html', settings: '../P15-account-settings/index.html', prefs: '../P20-preferences/index.html', help: '../P22-help/index.html', signin: '../P04-sign-in/index.html', lite: '../P16-lite/index.html'
   };
   /* the new chat page has a desktop and a phone version */
   if (PAGE === 'P01' && MOBILE) { location.replace(U.newM + location.search); return; }
@@ -116,7 +116,7 @@
   D.addEventListener('mousedown', function (e) { if (openMenu && !openMenu.el.contains(e.target) && !openMenu.anchor.contains(e.target)) closeMenu(); }, true);
 
   /* ---------- search ---------- */
-  var PAGES = [['New chat', U['new'], 'Page'], ['Dashboard', U.dash, 'Page'], ['Projects', U.projects, 'Page'], ['Vault', U.vault, 'Page'], ['Uploads', U.uploads, 'Page'], ['Settings', U.settings, 'Page'], ['Billing and extensions', U.settings + '#billing', 'Settings'], ['Usage', U.settings + '#usage', 'Settings'], ['Team', U.settings + '#team', 'Settings']];
+  var PAGES = [['New chat', U['new'], 'Page'], ['Dashboard', U.dash, 'Page'], ['Projects', U.projects, 'Page'], ['Vault', U.vault, 'Page'], ['Uploads', U.uploads, 'Page'], ['Settings', U.settings, 'Page'], ['Billing and extensions', U.settings + '#billing', 'Settings'], ['Usage', U.settings + '#usage', 'Settings'], ['Team', U.settings + '#team', 'Settings'], ['Help center', U.help, 'Help'], ['Contact support', U.help + '#contact', 'Help'], ['Your support requests', U.help + '#reqs', 'Help']];
   function searchItems() {
     var a = PAGES.slice(), x = extGet();
     if (x.design) a.push(['3D designer', U.design, 'Extension']);
@@ -223,7 +223,7 @@
     a.push('-', { label: 'Sign out', icon: 'out', href: U.signin });
     return a;
   };
-  function helpMenu(b) { menu(b, [{ head: 'Help' }, { label: 'Ask the assistant', icon: 'chat', href: MOBILE ? U.newM : U['new'] }, { label: 'Keyboard shortcuts', icon: 'keys', action: shortcuts }, '-', { html: '<p>Help center: docs.designengineering.ai (planned).<br>Support: [support contact].</p>' }]); }
+  function helpMenu(b) { menu(b, [{ head: 'Help' }, { label: 'Ask the assistant', icon: 'chat', href: MOBILE ? U.newM : U['new'] }, { label: 'Help center', icon: 'help', href: U.help }, { label: 'Contact support', icon: 'out', href: U.help + '#contact' }, { label: 'System status', icon: 'clock', href: U.help + '#status' }, '-', { label: 'Keyboard shortcuts', icon: 'keys', action: shortcuts }]); }
   function shareMenu(b) {
     var el = menu(b, [{ head: 'Share this page' }, { html: '<p>People in your organization who can see this project can open the link.</p><div class="dx-field"><label class="dx-sr" for="dx-url">Link</label><input id="dx-url" readonly value="' + esc(location.href) + '"><button class="dx-btn" type="button" id="dx-copy">Copy</button></div>' }, '-', { label: 'Invite people', icon: 'user', href: U.settings + '#team' }], { plain: true, label: 'Share' });
     if (el) $('#dx-copy', el).addEventListener('click', function () { $('#dx-url', el).select(); copyLink(); });
@@ -381,7 +381,7 @@
     el.addEventListener('click', function (e) { if (e.target.closest('[data-x]')) { closeSheet(); return; } var b = e.target.closest('[data-i]'); if (b) { var it = items[+b.dataset.i]; closeSheet(); if (it.action) it.action(); } });
     $('[data-x]', el).focus();
   }
-  function moreSheet(a) { var x = extGet(), it = [{ label: 'Projects', icon: 'folder', href: U.projects }, { label: 'Vault', icon: 'vault', href: U.vault }, { label: 'Uploads', icon: 'upload', href: U.uploads }]; if (x.design) it.push({ label: '3D designer', icon: 'cube', href: U.design, hint: 'View' }); it.push({ label: 'Search', icon: 'search', action: search }, '-', { label: 'Settings', icon: 'gear', href: U.settings }, { label: 'Sign out', icon: 'out', href: U.signin }); sheet(a, 'More', it); }
+  function moreSheet(a) { var x = extGet(), it = [{ label: 'Projects', icon: 'folder', href: U.projects }, { label: 'Vault', icon: 'vault', href: U.vault }, { label: 'Uploads', icon: 'upload', href: U.uploads }]; if (x.design) it.push({ label: '3D designer', icon: 'cube', href: U.design, hint: 'View' }); it.push({ label: 'Search', icon: 'search', action: search }, '-', { label: 'Settings', icon: 'gear', href: U.settings }, { label: 'Help and support', icon: 'help', href: U.help }, { label: 'Sign out', icon: 'out', href: U.signin }); sheet(a, 'More', it); }
   function recentsSheet(a) { var it = [{ head: 'General' }]; DE.recents.slice(0, 6).forEach(function (c) { it.push({ label: c, href: DE.chatUrl(c) }); }); DE.projects.forEach(function (p) { if (!(p.chats || []).length) return; it.push({ head: p.name }); p.chats.forEach(function (c) { it.push({ label: c, href: DE.chatUrl(c, p.id) }); }); }); sheet(a, 'Recents', it); }
   var TABKEY = { P02: 'new', P03: 'recents', P19: 'dash' }[PAGE] || 'more';
   function buildTabs() {

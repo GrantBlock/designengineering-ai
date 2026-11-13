@@ -29,6 +29,7 @@ Everything waiting on Grant, tagged by where it is best handled. The shortcut "w
 | ID | Item | Closed | Answer |
 | --- | --- | --- | --- |
 | RQ18 | Starter bundle, SBA 8.2.1 Starter revenue, Lite demo gate | 2026-11-12 | Starter $20 per year, 3 projects, 5 GB (100 MB per file), one-time $5 credit (A), tokens separate with no limit; free pool capped at 5% of Pro revenue with abuse controls (App Plan 6.4); 8.2.1 updated (gap $43,700); Block Concepts runs the full suite in year 1 and the Lite demo gate stays |
+| RQ20 | Review the P22 Help and support overlay; give the support email, hours and reply time to replace the placeholders | code | ☐ | `design/exports/P22-help/index.html` |
 | RQ19 | Review the P20 Preferences overlay | 2026-11-12 | Approved (Grant). Settings stays for UI and non-chat preferences. Projects get their own context, read first, set when a project is created. Help and support placement still open |
 | RQ03 | Are the mobile pages web-responsive for now? (App Plan lists mobile apps as Later) | 2026-11-12 | Answered: the web app is responsive on phones (App Plan 3, approved item 3); native apps stay Later. |
 | RQ07 | Add the P01 and P02 exports to the repo | 2026-11-12 | Done: P01 and P02 exports are in `design/exports/` (2026-11-09). |
@@ -53,3 +54,4 @@ Everything waiting on Grant, tagged by where it is best handled. The shortcut "w
 - [stated] 2026-11-12: RQ19 added for the P20 Preferences draft.
 - [stated] 2026-11-12: RQ19 closed: P20 approved.
 - [stated] 2026-11-12: RQ03 and RQ07 closed during the document review (answered and done).
+- [stated] 2026-11-13: RQ20 added for the P22 Help and support draft.
