@@ -1,4 +1,4 @@
-# Agentic Development Plan
+# Agentic Development Plan: Project Iron
 
 Updated 2026-11-13 · Grant Block. **Draft (not yet approved by Grant)** except lines marked `[stated]`. Written for Claude in VS Code: open this file, then paste the starter prompt at the bottom.
 
@@ -10,16 +10,19 @@ Related: `development-path.md` (Build automation section), `AGENTS.md` (roles), 
 - [stated] 2026-11-12: Agent sessions run on a schedule, to stay within usage limits and keep Grant's business hours free.
 - [stated] 2026-11-12: Four roles: Planner, Coder, Reviewer, Tester.
 - [stated] 2026-11-12: The coder `CLAUDE.md` and the issue template wait until Grant finishes the prototype review.
+- [stated] 2026-11-13: The build project is named **Iron** (Grant).
+- [stated] 2026-11-13: Agent names: Planner **Irileth**, Coder **Hrongar**, Reviewer **Farengar**, Tester **Lydia** (Grant). Agents sign their issue and pull request comments with their name and role, for example "Hrongar (Coder)".
+- [stated] 2026-11-13: Iron's process starts with six steps: 1 Project Setup, 2 Design System, 3 Editor Layout Shell, 4 Sidebar UI, 5 Auth Setup, 6 Database Schema (Grant).
 - [stated] 2026-11-09: Claude builds; Grant decides and reviews results, not code. No throwaway work.
 
 ## Roles
 
 | Role | Who | Model (A) | Job | Hands off with |
 | --- | --- | --- | --- | --- |
-| Planner | Grant, with planning chats | Claude Opus 5.5 | Turns each feature note into GitHub issues with acceptance criteria; answers questions; merges | Label `ready-for-tests` |
-| Tester | Scheduled cloud session | Claude Sonnet 5.5 | Writes acceptance tests from the spec before any code (Playwright, replaying the prototype flow); later checks the preview and posts screenshots | Tests merged, label `ready` |
-| Coder | Scheduled cloud session | Claude Fable 5.2 (`claude-fable-5-2`), high effort | Builds the next `ready` issue on its own branch until the tests pass; one pull request into `development` | Label `needs-review` |
-| Reviewer | Scheduled cloud session | Claude Opus 5.5 | Checks the pull request against the spec, `design/DESIGN-SYSTEM.md` and the plan's rules (pricing, levels, numbers, source-of-truth order) | Label `review-passed` or `changes-requested` |
+| Planner: Irileth | Grant, with planning chats | Claude Opus 5.5 | Turns each feature note into GitHub issues with acceptance criteria; answers questions; merges | Label `ready-for-tests` |
+| Tester: Lydia | Scheduled cloud session | Claude Sonnet 5.5 | Writes acceptance tests from the spec before any code (Playwright, replaying the prototype flow); later checks the preview and posts screenshots | Tests merged, label `ready` |
+| Coder: Hrongar | Scheduled cloud session | Claude Fable 5.2 (`claude-fable-5-2`), high effort | Builds the next `ready` issue on its own branch until the tests pass; one pull request into `development` | Label `needs-review` |
+| Reviewer: Farengar | Scheduled cloud session | Claude Opus 5.5 | Checks the pull request against the spec, `design/DESIGN-SYSTEM.md` and the plan's rules (pricing, levels, numbers, source-of-truth order) | Label `review-passed` or `changes-requested` |
 
 Why tests first: the coder cannot weaken them. The acceptance-test folder needs Grant's approval for any change (CODEOWNERS plus branch protection).
 
@@ -29,12 +32,12 @@ Why a different reviewer model: a second model catches different mistakes, and O
 
 Draft (not yet approved by Grant), 2026-11-13. Each identity becomes the top of its role file in `agents/` (`agents/<name>.md`). The scheduled task's prompt only points to that file.
 
-### Planner (`planner`)
+### Irileth, Planner (`planner`)
 
 - **Goal:** Every feature Grant wants is a clear, testable GitHub issue, in the order Block Concepts needs it, before any agent works on it.
 - **Reason:** Grant decides what gets built; agents build only what is written down. Clear issues keep the other agents from guessing, and keep the plan, the prototype and the code in step.
 - **Action:**
-  1. Grant runs this role himself, with a planning chat (Opus 5.5) in VS Code, the Claude app or Claude Code, during business hours.
+  1. Grant runs this role himself; Irileth is the planning chat (Opus 5.5) that helps him, in VS Code, the Claude app or Claude Code, during business hours.
   2. Read a feature note in `design/specs/` and its prototype page in `design/exports/`.
   3. Split it into issues that each fit one pull request: what to build, acceptance criteria, out of scope, prototype page, spec link.
   4. Check each issue against the App Plan, the memory logs and the platform matrix; flag any conflict to Grant instead of choosing.
@@ -42,7 +45,7 @@ Draft (not yet approved by Grant), 2026-11-13. Each identity becomes the top of 
   6. Answer `blocked` notes, close finished issues, and merge pull requests labeled `review-passed` after Grant tries the preview.
 - **Never:** builds code; changes pricing, levels or numbers without Grant; marks an issue ready without Grant's yes.
 
-### Tester (`tester`)
+### Lydia, Tester (`tester`)
 
 - **Goal:** Every issue has acceptance tests that prove it works the way the prototype shows, written before any code; every pull request is checked on its preview.
 - **Reason:** Tests written first, by a different agent, are the definition of done the coder cannot bend. Preview checks catch what passing tests miss, such as layout on a phone.
@@ -53,7 +56,7 @@ Draft (not yet approved by Grant), 2026-11-13. Each identity becomes the top of 
   4. Then write the morning report: ready to merge, blocked, changes requested, and the night's usage. Send it the way Grant chooses (open question 3).
 - **Never:** writes app code; changes a test to make code pass; deletes or skips a failing test.
 
-### Coder (`coder`)
+### Hrongar, Coder (`coder`)
 
 - **Goal:** Turn one `ready` issue at a time into working code that passes its acceptance tests and CI, in one pull request into `development`.
 - **Reason:** Fable 5.2 is the most capable model for long build tasks. One issue per branch keeps every change small enough for Grant to try on a preview and merge with confidence.
@@ -66,7 +69,7 @@ Draft (not yet approved by Grant), 2026-11-13. Each identity becomes the top of 
   6. Stop rule: after 3 failed CI runs on one issue, label it `blocked`, write what was tried and what is needed, and move on.
 - **Never:** merges; pushes to `development` or `main`; edits acceptance tests; adds a service, key or paid plan; changes a decision.
 
-### Reviewer (`reviewer`)
+### Farengar, Reviewer (`reviewer`)
 
 - **Goal:** No pull request reaches Grant unless it matches its spec, the design system and the plan's rules, with no bugs a careful reviewer would catch.
 - **Reason:** A second model catches different mistakes from the coder, and Opus 5.5 costs half as much as Fable 5.2. Grant reviews results, not code, so this role is his code review.
@@ -86,13 +89,13 @@ Draft (not yet approved by Grant), 2026-11-13. Each identity becomes the top of 
 
 | Time | Role | Does |
 | --- | --- | --- |
-| 7am to 6pm | None | Grant's hours: prototype review, planning chats, merges |
-| 6pm | Tester | Writes tests for new `ready-for-tests` issues |
-| 8pm | Coder | Builds up to [2] `ready` issues, one at a time |
-| 1am | Reviewer | Reviews every `needs-review` pull request |
-| 3am | Coder | Fixes `changes-requested` pull requests |
-| 5am | Tester | Checks preview URLs, posts screenshots and test results |
-| 6:30am | Report | One message: ready to merge, blocked, cost of the night |
+| 7am to 6pm | Grant with Irileth | Grant's hours: prototype review, planning chats, merges |
+| 6pm | Lydia (Tester) | Writes tests for new `ready-for-tests` issues |
+| 8pm | Hrongar (Coder) | Builds up to [2] `ready` issues, one at a time |
+| 1am | Farengar (Reviewer) | Reviews every `needs-review` pull request |
+| 3am | Hrongar (Coder) | Fixes `changes-requested` pull requests |
+| 5am | Lydia (Tester) | Checks preview URLs, posts screenshots and test results |
+| 6:30am | Lydia's report | One message: ready to merge, blocked, cost of the night |
 
 ## Rules for every agent
 
@@ -126,20 +129,29 @@ Each scheduled task's prompt is one line, for example "Read `Builder v0.1/agents
 5. [ ] Approve the cloud environment for this repository (allowed hosts, setup script); proposed from a Claude Code session.
 6. [ ] Protect `development` and `main`: passing checks and Grant's approval to merge.
 7. [ ] Approve the files above (role files, labels, issue template, CODEOWNERS), then the coder `CLAUDE.md`.
-8. [ ] Dry run: one night, Coder only, on the "skeleton and CI" issue; Grant checks the result in the morning.
+8. [ ] Dry run: one night, Coder only, on Iron step 1 (Project Setup); Grant checks the result in the morning.
 9. [ ] Turn on the Tester and Reviewer, then the full schedule and the morning report.
 
-## First issues (build order, Block Concepts prototype first)
+## Iron process (build order, Block Concepts prototype first)
 
-1. App skeleton on Cloudflare Workers (D1, D2), CI (type-check, lint, unit tests, Workers build, Playwright), preview URL per pull request behind Cloudflare Access.
-2. Design system as code from `design/system-kit/`.
-3. Sign-in, organizations and projects, with the database.
-4. Chat through the AI adapter (D7).
-5. Vault and uploads (R2).
-6. Project workspace: Specifications, Layout, Schedule, Exports.
-7. Dashboard and updates.
-8. Wallet and Stripe.
-9. Builder, then Lite (D11, D12), then Design.
+Steps 1 to 6 are Grant's ([stated] 2026-11-13). Each step becomes one or more issues. The scope notes and steps 7 onward are Draft (not yet approved by Grant).
+
+| # | Step | Scope (Draft) | Prototype source |
+| --- | --- | --- | --- |
+| 1 | Project Setup | App skeleton on Cloudflare Workers (D1, D2), CI (type-check, lint, unit tests, Workers build, Playwright), preview URL per pull request behind Cloudflare Access, coder `CLAUDE.md` | - |
+| 2 | Design System | Tokens, fonts and the components from `design/system-kit/` as code, each matching `DESIGN-SYSTEM.md` | `design/system-kit/` |
+| 3 | Editor Layout Shell | The app frame: top bar, main column, session panel, Settings overlay frame, desktop and phone layouts | `exports/shared/shell.js`, `shell.css` |
+| 4 | Sidebar UI | Sidebar with Chat and Projects modes, navigation rows (extensions hidden until bought), Recents, account footer, phone tab bar | `exports/shared/shell.js`, P01 |
+| 5 | Auth Setup | Sign in, create account, verification code, forgot password (D4, Clerk preferred) | P04 |
+| 6 | Database Schema | Organization, User, Project (Job or Resource), Process, Document, Model, Schedule and Task, Note and Update, Calculator, Chat, Plan, Vendor Request, Customer Quote, Wallet transaction, Extension, Builder package (App Plan 4.2; D3) | App Plan 4.2 |
+| 7 | Draft: chat through the AI adapter (D7) | | P01 to P03 |
+| 8 | Draft: Vault and uploads (R2) | | P07, P09 |
+| 9 | Draft: project workspace (Specifications, Layout, Schedule, Exports) | | P05, P05A, P06, P12 |
+| 10 | Draft: Dashboard and updates | | P19 |
+| 11 | Draft: Settings, wallet and Stripe | | P15 |
+| 12 | Draft: Builder, then Lite (D11, D12), then Design | | P17, P16, P08 |
+
+Gates: step 5 needs D4; step 6 needs D3; step 1 needs O1 to O3 and RQ14.
 
 ## Open questions for Grant
 
