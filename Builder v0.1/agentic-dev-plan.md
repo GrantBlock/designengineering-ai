@@ -14,6 +14,7 @@ Related: `development-path.md` (Build automation section), `AGENTS.md` (roles), 
 - [stated] 2026-11-13: Agent names: Planner **Irileth**, Coder **Hrongar**, Reviewer **Farengar**, Tester **Lydia** (Grant). Agents sign their issue and pull request comments with their name and role, for example "Hrongar (Coder)".
 - [stated] 2026-11-13: Iron's process starts with six steps: 1 Project Setup, 2 Design System, 3 Editor Layout Shell, 4 Sidebar UI, 5 Auth Setup, 6 Database Schema (Grant).
 - [stated] 2026-11-13: Iron step 3 (Editor Layout Shell) means the content panels inside the common UI: Projects, Designer, Builder and the rest. Each panel needs a feature spec built from its prototype (Grant).
+- [stated] 2026-11-13: Do not draft the feature specs yet; Grant reviews the dev plan first (Grant).
 - [stated] 2026-11-09: Claude builds; Grant decides and reviews results, not code. No throwaway work.
 
 ## Roles
