@@ -15,7 +15,7 @@ Page order is a **Draft (not yet approved by Grant)**, built from the App Plan M
 | P03 | Chat conversation view (messages, attachments, answers with sources) | Desktop + mobile | ☑ | `exports/P03-chat-conversation/index.html` | Done 2026-11-11, one responsive page (Grant approved). Extends P01/P02 |
 | P04 | Sign in / sign up (Clerk) | Desktop + mobile | ☑ | `exports/P04-sign-in/index.html` | Done 2026-11-11, one responsive page with nine states: Sign in, Create account, verification code, verified, forgot password, reset code, new password, password updated. Grant approved |
 | P05 | Projects list | Desktop + mobile | ☑ | `exports/P05-projects/index.html` | Done 2026-11-11. Landing page for projects; each row opens its P06 project page |
-| P05A | Project summary (a project opens here first: new chat, recent tasks, progress stage slider, scheduled tasks, 3D overview, Edit project) | Desktop + mobile | ◐ | `exports/P05A-project-summary/index.html` | Drafted 2026-11-11, awaiting Grant's review. Sits between P05 and P06 |
+| P05A | Project summary (a project opens here first: new chat, recent tasks, progress stage slider, scheduled tasks, 3D overview, Edit project) | Desktop + mobile | ☑ | `exports/P05A-project-summary/index.html` | Done 2026-11-13 (Grant approved after the review fixes). Sits between P05 and P06 |
 | P06 | Project workspace (Import, Specifications, Layout, Schedule, Exports; files, chat, notes later) | Desktop + mobile | ☑ | `exports/P06-project-workspace/index.html` | Done 2026-11-11 (for now). Tabs: Import, Specifications, Layout, Schedule, Exports. Files, chat and notes tabs still to design |
 | P07 | Upload flow (STEP, OBJ, photos, PDFs) | Desktop + mobile | ☑ | `exports/P07-upload-flow/index.html` | Done 2026-11-11, one responsive page. Accepts STEP, OBJ, pictures, PDF and ZIP; Take a pic on mobile (Grant approved) |
 | P08 | 3D designer (an extension; viewer is its first draft) | Desktop + mobile | ☑ | `exports/P08-3d-viewer/index.html` | Done 2026-11-11 (Grant approved). Chat-only 3D designer. Feature spec: `specs/P08-3D-Designer-Spec.md` |
@@ -34,7 +34,7 @@ Page order is a **Draft (not yet approved by Grant)**, built from the App Plan M
 
 ## Next up
 
-Every listed page is done or awaiting review. P05A and P13 still await review. P05A and P13 still await review. P08 is done (the 3D designer); its feature spec is waiting for Grant's edits.
+Every listed page is done except P13 (Plans and vendor requests, inside the P06 Exports tab), which awaits review. P05A and P13 still await review. P08 is done (the 3D designer); its feature spec is waiting for Grant's edits.
 
 ## Log
 
@@ -170,3 +170,4 @@ Every listed page is done or awaiting review. P05A and P13 still await review. P
 - [stated] 2026-11-13: Grant approved P22. Support is an AI agent only, with replies within 24 hours; the support email stays a placeholder. System status shows no state until Block Concepts produces monitoring data; until then it lists the services it will cover with No data yet.
 - [stated] 2026-11-13: Grant left This stops work to Claude's recommendation: keep the switch on problem requests; such requests go to the front of the agent's queue with a 1-hour reply target (A); no phone or text alerts while support is AI only; revisit if a person goes on call. After sending, While you wait lists up to three help articles that match the request.
 - [stated] 2026-11-13: P05A review fixes applied (Grant: apply all, stack the buttons, hide the 3D link): today line in steel blue with the real date; header buttons at 36px on desktop and stacked full width on phones; the 3D designer link hidden unless the Design extension is bought; Overview and Recent tasks panels the same height; captions and links stack on phones; isometric colors moved to named page variables (`--p5a-iso-*`, same look). Not changed: link underlines stay, because the shared shell underlines them on purpose (accessibility pass); the phone header already matches P06 and P12. P05A still awaits Grant's approval.
+- [stated] 2026-11-13: Grant approved P05A. The phone header stays as it is on P05A, P06 and P12 (wordmark and avatar, no back arrow).
