@@ -183,3 +183,39 @@ html.de-m .sx-tabs button{height:40px}
 
 .dx-back~.dx-menu,.dx-menu{z-index:80}
 html.de-m .sx-ty{display:none}
+
+/* Search in the Settings window frame (same size, title bar, left column and pane as Settings and Preferences); its own overlay. */
+.dx-back:has(.dx-dialog.is-ovl){align-items:center;padding:20px}
+.dx-dialog.is-search.is-ovl{width:min(1000px,100%);height:min(760px,100%);max-height:none}
+.sxo-top{display:flex;align-items:center;justify-content:space-between;height:52px;padding:0 12px 0 20px;border-bottom:1px solid var(--bc-hairline);flex-shrink:0}
+.sxo-top h2{margin:0;font-size:16px;font-weight:600;padding-top:2px}
+.sxo-body{display:grid;grid-template-columns:220px minmax(0,1fr);flex:1;min-height:0;min-width:0}
+.sxo-nav{display:flex;flex-direction:column;gap:2px;padding:12px;border-right:1px solid var(--bc-hairline);background:var(--bc-canvas);overflow-y:auto}
+.sxo-find{display:flex;align-items:center;gap:8px;height:36px;margin-bottom:10px;padding:0 10px;border:1px solid var(--bc-hairline);border-radius:var(--bc-radius-control);background:var(--bc-surface);color:var(--bc-muted);flex-shrink:0}
+.sxo-find:focus-within{border-color:var(--bc-steel-blue)}
+.sxo-find input{flex:1;min-width:0;height:100%;padding-top:2px;background:none;border:none;outline:none;color:var(--bc-ink);font:inherit;font-size:14px}
+.sxo-find input::placeholder{color:var(--bc-muted)}
+.sxo-find input::-webkit-search-cancel-button{display:none}
+.sxo-types,.sxo-projs{display:flex;flex-direction:column;gap:2px}
+.sxo-nb{all:unset;box-sizing:border-box;cursor:pointer;display:flex;align-items:center;gap:12px;min-height:36px;padding:2px 10px 0;border-radius:var(--bc-radius-control);color:var(--bc-muted);font-size:14px}
+.sxo-nb:hover{background:var(--bc-surface);color:var(--bc-ink)}
+.sxo-nb:focus-visible{outline:2px solid var(--bc-steel-blue-text);outline-offset:2px}
+.sxo-nb.is-on,.sxo-nb[aria-pressed=true]{background:var(--bc-surface-raised);color:var(--bc-ink)}
+.sxo-nb svg{flex-shrink:0}
+.sxo-l{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sxo-c{font-family:var(--font-mono);font-size:11px;letter-spacing:.06em;color:var(--bc-muted)}
+.sxo-sep{height:1px;margin:8px 4px;background:var(--bc-hairline);flex-shrink:0}
+.sxo-grp{padding:6px 10px 4px;font-family:var(--font-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--bc-muted)}
+.sxo-main{display:flex;flex-direction:column;min-width:0;min-height:0}
+.sxo-main .sx-res{padding:8px 12px 12px}
+html.de-m .dx-back:has(.dx-dialog.is-ovl){padding:0}
+html.de-m .dx-dialog.is-search.is-ovl{width:100%;height:100%;border-radius:0;border:none}
+html.de-m .sxo-body{grid-template-columns:minmax(0,1fr);grid-template-rows:auto minmax(0,1fr)}
+html.de-m .dx-dialog.is-search.is-ovl{min-width:0;max-width:100vw}
+html.de-m .sxo-nav{flex-direction:column;gap:8px;padding:10px 12px;border-right:none;border-bottom:1px solid var(--bc-hairline);overflow:visible}
+html.de-m .sxo-find{height:48px;margin:0}
+html.de-m .sxo-find input{font-size:16px}
+html.de-m .sxo-types{flex-direction:row;overflow-x:auto;scrollbar-width:none;gap:4px}
+html.de-m .sxo-types .sxo-nb{flex-shrink:0;height:44px;white-space:nowrap}
+html.de-m .sxo-types .sxo-nb svg{display:none}
+html.de-m .sxo-sep,html.de-m .sxo-grp,html.de-m .sxo-projs{display:none}

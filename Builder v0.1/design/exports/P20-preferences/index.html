@@ -453,7 +453,7 @@ button:focus-visible, textarea:focus-visible, input:focus-visible, [role="button
  var $=function(i){return document.getElementById(i)};
  function esc(x){return String(x).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
  function ico(d,s){return '<svg class="de-icon" width="'+(s||18)+'" height="'+(s||18)+'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="'+d+'"/></svg>'}
- var I={home:'M4 11l8-7 8 7v9H4zM10 20v-6h4v6',folder:'M3 6h6l2 2h10v11H3z',factory:'M3 20V10l6 4v-4l6 4V6h6v14z',plc:'M4 5h16v14H4zM8 9h2M8 13h2M14 9h2v6h-2',cad:'M12 3l8 4.5v9L12 21l-8-4.5v-9zM12 12l8-4.5M12 12v9M12 12L4 7.5',sensor:'M12 12h.01M8.5 8.5a5 5 0 0 0 0 7M15.5 8.5a5 5 0 0 1 0 7M5.5 5.5a9 9 0 0 0 0 13M18.5 5.5a9 9 0 0 1 0 13',safety:'M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z',daq:'M5 20V10M12 20V4M19 20v-7',hw:'M14 4l6 6-10 10H4v-6zM12 6l6 6',conv:'M3 14h18M5 18a2 2 0 1 0 0-4M19 18a2 2 0 1 0 0-4M5 18h14M6 10h4V6H6zM13 10h4V6h-4z',env:'M12 3a6 6 0 0 0-6 6c0 4 6 11 6 11s6-7 6-11a6 6 0 0 0-6-6zM12 7v4',file:'M6 3h9l4 4v14H6zM14 3v5h5M9 13h6M9 17h6',lock:'M6 11h12v9H6zM9 11V8a3 3 0 0 1 6 0v3',unlock:'M6 11h12v9H6zM9 11V8a3 3 0 0 1 5.8-1',send:'M12 19V5M6 11l6-6 6 6'};
+ var I={home:'M4 11l8-7 8 7v9H4zM10 20v-6h4v6',sliders:'M4 7h10M18 7h2M4 17h2M10 17h10M14 4v6M6 14v6',folder:'M3 6h6l2 2h10v11H3z',factory:'M3 20V10l6 4v-4l6 4V6h6v14z',plc:'M4 5h16v14H4zM8 9h2M8 13h2M14 9h2v6h-2',cad:'M12 3l8 4.5v9L12 21l-8-4.5v-9zM12 12l8-4.5M12 12v9M12 12L4 7.5',sensor:'M12 12h.01M8.5 8.5a5 5 0 0 0 0 7M15.5 8.5a5 5 0 0 1 0 7M5.5 5.5a9 9 0 0 0 0 13M18.5 5.5a9 9 0 0 1 0 13',safety:'M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z',daq:'M5 20V10M12 20V4M19 20v-7',hw:'M14 4l6 6-10 10H4v-6zM12 6l6 6',conv:'M3 14h18M5 18a2 2 0 1 0 0-4M19 18a2 2 0 1 0 0-4M5 18h14M6 10h4V6H6zM13 10h4V6h-4z',env:'M12 3a6 6 0 0 0-6 6c0 4 6 11 6 11s6-7 6-11a6 6 0 0 0-6-6zM12 7v4',file:'M6 3h9l4 4v14H6zM14 3v5h5M9 13h6M9 17h6',lock:'M6 11h12v9H6zM9 11V8a3 3 0 0 1 6 0v3',unlock:'M6 11h12v9H6zM9 11V8a3 3 0 0 1 5.8-1',send:'M12 19V5M6 11l6-6 6 6'};
  /* Sections of the context file. Brand lists are starting suggestions; anything can be typed in. All sample data (A). */
  var CAT=[
   {k:'plc',n:'PLC',ic:'plc',d:'Controllers and programming software on your floor. I write ladder, tags and I/O lists for this platform first.',
@@ -494,7 +494,7 @@ button:focus-visible, textarea:focus-visible, input:focus-visible, [role="button
  if(PID)st=load(pkey)||blank();
  if(NEW)st=blank();
  var view=location.hash.slice(1)||(PROJ?'general':'overview');
- var VIEWS=PROJ?['general','facility','file']:['overview','file'];if(VIEWS.indexOf(view)<0&&!CK[view])view=VIEWS[0];
+ var VIEWS=PROJ?['general','facility','file']:['overview','you','file'];if(VIEWS.indexOf(view)<0&&!CK[view])view=VIEWS[0];
  var msg='',err='';
  function save(){if(NEW)return;try{localStorage.setItem(PROJ?pkey:'de-prefs',JSON.stringify(st))}catch(e){}}
  function today(){return new Date().toLocaleDateString('en-US',{month:'short',day:'numeric'})}
@@ -505,12 +505,23 @@ button:focus-visible, textarea:focus-visible, input:focus-visible, [role="button
  function summary(k,s){s=s||st;if(k==='env'){var a=(s.also.env||[]).slice();if(s.ip>-1)a.push(IP[s.ip]+' minimum');return a.join(', ')}
   if(k==='hw'){var h=[];if(s.hwStd>-1)h.push(HW[s.hwStd]);if(s.pri.hw)h.push(s.pri.hw);return h.join(', ')}
   var p=s.pri[k],a2=s.also[k]||[];return p?(p+(a2.length?' +'+a2.length:'')):(a2.length?a2.join(', '):'')}
+ /* General: your own display and email settings (moved here from Settings, 2026-11-16). Kept in localStorage under de-general. */
+ var GEN={units:0,text:0,n1:true,n2:false};try{var g0=JSON.parse(localStorage.getItem('de-general'));if(g0)for(var gk in g0)GEN[gk]=g0[gk]}catch(e){}
+ function genSave(){try{localStorage.setItem('de-general',JSON.stringify(GEN))}catch(e){}}
+ function pYou(){function sg(k,o){return '<div class="o-seg" data-ug="'+k+'">'+o.map(function(x,i){return '<button type="button" data-i="'+i+'" aria-pressed="'+(i===GEN[k])+'">'+x+'</button>'}).join('')+'</div>'}
+  function sv(k,l){return '<button class="o-sw" type="button" data-usw="'+k+'" role="switch" aria-checked="'+GEN[k]+'" aria-label="'+l+'"></button>'}
+  return '<div class="o-sec"><div class="p-head"><div><h3>General</h3><p>How I show things to you, and what I email you. These follow you across projects.</p></div></div>'
+  +row('Units','How I show sizes and pressures. You can still type either.',sg('units',['Inches, psi','Millimeters, bar']))
+  +row('Text size','Applies on mobile.',sg('text',['Large','Extra large']))+'</div>'
+  +'<div class="o-sec"><h3>Email</h3>'
+  +row('Email me when a quote is approved','Sent when someone approves a quote or an ask for a quote in your projects.',sv('n1','Email when a quote is approved'))
+  +row('Weekly summary','A Monday email with your dashboard week.',sv('n2','Weekly summary'))+'</div>'}
  function nb(v,icn,lab,extra){return '<button class="o-nb" type="button" data-v="'+v+'">'+ico(icn)+lab+(extra||'')+'</button>'}
  function nav(){var h;
   if(PROJ){h=nb('general',I.folder,NEW?'New project':'Project')+'<div class="o-grp">1 · Project context</div>';
    CAT.forEach(function(c){h+=nb(c.k,I[c.ic],c.n,isSet(c.k)?'<span class="p-n">SET</span>':(locked(c.k)?'<span class="p-lk">'+ico(I.lock,14)+'</span>':''))});
    h+='<div class="o-grp">2 · Facility context</div>'+nb('facility',I.factory,'Facility preferences')}
-  else{var n=st.sug.length;h=nb('overview',I.home,'Overview',n?'<span class="p-n">'+n+'</span>':'')+'<div class="o-grp">Your factory</div>';
+  else{var n=st.sug.length;h=nb('overview',I.home,'Overview',n?'<span class="p-n">'+n+'</span>':'')+nb('you',I.sliders,'General')+'<div class="o-grp">Your factory</div>';
    CAT.forEach(function(c){h+=nb(c.k,I[c.ic],c.n,locked(c.k)?'<span class="p-lk" title="Locked">'+ico(I.lock,14)+'</span>':'')})}
   h+='<div class="o-sep"></div>'+nb('file',I.file,PROJ?'Context files':'Context file');
   $('nav').innerHTML=h;[].forEach.call($('nav').querySelectorAll('[data-v]'),function(b){b.setAttribute('aria-current',String(b.dataset.v===view))})}
@@ -570,7 +581,7 @@ button:focus-visible, textarea:focus-visible, input:focus-visible, [role="button
  function draw(keep){var p=$('pane'),y=p.scrollTop;nav();
   $('otitle').textContent=NEW?'New project':PID?'Project preferences':'Preferences';
   $('sub').textContent=PROJ?(NEW?'project-context.md, then factory-context.md':PID+' · project-context.md'):'factory-context.md · '+(st.hist[0]?'changed '+st.hist[0][0]:'new');
-  p.innerHTML=view==='overview'?pOverview():view==='general'?pGeneral():view==='facility'?pFacility():view==='file'?pFile():pCat(view);p.scrollTop=keep?y:0;
+  p.innerHTML=view==='you'&&!PROJ?pYou():view==='overview'?pOverview():view==='general'?pGeneral():view==='facility'?pFacility():view==='file'?pFile():pCat(view);p.scrollTop=keep?y:0;
   $('foot').hidden=!NEW;if(NEW){$('ferr').textContent=err;var n=CAT.filter(function(c){return isSet(c.k)}).length;$('fsum').textContent=n?n+(n>1?' sections differ':' section differs')+' from the facility':'Uses the facility context'}
   var q=$('askq');if(q){q.addEventListener('input',function(){$('asks').classList.toggle('is-armed',!!this.value.trim())})}}
  function go(v){view=v;msg='';history.replaceState(null,'',location.search+'#'+v);draw()}
@@ -578,6 +589,7 @@ button:focus-visible, textarea:focus-visible, input:focus-visible, [role="button
  var pane=$('pane');
  function setAlso(k,b,on){var a=st.also[k]||(st.also[k]=[]),i=a.indexOf(b);if(on&&i<0)a.push(b);if(!on&&i>-1)a.splice(i,1)}
  function accept(s){if(s.act==='hw'){st.hwStd=HW.indexOf(s.val);log('Chat set Hardware standard to '+s.val,s.chat)}else{setAlso(s.cat,s.val,true);if(CK[s.cat].brands.indexOf(s.val)<0){(st.custom[s.cat]=st.custom[s.cat]||[]).push(s.val)}st.src[s.cat+':'+s.val]='chat';log('Chat added '+s.val+' to '+CK[s.cat].n,s.chat)}}
+ pane.addEventListener('click',function(e){if(view!=='you')return;var b=e.target.closest('[data-ug] button'),w=e.target.closest('[data-usw]');if(b){GEN[b.parentNode.dataset.ug]=+b.dataset.i;genSave();draw(true);e.stopImmediatePropagation()}else if(w){GEN[w.dataset.usw]=!GEN[w.dataset.usw];genSave();draw(true);e.stopImmediatePropagation()}});
  pane.addEventListener('click',function(e){var t=e.target.closest('button');if(!t)return;var k=view;
   if(t.dataset.v){go(t.dataset.v);return}
   if(t.dataset.lock){var on=!st.lock[t.dataset.lock];st.lock[t.dataset.lock]=on;log((on?'You locked ':'You unlocked ')+CK[t.dataset.lock].n);save();draw(true);return}
