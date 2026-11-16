@@ -305,6 +305,7 @@ button:focus-visible, textarea:focus-visible, input:focus-visible, [role="button
 .u-tools{display:flex;align-items:center;gap:2px}
 .u-tools .de-iconbtn[aria-pressed=true]{color:var(--bc-ink);background:var(--bc-surface-raised)}
 .u-chips{display:flex;align-items:center;gap:var(--bc-space-2);padding:var(--bc-space-3) var(--bc-space-4) 0;flex-wrap:wrap}
+.u-mviews{display:none}
 .u-chip{display:inline-flex;align-items:center;gap:6px;height:32px;padding:2px 12px 0;border:1px solid var(--bc-hairline);border-radius:var(--bc-radius-control);background:none;color:var(--bc-ink);font:inherit;font-size:13px;cursor:pointer}
 .u-chip:hover{background:var(--bc-surface-raised)}
 .u-chip.is-on{border-color:var(--bc-steel-blue-edge);background:var(--bc-steel-blue-tint)}
@@ -414,6 +415,7 @@ button:focus-visible, textarea:focus-visible, input:focus-visible, [role="button
  .u-tools .de-iconbtn{width:44px;height:44px}
  .u-tools .u-dettog{display:none}
  .u-chips{padding:0;flex-wrap:nowrap;overflow-x:auto;margin:0 calc(-1*var(--bc-gutter-mobile));padding:0 var(--bc-gutter-mobile)}
+ .u-mviews{display:flex;gap:var(--bc-space-2);flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin:0 calc(-1*var(--bc-gutter-mobile)) var(--bc-space-2);padding:0 var(--bc-gutter-mobile)}
  .u-chip{height:40px;white-space:nowrap;font-size:14px;flex-shrink:0}
  .u-body{padding:0;overflow:visible}
  .u-quick{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:var(--bc-space-3)}
@@ -488,6 +490,7 @@ button:focus-visible, textarea:focus-visible, input:focus-visible, [role="button
        <button class="de-iconbtn u-dettog" id="detbtn" type="button" aria-pressed="false" aria-label="Show details"><svg class="de-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18zM12 11v6M12 7.5h.01"/></svg></button>
       </div>
      </div>
+     <div class="u-mviews" id="mviews" role="group" aria-label="Views"></div>
      <div class="u-chips" id="chips"></div>
      <div class="u-body" id="body"></div>
      <div class="u-dropover" id="dropover" hidden></div>
@@ -591,7 +594,7 @@ button:focus-visible, textarea:focus-visible, input:focus-visible, [role="button
   $('viewbtn').innerHTML=svg(grid?P.list:P.grid,20);$('viewbtn').setAttribute('aria-label',grid?'List view':'Grid view');
   $('detbtn').setAttribute('aria-pressed',String(showDet));$('detbtn').setAttribute('aria-label',showDet?'Hide details':'Show details');
   var ch=[['','All types'],['model','3D models'],['photo','Pictures'],['doc','Documents'],['zip','ZIP files']];
-  $('chips').innerHTML=cur==='root'?'':ch.map(function(c){return '<button class="u-chip'+(type===c[0]?' is-on':'')+'" type="button" data-type="'+c[0]+'" aria-pressed="'+(type===c[0])+'">'+(c[0]?svg(P[c[0]],14):'')+c[1]+'</button>'}).join('')}
+  $('chips').innerHTML=cur==='root'?'':ch.map(function(c){return '<button class="u-chip'+(type===c[0]?' is-on':'')+'" type="button" data-type="'+c[0]+'" aria-pressed="'+(type===c[0])+'">'+(c[0]?svg(P[c[0]],14):'')+c[1]+'</button>'}).join('');var tc=items.filter(function(x){return x.trash}).length;$('mviews').innerHTML=[['root','All uploads']].concat(Object.keys(VIEWS).map(function(k){return [k,VIEWS[k][0]+(k==='trash'&&tc?' · '+tc:'')]})).map(function(v){var on=cur===v[0]||(v[0]==='root'&&!VIEWS[cur]);return '<button class="u-chip'+(on?' is-on':'')+'" type="button" data-go="'+v[0]+'" aria-pressed="'+on+'">'+v[1]+'</button>'}).join('')}
 
  /* ---------- centre ---------- */
  function by(x){return x.k==='proj'?x.code:x.k==='folder'?'You':x.chat?'Chat':'You'}
