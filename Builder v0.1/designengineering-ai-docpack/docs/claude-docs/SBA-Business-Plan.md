@@ -472,9 +472,9 @@ Estimated on the base case (+5 Pro users per month) without changing it. Figures
 
 - **Remaining gap:** add-ons reduce the base-case three-year gap from about $105,000 to about $43,700. The remainder is the target for a founder-built paid feature, developed on owner-draw time with no added development cost.
 
-- **Team** at $50 adds about $14,300 if a quarter of Pro seats move to it from year 2 (about $22,800 at 40%). It is a candidate for the founder-built feature: mostly admin, billing, and permissions rather than new AI capability.
+- **Team** at $50 adds about $14,300 if a quarter of Pro seats move to it from year 2 (about $22,800 at 40%). It is already counted once in the add-ons above, so it is not a candidate for the remaining gap.
 
-- **Builder** at $600 per seat per year adds about $580 per seat after fees, with no AI cost to Block Concepts because Lite runs locally. Closing the remaining $43,700 gap would take about 76 seat-years over three years (for example, 11, 25, then 40 seats). Builder is also a candidate for the founder-built feature. Not counted here until open-sale timing is set.
+- **Builder** at $600 per seat per year adds about $580 per seat after fees, with no AI cost to Block Concepts because Lite runs locally. Closing the remaining $43,700 gap would take about 76 seat-years over three years (for example, 11, 25, then 40 seats). Builder is the candidate for the founder-built feature. Not counted here until open-sale timing is set.
 
 *Basic Viewer count here (20 per Pro user) is higher than the 30 Basic Viewer accounts assumed at the start of year one in Section 8.2; the ratio is used because Basic Viewer cost and purchases both scale with it.*
 

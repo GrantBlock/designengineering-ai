@@ -38,7 +38,7 @@ Next: continue in the GitHub repo with Claude Code, starting with a review of th
 | Q11 | Help and reference library at docs.designengineering.ai; designengineering.info redirects there | ☑ |
 | Q12 | Lite chat: small on-device AI model, no Block Concepts tokens | ☑ |
 | Q13 | Builder: one product; packages one Lite zip per client or site; Enterprise is a custom implementation built on Builder | ☑ |
-| Q14 | Basic Viewer: small daily AI cap paid by Block Concepts; up to 3 projects of their own; storage only through Starter | ☑ |
+| Q14 | Basic Viewer: small daily AI cap paid by Block Concepts; no projects of their own (a Starter bundle, $20 per year, unlocks up to 3); storage only through Starter (updated 2026-11-17) | ☑ |
 | Q15 | Turbo: kept for power users who can't justify Enterprise and don't need Team admin; after infrastructure upgrades | ☑ |
 
 ## SBA Business Plan
@@ -50,7 +50,7 @@ Next: continue in the GitHub repo with Claude Code, starting with a review of th
 | 2 | Company Description | ☑ |
 | 3 | Market Analysis | ◐ (serviceable market to size) |
 | 4 | Organization & Management | ☑ |
-| 5 | Product / Service Line | ◐ (Turbo and Starter prices open) |
+| 5 | Product / Service Line | ◐ (Turbo price open; Starter set at $20 per year) |
 | 6 | Marketing & Sales | ◐ (Builder open-sale timing open) |
 | 7 | Funding Request (incl. cost basis by phase) | ◐ (placeholders until scaling) |
 | 8 | Financial Projections | ◐ (token cost to measure in MVP) |
@@ -84,7 +84,7 @@ Completed in order: system questions; SBA 2, 4, 7, 9 (running); App 3, 6, 2; SBA
 | 5 | Set Starter bundle contents: price set 2026-11-12 at $20 / year with 3 projects and no token limit; 5 GB total, 100 MB per file, one-time $5 token credit (A), set 2026-11-12 | SBA 5.2, App 6.1 |
 | 6 | Confirm Team storage per user (assumed 20 GB) | App 6.1 |
 | 7 | Set Design and Builder extension open-sale timing (both after the MVP; Builder used at Block Concepts in year 1) | SBA 6.2, App 7 |
-| 8 | Choose the founder-built paid feature that closes the $43,700 base-case gap (Team or Builder are candidates) | SBA 8.2.1 |
+| 8 | Choose the founder-built paid feature that closes the $43,700 base-case gap (Builder is the candidate; Team is already counted in the add-ons) | SBA 8.2.1 |
 | 9 | Calibrate wallet rates and the free daily cap from MVP cost testing (the free pool is set at 5% of Pro membership revenue) | App 6, SBA 8.4 |
 | 10 | Pick the final stack during the winter build and fill the Decision Log | App 4 (D1–D12) |
 | 11 | Confirm Anthropic Claude API data terms | App 4.1, SBA 9.2 |
