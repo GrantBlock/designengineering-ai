@@ -1,12 +1,15 @@
 # Builder v0.1
 
-Workspace for designing the system architecture of **designengineering.ai** (Block Concepts LLC) and its **Builder** product, which packages project documentation into free offline **Lite** zips, one per client or site.
+Workspace for designing the system architecture of **designengineering.ai** (Block Concepts LLC) and its **Builder** extension, which packages an organization's selected projects into free offline **Lite** zips.
 
 ## Layout
 
 | Path | Purpose |
 | --- | --- |
-| `designengineering-ai-docpack/` | Plan doc pack (SBA business plan, App Plan, tracker, decision logs). Read-only reference for now. |
+| `designengineering-ai-docpack/` | Plan doc pack (SBA business plan, App Plan, tracker, decision logs) |
+| `design/` | UI tracker, design system, platform matrix, and the clickable prototype (`design/prototype.html`, pages in `design/exports/`) |
+| `snapshot-YYYY-MM-DD.md` | Read-only snapshots of decisions and open items; the newest is the current view |
+| `agentic-dev-plan.md` | Moved 2026-11-13 to `GrantBlock/Project_Iron` (`docs/agentic-dev-plan.md`) |
 | `development-path.md` | Plan for building and deploying the app (stack, phases, environments, Cloudflare setup) |
 | `shortcuts.md` | Phrases that start workflows (where were we, decision brief, design the next page, ...) |
 | `review-queue.md` | Items waiting on Grant, tagged mobile, code or vscode |
@@ -22,4 +25,4 @@ Workspace for designing the system architecture of **designengineering.ai** (Blo
 
 ## Status
 
-Architecture phase. No application code yet. Decisions D1–D12 are still open and get filled in as they are made.
+Prototype phase (2026-11-12). Every planned page is designed and wired as a clickable prototype that deploys to Cloudflare Workers. D1 (Cloudflare Workers) and D2 (Next.js + TypeScript) are decided; D3–D12 are open. No application code yet. See the newest snapshot for the current decisions.

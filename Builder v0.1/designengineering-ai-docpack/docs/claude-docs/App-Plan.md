@@ -47,7 +47,7 @@ Project and equipment knowledge is scattered across emails, conversations, print
 ### 1.3 Adoption Path
 
 1. A maintenance technician joins as a Basic Viewer to see a shared project, or opens a Lite package a supplier or integrator sent.
-2. The technician adds a Starter bundle to get answers for their own equipment, and shows the design engineers.
+2. The technician adds a Starter bundle ($20 per year) to set up projects for their own equipment, and shows the design engineers.
 3. A design engineer moves to Pro and owns the projects; the rest of the team joins as Basic Viewers through collaborator mode.
 4. Power users who need more speed move to Turbo; teams that need to control access move to Team; larger or custom deployments move to Enterprise.
 
@@ -59,27 +59,30 @@ Grant Block built this after setting up general AI tools himself, on his own tim
 
 A place for design to live: project files, data sheets, and dimensions in one workspace, with an AI assistant that turns them into models, plans, drawings, and vendor requests. It is Block Concepts' own design process, automated and made widely available.
 
-**MVP (winter build)**
+**MVP (public release, April 2027)**
+
+The winter build first runs the full suite at Block Concepts as its own Enterprise account (the Block Concepts prototype, Section 7). The released MVP is the subset below, designed on the same system so that it integrates with the larger suite as functions are added.
 
 | Capability | What it does |
 | --- | --- |
 | AI chat | Discuss the project with an AI that knows its files and data sheets |
 | Uploads | STEP, OBJ, photos, data sheets, and manuals |
-| Document search | Find answers in manuals and data sheets |
-| 3D viewer | View and rotate uploaded models (digital twin) |
-| Project document storage | PLM-style project file storage, organized by project |
-| Project notes and tracking | Running notes, tasks, and status per project |
-| Chat-enabled calculators | Engineering calculations run from the chat |
-| Process flows | Build and discuss process flows inside a project |
+| Document search | Find answers in manuals and data sheets; lives in the Vault, where generated documents and uploads are kept |
+| 3D viewer | View and rotate uploaded models in the Vault (digital twin). Building parts by chat is the Design extension, after the MVP |
+| Vault | PLM-style storage: one gallery per organization of documents, models, schedules, chats, calculators and uploads, grouped by project |
+| Project notes and tracking | Dashboard (this week, this month, last week), Update assistant and Updates log, and a project stage slider (Assessment, Design, Build, FAT, SAT) |
+| Schedules | Gantt schedules per project, several per project, with archive |
+| Custom calculators | Users build their own engineering calculators in chat; saved to the Vault per user or per project |
+| Process flows | Process configuration per station, a to-scale Layout, and the process document, inside a project |
 | Outside tool recommendations | Points users to established tools for needs not yet built (see 2.1) |
-| Plans and vendor requests | Generate project plans and vendor request documents from project data |
-| Builder and Lite (Block Concepts use) | Builder packages a client's or site's technical documentation into a Lite zip; Lite opens it offline with a 3D viewer, document search, and on-device chat (see 3.2) |
+| Plans, vendor requests, customer quotes | Project Exports tab: Process document (the plan), Ask for a quote (vendor request), Produce a quote (customer quote); each carries a Review required stamp and is approved before Send |
 
 **Later**
 
 | Capability | Notes |
 | --- | --- |
-| CAD generation | First milestone: spacer-class part model and drawing (the defining test); paid by usage from a wallet or Starter bundle |
+| Design extension (3D designer) | Chat-only 3D designer added to Pro at $600 / seat / year (A). Basic Viewer and Starter users can also use it, paid by wallet tokens, on a much longer queue than Pro (about a week to turn around), which fills usage gaps and lets them sample a higher level; in the prototype now, ships after the MVP |
+| CAD generation | Through the Design extension. First milestone: spacer-class part model and drawing (the defining test); paid by usage from the wallet |
 | Drawings | After CAD generation |
 | Drive SolidWorks / Onshape | Enterprise |
 | Scan-to-CAD, photogrammetry | Recommended outside tools first (see 7.1) |
@@ -87,16 +90,16 @@ A place for design to live: project files, data sheets, and dimensions in one wo
 | Operations escalations | Operators log exactly what they saw and did before maintenance arrives |
 | PLC coding | Future design category: controls programming |
 | Electrical schematics | Future design category: electrical design |
-| Builder open sale | Builder is used at Block Concepts and its customers in year 1; open sale to suppliers, OEMs, and integrators at [timing TBD] |
+| Builder extension and Lite | Builder (extension added to Pro at $600 / seat / year (A), desktop only) packages an organization's selected projects into a Lite zip; Lite opens it offline with a 3D viewer, document search, and on-device chat (see 3.2). In the prototype now, ships after the MVP; open sale to suppliers, OEMs, and integrators at [timing TBD] |
 | Facility scan links | Connect to facility scans where they already live (Matterport or scanner cloud services) instead of storing them in the app |
 
 **Builder, Lite, and Enterprise**
 
-One product line, three roles:
+One product line, three roles. Builder and Design are extensions added to Pro; neither is in the MVP.
 
 | Product | What it is | Who uses it |
 | --- | --- | --- |
-| Builder | Desktop app that packages technical documentation into Lite zips, one package per client or site; a builder managing many clients manages many packages | Block Concepts first; later suppliers, OEMs, integrators, and plant teams ($600 / seat / year) |
+| Builder | Extension in the web app (desktop only): Organization, then Projects, then the Vault items, packaged into one Lite zip; a builder managing many client organizations manages many packages | Block Concepts first; later suppliers, OEMs, integrators, and plant teams ($600 / seat / year extension (A)) |
 | Lite | Free desktop app that opens Builder packages offline, with an on-device AI model; no login, no Block Concepts tokens | Anyone who receives a package: customer staff, technicians, prospects |
 | Enterprise | A custom implementation built on the Builder app, delivered by Block Concepts as cloud or local | Larger teams with their own IT, PDM / PLM, or regional purchasing needs |
 
@@ -111,10 +114,12 @@ Each person uses one license. A collaborator mode lets users work together on sh
 | Who can join | Anyone with a Basic Viewer account (or higher), invited by the project owner |
 | Where the data lives | With the owner; shared projects count against the owner's storage, not the guest's |
 | Access levels | Owner sets view, comment, or edit per project |
-| AI | Basic Viewers get a small daily AI cap paid by Block Concepts; beyond it, they use a Starter bundle or their own wallet |
-| Project limit | A Basic Viewer can create up to 3 projects of their own; shared projects do not count |
+| AI | Invited viewers ask chat questions on the shared project, charged to the owner's wallet within a per-viewer monthly limit the owner sets. Open sign-up Basic Viewers get general chat with a very small daily cap from the shared free pool (6.3); beyond it, they use their own wallet |
+| Viewer limit | 10 active viewers per paid user (Pro or Team), across all of that user's shared projects; a 3-user Team can have up to 30. Owners activate and deactivate viewers to manage the allowance. The Builder extension makes viewers unlimited (fair use: automatic review above 500 active viewers per Builder seat (A)); these viewers can view and chat only, and editing needs a Pro or Team seat |
+| Project limit | A Basic Viewer has no projects of their own; a Starter bundle ($20 per year) unlocks up to 3. Shared projects do not count |
+| Sharing and roles | Pro shares per project. The Team settings section (Admin, plus the view, comment and edit levels) shows only on the Team level |
 
-*Example team: one engineer on Pro owns the projects; six maintenance staff collaborate on Basic Viewer accounts and buy Starter bundles or fund their own wallets when they need more than the daily cap.*
+*Example team: one engineer on Pro owns the projects; six maintenance staff join as invited viewers, and their questions on the shared projects are paid from the engineer's wallet within limits the engineer sets; one who needs projects of their own buys a Starter bundle.*
 
 **Data storage approach**
 
@@ -134,8 +139,8 @@ One application at designengineering.ai, reached through several surfaces. The h
 
 | Surface | Purpose | Levels | Ship order |
 | --- | --- | --- | --- |
-| Web app | Main interface: chat, uploads (STEP, OBJ, photos), 3D viewer, project notes and tracking | All | 1 (MVP) |
-| Lite and Builder (desktop downloads) | Builder writes packages; Lite opens them offline with on-device chat | Lite: anyone. Builder: subscribers | MVP, Block Concepts use; open sale [timing TBD] |
+| Web app | Main interface: chat, uploads (STEP, OBJ, photos), 3D viewer, project notes and tracking; responsive on phones, with what is on phone or desktop set in `design/PLATFORM-MATRIX.md` | All | 1 (MVP) |
+| Builder (web app extension, desktop only) and Lite (desktop download) | Builder writes packages; Lite opens them offline with on-device chat. On phones, recipients use the main app as free viewers of the package's online copy (3.2); there is no Lite phone app | Lite: anyone. Builder: Pro plus the extension | After the MVP (in the prototype now); open sale [timing TBD] |
 | Docs library | How-to guides, reference material, general use; also bundled inside Lite | Public | 2 |
 | Desktop app | Local file access and extensions; required to connect SolidWorks | Pro, Turbo, Team, Enterprise | 3 |
 | API | Programmatic access from customer systems | Pro, Turbo, Team, Enterprise | 4 |
@@ -146,7 +151,7 @@ One application at designengineering.ai, reached through several surfaces. The h
 
 | Level | CAD approach | How it connects |
 | --- | --- | --- |
-| Basic Viewer (with Starter or wallet), Pro, Turbo, Team | CAD generated inside the app, paid by usage | Web app |
+| Pro, Turbo, Team with the Design extension | CAD generated inside the app, paid by usage | Web app |
 | Enterprise | Drives the customer's SolidWorks or Onshape across multiple workstations | Onshape: cloud API. SolidWorks: desktop add-in on each workstation, each with its own CAD license |
 
 ### 3.1 Deployment Modes
@@ -166,8 +171,8 @@ Other modes are revisited once Grant Block uses the app more than his current to
 
 | Path in the zip | Contents | Required |
 | --- | --- | --- |
-| `manifest.json` | Format version, package ID, title, client or site, built-by organization, build date, Builder version, and a SHA-256 hash for every file | Yes |
-| `cover.pdf` | Human-readable cover sheet: what the package covers, who built it, contact, revision | Yes |
+| `manifest.json` | Format version, package ID, title, organization, the projects included, built-by organization, build date, Builder version, and a SHA-256 hash for every file | Yes |
+| `cover.pdf` | Human-readable cover sheet: what the package covers, who built it, contact, revision, and a QR code to the online copy when the package is shared online | Yes |
 | `models/` | Source CAD (STEP, OBJ) plus viewer-ready GLB files Builder converts for fast loading | If models exist |
 | `docs/` | Manuals, data sheets, drawings, procedures (PDF) | Yes |
 | `notes/` | Project notes and handoff logs (Markdown) | Optional |
@@ -176,9 +181,11 @@ Other modes are revisited once Grant Block uses the app more than his current to
 
 **Rules**
 
+- One package holds the selected projects of one organization; Lite shows one folder per project.
 - Lite opens packages read-only; it never uploads package content.
 - The on-device AI model ships with the Lite installer or downloads on first run, never inside each package.
 - A lapsed Builder subscription does not stop existing packages from opening.
+- **Also share online** (a switch in Builder's Build step, off by default): Builder also publishes the package as a Resource project in the builder's organization. The customer's people are invited as viewers (unlimited with Builder, view and chat only) and open it on a phone or browser in the main app, signed in free. Viewer chat is paid from the builder's wallet and storage counts against the builder's plan. Each rebuild updates the zip and the online copy with the same revision. The recipient's Lite never uploads anything; the builder publishes the copy.
 - Renewing Builder includes package-format updates; Lite reads every older format version.
 
 **Open questions:** on-device model choice and minimum PC spec; Windows only or also macOS; whether Lite users can add their own notes back into a package.
@@ -213,9 +220,9 @@ Source: Grant Block's Tech Stack workbook (November 2026). The final stack is ch
 | File storage | Uploads and project documents | Cloudflare R2 | Amazon S3, Supabase Storage | $0 (free tier) | Under $5 / month at early volume (A) |
 | 3D viewer | Model viewing in app and Lite | Three.js | Babylon.js, Online3DViewer | $0 (open source) | $0 |
 | AI provider | Chat, search, generation (cloud) | Anthropic Claude (behind an adapter) | OpenAI, Google Gemini | Capped testing budget ($50–100 / month) | Passed through the wallet |
-| Desktop shell (A, proposed) | Lite, Builder, and the desktop app | Electron | Tauri | $0 (open source) | Code-signing certificate (A) |
+| Desktop shell (A, proposed) | Lite and the desktop app (Builder runs in the web app) | Electron | Tauri | $0 (open source) | Code-signing certificate (A) |
 | On-device AI (A, proposed) | Lite chat with no cloud tokens | Small open-weight model run with llama.cpp | ONNX Runtime, Ollama | $0 (open source) | $0 |
-| Payments and wallet | Memberships, wallet, storage blocks, Builder seats | Stripe | Lemon Squeezy, Paddle | $0 base | 3% of revenue (A) |
+| Payments and wallet | Memberships, wallet, storage blocks, Starter bundles, extension seats | Stripe | Lemon Squeezy, Paddle | $0 base | 3% of revenue (A) |
 | Code review | Automated review on GitHub | CodeRabbit | GitHub Copilot code review | $0 (A) | Per seat (A) |
 | **Total (planning)** |  |  |  | **$60–120 / month** | **$265–325 / month + 3% of revenue at launch (SBA 7.2.1)** |
 
@@ -235,7 +242,7 @@ Filled in during the winter build as each final choice is made.
 | D8 | 3D viewer | Three.js |  |  |  |
 | D9 | File storage | Cloudflare R2 |  |  |  |
 | D10 | Payments and wallet | Stripe |  |  |  |
-| D11 | Desktop shell (Lite, Builder) | Electron (proposed) |  |  |  |
+| D11 | Desktop shell (Lite) | Electron (proposed) |  |  |  |
 | D12 | On-device AI runtime and model (Lite) | llama.cpp + small open-weight model (proposed) |  |  |  |
 
 ### 4.1 AI Model Strategy
@@ -244,7 +251,7 @@ Build on an existing AI model through its API; do not train an own model. Anthro
 
 ### 4.2 Data Model & Ontology
 
-PostgreSQL, accessed through Prisma, stores the core objects: Company, User, Project, Document, Model (3D file), Note, Task, Plan, Vendor Request, Wallet transaction, and Builder package. Each object carries an owner and an access level (view, comment, edit), which is the access-control layer behind collaborator mode and the Team admin panel. Files themselves sit in file storage (D9), with the database holding their records and links. Facility scans stay in Matterport or scanner cloud services and are linked, not copied.
+PostgreSQL, accessed through Prisma, stores the core objects: Organization (with linked client organizations), User, Project (type Job or Resource; a resource project, such as engineering resources, has no stage or status), Process, Document, Model (3D file), Schedule and Task, Note and Update, Calculator, Chat, Plan, Vendor Request, Customer Quote, Wallet transaction, Extension, and Builder package. Each object carries an owner and an access level (view, comment, edit), which is the access-control layer behind collaborator mode and the Team admin panel. Files themselves sit in file storage (D9), with the database holding their records and links. Facility scans stay in Matterport or scanner cloud services and are linked, not copied.
 
 ### 4.3 3D / CAD Data Pipeline & Viewer
 
@@ -271,7 +278,7 @@ Two separate charges, modeled on performance-tier memberships such as NVIDIA GeF
 - **Membership** buys a performance level and features.
 - **Wallet** pays for usage. Every level, including Basic Viewer, can fund a wallet and pay for usage.
 
-Builder and Lite sit outside this model: Builder is an annual seat license and Lite is free with no tokens.
+Extensions and Lite sit outside this model: Design and Builder are each a $600 / seat / year license added to Pro (A), and Lite is free with no tokens.
 
 ### 6.1 Membership Levels
 
@@ -279,16 +286,17 @@ Prices match SBA Section 5.2.
 
 | Level | Available | Price | Performance | Features | Storage |
 | --- | --- | --- | --- | --- | --- |
-| Basic Viewer | Launch | $0 | Standard speed and models; small daily AI cap paid by Block Concepts | Web app; view and comment on shared projects; collaborator mode; up to 3 projects of their own (shared projects do not count) | None |
-| Starter bundle | Launch | [$20] per bundle (A) | As Basic Viewer | Add-on for Basic Viewer: [$10] of wallet tokens plus storage, to use the tools without Pro | 20 GB |
-| Pro | Launch | $30 / user / month | Faster responses, priority access, premium models | Web app plus desktop app with extensions; collaborator mode | 20 GB included; each additional 20 GB is $10 / month |
+| Basic Viewer | Launch | $0 | Lowest-cost model on the slow queue; very small daily general-chat cap from the shared free pool | Web app; general chat (design-engineering topics only); view, comment and ask questions on projects shared with them (paid by the owner's wallet); collaborator mode; no projects of their own | None |
+| Starter bundle | Launch | $20 / year | As Basic Viewer | Yearly add-on for Basic Viewer, the loss leader for hobbyists and technicians to try the project tools without Pro: up to 3 projects of their own (shared projects do not count), uploads, and a one-time $5 starter token credit (A). Further tokens are bought separately from the wallet, with no spending limit, for chat (troubleshooting, vendor requests) beyond the daily cap | 5 GB total, 100 MB per file (A); Pro unlocks the full storage |
+| Pro | Launch | $30 / user / month | Faster responses, priority access, premium models | Web app with projects and project chat, plus desktop app; can add the Design and Builder extensions; collaborator mode with up to 10 active viewers per user (activate and deactivate to manage), whose chat is paid from the owner's wallet | 20 GB included, 500 MB per file (A); each additional 20 GB is $10 / month |
 | Turbo | After infrastructure upgrades | [$X] / user / month | Much faster than Pro | Everything in Pro; for power users who can't justify Enterprise and don't need Team admin controls | [X] GB included; each additional 20 GB is $10 / month |
-| Team | Built in year 1, live from year 2 | $50 / user / month | As Pro | Everything in Pro plus an admin panel: add and remove people, set roles and permissions on shared projects | 20 GB per user (A); each additional 20 GB is $10 / month |
+| Team | Built in year 1, live from year 2 | $50 / user / month | As Pro | Everything in Pro plus an admin panel: add and remove people, set roles and permissions on shared projects; 10 viewers per Team user | 20 GB per user (A); each additional 20 GB is $10 / month |
 | Enterprise | Custom implementation | Flat fee + per-user memberships + custom features and integrations | Dedicated cloud or local deployment | Built on the Builder app; all surfaces, plus Onshape / SolidWorks integration | Customer's own cloud or site |
-| Builder | Year 1 at Block Concepts; open sale [timing TBD] | $600 / seat / year, annual subscription (A) | Runs locally | Packages documentation into Lite zips, one per client or site; renewal covers updates, package-format updates, and support; any packaging AI use is paid from the subscriber's wallet | On the subscriber's computer |
+| Design (extension) | After the MVP (in the prototype now) | $600 / seat / year, added to Pro (A) | As the Pro level | Chat-only 3D designer; models saved to the Vault; CAD generation paid from the wallet. Basic Viewer and Starter users can use it by tokens on a slow queue (about a week), without the extension | Pro storage |
+| Builder (extension) | After the MVP (in the prototype now); open sale [timing TBD] | $600 / seat / year, added to Pro (A) | Desktop only | Packages an organization's selected projects into a Lite zip; unlimited view-and-chat viewers (fair use, review above 500 active per seat (A)); renewal covers updates, package-format updates, and support; any packaging AI use is paid from the subscriber's wallet | Package built on the subscriber's computer |
 | Lite | With Builder | Free download | On-device AI; no Block Concepts tokens | Opens Builder packages: 3D viewer, document search, local chat, docs library; no login | Package files on the recipient's computer |
 
-*Storage is sold in 20 GB blocks. Raw object storage (Cloudflare R2) costs about $0.015 per GB per month, so a 20 GB block costs about $0.30 per month to provide. Basic Viewer accounts get storage only through a Starter bundle, which makes Pro ($30 with 20 GB included) the better value for anyone storing work regularly. Turbo pricing is set in SBA Plan Section 5.2 when infrastructure allows.*
+*Storage is sold in 20 GB blocks. Raw object storage (Cloudflare R2) costs about $0.015 per GB per month, so a 20 GB block costs about $0.30 per month to provide. Basic Viewer accounts get only the Starter bundle's file upload limit; Pro ($30 with 20 GB included) unlocks full storage and is the better value for anyone storing work regularly. Turbo pricing is set in SBA Plan Section 5.2 when infrastructure allows.*
 
 ### 6.2 Wallet Metering
 
@@ -298,19 +306,35 @@ Chat and CAD usage is charged at **3.5× the underlying cost**. Rates vary by mo
 | --- | --- | --- |
 | Chat | Tokens | AI provider cost × 3.5, by model and speed |
 | CAD generation | Per generation | AI and compute cost × 3.5, by complexity and speed |
-| Storage add-on blocks | Per 20 GB per month | Flat block price: Pro, Turbo, and Team $10 (not the 3.5× multiplier); Basic Viewer through Starter bundles only |
+| Storage add-on blocks | Per 20 GB per month | Flat block price: Pro, Turbo, and Team $10 (not the 3.5× multiplier); Basic Viewer: Starter upload limit only, no blocks |
 
-*Per-model and per-task rates are set after MVP cost testing. During the winter build, every request is logged with its model, task type (chat, document search, CAD generation), token count, and cost. Rates are then priced at 3.5× the measured averages.*
+*Usage is charged by the tokens actually used, so heavy requests pay more. The minimum wallet top-up is $10 (A). Per-model and per-task rates are set after MVP cost testing. During the winter build, every request is logged with its model, task type (chat, document search, CAD generation), token count, and cost. Rates are then priced at 3.5× the measured averages.*
 
 ### 6.3 Wallet Rules
 
 - Prepaid: usage stops when the balance runs out; optional auto-refill.
-- Basic Viewer accounts have a small daily AI cap paid by Block Concepts, sized from measured costs so total Basic Viewer usage stays within [X%] of Pro revenue (SBA 8.4).
-- Starter bundle tokens are spent before the user's own wallet.
+- All free usage draws from one shared monthly pool capped at 5% of Pro membership revenue (A). When the pool runs out, free chat waits until the next month; paid users are never affected (SBA 8.4).
+- The Starter bundle is $20 per year for projects and uploads, with a one-time $5 starter token credit (A); further tokens are a separate wallet purchase with no spending limit. Basic Viewer usage beyond the daily cap is paid from the wallet.
 - Lite uses no Block Concepts tokens.
 - Users see a running usage and balance display.
 - Block Concepts keeps a hard monthly spending limit with the AI provider.
 - Enterprise may be invoiced (postpaid) through Block Concepts.
+
+### 6.4 Abuse and Loss Controls
+
+*Marketing cost is fine; an abuser must not be able to take money. Block Concepts' worst case is the free pool (5% of Pro revenue) plus card fraud screened by Stripe.*
+
+| # | Abuse | Control |
+| --- | --- | --- |
+| 1 | Many free accounts to multiply the daily cap | Free AI needs a verified email; disposable email domains blocked; limits per device and network, not only per account; any upgrade needs a card check ($0 hold) |
+| 2 | Free chat used as a general-purpose AI | Free chat answers design-engineering topics only, on the lowest-cost model, with short answers, short conversation memory, no attachments, and the slow queue |
+| 3 | Oversized requests | Maximum size per free request; paid usage charged by tokens actually used |
+| 4 | Stolen cards and chargebacks | Stripe fraud screening; $10 minimum top-up; a chargeback freezes the account and pulls back its unused balance; auto-refill needs a verified card |
+| 5 | Paid jobs that cost more than expected (Design, Builder packaging) | The estimated cost is held from the wallet before the job runs; the job runs only if the balance covers it; failed jobs are refunded automatically |
+| 6 | Storage used as a free file host | Engineering file types only; per-file limits; no public download links (viewers need an account); lapsed plans go read-only for 90 days (A), then files are deleted with notice |
+| 7 | Invited viewers running up AI cost | Viewer chat charged to the owner's wallet with a per-viewer monthly limit; 10 active viewers per paid user, unlimited with Builder (fair use, view and chat only); owners activate and deactivate them |
+
+Spending spikes suspend an account automatically, so no one watches logs; the AI provider's hard monthly cap stays as the last backstop.
 
 ## 7. Roadmap & Winter Milestones
 
@@ -318,9 +342,9 @@ Chat and CAD usage is charged at **3.5× the underlying cost**. Rates vary by mo
 
 | Phase | Target timing | Deliverables | Gate to next phase |
 | --- | --- | --- | --- |
-| 0: Winter build | Nov 2026 – Mar 2027 | Chat MVP: AI chat, uploads, document search, 3D viewer, project document storage, notes and tracking, calculators, process flows, plans and vendor requests; per-request cost logging; Builder and Lite with package format v1 and on-device chat; Lite demo package | Grant Block uses the MVP daily on real Block Concepts work; Lite demo package ready |
-| 1: Public launch | Apr 2027 | Basic Viewer, Starter, and Pro live; prepaid wallet; Cloudflare paid plan; per-model rates and Basic Viewer cap set from cost logs; Builder and Lite at Block Concepts and its customers; Team built during year 1; first customers from Block Concepts and rep channels | 10–12 Pro users cover running costs |
-| 2: First hire | When reached | Team live (year 2); senior software engineer hired; desktop app with extensions; first CAD milestone (spacer-class part model and drawing); Builder open sale [timing TBD] | 380–415 Pro users |
+| 0: Winter build (Block Concepts prototype) | Nov 2026 – Mar 2027 | Block Concepts runs the full suite as its own Enterprise account. Built first: only the functions that prototype needs to run like a true Enterprise account, defined by Grant Block during the build from testing on his own projects; the MVP definition and the Enterprise program evolve from that work. Includes Design and Builder for Block Concepts use, Lite with package format v1 and on-device chat, a Lite demo package, and per-request cost logging. The MVP subset (Section 2) is designed on the same system so it integrates later | Grant Block runs Block Concepts on the prototype daily; Lite demo package ready |
+| 1: Public launch (MVP) | Apr 2027 | Public MVP released as the Section 2 subset, without extensions; Basic Viewer, Starter, and Pro live; prepaid wallet; Cloudflare paid plan; per-model rates and Basic Viewer cap set from cost logs; Builder and Lite at Block Concepts and its customers; Team built during year 1; first customers from Block Concepts and rep channels | 10–12 Pro users cover running costs |
+| 2: First hire | When reached | Team live (year 2); senior software engineer hired; desktop app with extensions; Design extension with the first CAD milestone (spacer-class part model and drawing); Builder extension open sale [timing TBD] | 380–415 Pro users |
 | 3: Full staffing | When reached | Team of 5; API and CLI; Enterprise (built on the Builder app) with Onshape / SolidWorks integration; Turbo level | 1,850–1,955 Pro users |
 | Later | — | Mobile apps, PLC coding, electrical schematics, operations escalations, facility scan links, FDA / cGMP add-ons | — |
 
@@ -335,7 +359,7 @@ Ranked by owner priority (1 = highest concern).
 | Rank | Risk | Type | Likelihood | Mitigation |
 | --- | --- | --- | --- | --- |
 | 1 | Inaccurate AI output (wrong dimension, part number, or vendor detail) | Product / liability | Medium | See 8.1 below |
-| 2 | AI costs run over (bugs, abuse, Basic Viewer usage growth) | Financial | Medium | Hard monthly spend cap with the AI provider; Basic Viewer daily cap; prepaid wallet and Starter bundles; per-request cost logging; Lite runs on-device |
+| 2 | AI costs run over (bugs, abuse, Basic Viewer usage growth) | Financial | Medium | Hard monthly spend cap with the AI provider; free pool capped at 5% of Pro revenue; abuse and loss controls (6.4); prepaid wallet; invited viewers paid by the owner; per-request cost logging; Lite runs on-device |
 | 3 | Growth slower than the target pace (+12 Pro / month) | Market | Medium | Focused channels (SBA 6), Lite packages and demo, founding-customer offer as a lever; Block Concepts funds the gap |
 | 4 | Owner capacity: two owners covering every role alongside an active automation sales business | Operations | High | Phase gates; AI tools; first hire at the Phase 2 trigger |
 | 5 | Competitors add similar features (AI CAD tools, CMMS vendors, industrial copilots) | Market | High | Speed, turnkey setup, technician-first focus, Block Concepts relationships |

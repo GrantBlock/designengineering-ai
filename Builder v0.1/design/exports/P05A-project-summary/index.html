@@ -268,11 +268,16 @@ button:focus-visible, textarea:focus-visible, input:focus-visible, [role="button
 .sm-head{display:flex;align-items:flex-end;justify-content:space-between;gap:var(--bc-space-4);flex-wrap:wrap;padding:var(--bc-space-8) 0 var(--bc-space-4)}
 .sm-head h1{margin:6px 0 0;font-size:clamp(28px,4.4vh,40px);font-weight:800;letter-spacing:-0.01em;line-height:.98;text-transform:uppercase}
 .sm-acts{display:flex;gap:var(--bc-space-2);flex-wrap:wrap}
-.sm-b{display:inline-flex;align-items:center;gap:10px;height:44px;padding:2px 18px 0;border:1px solid var(--bc-hairline);border-radius:var(--bc-radius-control);background:var(--bc-surface-raised);color:var(--bc-ink);font:inherit;font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;text-decoration:none;cursor:pointer}
+.sm-b{display:inline-flex;align-items:center;gap:10px;height:var(--bc-control-height);padding:2px 18px 0;border:1px solid var(--bc-hairline);border-radius:var(--bc-radius-control);background:var(--bc-surface-raised);color:var(--bc-ink);font:inherit;font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;text-decoration:none;cursor:pointer}
 .sm-b:hover{border-color:var(--bc-steel-blue);text-decoration:none;color:var(--bc-ink)}
 .sm-b.is-main{border-color:var(--bc-steel-blue);color:var(--bc-steel-blue-text);background:none}
 .sm-b.is-main:hover{background:var(--bc-steel-blue-tint);color:var(--bc-steel-blue-text)}
-.sm-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:var(--bc-space-4);margin-bottom:var(--bc-space-4);align-items:start}
+.sm-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:var(--bc-space-4);margin-bottom:var(--bc-space-4);align-items:stretch}
+.sm-grid>.de-panel{min-width:0}
+.sm-grid #rl{flex:1}
+.sm-grid .sm-more{margin-top:auto;padding-top:10px}
+/* links: steel-blue text; the shared shell keeps them underlined (contrast and accessibility pass) */
+.sm-cap a,.sm-more a{color:var(--bc-steel-blue-text);white-space:nowrap}
 .sm-stage{padding:4px 4px 8px}
 .sm-st{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:12px}
 .sm-st b{font-size:20px;font-weight:700}
@@ -294,9 +299,10 @@ button:focus-visible, textarea:focus-visible, input:focus-visible, [role="button
 .sm-em{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--bc-muted)}
 .sm-et{margin-top:4px;font-size:14px;line-height:1.5}
 .sm-iso{display:block;width:100%;height:auto;max-height:340px;background:var(--bc-canvas);border-radius:var(--bc-radius-card);border:1px solid var(--bc-edge-soft)}
-.sm-iso .top{fill:#4a4a50;stroke:#17171a;stroke-width:1}.sm-iso .lf{fill:#303034;stroke:#17171a;stroke-width:1}.sm-iso .rt{fill:#3b3b40;stroke:#17171a;stroke-width:1}
-.sm-iso .hot .top{fill:var(--bc-steel-blue)}.sm-iso .hot .lf{fill:#2f5f86}.sm-iso .hot .rt{fill:#3a6f9c}
-.sm-iso text{fill:#ececed;font-family:var(--font-mono);font-size:11px;text-anchor:middle}
+:root{--p5a-iso-top:#4a4a50;--p5a-iso-left:#303034;--p5a-iso-right:#3b3b40;--p5a-iso-edge:#17171a;--p5a-iso-hot-left:#2f5f86}
+.sm-iso .top{fill:var(--p5a-iso-top);stroke:var(--p5a-iso-edge);stroke-width:1}.sm-iso .lf{fill:var(--p5a-iso-left);stroke:var(--p5a-iso-edge);stroke-width:1}.sm-iso .rt{fill:var(--p5a-iso-right);stroke:var(--p5a-iso-edge);stroke-width:1}
+.sm-iso .hot .top{fill:var(--bc-steel-blue)}.sm-iso .hot .lf{fill:var(--p5a-iso-hot-left)}.sm-iso .hot .rt{fill:var(--bc-steel-blue-hover)}
+.sm-iso text{fill:var(--bc-ink);font-family:var(--font-mono);font-size:11px;text-anchor:middle}
 .sm-cap{display:flex;justify-content:space-between;gap:12px;margin-top:10px;font-size:13px;color:var(--bc-muted)}
 .sm-g{display:grid;grid-template-columns:200px minmax(0,1fr);gap:0 var(--bc-space-4);align-items:center}
 .sm-gh{display:grid;grid-template-columns:200px minmax(0,1fr);gap:0 var(--bc-space-4);padding:0 4px 8px;font-family:var(--font-mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--bc-muted)}
@@ -307,7 +313,7 @@ button:focus-visible, textarea:focus-visible, input:focus-visible, [role="button
 .sm-gb{position:absolute;top:0;height:14px;border-radius:var(--bc-radius-bar);border:1px solid var(--bc-steel-blue)}
 .sm-gb.done{background:var(--bc-steel-blue)}.sm-gb.prog{background:var(--bc-steel-blue-tint)}.sm-gb.prog i{display:block;height:100%;background:var(--bc-steel-blue);border-radius:inherit}
 .sm-gb.todo{background:var(--bc-surface)}
-.sm-today{position:absolute;top:-4px;bottom:-4px;width:2px;background:#ee8c87}
+.sm-today{position:absolute;top:-4px;bottom:-4px;width:2px;background:var(--bc-steel-blue-text)}
 .sm-gs{font-family:var(--font-mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase}
 .sm-more{display:flex;justify-content:space-between;align-items:center;margin-top:10px;font-size:13px;color:var(--bc-muted)}
 .sm-mobile{display:none}
@@ -317,7 +323,8 @@ button:focus-visible, textarea:focus-visible, input:focus-visible, [role="button
  .de-sidebar,.de-topbar{display:none}
  .de-shell-scroll{padding:0 var(--bc-gutter-mobile);overflow:visible;padding-bottom:140px}
  .sm-mobile{display:block}
- .sm-head h1{font-size:34px}.sm-acts{width:100%}.sm-b{flex:1;justify-content:center;height:52px}
+ .sm-head h1{font-size:34px}.sm-acts{width:100%;flex-direction:column}.sm-b{width:100%;justify-content:center;height:52px}
+ .sm-cap,.sm-more{flex-direction:column;align-items:flex-start;gap:6px}
  .de-panel{background:none;border:none;box-shadow:none;padding:0}
  .sm-ticks button{font-size:9.5px;letter-spacing:.04em}
  .sm-gh,.sm-gr{grid-template-columns:110px minmax(0,1fr)}.sm-gn{font-size:12px}
@@ -367,7 +374,7 @@ button:focus-visible, textarea:focus-visible, input:focus-visible, [role="button
    <section class="de-panel" aria-label="Progress" style="margin-bottom:var(--bc-space-4)"><div class="de-section-head"><span class="de-label">Progress</span><span class="de-tag de-tag-plain">Drag to change the stage</span></div>
     <div class="sm-stage"><div class="sm-st"><b id="sn">Build</b><span id="sc">Stage 3 of 5</span></div><div class="sm-rng"><input type="range" id="rg" min="1" max="5" step="1" value="3" aria-label="Project stage"><div class="sm-ticks" id="tk"></div></div></div></section>
    <div class="sm-grid">
-    <section class="de-panel" aria-label="Overview"><div class="de-section-head"><span class="de-label">Overview</span><span class="de-tag de-tag-plain" id="ovn"></span></div><svg class="sm-iso" id="iso" viewBox="0 0 560 340" role="img" aria-label="3D overview of the processes"></svg><div class="sm-cap"><span>Drawn from the process sizes and layout.</span><a href="../P08-3d-viewer/index.html">Open in the 3D designer</a></div></section>
+    <section class="de-panel" aria-label="Overview"><div class="de-section-head"><span class="de-label">Overview</span><span class="de-tag de-tag-plain" id="ovn"></span></div><svg class="sm-iso" id="iso" viewBox="0 0 560 340" role="img" aria-label="3D overview of the processes"></svg><div class="sm-cap"><span>Drawn from the process sizes and layout.</span><a id="o3d" href="../P08-3d-viewer/index.html">Open in the 3D designer</a></div></section>
     <section class="de-panel" aria-label="Recent tasks"><div class="de-section-head"><span class="de-label">Recent tasks</span><span class="de-tag de-tag-plain" id="rn"></span></div><div id="rl"></div><div class="sm-more"><span>Added with Update assistant on the Dashboard.</span><a href="../P19-dashboard/index.html">Add an update</a></div></section>
    </div>
    <section class="de-panel" aria-label="Scheduled tasks"><div class="de-section-head"><span class="de-label">Scheduled tasks</span><span class="de-tag de-tag-plain" id="gn"></span></div><div id="gantt"></div><div class="sm-more"><span id="gleg"></span><a id="gedit" href="#">Open the schedule</a></div></section>
@@ -384,7 +391,7 @@ button:focus-visible, textarea:focus-visible, input:focus-visible, [role="button
  var STEP0={'BC-Q-26041':3,'BC-Q-26038':2,'BC-Q-26035':1,'BC-Q-26031':4,'BC-Q-26027':2,'BC-Q-26019':5};
  var STAGES=['Assessment','Design','Build','FAT','SAT'];
  var Q=new URLSearchParams(location.search),PN=PROJ[Q.get('project')]?Q.get('project'):'BC-Q-26041';
- var TODAY=new Date('2026-11-11T00:00:00');
+ var TODAY=(function(){var d=new Date();d.setHours(0,0,0,0);return d})();
  var DEFAULTS=[{"type": "Sand Mixer + Hopper", "speed": "", "ppc": "", "len": "144", "wid": "120", "hgt": "", "wt": "", "psi": "80", "cfm": "4", "volt": "480", "phase": "3", "amp": "30", "flow": "Vertical", "notes": "", "anchor": "", "side": "", "align": ""}, {"type": "Incline Sand Conveyor", "speed": "", "ppc": "", "len": "216", "wid": "18", "hgt": "", "wt": "", "psi": "", "cfm": "", "volt": "480", "phase": "3", "amp": "10", "flow": "Vertical", "notes": "", "anchor": "1", "side": "above", "align": "center"}, {"type": "Horizontal Sand Conveyor", "speed": "", "ppc": "", "len": "240", "wid": "24", "hgt": "", "wt": "", "psi": "", "cfm": "", "volt": "480", "phase": "3", "amp": "10", "flow": "Right to left", "notes": "", "anchor": "2", "side": "left", "align": "start"}, {"type": "Molding Hopper", "speed": "", "ppc": "", "len": "114", "wid": "112", "hgt": "", "wt": "", "psi": "80", "cfm": "3", "volt": "480", "phase": "3", "amp": "15", "flow": "Vertical", "notes": "", "anchor": "5", "side": "left", "align": "start"}, {"type": "Molding Press", "speed": "", "ppc": "", "len": "240", "wid": "112", "hgt": "", "wt": "", "psi": "80", "cfm": "8", "volt": "480", "phase": "3", "amp": "60", "flow": "Left to right", "notes": "", "anchor": "3", "side": "above", "align": "start"}, {"type": "Transfer Conveyor", "speed": "", "ppc": "", "len": "414", "wid": "24", "hgt": "", "wt": "", "psi": "", "cfm": "", "volt": "480", "phase": "3", "amp": "12", "flow": "Left to right", "notes": "", "anchor": "5", "side": "right", "align": "start"}, {"type": "Transfer Conveyor", "speed": "", "ppc": "", "len": "624", "wid": "24", "hgt": "", "wt": "", "psi": "", "cfm": "", "volt": "480", "phase": "3", "amp": "15", "flow": "Vertical", "notes": "", "anchor": "6", "side": "below", "align": "end"}, {"type": "Transfer Conveyor", "speed": "", "ppc": "", "len": "408", "wid": "24", "hgt": "", "wt": "", "psi": "", "cfm": "", "volt": "480", "phase": "3", "amp": "12", "flow": "Right to left", "notes": "", "anchor": "7", "side": "below", "align": "end"}, {"type": "Sand Reclamation", "speed": "", "ppc": "", "len": "108", "wid": "96", "hgt": "", "wt": "", "psi": "80", "cfm": "6", "volt": "480", "phase": "3", "amp": "25", "flow": "Vertical", "notes": "", "anchor": "1", "side": "below", "align": "center"}];
  var DSCH=[{"id":"s1","name":"Conveyor","collapsed":false,"tasks":[{"id":"v1","name":"Application Study","start":"2026-08-03","end":"2027-01-27","bs":"2026-08-03","be":"2027-01-27","status":"In progress","after":[]},{"id":"v2","name":"Mechanical Design (1 of 2)","start":"2026-08-03","end":"2026-09-02","bs":"2026-08-03","be":"2026-09-02","status":"Done","after":[]},{"id":"v3","name":"Electrical Design","start":"2026-09-03","end":"2026-11-01","bs":"2026-09-03","be":"2026-11-01","status":"Done","after":["v2"]},{"id":"v4","name":"Software Design","start":"2026-09-03","end":"2026-12-21","bs":"2026-09-03","be":"2026-12-21","status":"In progress","after":["v2"]},{"id":"v5","name":"Mechanical Design (2 of 2)","start":"2026-09-04","end":"2026-09-17","bs":"2026-09-04","be":"2026-09-17","status":"Done","after":["v2"]},{"id":"v6","name":"Component Procurement","start":"2026-09-18","end":"2026-11-21","bs":"2026-09-18","be":"2026-11-21","status":"In progress","after":["v5"]},{"id":"v7","name":"Panel Assembling","start":"2026-11-02","end":"2026-12-05","bs":"2026-11-02","be":"2026-12-05","status":"In progress","after":["v3"]},{"id":"v8","name":"Main Assembly","start":"2026-11-22","end":"2026-12-05","bs":"2026-11-22","be":"2026-12-05","status":"Not started","after":["v6","v7"]},{"id":"v9","name":"Main Wiring","start":"2026-12-06","end":"2026-12-28","bs":"2026-12-06","be":"2026-12-28","status":"Not started","after":["v8","v4"]},{"id":"v10","name":"Software Troubleshooting","start":"2026-12-29","end":"2027-01-26","bs":"2026-12-29","be":"2027-01-26","status":"Not started","after":["v9"]}]},{"id":"s2","name":"Capping","collapsed":true,"tasks":[{"id":"c1","name":"Mechanical design","start":"2026-08-03","end":"2026-09-04","bs":"2026-08-03","be":"2026-09-04","status":"Done","after":[]},{"id":"c2","name":"Controls design","start":"2026-09-07","end":"2026-10-02","bs":"2026-09-07","be":"2026-10-02","status":"Done","after":["c1"]},{"id":"c3","name":"Build and wiring","start":"2026-10-05","end":"2026-10-30","bs":"2026-10-05","be":"2026-10-30","status":"Done","after":["c2"]},{"id":"c4","name":"FAT","start":"2026-11-02","end":"2026-11-06","bs":"2026-11-02","be":"2026-11-06","status":"Done","after":["c3"]}]}];
  function layoutPos(S){
@@ -435,7 +442,7 @@ button:focus-visible, textarea:focus-visible, input:focus-visible, [role="button
   $('gantt').innerHTML='<div class="sm-gh"><span>Task</span><span style="display:flex;justify-content:space-between"><span>'+mo(new Date(min))+'</span><span>'+mo(new Date(max))+'</span></span></div>'
    +show.map(function(t){var l=pc(t.s),w=Math.max(1.5,pc(t.e)-l),cls=t.st==='Done'?'done':t.st==='In progress'?'prog':'todo',el=Math.max(0,Math.min(1,(TODAY-t.s)/((t.e-t.s)||1)));
     return '<div class="sm-gr"><div class="sm-gn" title="'+esc(t.g+': '+t.n)+'">'+esc(t.n)+'</div><div class="sm-gt"><div class="sm-gb '+cls+'" style="left:'+l+'%;width:'+w+'%">'+(cls==='prog'?'<i style="width:'+Math.round(el*100)+'%"></i>':'')+'</div><span class="sm-today" style="left:'+pc(TODAY)+'%"></span></div></div>'}).join('');
-  $('gleg').textContent='Red line is today, Nov 11. Showing the next '+show.length+' tasks.'}
+  $('gleg').textContent='Blue line is today, '+TODAY.toLocaleDateString('en-US',{month:'short',day:'numeric'})+'. Showing the next '+show.length+' tasks.'}
  /* overview */
  function iso(){var S=rd('de-proc-'+PN,NEWP?[]:DEFAULTS);if(!S.length){$('iso').innerHTML='<text x="280" y="170">No processes yet. Choose Edit project to add the first one.</text>';$('ovn').textContent='0 processes';return}var c=layoutPos(S),k=0.42,cs=0.866,sn=0.5,pts=[];
   function P(x,y,z){return [(x-y)*cs,(x+y)*sn-z]}
@@ -461,4 +468,6 @@ else if(b.dataset.sb==="toggle"){sb.style.display="none";ex.hidden=false}
 else if(b.classList.contains("sbgrp")){var g=b.closest(".sbgroup"),c=g.classList.toggle("is-closed");b.setAttribute("aria-expanded",String(!c))}});
 ex.addEventListener("click",function(){sb.style.display="";ex.hidden=true})})();
 </script>
+<script>/* The 3D designer link shows only when the Design extension is bought. */
+(function(){var a=document.getElementById('o3d');if(a&&window.DEExt&&!DEExt.get().design)a.hidden=true})();</script>
 </body></html>
