@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Case Erector Controls — Solid / Wireframe</title>
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://unpkg.com/three@0.184.0/build/three.module.js",
+    "three/addons/controls/OrbitControls.js": "https://unpkg.com/three@0.184.0/examples/jsm/controls/OrbitControls.js",
+    "three/addons/exporters/OBJExporter.js": "https://unpkg.com/three@0.184.0/examples/jsm/exporters/OBJExporter.js",
+    "three/addons/exporters/GLTFExporter.js": "https://unpkg.com/three@0.184.0/examples/jsm/exporters/GLTFExporter.js"
+  },
+  "integrity": {
+    "https://unpkg.com/three@0.184.0/build/three.module.js": "sha384-8FCZ1eVO6it4+pbec2aDtnTrwjWXZLJRC+MAGCIPDgsYnUrl/E0A2YlF8ioMKI/J",
+    "https://unpkg.com/three@0.184.0/build/three.core.js": "sha384-dw2ooPewaEIrAgl6oFDBmmBWCE9oW9LxRGcfwZ0hLvEprzo202wXl7vCYHRlSnOT",
+    "https://unpkg.com/three@0.184.0/examples/jsm/controls/OrbitControls.js": "sha384-4rziNxOBZKQ69i+w+f89KJ55TCYquwchVbByQwmaOeIOXdOU2PLDn3kOfXHwIJC9",
+    "https://unpkg.com/three@0.184.0/examples/jsm/exporters/OBJExporter.js": "sha384-nbwtoZENJD3Vq+ACK0CuGQdPMuDWHkamC2KJD70EV5nfg6jQjfppKOea07YJN+N3",
+    "https://unpkg.com/three@0.184.0/examples/jsm/exporters/GLTFExporter.js": "sha384-VofkvpG6HERhFCYbsUOHeNXBCqID2nfqkQqnVzE1jc/oPcz+qJ13ADdXH08hE+cQ"
+  }
+}
+</script>
+<style>
+  html, body { margin: 0; background: #0b0c0e; height: 100%; display: grid; place-items: center; }
+  three-d-stage { display: block; width: 100vw; height: 100vh; }
+  three-d-stage:not(:defined) { visibility: hidden; }
+</style>
+</head>
+<body>
+<three-d-stage name="case_erector_controls" background="#0b0c0e"></three-d-stage>
+<script src="three-d-stage.js"></script>
+<script type="module">
+import { createEnv } from './bc-render-env.js';
+const stage = document.querySelector('three-d-stage');
+if (window.self !== window.top) { await stage.ready; stage._toolbar && (stage._toolbar.style.display = 'none'); }
+const E = await createEnv(stage, { name: 'case_erector_controls' });
+const { M, box, cyl, frustum, lathe, tube, group, robot, conveyor, fence, finish } = E;
+box('machine_base', 2.6, 0.12, 1.0, M.dark, 0, 0.06, 0);
+box('lower_body', 2.44, 0.55, 0.9, M.gray, 0, 0.4, 0);
+box('deck', 2.44, 0.03, 0.9, M.alu, 0, 0.69, 0);
+[-1.26, 0, 1.26].forEach((x, i) => [-0.46, 0.46].forEach((z, j) => box('frame_post_' + i + '_' + j, 0.08, 1.8, 0.08, M.gray, x, 1.02, z)));
+[-0.46, 0.46].forEach((z, j) => box('top_rail_x_' + j, 2.6, 0.08, 0.08, M.gray, 0, 1.9, z));
+[-1.26, 1.26].forEach((x, j) => box('top_rail_z_' + j, 0.08, 0.08, 1.0, M.gray, x, 1.9, 0));
+box('guard_front', 2.44, 1.15, 0.01, M.poly, 0, 1.3, 0.5);
+box('guard_back', 2.44, 1.15, 0.01, M.poly, 0, 1.3, -0.5);
+[-0.3, 0.3].forEach((z, j) => {
+  box('magazine_rail_' + j, 1.1, 0.04, 0.04, M.alu, -1.6, 0.95, z);
+  box('magazine_leg_' + j, 0.05, 0.93, 0.05, M.gray, -2.1, 0.465, z);
+});
+for (let i = 0; i < 14; i++) { const b = box('blank_' + i, 0.012, 0.62, 0.85, M.robot, -2.05 + i * 0.06, 1.28, 0); b.rotation.z = 0.12; }
+cyl('vacuum_pivot', 0.05, 0.3, M.alu, -0.75, 1.55, 0, 'z');
+const arm = box('vacuum_arm', 0.06, 0.5, 0.06, M.robot, -0.86, 1.33, 0); arm.rotation.z = -0.45;
+frustum('vacuum_cup', 0.03, 0.05, 0.04, M.dark, -0.98, 1.1, 0);
+box('forming_plate_f', 0.45, 0.35, 0.01, M.alu, -0.3, 0.87, 0.18);
+box('forming_plate_b', 0.45, 0.35, 0.01, M.alu, -0.3, 0.87, -0.18);
+box('case_forming', 0.44, 0.33, 0.34, M.robot, -0.3, 0.865, 0);
+const ff = box('flap_folder', 0.3, 0.02, 0.2, M.alu, 0.2, 0.78, 0); ff.rotation.z = 0.35;
+box('compression_rail_f', 1.2, 0.03, 0.03, M.alu, 0.6, 0.8, 0.2);
+box('compression_rail_b', 1.2, 0.03, 0.03, M.alu, 0.6, 0.8, -0.2);
+box('case_taping', 0.44, 0.33, 0.34, M.robot, 0.65, 0.865, 0);
+conveyor('discharge', { len: 1.6, width: 0.45, top: 0.72, x: 2.1 });
+box('case_out_0', 0.44, 0.33, 0.34, M.robot, 1.8, 0.885, 0);
+box('case_out_1', 0.44, 0.33, 0.34, M.robot, 2.45, 0.885, 0);
+box('cabinet_plinth', 1.0, 0.1, 0.5, M.dark, -0.3, 0.05, -1.0);
+box('control_cabinet', 0.98, 1.8, 0.48, M.gray, -0.3, 1.0, -1.0);
+box('cabinet_door_seam', 0.004, 1.7, 0.004, M.dark, -0.3, 1.0, -0.758);
+box('cabinet_handle_l', 0.02, 0.16, 0.03, M.alu, -0.36, 1.05, -0.75);
+box('cabinet_handle_r', 0.02, 0.16, 0.03, M.alu, -0.24, 1.05, -0.75);
+box('cabinet_vent', 0.5, 0.08, 0.01, M.dark, -0.3, 1.7, -0.757);
+box('cable_tray', 0.2, 0.05, 0.6, M.alu, -0.3, 1.97, -0.62);
+cyl('hmi_pivot', 0.04, 0.1, M.alu, 1.3, 1.55, 0.52);
+tube('hmi_arm', [[1.3, 1.55, 0.52], [1.5, 1.56, 0.66], [1.66, 1.52, 0.74]], 0.025, M.alu);
+const hmi = group('hmi', 1.72, 1.5, 0.78, 0.35);
+box('hmi_housing', 0.42, 0.32, 0.08, M.robot, 0, 0, 0, hmi);
+box('hmi_screen', 0.34, 0.23, 0.01, M.dark, 0, 0.02, 0.042, hmi);
+cyl('stack_light_base', 0.03, 0.04, M.dark, 1.26, 1.96, -0.46);
+[M.gray, M.poly, M.alu, M.poly].forEach((m, i) => cyl('stack_light_' + i, 0.035, 0.06, m, 1.26, 2.01 + i * 0.062, -0.46));
+cyl('stack_light_cap', 0.035, 0.02, M.dark, 1.26, 2.258, -0.46);
+finish({
+  dims: [[[-2.15, 0.002, 0.6], [2.9, 0.002, 0.6], [0, 0, 0.5]], [[-0.8, 0, -0.76], [-0.8, 1.9, -0.76], [-0.45, 0, 0]]],
+  secondary: { y: 0.72, w: 3.0, d: 1.2 },
+});
+</script>
+</body>
+</html>

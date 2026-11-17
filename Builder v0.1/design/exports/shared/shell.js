@@ -126,17 +126,19 @@
     DE.vault.forEach(function (v) { if (v.t !== 'Chat') a.push([v.n, v.calc ? U.vault + '?calc=' + v.calc : v.h, v.t]); });
     return a;
   }
-  /* Search overlay: type tabs, Needs attention, Recents and Actions when empty; grouped results when typing.
-     Keys: arrows move, Enter opens, Left/Right change type (empty box), / filters by project, Alt+Enter row actions, Esc closes. */
+  /* Search overlay, in the same window as Settings and Preferences (title bar, left column, pane) but its own overlay, not a Settings tab.
+     Left column: search box, types with counts, then projects to narrow by. Pane: Needs attention, Recents and Actions when empty; grouped results when typing.
+     Keys: arrows move, Enter opens, Left/Right change type (empty box), Alt+Enter row actions, Esc closes. */
   var SX_TYPES = [['all', 'All'], ['chat', 'Chats'], ['project', 'Projects'], ['vault', 'Vault'], ['upload', 'Uploads'], ['page', 'Pages']];
   var SX_ICON = { chat: 'chat', project: 'folder', vault: 'doc', upload: 'upload', page: 'dash', action: 'plus', attn: 'clock' };
+  var SX_TICON = { all: 'search', chat: 'chat', project: 'folder', vault: 'vault', upload: 'upload', page: 'dash' };
   var SX_GROUP = { chat: 'Chats', project: 'Projects', vault: 'Vault', upload: 'Uploads', page: 'Pages' };
   function sxItems() {
     var a = [], x = extGet(), seen = {};
     function add(o) { var k = o.k + '|' + o.n + '|' + (o.p || ''); if (seen[k]) return; seen[k] = 1; a.push(o); }
     DE.projects.forEach(function (p) { add({ k: 'project', n: p.name, h: DE.summaryUrl(p.id), m: p.id, p: p.id }); (p.chats || []).forEach(function (c) { add({ k: 'chat', n: c, h: DE.chatUrl(c, p.id), m: p.id, p: p.id }); }); });
     DE.recents.forEach(function (c) { add({ k: 'chat', n: c, h: DE.chatUrl(c), m: 'Chat' }); });
-    DE.vault.forEach(function (v) { if (v.t === 'Chat') return; add({ k: v.t === 'Upload' ? 'upload' : 'vault', n: v.n, h: v.calc ? U.vault + '?calc=' + v.calc : v.h, m: v.t + (v.p ? ' · ' + v.p : ''), p: v.p }); });
+    DE.vault.forEach(function (v) { if (v.t === 'Chat') return; add({ k: v.t === 'Upload' ? 'upload' : 'vault', ic: v.t === 'Model' ? 'cube' : '', n: v.n, h: v.calc ? U.vault + '?calc=' + v.calc : v.h, m: v.t + (v.p ? ' · ' + v.p : ''), p: v.p }); });
     PAGES.forEach(function (g) { add({ k: 'page', n: g[0], h: g[1], m: g[2] }); });
     add({ k: 'page', n: 'Preferences', h: U.prefs, m: 'Factory context' });
     if (x.design) add({ k: 'page', n: '3D designer', h: U.design, m: 'Extension' });
@@ -155,12 +157,13 @@
   function search() {
     var all = sxItems(), st = { t: 0, i: 0, proj: '', filt: false }, rows = [];
     var d = dialog({ title: 'Search', noHead: true, raw:
-      '<div class="sx-head"><label class="sx-q"><span class="dx-sr">Search</span><input id="sx-q" type="search" placeholder="Search" autocomplete="off" role="combobox" aria-expanded="true" aria-controls="sx-r" aria-autocomplete="list"></label><button class="de-iconbtn" type="button" data-x="1" aria-label="Close search">' + ico('x', 20) + '</button></div>' +
-      '<div class="sx-tabs" role="tablist" aria-label="Type">' + SX_TYPES.map(function (t, i) { return '<button type="button" role="tab" data-t="' + i + '">' + t[1] + '</button>'; }).join('') + '</div>' +
-      '<div class="sx-filt" id="sx-f" hidden></div>' +
-      '<div class="sx-res" id="sx-r" role="listbox" aria-label="Results"></div>' +
-      '<div class="sx-foot" aria-hidden="true"><span>Close <kbd>Esc</kbd></span><span>Change type <kbd>←</kbd><kbd>→</kbd></span><span>Filters <kbd>/</kbd></span><span>Actions <kbd>Alt</kbd><kbd>↵</kbd></span><span class="sx-sp"></span><span>Open <kbd>↵</kbd></span></div>' });
-    d.el.firstChild.classList.add('is-search');
+      '<div class="sxo-top"><h2>Search</h2><button class="de-iconbtn" type="button" data-x="1" aria-label="Close search">' + ico('x', 20) + '</button></div>' +
+      '<div class="sxo-body"><div class="sxo-nav"><label class="sxo-find">' + ico('search', 16) + '<span class="dx-sr">Search</span><input id="sx-q" type="search" placeholder="Search everything" autocomplete="off" role="combobox" aria-expanded="true" aria-controls="sx-r" aria-autocomplete="list"></label>' +
+      '<div class="sxo-types" role="tablist" aria-label="Type" aria-orientation="vertical">' + SX_TYPES.map(function (t, i) { return '<button class="sxo-nb" type="button" role="tab" data-t="' + i + '">' + ico(SX_TICON[t[0]], 18) + '<span class="sxo-l">' + t[1] + '</span><span class="sxo-c" data-c="' + t[0] + '"></span></button>'; }).join('') + '</div>' +
+      '<div class="sxo-sep"></div><div class="sxo-grp">Project</div><div class="sxo-projs" id="sx-f"></div></div>' +
+      '<div class="sxo-main"><div class="sx-res" id="sx-r" role="listbox" aria-label="Results"></div>' +
+      '<div class="sx-foot" aria-hidden="true"><span>Close <kbd>Esc</kbd></span><span>Change type <kbd>←</kbd><kbd>→</kbd></span><span>Actions <kbd>Alt</kbd><kbd>↵</kbd></span><span class="sx-sp"></span><span>Open <kbd>↵</kbd></span></div></div></div>' });
+    d.el.firstChild.classList.add('is-search', 'is-ovl');
     var q = $('#sx-q', d.el), box = $('#sx-r', d.el);
     function hl(t, k) { var e = esc(t); if (!k) return e; var i = t.toLowerCase().indexOf(k); if (i < 0) return e; return esc(t.slice(0, i)) + '<mark>' + esc(t.slice(i, i + k.length)) + '</mark>' + esc(t.slice(i + k.length)); }
     function rowH(o, n, k) { return '<a class="sx-row' + (n === st.i ? ' is-on' : '') + '" role="option" id="sx-o' + n + '" data-n="' + n + '" href="' + esc(o.h || '#') + '" aria-selected="' + (n === st.i) + '">' + ico(o.ic || SX_ICON[o.k], 18) + '<span class="sx-n">' + hl(o.n, k) + '</span>' + (o.m ? '<small>' + (o.m.indexOf(' · ') > 0 ? '<span class="sx-ty">' + esc(o.m.split(' · ')[0]) + ' · </span>' + esc(o.m.split(' · ')[1]) : esc(o.m)) + '</small>' : '') + '<span class="sx-hint"><button class="sx-more" type="button" data-more="' + n + '" tabindex="-1" aria-label="Actions for ' + esc(o.n) + '">' + ico('more', 16, 2.2) + '</button>' + ico('enter', 16) + '</span></a>'; }
@@ -169,12 +172,13 @@
       var k = q.value.trim().toLowerCase(), type = SX_TYPES[st.t][0], h = '';
       if (!keepI) st.i = 0; rows = [];
       $$('[data-t]', d.el).forEach(function (b) { var on = +b.dataset.t === st.t; b.setAttribute('aria-selected', String(on)); b.classList.toggle('is-on', on); });
-      var f = $('#sx-f', d.el); f.hidden = !st.filt;
-      if (st.filt) f.innerHTML = '<span class="de-label">Project</span>' + [['', 'Any project']].concat(DE.projects.map(function (p) { return [p.id, p.name]; })).map(function (p) { return '<button type="button" class="sx-chip' + (st.proj === p[0] ? ' is-on' : '') + '" data-p="' + esc(p[0]) + '" aria-pressed="' + (st.proj === p[0]) + '">' + esc(p[1]) + '</button>'; }).join('');
+      $('#sx-f', d.el).innerHTML = [['', 'Any project']].concat(DE.projects.map(function (p) { return [p.id, p.name]; })).map(function (p) { return '<button type="button" class="sxo-nb sxo-pj" data-p="' + esc(p[0]) + '" aria-pressed="' + (st.proj === p[0]) + '"><span class="sxo-l">' + esc(p[1]) + '</span></button>'; }).join('');
+      var cnt = { all: 0 }; all.forEach(function (o) { if ((!st.proj || o.p === st.proj) && (!k || (o.n + ' ' + o.m).toLowerCase().indexOf(k) > -1)) { cnt[o.k] = (cnt[o.k] || 0) + 1; cnt.all++; } });
+      $$('[data-c]', d.el).forEach(function (c) { c.textContent = k || st.proj ? (cnt[c.dataset.c] || 0) : ''; });
       var pool = all.filter(function (o) { return (type === 'all' || o.k === type) && (!st.proj || o.p === st.proj) && (!k || (o.n + ' ' + o.m).toLowerCase().indexOf(k) > -1); });
       if (!k && type === 'all' && !st.proj) {
         h += sec('Needs attention', sxAttention(), '');
-        var rec = DE.recents.slice(0, 3).map(function (c) { return { k: 'chat', n: c, h: DE.chatUrl(c), m: 'Chat' }; }).concat(DE.vault.filter(function (v) { return v.t !== 'Chat'; }).slice(0, 3).map(function (v) { return { k: v.t === 'Upload' ? 'upload' : 'vault', n: v.n, h: v.calc ? U.vault + '?calc=' + v.calc : v.h, m: v.t + (v.p ? ' · ' + v.p : '') }; }));
+        var rec = DE.recents.slice(0, 3).map(function (c) { return { k: 'chat', n: c, h: DE.chatUrl(c), m: 'Chat' }; }).concat(DE.vault.filter(function (v) { return v.t !== 'Chat'; }).slice(0, 3).map(function (v) { return { k: v.t === 'Upload' ? 'upload' : 'vault', ic: v.t === 'Model' ? 'cube' : '', n: v.n, h: v.calc ? U.vault + '?calc=' + v.calc : v.h, m: v.t + (v.p ? ' · ' + v.p : '') }; }));
         h += sec('Recents', rec, '') + sec('Actions', sxActions(), '');
       } else if (type === 'all') {
         ['project', 'chat', 'vault', 'upload', 'page'].forEach(function (g) { h += sec(SX_GROUP[g], pool.filter(function (o) { return o.k === g; }).slice(0, k ? 6 : 4), k); });
@@ -204,7 +208,6 @@
       else if (e.key === 'Enter' && e.altKey) { e.preventDefault(); more(st.i); }
       else if (e.key === 'Enter') { e.preventDefault(); open(rows[st.i]); }
       else if ((e.key === 'ArrowLeft' || e.key === 'ArrowRight') && !q.value) { e.preventDefault(); st.t = (st.t + (e.key === 'ArrowRight' ? 1 : -1) + SX_TYPES.length) % SX_TYPES.length; draw(); }
-      else if (e.key === '/' && !q.value) { e.preventDefault(); st.filt = !st.filt; if (!st.filt) st.proj = ''; draw(); }
     });
     draw();
   }

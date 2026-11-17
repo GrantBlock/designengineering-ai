@@ -49,7 +49,7 @@ Grant, 2026-11-11: **chat in general** is the free tier; **chat in projects** is
 
 ### Chat questions
 
-1. Answered 2026-11-12: Basic Viewer keeps view and comment on shared projects but has no projects of its own; a one-time Starter bundle unlocks 3 projects and a file upload limit. (Was: The App Plan (6.1) gives Basic Viewer up to 3 projects of their own, plus view and comment on shared projects, and a Starter bundle for tokens. If projects are Pro only, does Basic Viewer keep the 3 projects, or only view and comment on shared ones? The App Plan and memory log would then change (Word files win on levels).)
+1. Answered 2026-11-12: Basic Viewer keeps view and comment on shared projects but has no projects of its own; a yearly Starter bundle ($20 per year) unlocks 3 projects and a file upload limit. (Was: The App Plan (6.1) gives Basic Viewer up to 3 projects of their own, plus view and comment on shared projects, and a Starter bundle for tokens. If projects are Pro only, does Basic Viewer keep the 3 projects, or only view and comment on shared ones? The App Plan and memory log would then change (Word files win on levels).)
 2. Can a free person open a project that was shared with them and chat in it, or only view and comment?
 3. May a free person attach files to a general chat, or does anything with a file need a project?
 4. Answered 2026-11-12: the Starter bundle unlocks projects (3) and uploads, so project chat. (Was: Does the Starter bundle unlock project chat, or only more general chat?)
@@ -58,7 +58,7 @@ Grant, 2026-11-11: **chat in general** is the free tier; **chat in projects** is
 
 Updated 2026-11-12 from Grant's decisions (App Plan 2, 6.1, 6.3, 6.4; SBA 5.2). Rows are stated unless marked Draft.
 
-| | Basic Viewer (free) | Starter ($20 / year) | Pro ($30 / month) | Team ($50 / user / month) | + Design ($600 / yr) | + Builder ($600 / yr) |
+| | Basic Viewer (free) | Starter ($20 / year) | Pro ($30 / month) | Team ($50 / user / month) | + Design ($600 / seat / yr) | + Builder ($600 / seat / yr) |
 | --- | --- | --- | --- | --- | --- | --- |
 | General chat | Very small daily cap from the free pool (5% of Pro revenue), lowest-cost model, slow queue | Same cap; $5 starter credit (A), then wallet tokens, no limit | Wallet tokens, faster, premium models | As Pro | - | - |
 | Own projects and project chat | - | Up to 3 | Yes | Yes | - | - |
@@ -89,3 +89,5 @@ All extensions ship after the MVP and are in the prototype now. Navigation: the 
 - [stated] 2026-11-12: Grant: Pro is also 10 viewers per user; owners activate and deactivate viewers to manage them.
 - [stated] 2026-11-12: Grant: Builder gives unlimited viewers, fair use, view and chat only.
 - [stated] 2026-11-12: Grant: Lite has no phone app; phones open a package's online copy (Builder, Also share online, off by default) in the main app as viewers.
+- [stated] 2026-11-17: Grant confirmed Starter is a yearly bundle ($20 per year), and the Design and Builder extensions are $600 per seat per year.
+- [stated] 2026-11-17: Grant: Design models made by a Basic Viewer are saved in Lite package files, not the Vault.

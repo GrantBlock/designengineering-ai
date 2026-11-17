@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Conveyor Transfer Bracket — Solid / Wireframe</title>
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://unpkg.com/three@0.184.0/build/three.module.js",
+    "three/addons/controls/OrbitControls.js": "https://unpkg.com/three@0.184.0/examples/jsm/controls/OrbitControls.js",
+    "three/addons/exporters/OBJExporter.js": "https://unpkg.com/three@0.184.0/examples/jsm/exporters/OBJExporter.js",
+    "three/addons/exporters/GLTFExporter.js": "https://unpkg.com/three@0.184.0/examples/jsm/exporters/GLTFExporter.js"
+  },
+  "integrity": {
+    "https://unpkg.com/three@0.184.0/build/three.module.js": "sha384-8FCZ1eVO6it4+pbec2aDtnTrwjWXZLJRC+MAGCIPDgsYnUrl/E0A2YlF8ioMKI/J",
+    "https://unpkg.com/three@0.184.0/build/three.core.js": "sha384-dw2ooPewaEIrAgl6oFDBmmBWCE9oW9LxRGcfwZ0hLvEprzo202wXl7vCYHRlSnOT",
+    "https://unpkg.com/three@0.184.0/examples/jsm/controls/OrbitControls.js": "sha384-4rziNxOBZKQ69i+w+f89KJ55TCYquwchVbByQwmaOeIOXdOU2PLDn3kOfXHwIJC9",
+    "https://unpkg.com/three@0.184.0/examples/jsm/exporters/OBJExporter.js": "sha384-nbwtoZENJD3Vq+ACK0CuGQdPMuDWHkamC2KJD70EV5nfg6jQjfppKOea07YJN+N3",
+    "https://unpkg.com/three@0.184.0/examples/jsm/exporters/GLTFExporter.js": "sha384-VofkvpG6HERhFCYbsUOHeNXBCqID2nfqkQqnVzE1jc/oPcz+qJ13ADdXH08hE+cQ"
+  }
+}
+</script>
+<style>
+  html, body { margin: 0; background: #0b0c0e; height: 100%; display: grid; place-items: center; }
+  three-d-stage { display: block; width: 100vw; height: 100vh; }
+  three-d-stage:not(:defined) { visibility: hidden; }
+</style>
+</head>
+<body>
+<three-d-stage name="conveyor_transfer_bracket" background="#0b0c0e"></three-d-stage>
+<script src="three-d-stage.js"></script>
+<script type="module">
+import { createEnv } from './bc-render-env.js';
+const stage = document.querySelector('three-d-stage');
+if (window.self !== window.top) { await stage.ready; stage._toolbar && (stage._toolbar.style.display = 'none'); }
+const E = await createEnv(stage, { name: 'conveyor_transfer_bracket' });
+const { M, box, cyl, frustum, lathe, tube, group, robot, conveyor, fence, finish } = E;
+conveyor('conveyor_a', { len: 1.4, width: 0.45, top: 0.85, x: -0.79 });
+conveyor('conveyor_b', { len: 1.4, width: 0.45, top: 0.85, x: 0.79 });
+box('dead_plate', 0.16, 0.008, 0.43, M.alu, 0, 0.846, 0);
+[-1, 1].forEach(s => {
+  const sn = s < 0 ? 'b' : 'f';
+  box('bracket_plate_' + sn, 0.6, 0.16, 0.012, M.gray, 0, 0.78, s * 0.292);
+  box('bracket_flange_' + sn, 0.6, 0.012, 0.07, M.gray, 0, 0.706, s * 0.26);
+  [-0.22, -0.12, 0.12, 0.22].forEach((x, i) => cyl('bolt_' + sn + '_' + i, 0.012, 0.03, M.alu, x, 0.82, s * 0.305, 'z', undefined, 24));
+});
+box('cross_bar', 0.06, 0.06, 0.62, M.gray, 0, 0.67, 0);
+box('support_leg', 0.06, 0.64, 0.06, M.gray, 0, 0.32, 0);
+box('support_foot', 0.2, 0.012, 0.2, M.alu, 0, 0.006, 0);
+box('case_0', 0.34, 0.22, 0.3, M.robot, -0.7, 0.96, 0);
+box('case_1', 0.34, 0.22, 0.3, M.robot, -0.05, 0.96, 0);
+box('case_2', 0.34, 0.22, 0.3, M.robot, 0.75, 0.96, 0);
+finish({
+  dims: [[[-1.55, 0.002, 0.3], [1.55, 0.002, 0.3], [0, 0, 0.4]], [[-0.3, 0.7, 0.3], [0.3, 0.7, 0.3], [0, 0, 0.3]], [[1.55, 0, 0.27], [1.55, 0.85, 0.27], [0, 0, 0.35]]],
+  secondary: { y: 0.85, w: 1.6, d: 0.9 },
+});
+</script>
+</body>
+</html>

@@ -13,6 +13,8 @@ for d in exports/P*/ exports/shared/; do
   mkdir -p "$OUT/$d"
   cp "$d"*.html "$d"*.js "$d"*.css "$OUT/$d" 2>/dev/null || true
 done
+mkdir -p "$OUT/exports/shared/renders"
+cp exports/shared/renders/*.html exports/shared/renders/*.js exports/shared/renders/*.png "$OUT/exports/shared/renders/"
 cp system-kit/fonts/*.woff2 "$OUT/system-kit/fonts/"
 cp assets/favicon.svg "$OUT/assets/"
 

@@ -81,3 +81,4 @@ Log for [[designengineering-ai]]. Not shown to Grant; used by future sessions to
 - [stated] 2026-11-12: Team includes 10 viewers per Team user (Grant). SBA 5.2 Team row updated.
 - [stated] 2026-11-12: Pro and Team both get 10 active viewers per user; owners activate and deactivate viewers (Grant). SBA 5.2 text updated.
 - [stated] 2026-11-12: Builder includes unlimited view-and-chat viewers, fair use (Grant). SBA 5.2 Builder row updated.
+- [stated] 2026-11-17: Count Team once in SBA 8.2.1: its $14,300 stays in the $61,300 of add-ons and it is no longer a candidate for the remaining $43,700 gap; Builder is the candidate for the founder-built feature. No numbers changed.

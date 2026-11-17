@@ -49,19 +49,22 @@
   ];
 
   /* Vault: everything made in the app. Uploads and calculators are added below so the Vault lists them too. */
-  var P06 = '../P06-project-workspace/index.html?project=', P08 = '../P08-3d-viewer/index.html', P03 = '../P03-chat-conversation/index.html';
+  var P06 = '../P06-project-workspace/index.html?project=', P08 = '../P08-3d-viewer/index.html', R = '../shared/renders/', P03 = '../P03-chat-conversation/index.html';
   var vault = [
     { n: 'Process document, rev 3', t: 'Document', p: 'BC-Q-26041', d: '2h ago', h: P06 + 'BC-Q-26041&tab=3' },
     { n: 'Palletizer schedule', t: 'Schedule', p: 'BC-Q-26041', d: '15h ago', h: P06 + 'BC-Q-26041&tab=4' },
-    { n: 'Palletizer frame v4', t: 'Model', p: 'BC-Q-26041', d: 'yesterday', h: P08 },
+    { n: 'Palletizer retrofit cell, 3D render', t: 'Model', p: 'BC-Q-26041', d: 'yesterday', h: P08 + '?project=BC-Q-26041', img: R + 'BC-Q-26041.png' },
     { n: 'Quote for Palletizer retrofit', t: 'Document', p: 'BC-Q-26041', d: 'Nov 9', h: P06 + 'BC-Q-26041&tab=3' },
     { n: 'Capping station process document', t: 'Document', p: 'BC-Q-26038', d: 'Nov 9', h: P06 + 'BC-Q-26038&tab=3' },
     { n: 'Capping station schedule', t: 'Schedule', p: 'BC-Q-26038', d: 'Nov 5', h: P06 + 'BC-Q-26038&tab=4' },
-    { n: 'Label head bracket, option B', t: 'Model', p: 'BC-Q-26035', d: 'Nov 4', h: P08 },
-    { n: 'Transfer bracket, spacer', t: 'Model', p: 'BC-Q-26031', d: 'Oct 30', h: P08 },
+    { n: 'Capping station cell, 3D render', t: 'Model', p: 'BC-Q-26038', d: 'Nov 5', h: P08 + '?project=BC-Q-26038', img: R + 'BC-Q-26038.png' },
+    { n: 'Label applicator cell, 3D render', t: 'Model', p: 'BC-Q-26035', d: 'Nov 4', h: P08 + '?project=BC-Q-26035', img: R + 'BC-Q-26035.png' },
+    { n: 'Conveyor transfer bracket cell, 3D render', t: 'Model', p: 'BC-Q-26031', d: 'Oct 30', h: P08 + '?project=BC-Q-26031', img: R + 'BC-Q-26031.png' },
+    { n: 'Washdown motor VFD cell, 3D render', t: 'Model', p: 'BC-Q-26027', d: 'Oct 29', h: P08 + '?project=BC-Q-26027', img: R + 'BC-Q-26027.png' },
     { n: 'VFD sizing summary', t: 'Document', p: 'BC-Q-26027', d: 'Oct 29', h: P06 + 'BC-Q-26027&tab=3' },
     { n: 'Case erector schedule', t: 'Schedule', p: 'BC-Q-26019', d: 'Oct 29', h: P06 + 'BC-Q-26019&tab=4' },
-    { n: 'Case erector I/O list', t: 'Document', p: 'BC-Q-26019', d: 'Oct 28', h: P06 + 'BC-Q-26019&tab=3' }
+    { n: 'Case erector I/O list', t: 'Document', p: 'BC-Q-26019', d: 'Oct 28', h: P06 + 'BC-Q-26019&tab=3' },
+    { n: 'Case erector controls cell, 3D render', t: 'Model', p: 'BC-Q-26019', d: 'Oct 28', h: P08 + '?project=BC-Q-26019', img: R + 'BC-Q-26019.png' }
   ];
   projects.forEach(function (p) { (p.chats || []).forEach(function (c, i) { if (i < 1) vault.push({ n: c, t: 'Chat', p: p.id, d: 'Nov 9', h: P03 + '?project=' + p.id + '&chat=' + encodeURIComponent(c) }); }); });
   calcs.forEach(function (c) { vault.push({ n: c.name, t: 'Calculator', p: c.p, d: c.d, calc: c.id }); });
@@ -75,7 +78,9 @@
     try { localStorage.setItem('de-projects', JSON.stringify(added)); } catch (e) {}
     return p;
   }
-  window.DE = { projects: projects, recents: recents, uploads: uploads, calcs: calcs, vault: vault, project: project, addProject: addProject,
+  /* 3D renders of the sample cells (Grant's upload, 2026-11-16). One page and one PNG per project number. */
+  var renders = {}; ['BC-Q-26041', 'BC-Q-26038', 'BC-Q-26035', 'BC-Q-26031', 'BC-Q-26027', 'BC-Q-26019'].forEach(function (id) { renders[id] = { page: R + id + '.html', img: R + id + '.png' }; });
+  window.DE = { renders: renders, projects: projects, recents: recents, uploads: uploads, calcs: calcs, vault: vault, project: project, addProject: addProject,
     stages: ['Assessment', 'Design', 'Build', 'FAT', 'SAT'],
     chatUrl: function (title, pid) { return '../P03-chat-conversation/index.html?chat=' + encodeURIComponent(title) + (pid ? '&project=' + pid : ''); },
     summaryUrl: function (pid) { return '../P05A-project-summary/index.html?project=' + pid; } };

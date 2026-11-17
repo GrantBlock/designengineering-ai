@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Washdown Motor VFD — Solid / Wireframe</title>
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://unpkg.com/three@0.184.0/build/three.module.js",
+    "three/addons/controls/OrbitControls.js": "https://unpkg.com/three@0.184.0/examples/jsm/controls/OrbitControls.js",
+    "three/addons/exporters/OBJExporter.js": "https://unpkg.com/three@0.184.0/examples/jsm/exporters/OBJExporter.js",
+    "three/addons/exporters/GLTFExporter.js": "https://unpkg.com/three@0.184.0/examples/jsm/exporters/GLTFExporter.js"
+  },
+  "integrity": {
+    "https://unpkg.com/three@0.184.0/build/three.module.js": "sha384-8FCZ1eVO6it4+pbec2aDtnTrwjWXZLJRC+MAGCIPDgsYnUrl/E0A2YlF8ioMKI/J",
+    "https://unpkg.com/three@0.184.0/build/three.core.js": "sha384-dw2ooPewaEIrAgl6oFDBmmBWCE9oW9LxRGcfwZ0hLvEprzo202wXl7vCYHRlSnOT",
+    "https://unpkg.com/three@0.184.0/examples/jsm/controls/OrbitControls.js": "sha384-4rziNxOBZKQ69i+w+f89KJ55TCYquwchVbByQwmaOeIOXdOU2PLDn3kOfXHwIJC9",
+    "https://unpkg.com/three@0.184.0/examples/jsm/exporters/OBJExporter.js": "sha384-nbwtoZENJD3Vq+ACK0CuGQdPMuDWHkamC2KJD70EV5nfg6jQjfppKOea07YJN+N3",
+    "https://unpkg.com/three@0.184.0/examples/jsm/exporters/GLTFExporter.js": "sha384-VofkvpG6HERhFCYbsUOHeNXBCqID2nfqkQqnVzE1jc/oPcz+qJ13ADdXH08hE+cQ"
+  }
+}
+</script>
+<style>
+  html, body { margin: 0; background: #0b0c0e; height: 100%; display: grid; place-items: center; }
+  three-d-stage { display: block; width: 100vw; height: 100vh; }
+  three-d-stage:not(:defined) { visibility: hidden; }
+</style>
+</head>
+<body>
+<three-d-stage name="washdown_motor_vfd" background="#0b0c0e"></three-d-stage>
+<script src="three-d-stage.js"></script>
+<script type="module">
+import { createEnv } from './bc-render-env.js';
+const stage = document.querySelector('three-d-stage');
+if (window.self !== window.top) { await stage.ready; stage._toolbar && (stage._toolbar.style.display = 'none'); }
+const E = await createEnv(stage, { name: 'washdown_motor_vfd' });
+const { M, box, cyl, frustum, lathe, tube, group, robot, conveyor, fence, finish } = E;
+conveyor('conveyor', { len: 3.0, width: 0.5, top: 0.85, x: 0.1, z: 0.2 });
+box('gearbox', 0.2, 0.24, 0.16, M.robot, 1.6, 0.8, 0.62);
+cyl('motor', 0.1, 0.36, M.alu, 1.32, 0.8, 0.62, 'x');
+cyl('motor_endcap', 0.07, 0.04, M.alu, 1.12, 0.8, 0.62, 'x');
+box('motor_junction_box', 0.1, 0.08, 0.1, M.robot, 1.32, 0.94, 0.62);
+box('torque_arm', 0.04, 0.3, 0.04, M.alu, 1.64, 0.55, 0.62);
+box('stand_base', 0.6, 0.03, 0.4, M.dark, -1.1, 0.015, -0.75);
+cyl('stand_post_l', 0.03, 1.6, M.alu, -1.3, 0.8, -0.77);
+cyl('stand_post_r', 0.03, 1.6, M.alu, -0.9, 0.8, -0.77);
+box('strut_low', 0.6, 0.05, 0.05, M.gray, -1.1, 1.0, -0.73);
+box('strut_high', 0.6, 0.05, 0.05, M.gray, -1.1, 1.55, -0.73);
+box('vfd_enclosure', 0.5, 0.7, 0.26, M.alu, -1.1, 1.3, -0.58);
+const roof = box('enclosure_hood', 0.54, 0.025, 0.34, M.alu, -1.1, 1.69, -0.58); roof.rotation.x = 0.3;
+cyl('hinge_top', 0.012, 0.12, M.alu, -1.35, 1.5, -0.44);
+cyl('hinge_bottom', 0.012, 0.12, M.alu, -1.35, 1.1, -0.44);
+box('door_latch', 0.03, 0.08, 0.03, M.dark, -0.87, 1.3, -0.44);
+box('keypad_window', 0.16, 0.2, 0.01, M.dark, -1.1, 1.4, -0.448);
+box('disconnect_handle', 0.03, 0.14, 0.05, M.dark, -0.835, 1.25, -0.55);
+cyl('conduit_gland', 0.03, 0.05, M.alu, -1.0, 0.93, -0.58);
+tube('conduit', [[-1.0, 0.92, -0.58], [-1.0, 0.6, -0.58], [-0.8, 0.2, -0.35], [0.3, 0.14, 0.1], [1.0, 0.15, 0.6], [1.25, 0.45, 0.76], [1.32, 0.85, 0.74], [1.32, 0.98, 0.66]], 0.02, M.dark);
+finish({
+  dims: [[[-1.4, 0.002, 0.55], [1.6, 0.002, 0.55], [0, 0, 0.55]], [[-1.38, 0, -0.45], [-1.38, 1.72, -0.45], [-0.4, 0, 0]]],
+  secondary: { y: 0.8, w: 1.9, d: 1.8 },
+});
+</script>
+</body>
+</html>

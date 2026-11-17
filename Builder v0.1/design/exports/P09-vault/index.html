@@ -312,6 +312,7 @@ button:focus-visible, textarea:focus-visible, input:focus-visible, [role="button
 .v-gantt i{display:block;height:10px;border-radius:var(--bc-radius-bar);background:var(--bc-steel-blue)}
 .v-gantt i.o{background:var(--bc-surface);border:1px solid var(--bc-hairline)}
 .v-model{color:var(--bc-steel-blue-text)}
+.v-render{width:100%;height:100%;object-fit:cover;display:block;background:#0b0c0e}
 .v-chat{width:70%;display:flex;flex-direction:column;gap:8px}
 .v-chat i{display:block;height:12px;border-radius:6px;background:var(--bc-surface)}
 .v-chat i.r{align-self:flex-end;background:var(--bc-steel-blue-tint)}
@@ -416,7 +417,8 @@ a.v-card{color:inherit;text-decoration:none}a.v-card:hover{text-decoration:none;
  var P=DE.projects,I=DE.vault;
  var st={proj:DE.project(Q.get('project'))?Q.get('project'):'all',type:TYPES.some(function(t){return t[0]===Q.get('type')})?Q.get('type'):'all',q:'',list:false,pins:{'BC-Q-26041':1,'BC-Q-26038':1}};
  try{var pv=JSON.parse(localStorage.getItem('de-vault-pins'));if(pv)st.pins=pv}catch(e){}
- function thumb(t){
+ function thumb(t,it){
+  if(t==='Model'&&it&&it.img)return '<img class="v-render" src="'+esc(it.img)+'" alt="" loading="lazy">';
   if(t==='Document')return '<div class="v-paper"><b></b><i style="width:90%"></i><i style="width:78%"></i><u></u><i style="width:84%"></i><i style="width:55%"></i></div>';
   if(t==='Schedule')return '<div class="v-gantt"><i style="width:46%"></i><i style="width:60%;margin-left:18%"></i><i class="o" style="width:52%;margin-left:34%"></i><i style="width:38%;margin-left:12%"></i><i class="o" style="width:30%;margin-left:56%"></i></div>';
   if(t==='Model')return '<div class="v-model">'+ico('<path d="M12 3l8 4.5v9L12 21l-8-4.5v-9zM12 12l8-4.5M12 12v9M12 12L4 7.5"/>',56)+'</div>';
@@ -432,7 +434,7 @@ a.v-card{color:inherit;text-decoration:none}a.v-card:hover{text-decoration:none;
   $('projs').innerHTML=h;$('pc').textContent=P.length+' projects'}
  function drawGal(){var q=st.q.toLowerCase();var L=I.filter(function(i){return (st.proj==='all'||i.p===st.proj)&&(st.type==='all'||i.t===st.type)&&(!q||(i.n+' '+pname(i.p)+' '+i.t).toLowerCase().indexOf(q)>-1)});
   $('gal').classList.toggle('is-list',st.list);
-  var h=L.map(function(i){var k=I.indexOf(i);return '<a class="v-card" href="'+esc(i.calc?'#':i.h)+'" data-k="'+k+'"'+(i.calc?' data-calc="'+i.calc+'" role="button"':'')+' aria-label="Open '+esc(i.n)+', '+i.t+'"><div class="v-thumb">'+thumb(i.t)+'</div><div class="v-card-m"><div class="v-card-t">'+esc(i.n)+'</div><div class="v-card-s"><span class="de-tag">'+i.t+'</span><span>'+(st.proj==='all'?esc(pname(i.p))+' · ':'')+esc(i.d)+'</span></div></div></a>'}).join('');
+  var h=L.map(function(i){var k=I.indexOf(i);return '<a class="v-card" href="'+esc(i.calc?'#':i.h)+'" data-k="'+k+'"'+(i.calc?' data-calc="'+i.calc+'" role="button"':'')+' aria-label="Open '+esc(i.n)+', '+i.t+'"><div class="v-thumb">'+thumb(i.t,i)+'</div><div class="v-card-m"><div class="v-card-t">'+esc(i.n)+'</div><div class="v-card-s"><span class="de-tag">'+i.t+'</span><span>'+(st.proj==='all'?esc(pname(i.p))+' · ':'')+esc(i.d)+'</span></div></div></a>'}).join('');
   if(st.type==='Calculator'||(st.type==='all'&&!q&&st.proj==='all'&&false))h='<a class="v-card v-newcalc" href="../P01-chat-start-desktop/Design_Engineering_App.html" aria-label="New calculator: build one in a chat"><div class="v-thumb"><div class="v-model">'+ico('<path d="M12 5v14M5 12h14"/>',48)+'</div></div><div class="v-card-m"><div class="v-card-t">New calculator</div><div class="v-card-s"><span>Describe it in a chat and I build it with you.</span></div></div></a>'+h;
   $('gal').innerHTML=h;$('none').hidden=!!h}
  function draw(){drawTabs();drawProj();drawGal()}

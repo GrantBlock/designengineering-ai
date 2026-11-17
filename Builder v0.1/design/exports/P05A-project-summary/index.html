@@ -299,6 +299,7 @@ button:focus-visible, textarea:focus-visible, input:focus-visible, [role="button
 .sm-em{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--bc-muted)}
 .sm-et{margin-top:4px;font-size:14px;line-height:1.5}
 .sm-iso{display:block;width:100%;height:auto;max-height:340px;background:var(--bc-canvas);border-radius:var(--bc-radius-card);border:1px solid var(--bc-edge-soft)}
+.sm-render{height:340px;max-height:none;padding:0;background:#0b0c0e}@media (max-width:760px){.sm-render{height:300px}}
 :root{--p5a-iso-top:#4a4a50;--p5a-iso-left:#303034;--p5a-iso-right:#3b3b40;--p5a-iso-edge:#17171a;--p5a-iso-hot-left:#2f5f86}
 .sm-iso .top{fill:var(--p5a-iso-top);stroke:var(--p5a-iso-edge);stroke-width:1}.sm-iso .lf{fill:var(--p5a-iso-left);stroke:var(--p5a-iso-edge);stroke-width:1}.sm-iso .rt{fill:var(--p5a-iso-right);stroke:var(--p5a-iso-edge);stroke-width:1}
 .sm-iso .hot .top{fill:var(--bc-steel-blue)}.sm-iso .hot .lf{fill:var(--p5a-iso-hot-left)}.sm-iso .hot .rt{fill:var(--bc-steel-blue-hover)}
@@ -374,7 +375,7 @@ button:focus-visible, textarea:focus-visible, input:focus-visible, [role="button
    <section class="de-panel" aria-label="Progress" style="margin-bottom:var(--bc-space-4)"><div class="de-section-head"><span class="de-label">Progress</span><span class="de-tag de-tag-plain">Drag to change the stage</span></div>
     <div class="sm-stage"><div class="sm-st"><b id="sn">Build</b><span id="sc">Stage 3 of 5</span></div><div class="sm-rng"><input type="range" id="rg" min="1" max="5" step="1" value="3" aria-label="Project stage"><div class="sm-ticks" id="tk"></div></div></div></section>
    <div class="sm-grid">
-    <section class="de-panel" aria-label="Overview"><div class="de-section-head"><span class="de-label">Overview</span><span class="de-tag de-tag-plain" id="ovn"></span></div><svg class="sm-iso" id="iso" viewBox="0 0 560 340" role="img" aria-label="3D overview of the processes"></svg><div class="sm-cap"><span>Drawn from the process sizes and layout.</span><a id="o3d" href="../P08-3d-viewer/index.html">Open in the 3D designer</a></div></section>
+    <section class="de-panel" aria-label="Overview"><div class="de-section-head"><span class="de-label">Overview</span><span class="de-tag de-tag-plain" id="ovn"></span></div><iframe class="sm-iso sm-render" id="rnd" title="3D render of the cell" loading="lazy" hidden></iframe><svg class="sm-iso" id="iso" viewBox="0 0 560 340" role="img" aria-label="3D overview of the processes"></svg><div class="sm-cap"><span id="ovcap">Drawn from the process sizes and layout.</span><a id="rndfull" href="#" target="_blank" rel="noopener" hidden>Full screen</a><a id="o3d" href="../P08-3d-viewer/index.html">Open in the 3D designer</a></div></section>
     <section class="de-panel" aria-label="Recent tasks"><div class="de-section-head"><span class="de-label">Recent tasks</span><span class="de-tag de-tag-plain" id="rn"></span></div><div id="rl"></div><div class="sm-more"><span>Added with Update assistant on the Dashboard.</span><a href="../P19-dashboard/index.html">Add an update</a></div></section>
    </div>
    <section class="de-panel" aria-label="Scheduled tasks"><div class="de-section-head"><span class="de-label">Scheduled tasks</span><span class="de-tag de-tag-plain" id="gn"></span></div><div id="gantt"></div><div class="sm-more"><span id="gleg"></span><a id="gedit" href="#">Open the schedule</a></div></section>
@@ -457,6 +458,7 @@ button:focus-visible, textarea:focus-visible, input:focus-visible, [role="button
    var ct=T(x+w/2,y+d/2,h);out+='<text x="'+ct[0]+'" y="'+(+ct[1]+4)+'">'+(b.i+1)+'</text></g>'});
   $('iso').innerHTML=out;$('ovn').textContent=S.length+(S.length===1?' process':' processes')}
  drawStage();recent();gantt();iso();
+ (function(){var R={'BC-Q-26041':1,'BC-Q-26038':1,'BC-Q-26035':1,'BC-Q-26031':1,'BC-Q-26027':1,'BC-Q-26019':1};if(NEWP||!R[PN])return;var u='../shared/renders/'+PN+'.html',f=$('rnd');f.src=u;f.hidden=false;$('iso').style.display='none';$('ovcap').textContent='3D render of the cell. Drag to orbit, scroll to zoom.';var a=$('rndfull');a.href=u;a.hidden=false;$('o3d').href='../P08-3d-viewer/index.html?project='+PN})();
 })();
 </script>
 <script>
